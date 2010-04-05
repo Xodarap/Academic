@@ -11,6 +11,10 @@
 %              bottom left of the graph. OPTIONAL
 % nodeLabels - A cell array of size numNodes x 1 of label of each node.
 %              OPTIONAL
+% labelType  - what nodeLabels is:
+%		0/null - just a list of labels
+%		1 - the ith label specifies labels for those at filter value i
+%		2 - Same as 1, but adds the size in parentheses after the label
 %
 % OUTPUT:
 % The graph is written in the graphviz format at the location of fileName
@@ -32,9 +36,11 @@
 %    as this copyright notice is included whole and unchanged.  
 %
 %    END COPYRIGHT NOTICE
+%
+%    Minor modifications 2010 Ben West
 
 
-function writeDotFile(fileName, G, colorParam, sizeParam, extraLabel, nodeLabels)
+function writeDotFile(fileName, G, colorParam, sizeParam, extraLabel, nodeLabels, labelType)
 
 nlPresent = 1;
 
@@ -51,9 +57,9 @@ numNodes = max(size(G));
 cparam = colorParam;
 sparam = sizeParam;
 
-if(nlPresent == 1)
+if(nlPresent == 1 && nargin < 7)
     if(length(nodeLabels) ~= numNodes)
-        error('Number of elements in nodeLables must be equal to the number of nodes.');
+        error('Number of elements in nodeLabels must be equal to the number of nodes.');
     end
 end
 
@@ -70,15 +76,22 @@ hsvColors = rgb2hsv(rgbColors);
 %% Size thingy
 sizeParam = 0.1 + sizeParam/max(sizeParam);
 
-
 %% Print the graph to string
 str = sprintf('Graph "G" {\n');
-
+hsvColors
 for i=1:numNodes
     if(nlPresent == 0)
-        str = sprintf('%s node%d [label="%d", color="%0.15f %0.15f %0.15f",style=filled, shape=circle, width=%0.2f];\n', str, i, sparam(i), hsvColors(i,1), hsvColors(i,2), hsvColors(i,3), sizeParam(i));
+        str = sprintf('%s node%d [label="%d", color="%0.15f %0.15f %0.15f",style=filled, shape=circle, width=%0.2f, fontcolor=white];\n', str, i, sparam(i), hsvColors(i,1), hsvColors(i,2), hsvColors(i,3), sizeParam(i));
     else
-        str = sprintf('%s node%d [label="%s", color="%0.15f %0.15f %0.15f",style=filled, shape=circle, width=%0.2f];\n', str, i, nodeLabels{i}, hsvColors(i,1), hsvColors(i,2), hsvColors(i,3), sizeParam(i));
+	if(labelType == 0)
+		label = nodeLabels{i};
+	else
+		label = nodeLabels{colorParam(i)};
+		if( labelType > 1)
+			label = sprintf('%s\\l(%d)', label, sparam(i));
+		end
+	end
+	str = sprintf('%s node%d [label="%s", color="%0.15f %0.15f %0.15f",style=filled, shape=circle, width=%0.2f, fontcolor=white];\n', str, i, label, hsvColors(i,1), hsvColors(i,2), hsvColors(i,3), sizeParam(i));
     end
 end
 
@@ -90,8 +103,8 @@ for i=1:numNodes
     end
 end
 
-str = sprintf('%s label = "File Name    = %s\\lFilter Range = [%.2f-%.2f]\\lSize Range   = [%.2f-%.2f]\\l',...
-      str, fileName, min(cparam), max(cparam), min(sparam), max(sparam));
+str = sprintf('%s label = "Filter Range = [%.2f-%.2f]\\lSize Range   = [%.2f-%.2f]\\l',...
+	str, min(cparam), max(cparam), min(sparam), max(sparam));
   
 for i=1:length(extraLabel)
     str = sprintf('%s%s\\l', str, extraLabel{i});
