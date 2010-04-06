@@ -1,0 +1,11 @@
+This repository contains modifications to the mapper utility developed by the TMSCSCS group at stanford. See http://comptop.stanford.edu/programs/.
+
+See mapperSample.m for a sample implementation. Mapper relies on graphviz for the graph visualization; you will need that also. See sampleOutput.png for a sample of the output.
+
+Changes:
+
+	findCentroids - created. Finds the centroid of each node
+	writeDotFile -
+		* Use lighter or darker text, depending on the node's color
+		* Allow labeling of centroids
+		* Allow labeling based on filter value

@@ -15,10 +15,11 @@
 %		0/null - just a list of labels
 %		1 - the ith label specifies labels for those at filter value i
 %		2 - Same as 1, but adds the size in parentheses after the label
+% extraNodes - A numNodes x n array listing additional information about each node
 %
 % OUTPUT:
 % The graph is written in the graphviz format at the location of fileName
-
+%
 %    BEGIN COPYRIGHT NOTICE
 %
 %    Mapper code -- (c) 2007-2009 Gurjeet Singh
@@ -37,20 +38,23 @@
 %
 %    END COPYRIGHT NOTICE
 %
-%    Minor modifications 2010 Ben West
-
-
-function writeDotFile(fileName, G, colorParam, sizeParam, extraLabel, nodeLabels, labelType)
+%    Modifications 2010 Ben West. Ben hereby disclaims all copyright interest in this program.
+function writeDotFile(fileName, G, colorParam, sizeParam, extraLabel, nodeLabels, labelType, extraNodes)
 
 nlPresent = 1;
+xtraPresent = 1;
 
 if(nargin < 4)
     error('fileName, G, colorParam, sizeParam are required..');
 elseif(nargin < 5)
     extraLabel{1} = '';
+	xtraPresent = 0;
     nlPresent = 0;
 elseif(nargin < 6)
+	xtraPresent = 0;
     nlPresent = 0;
+elseif(nargin < 8)
+	xtraPresent = 0;
 end
 
 numNodes = max(size(G));
@@ -78,21 +82,41 @@ sizeParam = 0.1 + sizeParam/max(sizeParam);
 
 %% Print the graph to string
 str = sprintf('Graph "G" {\n');
-hsvColors
 for i=1:numNodes
+
+	% If it's a lighter node color, use dark text; else use light text
+	if ((hsvColors(i,3)) > 0.95)
+		fontcolor='black';
+	else
+		fontcolor='white';
+	end
+	
+	% Print differently, depending on how they want the labels
     if(nlPresent == 0)
-        str = sprintf('%s node%d [label="%d", color="%0.15f %0.15f %0.15f",style=filled, shape=circle, width=%0.2f, fontcolor=white];\n', str, i, sparam(i), hsvColors(i,1), hsvColors(i,2), hsvColors(i,3), sizeParam(i));
+        str = sprintf('%s node%d [label="%d", color="%0.15f %0.15f %0.15f",style=filled, shape=circle, width=%0.2f, fontcolor=%s];\n', str, i, sparam(i), hsvColors(i,1), hsvColors(i,2), hsvColors(i,3), sizeParam(i), fontcolor);
     else
-	if(labelType == 0)
+	if (labelType == 0)
+		label = int2str(sparam(i));
+	elseif(labelType == 1)
 		label = nodeLabels{i};
 	else
 		label = nodeLabels{colorParam(i)};
-		if( labelType > 1)
+		if( labelType > 2)
 			label = sprintf('%s\\l(%d)', label, sparam(i));
 		end
 	end
-	str = sprintf('%s node%d [label="%s", color="%0.15f %0.15f %0.15f",style=filled, shape=circle, width=%0.2f, fontcolor=white];\n', str, i, label, hsvColors(i,1), hsvColors(i,2), hsvColors(i,3), sizeParam(i));
+	str = sprintf('%s node%d [label="%s", color="%0.15f %0.15f %0.15f",style=filled, shape=circle, width=%0.2f, fontcolor=%s];\n', str, i, label, hsvColors(i,1), hsvColors(i,2), hsvColors(i,3), sizeParam(i),fontcolor);
     end
+
+	% Print the label nodes, if they want them
+	if(xtraPresent == 1)
+		label = "";
+		for j=1:length(extraNodes(i,:))
+			label = sprintf('%s%.2f\\l', label, extraNodes(i,j));
+		end
+		str = sprintf('%s xtranode%d [label="%s", shape=record]\n', str, i, label);
+		str = sprintf('%s xtranode%d -- node%d;\n', str, i, i);
+	end
 end
 
 for i=1:numNodes
