@@ -66,7 +66,6 @@ public class SymTab {
 	for(HashMap<String, Sym> map : symList){
 	    System.out.println(map.toString());
 	}
-	System.out.println();
     }
 }
 
