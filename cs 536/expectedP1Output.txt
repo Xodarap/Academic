@@ -1,0 +1,12 @@
+
+SYMBOL TABLE
+
+
+SYMBOL TABLE
+{}
+
+
+SYMBOL TABLE
+{1ccc=double, 1bbb=int}
+{2aaa=int}
+
