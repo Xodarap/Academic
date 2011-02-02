@@ -199,10 +199,7 @@ printf		{
 	   }
 
 {IDENTIFIER}	{
-			Symbol S = new Symbol(sym.ID, new IdTokenVal(yyline+1, CharNum.num, yytext()));
-			CharNum.num += yytext().length();
-			return S;
-			}
+			
 	    
 .	   {Errors.fatal(yyline+1, CharNum.num,
 			 "ignoring illegal character: " + yytext());
