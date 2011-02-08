@@ -1,0 +1,3 @@
+#!/bin/bash
+make -C ../
+java -classpath .:java_cup.jar:JLex.jar P2

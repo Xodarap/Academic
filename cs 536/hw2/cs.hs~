@@ -1,0 +1,12 @@
+allChars :: [String] 
+allChars =
+     let 
+     x ="{      }     (      )      ,      =      ;   +      -     *      /      ++     --   !      &&    ||     ==    !=     <      >      <=     >=   &"
+     in words x
+
+
+pretty :: String -> String
+pretty ch = "\"" ++ ch ++ "\", "
+
+doWork :: [String]
+doWork = map pretty allChars
