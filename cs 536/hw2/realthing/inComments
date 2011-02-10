@@ -1,0 +1,12 @@
+/* test multi-line
+   comment
+   */
+
+/* test comment with * and / and // and ** and /*  and / *   */
+
+   /* test comment that starts in midline */
+
+   /* test comment that contains "string literal" */
+
+/* test comment with parens: () and ( some stuff ) are they OK? */
+

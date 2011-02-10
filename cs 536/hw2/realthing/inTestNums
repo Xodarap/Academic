@@ -1,0 +1,21 @@
+int double void if else while return scanf printf int
+
+ thisIsAnID2 anotherId
+
+17 /* update charnum after comment? */ 18
+
+/* update charnum
+   after multi-line comment? */ hello
+
+.0001 111.2 0.0
+
+/* update charnum after good and bad string literals? */
+"" "int" "&!#" "use \n to denote a newline character" ""
+"\" \\" "\t" "and \'" "\" \\"
+"\"" "\\" "all in one string: \n\t\"\\\'"
+
+"\ " 22
+"\a !"  abc
+"\ " "\4" xxx "\}" yyy
+
+{}  ( )   , = ; + - * / ++ -- ! && || == != < > <= >= & "%d" "%f" {}

@@ -52,7 +52,7 @@ class P2 {
 	Symbol token = scanner.next_token();
 	AssertEqual(token.sym, sym.ID, "id");
 	token = scanner.next_token();
-
+	
 	AssertEqual(token.sym, sym.ID, "id2");
 	AssertEqual(((TokenVal) token.value).charnum, 19, "comment cnum");
 	//System.out.println(((IdTokenVal) token.value).idVal);
@@ -157,7 +157,7 @@ class P2 {
  	token = scanner.next_token(); 
  	AssertEqual(token.sym, sym.STRINGLITERAL, "second didn't work");
 	AssertEqual(((StrLitTokenVal)token.value).strVal, "\"again\"", "second string not equal");
-     	AssertEqual(((TokenVal)token.value).charnum, 20, "str position2");
+     	AssertEqual(((TokenVal)token.value).charnum, 21, "str position2");
 
 
 	// some stuff that shouldn't work
