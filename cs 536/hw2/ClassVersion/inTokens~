@@ -1,0 +1,5 @@
+_var /* variables starting with _ have the _ thrown out */
+"test" /* char position is not correct in strings */
+1var /* variables shouldn't be able to start with a number; thiss gets mapped to <int><id> */
+& /* ampersand gets mapped to && */
+/* commments don't increment char num */ var

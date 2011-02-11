@@ -1,0 +1,14 @@
+/* bad escaped chars on lines 2-5; unterm on lines 6-11, both on lines 12-14 */
+"backslash followed by space: \ is not allowed"
+"bad escaped character: \a !"
+"\4"
+"\}"
+"unterminated
+"also unterminated \"
+"\t
+"\n
+"\'
+"\\
+"bad escaped character: \a AND not terminated
+"\!
+"bad escaped at end: \3

@@ -1,0 +1,40 @@
+TESTING ALL TOKENS: COMPARE inTokens and inTokens.out
+
+TEST BAD INTS: BAD INTS ON LINES 2 AND 3
+2:1 **WARNING** integer literal too large; using max value
+3:1 **WARNING** integer literal too large; using max value
+
+TEST BAD STRING LITERALS: BAD ESCAPED CHARS ON LINES 2-5; UNTERM ON LINES 6-11, BOTH ON LINES 12-14
+2:1 **ERROR** ignoring string literal with bad escaped character
+3:1 **ERROR** ignoring string literal with bad escaped character
+4:1 **ERROR** ignoring string literal with bad escaped character
+5:1 **ERROR** ignoring string literal with bad escaped character
+6:1 **ERROR** ignoring unterminated string literal
+7:1 **ERROR** ignoring unterminated string literal
+8:1 **ERROR** ignoring unterminated string literal
+9:1 **ERROR** ignoring unterminated string literal
+10:1 **ERROR** ignoring unterminated string literal
+11:1 **ERROR** ignoring unterminated string literal
+12:1 **ERROR** ignoring unterminated string literal with bad escaped character
+13:1 **ERROR** ignoring unterminated string literal with bad escaped character
+14:1 **ERROR** ignoring unterminated string literal with bad escaped character
+
+TEST BAD CHARS: BAD CHARS ON LINES 1-5
+1:1 **ERROR** ignoring illegal character: $
+2:1 **ERROR** ignoring illegal character: #
+3:1 **ERROR** ignoring illegal character: [
+4:1 **ERROR** ignoring illegal character: ~
+5:1 **ERROR** ignoring illegal character: `
+
+TEST UNTERMINATED COMMENTS: UNTERM COMMENT ON LINE 4
+4:5 **ERROR** unterminated comment
+
+TESTING COMMENTS -- NO OUTPUT EXPECTED
+
+TEST LINE AND CHAR NUMS
+BAD ESCAPED CHAR ON LINES 17, 18, 19, 19, 19
+17:1 **ERROR** ignoring string literal with bad escaped character
+18:1 **ERROR** ignoring string literal with bad escaped character
+19:1 **ERROR** ignoring string literal with bad escaped character
+19:6 **ERROR** ignoring string literal with bad escaped character
+19:15 **ERROR** ignoring string literal with bad escaped character

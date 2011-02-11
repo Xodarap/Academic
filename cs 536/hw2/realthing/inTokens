@@ -1,0 +1,63 @@
+int
+double
+void
+if
+else
+while
+return
+scanf
+printf
+/* test IDs */
+_
+a
+__
+_a_
+_1
+abcde
+A111
+thisIsAnID__
+thisIsAnID2
+INT
+/* test good int literals; the one with leading zeros will cause different output */
+17
+22
+3
+2147483647
+000000000000000000000000000000000000000001
+/* test good string literals with all possible good escaped characters */
+""
+"int double if else return + 45"
+"&!#"
+"use \n to denote a newline character"
+"include a quote like this \" and a backslash like this \\"
+"\t is a tab"
+"and \'"
+"\""
+"\\"
+"all in one string: \n\t\"\\\'"
+/* test symbols */
+{
+}
+(
+)
+,
+=
+;
++
+-
+*
+/
+++
+--
+!
+&&
+||
+==
+!=
+<
+>
+<=
+>=
+&
+"%d"
+"%f"

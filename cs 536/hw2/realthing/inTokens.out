@@ -1,0 +1,59 @@
+int
+double
+void
+if
+else
+while
+return
+scanf
+printf
+_
+a
+__
+_a_
+_1
+abcde
+A111
+thisIsAnID__
+thisIsAnID2
+INT
+17
+22
+3
+2147483647
+1
+""
+"int double if else return + 45"
+"&!#"
+"use \n to denote a newline character"
+"include a quote like this \" and a backslash like this \\"
+"\t is a tab"
+"and \'"
+"\""
+"\\"
+"all in one string: \n\t\"\\\'"
+{
+}
+(
+)
+,
+=
+;
++
+-
+*
+/
+++
+--
+!
+&&
+||
+==
+!=
+<
+>
+<=
+>=
+&
+"%d"
+"%f"
