@@ -1,0 +1,25 @@
+int main(void) {
+        int i, sum;
+        sum = 0;
+        for (i = 0; i < 24; i++) {
+                sum += i;
+        }
+        return sum;
+}
+
+
+
+push   %rbp	; save off %rbp
+mov    %rsp,%rbp	; make the current stack frame the base
+movl   $0x0,0xfffffffffffffffc(%rbp)
+movl   $0x0,0xfffffffffffffff8(%rbp)
+jmp    400466 <main+0x1e>
+mov    0xfffffffffffffff8(%rbp),%eax
+add    %eax,0xfffffffffffffffc(%rbp)
+addl   $0x1,0xfffffffffffffff8(%rbp)
+cmpl   $0x17,0xfffffffffffffff8(%rbp)
+jle    40045c <main+0x14>
+mov    0xfffffffffffffffc(%rbp),%eax
+leaveq 
+retq   
+

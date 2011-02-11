@@ -1,0 +1,54 @@
+Problem 8
+
+int main(void) {
+        int i, sum;
+        sum = 0;
+        for (i = 0; i < 24; i++) {
+                sum += i;
+        }
+        return sum;
+}
+
+0000000000400448 <main>:
+		; Save off the previous base pointer, then make the top of the stack
+		; the current base
+  400448:	push   %rbp
+  400449:	mov    %rsp,%rbp
+
+  		; Initialize i and sum to be zero
+  40044c:	movl   $0x0,0xfffffffffffffffc(%rbp)	;fc is sum
+  400453:	movl   $0x0,0xfffffffffffffff8(%rbp)	;f8 is i
+
+  		; Go to the comparison of the for loop
+		; Note that this just jumps back to the next line (40045c)
+  40045a:	jmp    400466 <main+0x1e>
+
+  		; For loop begins here
+		; Set the accumulator equal to i
+  40045c:	mov    0xfffffffffffffff8(%rbp),%eax
+  		; Add the accumulator (i) to sum
+  40045f:	add    %eax,0xfffffffffffffffc(%rbp)
+  		; Increment i
+  400462:	addl   $0x1,0xfffffffffffffff8(%rbp)
+  		; If i <= 23 (17 in hex), restart the loop
+  400466:	cmpl   $0x17,0xfffffffffffffff8(%rbp)
+  40046a:	jle    40045c <main+0x14>
+
+  		; Put sum in the acummulator  	
+		; C convention is to put return values in EAX	
+  40046c:	mov    0xfffffffffffffffc(%rbp),%eax
+  		; Put rbp back in rsp and pop rbp off stack
+  40046f:	leaveq 
+  		; Leave fn
+  400470:	retq   
+
+
+
+======
+
+With level three optimization, the compiler figures out that the value will be 276 (0x114) and
+just returns that:
+
+0000000000400450 <main>:
+  400450:	 b8 14 01 00 00		mov    $0x114,%eax
+  400455:	 c3                   	retq   
