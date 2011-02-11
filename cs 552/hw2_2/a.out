@@ -1,0 +1,120 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.1" "(v0_9_1)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x8d979c0 .scope module, "fourbitlookahead" "fourbitlookahead" 2 1;
+ .timescale 0 0;
+L_0x8dc5408 .functor AND 1, L_0x8dc5800, L_0x8dc5850, C4<1>, C4<1>;
+L_0x8dc5940 .functor AND 1, L_0x8dc5408, L_0x8dc58f0, C4<1>, C4<1>;
+L_0x8dc58a0 .functor AND 1, L_0x8dc5940, L_0x8dc59e8, C4<1>, C4<1>;
+L_0x8dc5c60 .functor AND 1, L_0x8dc5bc0, L_0x8dc5c10, C4<1>, C4<1>;
+L_0x8dc5d08 .functor OR 1, L_0x8dc5b70, L_0x8dc5c60, C4<0>, C4<0>;
+L_0x8dc5e50 .functor AND 1, L_0x8dc5db0, L_0x8dc5e00, C4<1>, C4<1>;
+L_0x8dc5798 .functor AND 1, L_0x8dc5e50, L_0x8dc5ef8, C4<1>, C4<1>;
+L_0x8dc6028 .functor OR 1, L_0x8dc5d08, L_0x8dc5798, C4<0>, C4<0>;
+L_0x8dc5f48 .functor AND 1, L_0x8dc60d0, L_0x8dc56e0, C4<1>, C4<1>;
+L_0x8dc62e8 .functor AND 1, L_0x8dc5f48, L_0x8dc6298, C4<1>, C4<1>;
+L_0x8dc61e8 .functor AND 1, L_0x8dc62e8, L_0x8dc6390, C4<1>, C4<1>;
+L_0x8dc6498 .functor OR 1, L_0x8dc6028, L_0x8dc61e8, C4<0>, C4<0>;
+v0x8dc3d88_0 .net "A", 3 0, C4<zzzz>; 0 drivers
+v0x8dc3df8_0 .net "B", 3 0, C4<zzzz>; 0 drivers
+v0x8dc3e58_0 .net "G", 0 0, L_0x8dc6498; 1 drivers
+v0x8dc3eb8_0 .net "P", 0 0, L_0x8dc58a0; 1 drivers
+v0x8dc3f20_0 .net *"_s33", 0 0, L_0x8dc5800; 1 drivers
+v0x8dc3f80_0 .net *"_s35", 0 0, L_0x8dc5850; 1 drivers
+v0x8dc4000_0 .net *"_s36", 0 0, L_0x8dc5408; 1 drivers
+v0x8dc4060_0 .net *"_s39", 0 0, L_0x8dc58f0; 1 drivers
+v0x8dc40e8_0 .net *"_s40", 0 0, L_0x8dc5940; 1 drivers
+v0x8dc4148_0 .net *"_s43", 0 0, L_0x8dc59e8; 1 drivers
+v0x8dc41d8_0 .net *"_s47", 0 0, L_0x8dc5b70; 1 drivers
+v0x8dc4238_0 .net *"_s49", 0 0, L_0x8dc5bc0; 1 drivers
+v0x8dc42d0_0 .net *"_s51", 0 0, L_0x8dc5c10; 1 drivers
+v0x8dc4330_0 .net *"_s52", 0 0, L_0x8dc5c60; 1 drivers
+v0x8dc43d0_0 .net *"_s54", 0 0, L_0x8dc5d08; 1 drivers
+v0x8dc4430_0 .net *"_s57", 0 0, L_0x8dc5db0; 1 drivers
+v0x8dc44d8_0 .net *"_s59", 0 0, L_0x8dc5e00; 1 drivers
+v0x8dc4538_0 .net *"_s60", 0 0, L_0x8dc5e50; 1 drivers
+v0x8dc45e8_0 .net *"_s63", 0 0, L_0x8dc5ef8; 1 drivers
+v0x8dc4648_0 .net *"_s64", 0 0, L_0x8dc5798; 1 drivers
+v0x8dc46f0_0 .net *"_s66", 0 0, L_0x8dc6028; 1 drivers
+v0x8dc4740_0 .net *"_s69", 0 0, L_0x8dc60d0; 1 drivers
+v0x8dc4698_0 .net *"_s71", 0 0, L_0x8dc56e0; 1 drivers
+v0x8dc47f0_0 .net *"_s72", 0 0, L_0x8dc5f48; 1 drivers
+v0x8dc4790_0 .net *"_s75", 0 0, L_0x8dc6298; 1 drivers
+v0x8dc48a8_0 .net *"_s76", 0 0, L_0x8dc62e8; 1 drivers
+v0x8dc4850_0 .net *"_s79", 0 0, L_0x8dc6390; 1 drivers
+v0x8dc4978_0 .net *"_s80", 0 0, L_0x8dc61e8; 1 drivers
+RS_0x8d9cea4 .resolv tri, L_0x8dc4c78, L_0x8dc4ff8, L_0x8dc52f8, L_0x8dc5690;
+v0x8dc4908_0 .net8 "gPartial", 3 0, RS_0x8d9cea4; 4 drivers
+RS_0x8d9cebc .resolv tri, L_0x8dc4d20, L_0x8dc50b8, L_0x8dc5380, L_0x8dc5748;
+v0x8dc4a40_0 .net8 "pPartial", 3 0, RS_0x8d9cebc; 4 drivers
+L_0x8dc4bd8 .part C4<zzzz>, 0, 1;
+L_0x8dc4c28 .part C4<zzzz>, 0, 1;
+L_0x8dc4c78 .part/pv L_0x8dc4288, 0, 1, 4;
+L_0x8dc4d20 .part/pv L_0x8dc4b10, 0, 1, 4;
+L_0x8dc4ee8 .part C4<zzzz>, 1, 1;
+L_0x8dc4f70 .part C4<zzzz>, 1, 1;
+L_0x8dc4ff8 .part/pv L_0x8dc4da8, 1, 1, 4;
+L_0x8dc50b8 .part/pv L_0x8dc4e20, 1, 1, 4;
+L_0x8dc5258 .part C4<zzzz>, 2, 1;
+L_0x8dc52a8 .part C4<zzzz>, 2, 1;
+L_0x8dc52f8 .part/pv L_0x8dc5178, 2, 1, 4;
+L_0x8dc5380 .part/pv L_0x8dc51b0, 2, 1, 4;
+L_0x8dc5520 .part C4<zzzz>, 3, 1;
+L_0x8dc55d8 .part C4<zzzz>, 3, 1;
+L_0x8dc5690 .part/pv L_0x8dc5440, 3, 1, 4;
+L_0x8dc5748 .part/pv L_0x8dc5478, 3, 1, 4;
+L_0x8dc5800 .part RS_0x8d9cebc, 0, 1;
+L_0x8dc5850 .part RS_0x8d9cebc, 1, 1;
+L_0x8dc58f0 .part RS_0x8d9cebc, 2, 1;
+L_0x8dc59e8 .part RS_0x8d9cebc, 3, 1;
+L_0x8dc5b70 .part RS_0x8d9cea4, 3, 1;
+L_0x8dc5bc0 .part RS_0x8d9cea4, 2, 1;
+L_0x8dc5c10 .part RS_0x8d9cebc, 3, 1;
+L_0x8dc5db0 .part RS_0x8d9cea4, 1, 1;
+L_0x8dc5e00 .part RS_0x8d9cebc, 2, 1;
+L_0x8dc5ef8 .part RS_0x8d9cebc, 3, 1;
+L_0x8dc60d0 .part RS_0x8d9cea4, 0, 1;
+L_0x8dc56e0 .part RS_0x8d9cebc, 1, 1;
+L_0x8dc6298 .part RS_0x8d9cebc, 2, 1;
+L_0x8dc6390 .part RS_0x8d9cebc, 3, 1;
+S_0x8dc3b70 .scope module, "o1" "onebitlookahead" 2 6, 3 1, S_0x8d979c0;
+ .timescale 0 0;
+L_0x8dc4288 .functor AND 1, L_0x8dc4bd8, L_0x8dc4c28, C4<1>, C4<1>;
+L_0x8dc4b10 .functor XOR 1, L_0x8dc4bd8, L_0x8dc4c28, C4<0>, C4<0>;
+v0x8dc3bf0_0 .net "A", 0 0, L_0x8dc4bd8; 1 drivers
+v0x8dc3c60_0 .net "B", 0 0, L_0x8dc4c28; 1 drivers
+v0x8dc3cc0_0 .net "G", 0 0, L_0x8dc4288; 1 drivers
+v0x8dc3d20_0 .net "P", 0 0, L_0x8dc4b10; 1 drivers
+S_0x8dc3958 .scope module, "o2" "onebitlookahead" 2 7, 3 1, S_0x8d979c0;
+ .timescale 0 0;
+L_0x8dc4da8 .functor AND 1, L_0x8dc4ee8, L_0x8dc4f70, C4<1>, C4<1>;
+L_0x8dc4e20 .functor XOR 1, L_0x8dc4ee8, L_0x8dc4f70, C4<0>, C4<0>;
+v0x8dc39d8_0 .net "A", 0 0, L_0x8dc4ee8; 1 drivers
+v0x8dc3a48_0 .net "B", 0 0, L_0x8dc4f70; 1 drivers
+v0x8dc3aa8_0 .net "G", 0 0, L_0x8dc4da8; 1 drivers
+v0x8dc3b08_0 .net "P", 0 0, L_0x8dc4e20; 1 drivers
+S_0x8dc3740 .scope module, "o3" "onebitlookahead" 2 8, 3 1, S_0x8d979c0;
+ .timescale 0 0;
+L_0x8dc5178 .functor AND 1, L_0x8dc5258, L_0x8dc52a8, C4<1>, C4<1>;
+L_0x8dc51b0 .functor XOR 1, L_0x8dc5258, L_0x8dc52a8, C4<0>, C4<0>;
+v0x8dc37c0_0 .net "A", 0 0, L_0x8dc5258; 1 drivers
+v0x8dc3830_0 .net "B", 0 0, L_0x8dc52a8; 1 drivers
+v0x8dc3890_0 .net "G", 0 0, L_0x8dc5178; 1 drivers
+v0x8dc38f0_0 .net "P", 0 0, L_0x8dc51b0; 1 drivers
+S_0x8d98640 .scope module, "o4" "onebitlookahead" 2 9, 3 1, S_0x8d979c0;
+ .timescale 0 0;
+L_0x8dc5440 .functor AND 1, L_0x8dc5520, L_0x8dc55d8, C4<1>, C4<1>;
+L_0x8dc5478 .functor XOR 1, L_0x8dc5520, L_0x8dc55d8, C4<0>, C4<0>;
+v0x8d98f70_0 .net "A", 0 0, L_0x8dc5520; 1 drivers
+v0x8dc3618_0 .net "B", 0 0, L_0x8dc55d8; 1 drivers
+v0x8dc3678_0 .net "G", 0 0, L_0x8dc5440; 1 drivers
+v0x8dc36d8_0 .net "P", 0 0, L_0x8dc5478; 1 drivers
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "fourbitlookahead.v";
+    "onebitlookahead.v";
