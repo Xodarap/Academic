@@ -1,0 +1,19 @@
+module tb_adder16;
+   reg [15:0] A, B;
+   reg 	      Cin, Err;
+   wire [15:0] S;
+   wire        Cout;
+   wire        Clk, Rst;
+   
+   clkrst clk(.clk (Clk), .rst (Rst), .err(Err));
+      
+   initial begin
+      A = 123456;
+      B = 432413;
+      Cin = 0;
+      Err = 0;
+      
+   end
+   
+
+endmodule // tb_adder16

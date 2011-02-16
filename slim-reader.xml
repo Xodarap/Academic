@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+<ModulePrefs title="__UP_mtitle__" title_url="__UP_titlelink__" directory_title="Slim RSS Reader" description="Slim RSS Reader for your Google Personalized Homepage" screenshot="http://g.1o4.jp/module/slim-reader.png" thumbnail="http://g.1o4.jp/module/slim-reader_thumbnail.png" author="G-FAN" author_email="g.introducer+ghome@gmail.com" author_location="Japan" height="25" scrolling="0" render_inline="optional">
+<Require feature="dynamic-height" />
+<Require feature="setprefs"/>
+</ModulePrefs>
+<UserPref name="mtitle" display_name="Title name" default_value="Slim RSS Reader"/>
+<UserPref name="mfeed" display_name="RSS feed" default_value="http://googleblog.blogspot.com/atom.xml"/>
+<UserPref name="contentsnum" display_name="Items num" datatype="enum" default_value="9">
+    <EnumValue value="1" display_value="1"/>
+    <EnumValue value="2" display_value="2"/>
+    <EnumValue value="3" display_value="3"/>
+    <EnumValue value="4" display_value="4"/>
+    <EnumValue value="5" display_value="5"/>
+    <EnumValue value="6" display_value="6"/>
+    <EnumValue value="7" display_value="7"/>
+    <EnumValue value="8" display_value="8"/>
+    <EnumValue value="9" display_value="9"/>
+</UserPref>
+<UserPref name="titlelink" datatype="hidden" default_value="http://googleblog.blogspot.com/" />
+<Content type="html">
+<![CDATA[
+<style type="text/css">
+SPAN{font-size:9pt;}
+</style>
+<div id="feed_titles" style="font-size: 12px"></div>
+<script type="text/javascript">
+var prefs = new _IG_Prefs(__MODULE_ID__);
+function set_content(content)
+{
+  var html = ""
+  prefs.set("titlelink", _hesc(content.Link));
+
+  for(var i in content.Entry)
+  {
+    html += '<TR><TD width="5"><SPAN>+</SPAN></TD><TD><SPAN><a href="' + _hesc(content.Entry[i].Link) + '" target="_blank">'
+    html += _hesc(content.Entry[i].Title) + '</a></SPAN></TD></TR>';
+  }
+  _gel("feed_titles").innerHTML = '<TABLE border="0" cellspacing="1" cellpadding="0" width="100%">' + html + '</TABLE>';
+_IG_AdjustIFrameHeight();
+}
+_IG_FetchFeedAsJSON("__UP_mfeed__", set_content, __UP_contentsnum__, false);
+_IG_AdjustIFrameHeight();
+</script>
+]]>
+</Content>
+</Module>

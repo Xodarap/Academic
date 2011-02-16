@@ -1,0 +1,281 @@
+#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+1.31
+\end_layout
+
+\begin_layout Subsection*
+a
+\end_layout
+
+\begin_layout Standard
+The question 
+\begin_inset Quotes eld
+\end_inset
+
+How many bits is 
+\begin_inset Formula $N!$
+\end_inset
+
+?
+\begin_inset Quotes erd
+\end_inset
+
+ is just asking us to find 
+\begin_inset Formula $\log N!$
+\end_inset
+
+.
+ In last week's homework, we found that 
+\begin_inset Formula $\log N!=\Theta\left(N\log N\right)$
+\end_inset
+
+ and the answer remains the same this week (one hopes).
+\end_layout
+
+\begin_layout Subsection*
+b
+\end_layout
+
+\begin_layout Standard
+I will do the simple recursive algorithm.
+ In Haskell, this looks like:
+\end_layout
+
+\begin_layout Standard
+fact 1 = 1
+\end_layout
+
+\begin_layout Standard
+fact x = x * (fact x - 1)
+\end_layout
+
+\begin_layout Standard
+The cost of fact N will be the cost of fact N-1, plus however long it takes
+ to multiply the result of fact N-1 by N.
+ We know that 
+\begin_inset Formula $N!=\Theta(N\log N)$
+\end_inset
+
+, so the number of digits of N! is 
+\begin_inset Formula $O\left(\log\left(N\log N\right)\right)=O\left(\log(N)+\log(\log N)\right)=O(\log N)$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $M(x,y)$
+\end_inset
+
+ represent the cost of multiplying an x-bit number by a y-bit number.
+ Then 
+\begin_inset Formula $Cost\left(N!\right)=M\left(\log N,\log N\right)+Cost\left((N-1)!\right)$
+\end_inset
+
+.
+ Assuming 
+\begin_inset Formula $M(x,y)=O\left(\max\{x,y\}\right)^{2}$
+\end_inset
+
+ , we find that 
+\begin_inset Formula $Cost(N!)=\log^{2}N+Cost\left((N-1)!\right)$
+\end_inset
+
+.
+ Since there are N terms, each of which is 
+\begin_inset Formula $O\left(\log^{2}N\right)$
+\end_inset
+
+, 
+\begin_inset Formula $Cost(N!)=O\left(N\log^{2}N\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section*
+1.32
+\end_layout
+
+\begin_layout Subsection*
+a
+\end_layout
+
+\begin_layout Standard
+I will do a bisection approximation.
+ Based on the length of the input, we can find 
+\begin_inset Formula $n$
+\end_inset
+
+ such that 
+\begin_inset Formula $2^{n}\leq x\leq2^{n+1}$
+\end_inset
+
+.
+ This means that 
+\begin_inset Formula $\sqrt{2^{n}}\leq\sqrt{x}\leq\sqrt{2^{n+1}}$
+\end_inset
+
+, or 
+\begin_inset Formula $2^{\lfloor n/2\rfloor}\leq\sqrt{x}\leq2^{\lceil(n+1)/2\rceil}$
+\end_inset
+
+.
+ At every iteration, we bisect the range, squaring the value in the middle.
+ If this value is less than x, we next try with the higher half of the range.
+ If it's greater, we try with the lower half.
+ 
+\end_layout
+
+\begin_layout Standard
+At each iteration we cut the range in half, so we have 
+\begin_inset Formula $\log\left(2^{\lceil(n+1)/2\rceil}-2^{\lfloor n/2\rfloor}\right)=O\left(\log2^{n}\right)=O(n)$
+\end_inset
+
+ iterations before we reach a range less than 1, at which point we have
+ proven that the number is not a square.
+\end_layout
+
+\begin_layout Standard
+Evaluating our guess requires squaring a number which is at most 
+\begin_inset Formula $\sqrt{2^{n}}$
+\end_inset
+
+ which has 
+\begin_inset Formula $\log\left(\sqrt{2^{n}}\right)=\log\left(2^{n/2}\right)=\frac{n}{2}\log(2)=O(n)$
+\end_inset
+
+ digits.
+ Multiplying two 
+\begin_inset Formula $O(n)$
+\end_inset
+
+-digit numbers takes 
+\begin_inset Formula $O(n^{2})$
+\end_inset
+
+, so the algorithm takes 
+\begin_inset Formula $O(n^{3})$
+\end_inset
+
+ time.
+\end_layout
+
+\begin_layout Subsection*
+b
+\end_layout
+
+\begin_layout Standard
+I don't think this is strictly true.
+ For example, consider 
+\begin_inset Formula $4=2^{2}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\log_{10}(4)\approx.6$
+\end_inset
+
+, which is less than 2.
+ If we make the additional assumption that q is greater than the base of
+ the logarithm, then the statement holds.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{align*}
+N= & q^{k}\\
+\log N= & k\log q\\
+\frac{\log N}{\log q}= & k\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If 
+\begin_inset Formula $\log q\geq1$
+\end_inset
+
+, then 
+\begin_inset Formula $k\leq\log N$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\left(\log_{b}q\geq1\right)\Leftrightarrow\left(q\geq b\right)$
+\end_inset
+
+.
+ So the proposition holds as long as 
+\begin_inset Formula $q\geq b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+c
+\end_layout
+
+\begin_layout Standard
+The algorithm is a combination of (a) and (b).
+ We know that, if 
+\begin_inset Formula $n$
+\end_inset
+
+ is a power, it can only be a power with an exponent in 
+\begin_inset Formula $\left[2,\log n\right]$
+\end_inset
+
+.
+ So we just run the algorithm in (a) once for each possible power.
+ The runtime is therefore 
+\begin_inset Formula $O(n^{3}\log n)$
+\end_inset
+
+.
+\end_layout
+
+\end_body
+\end_document

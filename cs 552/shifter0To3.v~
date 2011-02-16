@@ -1,0 +1,15 @@
+module shifter0to3 (In, Cnt, Op, Out);   
+	input [15:0] In;
+	input [3:0]  Cnt;
+	input [1:0]  Op;
+	output [15:0] Out;
+	wire [15:0] s1, s2In, s2Out;
+
+	shifter1 shift1(In, Op, s1);
+	assign s2In = Cnt[0] ? s1 : In;
+	shifter2 shift2(s2In, Op, s2Out);
+	assign Out = Cnt[1] ? s2Out : s2In;
+
+endmodule
+
+

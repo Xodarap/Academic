@@ -1,0 +1,68 @@
+<html>
+<body>
+<style type="text/css">
+#feedHolder {
+	max-width:300px;
+	font-size:.8em;
+	padding: 0px;
+}
+#feedHolder .rssItem {
+	list-style-type:none;
+	clear:both;
+	margin-bottom:2px;
+}
+#feedHolder li.rssItem:hover {
+	background-color: #ffc67d;
+}
+#feedHolder .rssItem .favicon{
+	margin-left:10px;
+}
+#feedHolder .rssItem .link {
+	width: 70%;
+	display: inline-block;
+}
+#feedHolder .rssItem .votes {
+	margin-left:5px;
+}
+</style>
+<ul id="feedHolder"></ul>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var $feedHolder = $('#feedHolder');
+	var siteData = {
+		digg: {
+			favicon: "http://cdn1.diggstatic.com/img/favicon.a015f25c.ico",
+		},
+		reddit: {
+			favicon: "http://www.reddit.com/static/favicon.ico"
+		}						
+	};
+	/*
+	$.get('http://www.reddit.com/r/environment/.json',function(data){
+		alert(data);
+	});*/
+	$.getJSON('http://pipes.yahoo.com/pipes/pipe.run?_id=d62eb873a01e5120fc2dda0b6439d132&_render=json&_callback=?', function(data) {
+		for(var idx in data.value.items){
+			var item = data.value.items[idx];
+			var title = item.title;
+			var caption = item.title.length > 50 ? item.title.substring(0,50) + '...' : item.title;
+			var site = "unknown";
+			var favicon = "";
+			var votes = 0;
+			if(item.diggs) { site = "digg"; }
+			else if (item.link.indexOf('reddit.com') != 1) { site = "reddit"; }
+			if(site == "digg") { 
+				votes = item.diggs;
+			}
+			$feedHolder.append('<li class="rssItem">' +
+										'<span class="link"><a href="' + item.link + '" title="' + title +'">' + caption + '</a></span>' +
+										'<img src="' + siteData[site].favicon + '" class="favicon"/>' +
+										'<span class="votes">' + votes + '</span>' +
+									 '</li>');
+		}	
+	});
+});
+</script>
+</body>
+</html>

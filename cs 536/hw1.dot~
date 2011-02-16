@@ -1,0 +1,8 @@
+digraph G {
+JL [label="Jad Lives"];
+JD [label="Jad Dies"];
+0 [label="Launch"];
+0 -> JL;
+0 -> JD;
+JL -> JD;
+}
