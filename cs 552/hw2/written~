@@ -1,0 +1,52 @@
+3.
+translate:
+   c = a + b;
+   d = c - b;
+   a = c + d;
+
+a is stored in $t1, b is stored in $t2, c is in $t3, and d is in $t4. 
+
+add	$t3, $t1, $t2
+sub $t4, $t3, $t2
+add $t1, $t3, $t4
+
+4.
+
+init: add 	$t0, $zero, $zero	; i = 0
+			addi	$t1, $zero, 10		; max = 10
+			add		$t2, $zero, $a0		; $t2 is base address of a
+			add		$t3, $zero, $a1		; $t3 is base address of b
+loop:	beq		$t0, $t1, end			; break if i = max
+			lw		$t4, 0 ($t3)			; $t4 = *b[i]
+			add		$t4, $t4, $t0			; $t4 += $t0
+			sw		$t4, 0 ($t2)			; a[2*i] = $t4
+			addi	$t0, $t0, 1				; i++
+			addi 	$t3, $t3, 4				; $t3 = &b[i]
+			addi	$t2, $t2, 8				; $t2 = &a[2*i]
+			j loop
+end: done
+
+5.
+2.7.1
+0110 1111 1011 1010 is the same in two's complement, so it's 28602.
+1001 1100 0110 0110 is
+0110 0011 1001 1010 in two's complement, or 25498
+2.7.2
+a. 28602
+b. 40038
+2.7.3
+a. 6fba
+b. 9c66
+
+6.
+1.6.4
+P1: 4 billion
+P2: 3 billion
+1.6.5
+Avg CPI(P1) = (1/6)(1+1+2+3+4+5) = (1/6)(16) = 2.6
+Avg CPI(P2) = (1/6)(2+2+2+2+4+4) = (1/6)(16) = 2.6
+
+Avg instruction time (P1) = 2.66 / 4e9 = 6.6e-10
+Avg instruction time (P2) = 2.66 / 6e9 = 4.4e-10
+
+P1 / P2 = 4.44 / 6.66 = 1.5

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <ModulePrefs title="__UP_title__" 
+               title_url="__UP_url__" 
+               directory_title="Simple rss reader 1.2"
+               scrolling="true" 
+               description="Simple rss reader renders most of rss/rdf channels that standart Google Personalized Home engine don't. Original by Pavel Filippov, addapted by Mark Roeling"
+               author="Pavel Filippov (emdin) / Mark Roeling"  
+               author_email="zanziver@gmail.com"
+               author_location="Jerusalem, Israel | Lelystad, The Netherlands" 
+               screenshot ="http://google.jeeva-con.com/simple_rss/screenshot.gif">
+<!--    <Require feature="dynamic-height"/>               -->
+  </ModulePrefs> 
+  <Content type="url" href="http://google.jeeva-con.com/simple_rss/simple_rss.php" />
+  <UserPref name="url" display_name="RSS address" required="true"/>
+  <UserPref name="title" display_name="RSS title" required="false" default_value="RSS" />
+  <UserPref name="amount" display_name="Records amount" required="true" default_value="9" />
+  <UserPref name="font" display_name="Font family" required="false" default_value="arial" />
+  <UserPref name="fontsize" display_name="Font size (pt)" required="false" default_value="8" />
+  <UserPref name="fontcolor" display_name="Font color (hex format)" required="false" default_value="#000000" />
+  <UserPref name="timer" display_name="Refresh period (sec)" required="false" default_value="30" />
+  <UserPref name="mode" display_name="Display mode" datatype="enum" required="false" default_value="all">
+    <EnumValue value="all" display_value="Titles and descriptions"/>
+    <EnumValue value="titles_only" display_value="Titles only"/>
+  </UserPref>
+  <UserPref name="links" display_name="Display links" datatype="enum" default_value="date">  
+    <EnumValue value="date" display_value="Date and time"/>
+    <EnumValue value="author" display_value="Author"/>
+    <EnumValue value="none" display_value="none"/>
+  </UserPref>
+  <UserPref name="direction" display_name="Text direction" datatype="enum" default_value="ltr">  
+    <EnumValue value="ltr" display_value="Left-to-right"/>
+    <EnumValue value="rtl" display_value="Right-to-left"/>
+  </UserPref>
+</Module>
+

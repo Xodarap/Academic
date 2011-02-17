@@ -1,0 +1,14 @@
+1.
+1.1 ([^*]|[^/]) is ., since everything is either not a * or not a /. 
+	Bad comment: /* */ foo */ 
+1.2 It shouldn't be able to end with multiple slashes.
+	Bad comment: /* *////
+1.3 Since the * is greedy, it will eat up stuff which it shouldn't
+	Bad comment: /* cmt */ x = 1; /* cmt 2 */
+1.4 It's ok to have stars and slashes inside a comment
+	Good comment: /* ** */
+1.5 It doesn't count stuff without stars
+	Good comment: /* test */
+
+2. {SLASH}{STAR}.*?{STAR}{SLASH}
+This is 1.3, but it avoids the greediness since ? is lazy.

@@ -1,4 +1,23 @@
 module tb_adder16;
+<<<<<<< HEAD
 
+=======
+   reg [15:0] A, B;
+   reg 	      Cin, Err;
+   wire [15:0] S;
+   wire        Cout;
+   wire        Clk, Rst;
+   
+   clkrst clk(.clk (Clk), .rst (Rst), .err(Err));
+      
+   initial begin
+      A = 123456;
+      B = 432413;
+      Cin = 0;
+      Err = 0;
+      
+   end
+   
+>>>>>>> 4522979e66c4c4928486f4586e006d20a0267740
 
 endmodule // tb_adder16

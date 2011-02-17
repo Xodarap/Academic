@@ -1,0 +1,5 @@
+var eipi = eipi||{};
+
+eipi.getSubReddit = function(subRedditName){
+	
+}

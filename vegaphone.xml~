@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs title="__UP_vegaphone__" title_url="__UP_na__" directory_title="Vegaphone" description="Vegaphone activism enhancer" screenshot="" thumbnail="" author="Ben West" author_email="xodarap00@gmail.com" author_location="US" height="25" render_inline="optional">
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+	<div id="content_div">This is a test</div>
+
+]]>
+</Content>
+</Module>
