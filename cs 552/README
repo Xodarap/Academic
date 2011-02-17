@@ -1,0 +1,3 @@
+Because it was hard for me to see what was going on with VCheck, I put the output of non-testbed files in Vcheck.clean.output. You can find the output of all files in Vcheck.output.
+
+You can see the bash script vchecker for what I did

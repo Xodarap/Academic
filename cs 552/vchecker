@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "Checking all files"
+echo "" > $1/Vcheck.output
+FILES=$(ls $1/*.v)
+for f in $FILES 
+do
+    java Vcheck $f >> $1/Vcheck.output
+done
+echo "Checking clean files"
+echo "" > $1/Vcheck.clean.output
+FILES=$(ls $1/*.v | grep -v tb | grep -v clkrst)
+for f in $FILES
+do
+	java Vcheck $f >> $1/Vcheck.clean.output
+done

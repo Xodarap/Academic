@@ -1,0 +1,55 @@
+Line 20: Bad keyword integer
+Line 22: Bad keyword initial
+Line 23: begin without always/case
+Line 30: Expected '@' after 'always'
+Line 32: Bad keyword if
+Line 30: Always without case(x)
+Line 37: Bad keyword posedge
+Line 39: Bad keyword if
+Line 37: Always without case(x)
+End of file clkrst.v. Hash = -1591555750
+Line 1066: No endmodule found
+End of file dump.vcd. Hash = -2008004076
+End of file shifter0To3.v~. Hash = -1577516862
+End of file shifter1.v. Hash = -568588
+End of file shifter1.v~. Hash = -1863834941
+End of file shifter2.v. Hash = 689187716
+End of file shifter2.v~. Hash = -656201486
+End of file shifter4.v. Hash = 689187716
+End of file shifter4.v~. Hash = -656201486
+End of file shifter8.v. Hash = 689187716
+End of file shifter8.v~. Hash = -656201486
+End of file shifter.v. Hash = 871118755
+End of file shifter.v~. Hash = -1946931211
+Line 10: Bad keyword initial
+Line 11: begin without always/case
+Line 14: Bad keyword for
+Line 15: begin without always/case
+Line 16: Bad keyword for
+Line 17: begin without always/case
+Line 25: Bad keyword posedge
+Line 25: Always without case(x)
+End of file tb_shifter1.v. Hash = 1090156012
+Line 10: Bad keyword initial
+Line 11: begin without always/case
+Line 14: Bad keyword for
+Line 15: begin without always/case
+Line 16: Bad keyword for
+Line 17: begin without always/case
+Line 25: Bad keyword posedge
+Line 25: Always without case(x)
+End of file tb_shifter1.v~. Hash = 1077573100
+Line 11: Bad keyword integer
+Line 34: Bad keyword initial
+Line 35: begin without always/case
+Line 43: Bad keyword posedge
+Line 51: Bad keyword if
+Line 43: Always without case(x)
+End of file tb_shifter.v. Hash = -462704758
+Line 11: Bad keyword integer
+Line 34: Bad keyword initial
+Line 35: begin without always/case
+Line 43: Bad keyword posedge
+Line 51: Bad keyword if
+Line 43: Always without case(x)
+End of file tb_shifter.v~. Hash = -462704758
