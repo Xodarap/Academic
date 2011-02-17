@@ -1,0 +1,3 @@
+#!/bin/bash
+make
+java -cp .:JLex.jar:java_cup.jar P3 test.Little output

@@ -1,0 +1,6 @@
+digraph G {
+	S1 [label="S"];
+	S1 [label="S"];
+
+	S -> S1;
+}
