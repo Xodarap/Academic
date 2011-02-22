@@ -9,4 +9,7 @@ int foo(double x, int y) {
     foo = x--;
     ++x;
     --x;
+    blah = !x;
+    fd = -ds;
+    a = b + c * d / e - f;
 }

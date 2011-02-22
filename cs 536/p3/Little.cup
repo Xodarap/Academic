@@ -91,12 +91,15 @@ non terminal ExpNode	      term;
 non terminal AssignNode	      assign_exp;
 
 /* NOTE: Add precedence and associativity declarations here */
-precedence left NOT, PLUSPLUS, MINUSMINUS;
-precedence left STAR, DIVIDE;
-precedence left PLUS, MINUS;
-precedence nonassoc EQUALS, NOTEQUALS, LESS, GREATER, LESSEQ, GREATEREQ;
+precedence right ASSIGN;
 precedence left AND, OR;
-/*precedence left ASSIGN;*/
+precedence nonassoc EQUALS, NOTEQUALS, LESS, GREATER, LESSEQ, GREATEREQ;
+precedence left PLUS;
+precedence left MINUS;
+precedence left STAR;
+precedence left DIVIDE;
+precedence left NOT, PLUSPLUS, MINUSMINUS;
+
 
 start with program;
 
@@ -237,8 +240,17 @@ assign_exp     ::= id:i ASSIGN exp:e
 exp	       ::= assign_exp:ae
 	       {: RESULT = ae;
 	       :}
-	       | term:t
-	       {: RESULT = t;
+	       | exp:e1 PLUS exp:e2
+	       {: RESULT = new PlusNode(e1, e2);
+	       :}
+	       | exp:e1 MINUS exp:e2
+	       {: RESULT = new MinusNode(e1, e2);
+	       :}
+	       | exp:e1 STAR exp:e2
+	       {: RESULT = new TimesNode(e1, e2);
+	       :}
+	       | exp:e1 DIVIDE exp:e2
+	       {: RESULT = new DivideNode(e1, e2);
 	       :}
 	       | exp:e PLUSPLUS
 	       {: RESULT = new PlusPlusNode(e);
@@ -249,7 +261,34 @@ exp	       ::= assign_exp:ae
 	       | NOT exp:e
 	       {: RESULT = new NotNode(e);
 	       :}
+	       | exp:e1 AND exp:e2
+	       {: RESULT = new AndNode(e1, e2);
+	       :}
+	       | exp:e1 OR exp:e2
+	       {: RESULT = new OrNode(e1, e2);
+	       :}
+	       | exp:e1 EQUALS exp:e2
+	       {: RESULT = new EqualsNode(e1, e2);
+	       :}
+	       | exp:e1 NOTEQUALS exp:e2
+	       {: RESULT = new NotEqualsNode(e1, e2);
+	       :}
+               | exp:e1 LESS exp:e2
+	       {: RESULT = new LessNode(e1, e2);
+	       :}
+               | exp:e1 GREATER exp:e2
+	       {: RESULT = new GreaterNode(e1, e2);
+	       :}
+               | exp:e1 LESSEQ exp:e2
+	       {: RESULT = new LessEqNode(e1, e2);
+	       :}
+	       | exp:e1 GREATEREQ exp:e2
+	       {: RESULT = new GreaterEqNode(e1, e2);
+	       :}
 	       | MINUS term:t
 	       {: RESULT = new UnaryMinusNode(t);
+	       :}
+	       | term:t
+	       {: RESULT = t;
 	       :}
 	       ;
