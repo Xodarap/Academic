@@ -1,3 +1,5 @@
-int x;
-int y;
-x++;
+double z;
+int foo(double x, int y) { 
+    int z;
+    double fafodjs;
+}

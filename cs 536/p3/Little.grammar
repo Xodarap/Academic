@@ -97,7 +97,7 @@ actualList	::= exp
 		| actualList COMMA exp
 		;
 
-type		::= INT
+type		::= DBL
 		| DBL
 		| VOID
 		;

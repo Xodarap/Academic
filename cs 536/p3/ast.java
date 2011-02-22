@@ -163,6 +163,14 @@ class FormalsListNode extends ASTnode {
 
     // ** unparse **
     public void unparse(PrintWriter p, int indent) {
+	Iterator<FormalDeclNode> it = myFormals.iterator();
+	while(it.hasNext()){
+	    FormalDeclNode n = it.next();
+	    n.unparse(p, indent);
+	    if(it.hasNext()){
+		p.print(", ");
+	    }
+	}
     }
 
     // list of kids (FormalDeclNodes)
@@ -177,6 +185,8 @@ class FnBodyNode extends ASTnode {
 
     // ** unparse **
     public void unparse(PrintWriter p, int indent) {
+	myDeclList.unparse(p, indent);
+	myStmtList.unparse(p, indent);
     }
 
     // 2 kids
@@ -249,6 +259,17 @@ class FnDeclNode extends DeclNode {
 
     // ** unparse **
     public void unparse(PrintWriter p, int indent) {
+	doIndent(p, indent);
+	myType.unparse(p, 0);
+	p.print(" ");
+	myId.unparse(p, 0);
+	p.print("(");
+	myFormalsList.unparse(p, 0);
+	p.print(") {");
+	p.println();
+	myBody.unparse(p, indent+1);
+	//p.println();
+	p.println("}");
     }
 
     // 4 kids
@@ -266,6 +287,10 @@ class FormalDeclNode extends DeclNode {
 
     // ** unparse **
     public void unparse(PrintWriter p, int indent) {
+	doIndent(p, indent);
+	myType.unparse(p, 0);
+	p.print(" ");
+	myId.unparse(p, 0);
     }
 
     // 2 kids
@@ -295,6 +320,7 @@ class DblNode extends TypeNode {
 
     // ** unparse **
     public void unparse(PrintWriter p, int indent) {
+	p.print("double");
     }
 }
 
@@ -304,6 +330,7 @@ class VoidNode extends TypeNode {
 
     // ** unparse **
     public void unparse(PrintWriter p, int indent) {
+	p.print("void");
     }
 }
 
@@ -536,6 +563,7 @@ class IntLitNode extends ExpNode {
 
     // ** unparse **
     public void unparse(PrintWriter p, int indent) {
+	p.print(Integer.toString(myIntVal));
     }
 
     private int myLineNum;
@@ -552,6 +580,7 @@ class DblLitNode extends ExpNode {
 
     // ** unparse **
     public void unparse(PrintWriter p, int indent) {
+	p.print(Double.toString(myDblVal));
     }
 
     private int myLineNum;

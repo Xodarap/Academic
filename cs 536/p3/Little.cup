@@ -77,6 +77,14 @@ non terminal DeclNode	      decl;
 non terminal VarDeclNode      varDecl;
 non terminal TypeNode	      type;
 non terminal IdNode	      id;
+non terminal LinkedList       formalsList;
+non terminal FormalDeclNode   formalDecl;
+non terminal FnDeclNode	      fnDecl;
+non terminal FnBodyNode	      fnBody;
+non terminal LinkedList	      stmtList;
+non terminal StmtNode	      stmt;
+non terminal IntLitNode	      intLit;
+non terminal DblLitNode	      dblLit;
 
 /* NOTE: Add precedence and associativity declarations here */
 
@@ -104,6 +112,37 @@ declList 	::= declList:dl decl:d
 decl		::= varDecl:v
 		{: RESULT = v;
 		:}
+		| fnDecl:v
+		{: RESULT = v;
+		:}		
+		;
+
+fnDecl		::= type:t id:i LPAREN formalsList:fl RPAREN LCURLY fnBody:fb RCURLY
+		{: RESULT = new FnDeclNode(t, i, new FormalsListNode(fl), fb);
+		:}
+		;
+
+fnBody		::= declList:dl stmtList:sl
+		{: RESULT = new FnBodyNode(new DeclListNode(dl), new StmtListNode(sl));
+		:}
+		;
+
+formalsList	::= formalsList:fl COMMA formalDecl:d
+		{: fl.addLast(d);
+		   RESULT = fl;
+		:}
+		| formalDecl:d
+		{: RESULT = new LinkedList<FormalDeclNode>();
+		   RESULT.add(d);
+		:}
+		|
+		{: RESULT = new LinkedList<FormalDeclNode>();
+		:}
+		;
+
+formalDecl	::= type:t id:i
+		{: RESULT = new FormalDeclNode(t, i);
+		:}
 		;
 
 varDecl		::= type: t id: i SEMICOLON
@@ -115,9 +154,37 @@ varDecl		::= type: t id: i SEMICOLON
 type		::= INT
 		{: RESULT = new IntNode();
 		:}
+		| DBL
+		{: RESULT = new DblNode();
+		:}
+		| VOID
+		{: RESULT = new VoidNode();
+		:}
 		;
 
 id              ::= ID:i
 		{: RESULT = new IdNode(i.linenum, i.charnum, i.idVal);
+		:}
+		;
+intLit		::= INTLITERAL:i
+		{: RESULT = new IntLitNode(i.linenum, i.charnum, i.intVal);
+		:}
+		;
+dblLit		::= DBLLITERAL:d
+		{: RESULT = new DblLitNode(d.linenum, d.charnum, d.dblVal);
+		:}
+		;
+
+stmtList	::= stmtList:sl stmt:s
+		{: sl.addLast(s);
+		   RESULT = sl;
+		:}
+		|
+		{: RESULT = new LinkedList<StmtNode>();
+		:}
+		;
+
+stmt		::= NOTEQUALS
+		{: RESULT = null; 
 		:}
 		;
