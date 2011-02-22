@@ -85,10 +85,21 @@ non terminal LinkedList	      stmtList;
 non terminal StmtNode	      stmt;
 non terminal IntLitNode	      intLit;
 non terminal DblLitNode	      dblLit;
+non terminal StringLitNode    strLit;
+non terminal ExpNode	      exp;
+non terminal ExpNode	      term;
+non terminal AssignNode	      assign_exp;
 
 /* NOTE: Add precedence and associativity declarations here */
+precedence left NOT, PLUSPLUS, MINUSMINUS;
+precedence left STAR, DIVIDE;
+precedence left PLUS, MINUS;
+precedence nonassoc EQUALS, NOTEQUALS, LESS, GREATER, LESSEQ, GREATEREQ;
+precedence left AND, OR;
+/*precedence left ASSIGN;*/
 
 start with program;
+
 
 /* grammar with actions
  *
@@ -174,6 +185,10 @@ dblLit		::= DBLLITERAL:d
 		{: RESULT = new DblLitNode(d.linenum, d.charnum, d.dblVal);
 		:}
 		;
+strLit		::= STRINGLITERAL:s
+		{: RESULT = new StringLitNode(s.linenum, s.charnum, s.strVal);
+		:}
+		;
 
 stmtList	::= stmtList:sl stmt:s
 		{: sl.addLast(s);
@@ -184,7 +199,57 @@ stmtList	::= stmtList:sl stmt:s
 		:}
 		;
 
-stmt		::= NOTEQUALS
-		{: RESULT = null; 
+stmt		::= assign_exp:ae SEMICOLON
+		{: RESULT = new AssignStmtNode(ae); 
+		:}
+		| PLUSPLUS id:i SEMICOLON
+	       	{: RESULT = new PreIncStmtNode(i);
+		:}
+		| MINUSMINUS id:i SEMICOLON
+		{: RESULT = new PreDecStmtNode(i);
+		:}
+		| id:i PLUSPLUS SEMICOLON
+		{: RESULT = new PostIncStmtNode(i);
+		:}
+		| id:i MINUSMINUS SEMICOLON
+		{: RESULT = new PostDecStmtNode(i);
 		:}
 		;
+term		::= id:i
+		{: RESULT = i;
+		:}
+		| intLit:il
+		{: RESULT = il;
+		:}
+		| dblLit:dl
+		{: RESULT = dl;
+		:}
+		| strLit:sl
+		{: RESULT = sl;
+		:}
+		;
+
+/* Expressions */
+assign_exp     ::= id:i ASSIGN exp:e
+	       {: RESULT = new AssignNode(i, e);
+	       :}
+	       ;
+exp	       ::= assign_exp:ae
+	       {: RESULT = ae;
+	       :}
+	       | term:t
+	       {: RESULT = t;
+	       :}
+	       | exp:e PLUSPLUS
+	       {: RESULT = new PlusPlusNode(e);
+	       :}
+	       | exp:e MINUSMINUS
+	       {: RESULT = new MinusMinusNode(e);
+	       :}
+	       | NOT exp:e
+	       {: RESULT = new NotNode(e);
+	       :}
+	       | MINUS term:t
+	       {: RESULT = new UnaryMinusNode(t);
+	       :}
+	       ;
