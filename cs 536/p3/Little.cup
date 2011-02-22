@@ -89,6 +89,7 @@ non terminal StringLitNode    strLit;
 non terminal ExpNode	      exp;
 non terminal ExpNode	      term;
 non terminal AssignNode	      assign_exp;
+non terminal LinkedList	      varDeclList;
 
 /* NOTE: Add precedence and associativity declarations here */
 precedence right ASSIGN;
@@ -120,6 +121,15 @@ declList 	::= declList:dl decl:d
 		:}
 		| /* epsilon */
 		{: RESULT = new LinkedList<DeclNode>();
+		:}
+		;
+
+varDeclList	::= varDeclList:dl varDecl:v
+		{: dl.addLast(v);
+		   RESULT = dl;
+		:}
+		|
+		{: RESULT = new LinkedList<VarDeclNode>();
 		:}
 		;
 
@@ -217,6 +227,30 @@ stmt		::= assign_exp:ae SEMICOLON
 		| id:i MINUSMINUS SEMICOLON
 		{: RESULT = new PostDecStmtNode(i);
 		:}
+		| SCANF LPAREN INT_FORMAT COMMA AMPERSAND id:i RPAREN SEMICOLON
+		{: RESULT = new ReadIntStmtNode(i);
+		:}
+		| SCANF LPAREN DBL_FORMAT COMMA AMPERSAND id:i RPAREN SEMICOLON
+		{: RESULT = new ReadDblStmtNode(i);
+		:}
+               	| PRINTF LPAREN INT_FORMAT COMMA exp:e RPAREN SEMICOLON
+		{: RESULT = new WriteIntStmtNode(e);
+		:}
+                | PRINTF LPAREN DBL_FORMAT COMMA exp:e RPAREN SEMICOLON
+		{: RESULT = new WriteDblStmtNode(e);
+		:}
+                | PRINTF LPAREN exp:s RPAREN SEMICOLON
+		{: RESULT = new WriteStrStmtNode(s);
+		:}
+		| IF LPAREN exp:e RPAREN LCURLY varDeclList:v stmtList:s RCURLY
+		{: RESULT = new IfStmtNode(e, new DeclListNode(v), new StmtListNode(s));
+		:}
+		| IF LPAREN exp:e RPAREN LCURLY varDeclList:v stmtList:s RCURLY ELSE LCURLY varDeclList:d2 stmtList:s2 RCURLY
+		{: RESULT = new IfElseStmtNode(e, new DeclListNode(v), new StmtListNode(s), new DeclListNode(d2), new StmtListNode(s2));
+		:}
+                | WHILE LPAREN exp:e RPAREN LCURLY varDeclList:v stmtList:s RCURLY
+		{: RESULT = new WhileStmtNode(e, new DeclListNode(v), new StmtListNode(s));
+		:}
 		;
 term		::= id:i
 		{: RESULT = i;
@@ -252,10 +286,10 @@ exp	       ::= assign_exp:ae
 	       | exp:e1 DIVIDE exp:e2
 	       {: RESULT = new DivideNode(e1, e2);
 	       :}
-	       | exp:e PLUSPLUS
+	       | id:e PLUSPLUS
 	       {: RESULT = new PlusPlusNode(e);
 	       :}
-	       | exp:e MINUSMINUS
+	       | id:e MINUSMINUS
 	       {: RESULT = new MinusMinusNode(e);
 	       :}
 	       | NOT exp:e

@@ -1,17 +1,21 @@
 double z;
 int foo(double x, int y) {
  int z;
- double fafodjs;
-(foo = 12)
-(myvar = 34.53)
-(str = "test")
-(foo = x++
-)
-(foo = x--
-)
+ if( (k == 12)) {
+  double fafodjs;
+  foo = 12;
+ } else {
+  myvar = 34.53;
+  str = "test";
+  foo = x++;
+ }
+;
+ foo = x--;
  ++x;
  --x;
-(blah = !x)
-(fd = -ds)
-(a = (b + ((c * (d / e)) - f)))
+ blah = !x;
+ fd = -ds;
+ a = (b + ((c * (d / e)) - f));
+ scanf("%d", &myvar);
+ printf("TEST");
 }
