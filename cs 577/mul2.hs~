@@ -1,0 +1,10 @@
+mul :: [a] -> [a] -> [a]
+mul [] _ = 0
+mul _ [] = 0
+
+
+split (x:xs) i n
+  | i <= n = 
+    let sp = split xs (i+1) n
+    in (x:(fst sp), snd sp)
+  | otherwise = xs

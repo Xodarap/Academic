@@ -1,0 +1,245 @@
+#LyX 1.6.7 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+2.19
+\end_layout
+
+\begin_layout Standard
+A merge of two size 
+\begin_inset Formula $m$
+\end_inset
+
+ arrays takes 
+\begin_inset Formula $O\left(m\log m\right)$
+\end_inset
+
+.
+ So the first merge takes 
+\begin_inset Formula $k\log k$
+\end_inset
+
+, the second 
+\begin_inset Formula $2k\log2k$
+\end_inset
+
+ and the nth 
+\begin_inset Formula $nk\log nk$
+\end_inset
+
+.
+ So the overall time taken is 
+\begin_inset Formula $\sum_{i}ik\log ik=k\sum_{i}i\log ik=knO\left(n\log nk\right)=O\left(n^{2}k\log nk\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+part b
+\end_layout
+
+\begin_layout Standard
+Suppose we have 
+\begin_inset Formula $n$
+\end_inset
+
+ size 
+\begin_inset Formula $k$
+\end_inset
+
+ lists.
+ We can merge them into 
+\begin_inset Formula $n/2$
+\end_inset
+
+ size 
+\begin_inset Formula $2k$
+\end_inset
+
+ lists in 
+\begin_inset Formula $O(nk\log k)$
+\end_inset
+
+.
+ We then merge these into 
+\begin_inset Formula $n/4$
+\end_inset
+
+ lists etc.
+ So 
+\begin_inset Formula $T(n,k)=T\left(\frac{n}{2},2k\right)+O\left(nk\log k\right)$
+\end_inset
+
+.
+ There are 
+\begin_inset Formula $\log n$
+\end_inset
+
+ iterations here, and the ith iteration takes 
+\begin_inset Formula $ik\log2^{i}k=i^{2}k\log2k=O\left(\left(\log n\right)^{2}k\log k\right)$
+\end_inset
+
+ (since 
+\begin_inset Formula $i$
+\end_inset
+
+ can be at most 
+\begin_inset Formula $\log n$
+\end_inset
+
+).
+ So the whole thing takes 
+\begin_inset Formula $O\left(\left(\log n\right)^{3}k\log k\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section*
+2.23
+\end_layout
+
+\begin_layout Standard
+T1: If 
+\begin_inset Formula $x$
+\end_inset
+
+ is not the majority element of at least one of A and B, then it cannot
+ be the majority element of 
+\begin_inset Formula $A\cup B$
+\end_inset
+
+.
+ Proof: Divide A into those which are x and those which aren't.
+ Say that the number which are x is 
+\begin_inset Formula $a_{x}$
+\end_inset
+
+, call the number which are not x 
+\begin_inset Formula $a_{y}$
+\end_inset
+
+ and the same for B.
+ We want to show that 
+\begin_inset Formula $a_{x}+b_{x}>a_{y}+b_{y}\implies\left(a_{x}>a_{y}\right)\vee\left(b_{x}>b_{y}\right)$
+\end_inset
+
+.
+ Suppose they were both less than their respective y's, yet the inequality
+ held.
+ Then we could subtract 
+\begin_inset Formula $\left(a_{x}+b_{y}\right)$
+\end_inset
+
+ from both sides, and end up with 
+\begin_inset Formula $0>n$
+\end_inset
+
+ for some positive integer n, which is a contradiction.
+ QED.
+\end_layout
+
+\begin_layout Standard
+So our algorithm: divide S into A and B.
+ Find the majority of A and B.
+ Check if they're equal.
+ If so, we're done.
+ Otherwise, scan B to see if the majority of A is the majority of 
+\begin_inset Formula $A\cup B$
+\end_inset
+
+ and vice versa.
+ This scanning will take linear time.
+\end_layout
+
+\begin_layout Standard
+So 
+\begin_inset Formula $T(n)=2T(n/2)+O(n)$
+\end_inset
+
+ which is 
+\begin_inset Formula $O(n\log n)$
+\end_inset
+
+ by the master theorem.
+\end_layout
+
+\begin_layout Subsection*
+Part b
+\end_layout
+
+\begin_layout Standard
+To prove the first property, just note that you either throw out both or
+ one of each pair, so the most you could end up with is 
+\begin_inset Formula $n/2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+For the second: suppose x is a majority of A.
+ Then it must be paired with itself at least once (by the pidgeonhole principle).
+ Furthermore, any time another element is paired with itself, then those
+ elements are 
+\begin_inset Quotes eld
+\end_inset
+
+taken away
+\begin_inset Quotes erd
+\end_inset
+
+ from a pairing with x, so x gets paired with itself again.
+ So the majority will always remain the majority.
+\end_layout
+
+\begin_layout Standard
+So this is 
+\begin_inset Formula $T(n)=T(n/2)+O(n)=O(n)$
+\end_inset
+
+ by the master theorem.
+\end_layout
+
+\end_body
+\end_document

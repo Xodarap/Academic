@@ -1,0 +1,14 @@
+program → main() { stmtList }				program.trans = stmtList.trans
+
+stmt → PRINT ( exp ) ;									stmt.trans = 1
+stmt → ID = exp ;												stmt.trans = 0
+stmt → FOR ( ID = INT_LITERAL ; 
+ID < INT_LITERAL ; ID ++ ) stmt				stmt.trans = INT_LITERAL2.value - INT_LITERAL1.value
+stmt → IF ( exp ) stmt	   					     			stmt1.trans = stmt2.trans
+stmt → IF ( exp ) stmt ELSE stmt								      stmt1.trans = max {stmt2.trans, stmt3.trans}
+stmt → { stmtList }    	    									      		    		      stmt.trans = stmtList.trans
+stmtList → stmt	  														      		       stmtList.trans = stmt.trans
+stmtList → stmt stmtList															       		      	  stmtList1.trans = stmt.trans + stmtList2.trans
+
+exp → ...  																				  		    	       	   exp.trans = 0 // by assumption
+

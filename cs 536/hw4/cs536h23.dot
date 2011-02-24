@@ -1,0 +1,45 @@
+digraph g {
+	main [label="main (){"];
+	program [label = "program (2)"];
+	program -> main;
+	program -> stmtList;
+	program -> end;
+
+	end [label = "}"];
+/* main ( ) { if ( ... ) print ( ... ) ; x = ... ; print ( ... ) ; }  */
+	stmtList [label = "stmtList (2)"];
+	stmtList -> sl1;
+	stmtList -> stmt;
+	stmt [label = "stmt (1)"];
+	if [label ="if ("];
+	stmt -> if;
+	stmt -> exp;
+	stmt -> ")";
+	stmt -> st3;
+	exp -> "...";
+	ex1 [label = "exp"];
+	st3 -> "print (";
+	st3 -> ex1;
+	p2 [label = ")"];
+	st3 -> p2;
+	st3 [label ="stmt (1)"];
+
+	st1 [label ="stmt (0)"];
+	sl1 [label ="stmtList (1)"];
+	sl1 -> st1;
+	sl1 -> sl2;
+	st1 -> ID;
+	st1 -> "=";
+	ex2 [label = "exp"];
+	st1 -> ex2;
+
+	sl2 [label ="stmtList (1)"];
+	st2 [label ="stmt (1)"];
+	sl2 -> st2;
+	pr2 [label = "print ("];
+	st2 -> pr2;
+	ex3 [label = "exp"];	
+	st2 -> ex3;
+	cp [label = ")"];
+	st2 -> cp;	
+}

@@ -1,0 +1,51 @@
+function prod = mymul(x,y)
+
+# W = zeros(2*length(x));
+# for k=1:(2*length(x))
+#   for j=1:(2*length(x))
+#     W(k, j) = exp(-2 * pi * i * (k-1) * (j-1)/ (2*length(x)));
+#   end
+# end
+# a1 = W * (1:4)';
+# a2 =  fft((1:4)');
+
+# #x = [1 2];
+# n = 2*length(x);
+# k = 1:n;
+# #W = exp(2*pi*i*(k-1) / n);
+# #v = vander(W);
+# #v * [0 0 x]';
+# #W * [x 0 0]'
+# #fft([x 0 0])
+
+#x = [0 0 0 1];
+#y = [0 0 2 0];
+
+# input is the reverse of what you'd expect
+x = fliplr(x);
+y = fliplr(y);
+minLength = 2 ^ ceil(log2(length(x) + length(y)));
+xval = myfft([x zeros(1, minLength-length(x))]); #fft(x, minLength); #fft([x zeros(1, minLength - length(x))])';
+#yval = fft(y, minLength); #
+yval = myfft([y zeros(1, minLength - length(y))]);
+zval = xval .* yval;
+prodvec = ifft(zval);
+pows = 0:(length(prodvec)-1);
+base = 10 .^ pows;
+prod = dot(prodvec, base)
+
+#xval = W * [0 0 x]';  #fft([0 0 x])'; #v * [0 0 x]';#W * x';
+#yval = W * [0 0 x]'; #polyval(y, W)'; #W * y';
+#zval = xval .* yval;
+#mypoly = inv(W) * zval;
+#mypoly = polyfit(W, zval', 3)
+#prod = polyval(mypoly# , 10);
+# return;
+# fx = fft(x);
+# fy = fft(y);
+# z = fx .* fy;
+# prodvec = ifft(z) #./ (2 * length(z))
+
+# pows = (length(prodvec)-1):-1:0;
+# base = 10 .^ pows;
+# prod = dot(prodvec, base);

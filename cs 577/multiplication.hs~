@@ -1,0 +1,118 @@
+import Numeric.LinearAlgebra
+import Numeric.GSL
+import Complex
+import Debug.Trace
+import Test.QuickCheck
+import Data.List
+
+type EvenOdd a = ([a], [a])
+data Dvec = Vector Double
+
+instance (RealFloat t) => Ord (Complex t) where
+  c <= c' = realPart c <= realPart c'  
+
+-- | evaluates a polynomial at point x
+-- slower than fftPolyEval (in theory, at least)
+polyEval poly x = foldr (\c accum -> accum * x + c) 0 poly
+
+mymult x y = 
+   let n = fromIntegral $ (length x) * 2
+       n2 = fromIntegral $ (length x) * 2
+       paddedx = reverse $ pad x 
+       paddedy = reverse $ pad y
+       fx = myfft (omega n2) paddedx
+       fy = myfft (omega n2) paddedy
+       pr = fx `dotstar` fy
+       ip = myifft n2 pr
+   in ip
+
+-- | finds the logarithm base 2
+log2 x
+  | x <= 1 = 0
+  | otherwise = 1 + log2 (fromIntegral (ceiling $ x / 2))
+
+-- | pads a list to be as long as the nearest power of 2
+pad :: [a] -> [a]
+pad x =
+  let goodlen = 2 ^ (log2 $ genericLength x)
+  in padi goodlen x
+
+-- | pads a list with a certain number of 0's
+padi :: (Num a) => Int -> [a] -> [a]
+padi n x =  x ++ take (fromIntegral $ n - (length x)) (repeat 0)
+
+-- | element-by-element multiplication
+dotstar :: (Num a) => [a] -> [a] -> [a]
+dotstar [] [] = []
+dotstar (x:xs) (y:ys) = (x*y):(dotstar xs ys)
+
+-- | inverse fft. Includes normalization
+myifft n x = map (/ n) (myfft (omegai n) x)
+
+ffteasy lst = myfft (omega $ fromIntegral $ length lst) $ reverse lst
+
+-- | Fast-fourier transform. w is the nth root of unity
+--   where n is the length of lst
+myfft :: (RealFloat a) =>  Complex a -> [Complex a] -> [Complex a]
+myfft w lst
+  | (realPart w) == 1 = lst --(fst ev):(snd ev)
+  | otherwise =
+    let ev = splitVec lst
+        w2 = w ** 2
+        s  = myfft w2 $ fst ev
+        sp = myfft w2 $ snd ev
+        rs = combine (s, sp) w 0
+    in (fst rs) ++ (snd rs)
+
+         
+-- | Does the second half of the FFT, i.e. takes the values
+--   from the recursive part and combines them to get the 
+--   final vector
+combine :: (Floating a, Ord a) => (EvenOdd a) -> a -> a -> ([a], [a])
+combine ([], []) _ _ = ([], [])
+combine ((x:xs), (y:ys)) w j =
+  let r  = x + (w ** j) * y
+      r' = x - (w ** j) * y
+      (left, right) = combine (xs,ys) w (j + 1)
+  in ((r:left), (r':right))
+
+-- | nth root of unity
+omega n = exp(-2 * pi * i / n)
+
+-- | inverse of nth root of 1
+omegai n = exp(2 * pi * i / n)
+
+-- | splits a vector into the even and odd pieces
+splitVec :: [a] -> EvenOdd a
+splitVec [] = ([], [])
+splitVec (x:y:xs) =
+  let (even, odd) =  splitVec xs
+  in (y:even, x:odd)
+splitVec (x:[]) = ([], [x])         
+
+{-- ==== Unit Tests ==== --}
+testfft :: [Complex Double] -> Bool
+testfft x =
+  let goodx = pad x
+      me = myfft (omega $ fromIntegral $ length x) $ reverse goodx
+      them = fft $ fromList goodx
+  in me `myeq` (toList them)
+     
+cleanup x
+  | (length x) < 4 = padi 4 x
+  | otherwise = take 4 x
+
+testifft :: [Complex Double] -> Bool
+testifft x =
+  let me = myifft (omega . fromIntegral $ length x) $ reverse x
+      them = ifft $ fromList x
+  in me `myeq` (toList them)
+
+-- | Returns of two lists of complex numbers are approximately equal     
+--   we need this because there are some rounding errors
+myeq :: [Complex Double] -> [Complex Double] -> Bool
+myeq [] [] = True     
+myeq (x:xs) (y:ys) = 
+  let requal = abs((realPart x) - (realPart y)) < (0.1)
+      iequal = abs((imagPart x) - (imagPart y)) < (0.1)
+  in requal && iequal && (myeq xs ys)
