@@ -90,6 +90,9 @@ non terminal ExpNode	      exp;
 non terminal ExpNode	      term;
 non terminal AssignNode	      assign_exp;
 non terminal LinkedList	      varDeclList;
+non terminal CallStmtNode     fnCall;
+non terminal CallExpNode      fnCallExp;
+non terminal LinkedList	      actualList;
 
 /* NOTE: Add precedence and associativity declarations here */
 precedence right ASSIGN;
@@ -251,7 +254,17 @@ stmt		::= assign_exp:ae SEMICOLON
                 | WHILE LPAREN exp:e RPAREN LCURLY varDeclList:v stmtList:s RCURLY
 		{: RESULT = new WhileStmtNode(e, new DeclListNode(v), new StmtListNode(s));
 		:}
+		| RETURN exp:e SEMICOLON
+		{: RESULT = new ReturnStmtNode(e);
+		:}
+		| RETURN SEMICOLON
+		{: RESULT = new ReturnStmtNode(null);
+		:}
+		| fnCallExp:f SEMICOLON
+		{: RESULT = new CallStmtNode(f);
+		:}
 		;
+
 term		::= id:i
 		{: RESULT = i;
 		:}
@@ -325,4 +338,23 @@ exp	       ::= assign_exp:ae
 	       | term:t
 	       {: RESULT = t;
 	       :}
+	       ;
+
+fnCallExp      ::= id:i LPAREN actualList:l RPAREN
+	       {: RESULT = new CallExpNode(i, new ExpListNode(l));
+	       :}
+	       ;
+
+actualList     ::= exp:e
+	       {: RESULT = new LinkedList<ExpNode>();
+	       	  RESULT.addLast(e);
+	       :}
+	       | actualList:l COMMA exp:e
+	       {: l.addLast(e);
+	       	  RESULT = l;
+	       :}
+	       | 
+	       {: RESULT = new LinkedList<ExpNode>();
+	       :}
+
 	       ;

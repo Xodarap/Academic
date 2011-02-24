@@ -9,13 +9,15 @@ int foo(double x, int y) {
   str = "test";
   foo = x++;
  }
-;
  foo = x--;
  ++x;
  --x;
+ return ;
+ return ((x * 5) + 3);
  blah = !x;
  fd = -ds;
  a = (b + ((c * (d / e)) - f));
  scanf("%d", &myvar);
  printf("TEST");
+ fn("foo", bar, (3 + 5));
 }
