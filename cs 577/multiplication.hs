@@ -19,6 +19,7 @@ mymult x y =
       n = genericLength paddedx
       fx = myfft (omega n) paddedx
       fy = myfft (omega n) paddedy
+      foo = trace (show fx) 1
       pr = fx `dotstar` fy
       ip = reverse $ myifft n pr
       -- The imaginary part of each component should
@@ -64,6 +65,7 @@ dotstar = zipWith (*)
 myifft n x = map (/ n) (myfft (omegai n) x)
 
 ffteasy lst = myfft (omega $ fromIntegral $ length lst) $ reverse lst
+iffteasy lst = myifft (genericLength lst) $ reverse lst
 
 -- | Fast-fourier transform. w is the nth root of unity
 --   where n is the length of lst
@@ -126,6 +128,12 @@ testifft x =
       them = ifft $ fromList $ reverse goodx
   in me `myeq` (toList them)
 
+testboth x =
+  let (goodx, _) = dopad x []
+      len        = genericLength goodx
+      res        = myifft len $ myfft (omega len) goodx
+   in goodx `myeq` res
+
 -- | Returns of two lists of complex numbers are approximately equal     
 --   we need this because there are some rounding errors
 myeq :: [Complex Double] -> [Complex Double] -> Bool
@@ -135,8 +143,25 @@ myeq (x:xs) (y:ys) =
       iequal = abs((imagPart x) - (imagPart y)) < (0.1)
   in requal && iequal && (myeq xs ys)
      
-powersof10 x = x:(powersof10 $ 10 * x)     
+-- | [1, 10, 100, ...]
+powersof10 x = x:(powersof10 $ 10 * x)
 
+-- | Multiplies two numbers using mymult
 testmul x y =
-  let prod = mymult x y
-  in foldr (+) 0 $ zipWith (*) prod $ powersof10 1
+  let xvec = num2vec x
+      yvec = num2vec y
+      prod = mymult xvec yvec
+  in vec2num prod
+     
+-- | Converts a number to a vector
+--   e.g. 123 -> [1, 2, 3]
+num2vec x 
+  | x < 1 = []
+  | otherwise =
+    let next = (floor $ fromIntegral $ x `div` 10)
+        onesplace = x - (10 * next)
+    in (num2vec next) ++ [fromIntegral $ onesplace]
+       
+-- | Converts a vector to a number       
+--   e.g. [1, 2, 3] -> 123
+vec2num x = foldr (+) 0 $ zipWith (*) (reverse x) $ powersof10 1
