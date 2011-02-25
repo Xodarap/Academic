@@ -277,6 +277,12 @@ term		::= id:i
 		| strLit:sl
 		{: RESULT = sl;
 		:}
+		| LPAREN exp:e RPAREN
+		{: RESULT = e;
+		:}
+		| fnCallExp:f
+		{: RESULT = f;
+		:}
 		;
 
 /* Expressions */
