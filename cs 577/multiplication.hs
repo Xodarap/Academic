@@ -101,63 +101,6 @@ doCarriesi (x:xs) carry =
       newx     = addedx - (newcarry * 10)
   in newx:(doCarriesi xs newcarry)
 
--- | preprocessing step for multiplication
---   pads the numbers enough so the fft works
-dopad :: (Num a) => [a] -> [a] -> ([a], [a])
-dopad x y = 
-   let n = (genericLength x) + (genericLength y)
-       -- first, pad to the minimum length of the resulting
-       -- polynomial (x + y)
-       padded1x = padi n x
-       padded1y = padi n y
-       -- Now pad to the nearest power of 2
-       paddedx = reverse $ pad padded1x 
-       paddedy = pad padded1y
-   in (paddedx, paddedy)
-      
--- | minimum length that the vector needs to be
---   for multiplication to work
-padamt x y =
-  let n = (genericLength x) + (genericLength y)
-  in 2 ^ (log2 n)
-
--- | finds the logarithm base 2
---   how can a language not have this built in?
-log2 x
-  | x <= 1 = 0
-  | otherwise = 1 + log2 (fromIntegral (ceiling $ x / 2))
-
--- | pads a list to be as long as the nearest power of 2
-pad :: (Num a) => [a] -> [a]
-pad x =
-  let goodlen = 2 ^ (log2 $ genericLength x)
-  in padi goodlen x
-
--- | pads a list with a certain number of 0's
-padi :: (Num a) => Int -> [a] -> [a]
-padi n x =  x ++ take (fromIntegral $ n - (length x)) (repeat 0)
-
--- | element-by-element multiplication
-dotstar :: (Num a) => [a] -> [a] -> [a]
-dotstar = zipWith (*)
-
--- | inverse fft. Includes normalization
-myifft n x = map (/ n) (myfft (omegai n) x)
-
-
-myiffti :: Complex Double -> [Complex Double] -> ([Complex Double], AddsMults)
-myiffti n x =
-  let res = myffti (omegai n) x
-      answer = map (/ n) (fst res)
-  in (answer, snd res)    
-
-
--- | figures out the length for you
-ffteasy lst = 
-  let (px, _) = dopad lst []
-  in myfft (omega $ fromIntegral $ length px) $ px
-iffteasy lst = myifft (genericLength lst) $ reverse lst
-
 -- | allows you to specify the root to use
 fftexp n x = 
   let intval = fftexpi n x
@@ -212,6 +155,63 @@ splitVec (x:y:xs) =
   let (even, odd) =  splitVec xs
   in (y:even, x:odd)
 splitVec (x:[]) = ([], [x])         
+
+-- | preprocessing step for multiplication
+--   pads the numbers enough so the fft works
+dopad :: (Num a) => [a] -> [a] -> ([a], [a])
+dopad x y = 
+   let n = (genericLength x) + (genericLength y)
+       -- first, pad to the minimum length of the resulting
+       -- polynomial (x + y)
+       padded1x = padi n x
+       padded1y = padi n y
+       -- Now pad to the nearest power of 2
+       paddedx = reverse $ pad padded1x 
+       paddedy = pad padded1y
+   in (paddedx, paddedy)
+      
+-- | minimum length that the vector needs to be
+--   for multiplication to work
+padamt x y =
+  let n = (genericLength x) + (genericLength y)
+  in 2 ^ (log2 n)
+
+-- | finds the logarithm base 2
+--   how can a language not have this built in?
+log2 x
+  | x <= 1 = 0
+  | otherwise = 1 + log2 (fromIntegral (ceiling $ x / 2))
+
+-- | pads a list to be as long as the nearest power of 2
+pad :: (Num a) => [a] -> [a]
+pad x =
+  let goodlen = 2 ^ (log2 $ genericLength x)
+  in padi goodlen x
+
+-- | pads a list with a certain number of 0's
+padi :: (Num a) => Int -> [a] -> [a]
+padi n x =  x ++ take (fromIntegral $ n - (length x)) (repeat 0)
+
+-- | element-by-element multiplication
+dotstar :: (Num a) => [a] -> [a] -> [a]
+dotstar = zipWith (*)
+
+{- === Overloads of major methods === -}
+
+-- | inverse fft. Includes normalization
+myifft n x = map (/ n) (myfft (omegai n) x)
+
+myiffti :: Complex Double -> [Complex Double] -> ([Complex Double], AddsMults)
+myiffti n x =
+  let res = myffti (omegai n) x
+      answer = map (/ n) (fst res)
+  in (answer, snd res)    
+
+-- | figures out the length for you
+ffteasy lst = 
+  let (px, _) = dopad lst []
+  in myfft (omega $ fromIntegral $ length px) $ px
+iffteasy lst = myifft (genericLength lst) $ reverse lst
 
 {- ==== Utility methods ====
    Things which aren't really related to the FFT but makes it easier

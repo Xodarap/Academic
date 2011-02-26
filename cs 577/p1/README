@@ -13,8 +13,27 @@ ben@ben-1000 ~/S/g/A/c/p1> ./multiplication
 
 I input 99*99 here, and it gave me the result of 9801. It did 32 adds (first number) and 32 multiplications (second number) in the process. 
 
+You can use a file too:
+ben@ben-1000 ~/S/g/A/c/p1> od -An -N1024 -tu /dev/urandom | perl -i -pe 's/\s//g' >> sampledata
+ben@ben-1000 ~/S/g/A/c/p1> echo "" >> sampledata
+ben@ben-1000 ~/S/g/A/c/p1> od -An -N1024 -tu /dev/urandom | perl -i -pe 's/\s//g' >> sampledata
+ben@ben-1000 ~/S/g/A/c/p1> time ./multiplication < sampledata
+# Many digits...
+(329434,332653)
+4.95user 0.17system 0:05.14elapsed 99%CPU (0avgtext+0avgdata 299936maxresident)k
+0inputs+0outputs (0major+18847minor)pagefaults 0swaps
+
+So we multiplied two 1024-digit numbers in 5 seconds using 329434 adds and 332653 multiplications. We can compare that to dc:
+
+ben@ben-1000 ~/S/g/A/c/p1> echo "*" >> sampledata
+ben@ben-1000 ~/S/g/A/c/p1> time dc < sampledata
+0.31user 0.00system 0:00.32elapsed 98%CPU (0avgtext+0avgdata 1968maxresident)k
+0inputs+0outputs (0major+167minor)pagefaults 0swaps
+
+So dc's a litte faster :-)
 
 == To build it yourself ==
+
 You will need ghc and cabal. Once you have these, do
     cabal install hmatrix
 from a command line. (This is just for the unit tests. If you comment those out, you don't need cabal or hmatrix.)
@@ -22,7 +41,7 @@ from a command line. (This is just for the unit tests. If you comment those out,
 You can compile the file using 
     ghc --make multiplication.hs
 
-If you want to do it interactively in ghci, you can use the Enum notation:
+If you want to do it interactively in ghci:
    Prelude>:l multiplication.hs
    *Main>mymulti [1..100] [55..74]
    -- Returns the value of [1,...,100] * [55,...,74]
@@ -32,4 +51,4 @@ To ensure everything works, you can run the dotests method
    -- Some quickCheck output
 
 == Algorithm discussion ==
-The multiplication is based on the FFT algorithm in the book. Numbers are padded with zeros to be near a power of two. If a digit is > 9, we "ripple" the carry down the line.
+The multiplication is based on the FFT algorithm in the book. Numbers are padded with zeros to be near a power of two. If a digit is > 9 after the multiplication, we "ripple" the carry down the line.
