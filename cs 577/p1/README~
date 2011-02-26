@@ -1,0 +1,14 @@
+Ben West's Multiplication Algorithm
+
+Takes two lines of data from std in, each representing a number.
+Returns one line indicating the product of the two numbers, and another indicating the number of additions and multiplications done
+
+Sample:
+ben@ben-1000 ~/S/g/A/c/p1> ./multiplication 
+99
+99
+9801
+(32,32)
+
+
+I input 99*99 here, and it gave me the result of 9801. It did 32 adds (first number) and 32 multiplications (second number) in the process. 

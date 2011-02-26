@@ -4,52 +4,77 @@ import Complex
 import Debug.Trace
 import Test.QuickCheck
 import Data.List
-import Control.Monad.Writer
+import Char
 
-type EvenOdd a = ([a], [a])
-type AddsMults = (Int, Int)
+--import Control.Monad.Writer
 
-{- ==== Meta programming stuff =====
-   We define two monoids, one for counting additions, and the other for multiplications
-   The "Writer" monoid provides a "tell" method, which allows us to increment the counter
-   by one without needing to explicitly pass in state. The downside is that there is no
-   easy way (that I know of) to turn this on and off. So you have to run everything within
-   a runWriter context. 
-  
-   Another option here would've been to create a type constructor like Num of which both a
-   monoidic and regular double are instances of. This would have some issues in that the
-   compiler would view recursive applications as being separate calls. e.g. 
-      x = 1 + 2;  -- one add
-      y = 1 + x;  -- should be one add, but will be interpreted as two since it will include x's adds
-   
-   So having it explicitly return monoids was chosen.
+{- ==== General Statements ====
+   My naming convention here is to suffix internal methods with an "i". You can call
+   these if you want, but it will probably be less user-friendly. In particular, they
+   tend to not do any checking of the input, so you can end up with infinite loops.
+
+   The top level functions are mymult and mymulti - the only difference is that mymulti
+   returns the metadata about how many adds/multiplies were done.
+
+   Sample Usage:
+      bash>ghci                      -- run ghci from the command line
+      Prelude>:l multiplication.hs   -- load the file
+      *Main> mymult [1..100] [1..50] -- multiply 1,2,3,...100 by 1,2,...50
+      -- very long vector results
+
+      *Main> mymulti [1..100] [1..50] 
+      -- another long vector, but it tells us that 6442 additions and 6549 multiplications were done
 -}
 
-type AddCountM = Writer(Sum Int)
-addM :: Num a => a -> a -> AddCountM a
-addM x y= do
-    tell (Sum 1)
-    return (x + y)
--- addMi :: Num a => a -> a -> a
-
-type MultCountM = Writer (Sum Int)
-mulM :: Num a => a -> a -> MultCountM a
-mulM x y = do
-  tell (Sum 1)
-  return (x * y)
+-- | An EvenOdd represents the even pieces of a vector and the odd pieces
+type EvenOdd a = ([a], [a])
+-- | The first piece of the tuple is the number of additions, the second is
+--   the number of multiplications
+type AddsMults = (Int, Int)
   
+{- ====== IO Stuff ========== -}
+
+-- | IO wrapper around mymult
+--   Input: Two lines, each representing a number 
+--   Output: Two lines, first is the product of each number,
+--           Second is the number of adds/mults done. (Adds first.)
+main = do
+  x <- getLine
+  y <- getLine
+  let xdata = map (fromIntegral . digitToInt) x 
+      ydata = map (fromIntegral . digitToInt) y 
+      (result, metadata) = mymulti xdata ydata
+      bigString = foldr (\x ac -> x ++ ac) "" $ map show result
+    in do 
+    putStrLn bigString 
+    putStrLn $ show metadata
+
+{- ====== Main ======= -}
+
 -- | The point of this file: multiplies two numbers
 --   (each represented by a vector)
 mymult :: [Complex Double] -> [Complex Double] -> [Int]  
-mymult x y = 
+mymult x y = fst $ mymulti x y
+-- | Returns the number of adds/mults too
+mymulti :: [Complex Double] -> [Complex Double] -> ([Int], AddsMults)  
+mymulti x y =  
   let n = padamt x y
-      fx = fftexp n x
-      fy = fftexp n y
+      (fx, count1) = fftexpi n x
+      (fy, count2) = fftexpi n y
       pr = fx `dotstar` fy
-      ip = ifftexp n pr
+      -- we multiply every element in the vector by every other one, so 
+      -- the number of multiplications equals the number of elements
+      dotStarCount = (0, genericLength pr)
+      (ip, count3) = ifftexpi n pr
       clean = doCarries $ cleanUp ((genericLength x) + (genericLength y) - 1) ip
-   in clean
+      -- There are two additions and one division for each digit in doCarries
+      doCarriesCount = (2 * (genericLength clean), genericLength clean)
+      totalCount = addUpCounts $ [count1, count2, count3, dotStarCount, doCarriesCount]
+   in (clean, totalCount)
 
+-- | Aggregates all the AddsMults  into one
+addUpCounts :: [AddsMults] -> AddsMults
+addUpCounts = foldr (\(x, y) (accumx, accumy) -> (x+accumx, y+accumy)) (0,0)
 
 -- | The imaginary part of each component should
 --   be near zero, so just remove it.  We also get
@@ -62,12 +87,11 @@ cleanSingle x =
       fx = (round :: Double -> Int) rx
   in fx
 
-
+-- | Handles all the carries at the end of the mult
 doCarries lst =
   let rlst    = (reverse lst)
       val     = reverse $ doCarriesi rlst 0    
   in  val
-        
 doCarriesi :: [Int] -> Int -> [Int]
 doCarriesi [] 0 = []
 doCarriesi [] carry = doCarriesi [0] carry
@@ -91,6 +115,8 @@ dopad x y =
        paddedy = pad padded1y
    in (paddedx, paddedy)
       
+-- | minimum length that the vector needs to be
+--   for multiplication to work
 padamt x y =
   let n = (genericLength x) + (genericLength y)
   in 2 ^ (log2 n)
@@ -118,6 +144,14 @@ dotstar = zipWith (*)
 -- | inverse fft. Includes normalization
 myifft n x = map (/ n) (myfft (omegai n) x)
 
+
+myiffti :: Complex Double -> [Complex Double] -> ([Complex Double], AddsMults)
+myiffti n x =
+  let res = myffti (omegai n) x
+      answer = map (/ n) (fst res)
+  in (answer, snd res)    
+
+
 -- | figures out the length for you
 ffteasy lst = 
   let (px, _) = dopad lst []
@@ -125,33 +159,45 @@ ffteasy lst =
 iffteasy lst = myifft (genericLength lst) $ reverse lst
 
 -- | allows you to specify the root to use
-fftexp n x = myfft (omega $ fromIntegral n) $ reverse $ padi n x
-ifftexp n x= myifft (fromIntegral n) $ reverse $ padi n x
+fftexp n x = 
+  let intval = fftexpi n x
+  in fst intval
+fftexpi n x =  myffti (omega $ fromIntegral n) $ reverse $ padi n x
+ifftexp n x = 
+  let intval = ifftexpi n x
+  in fst intval
+ifftexpi n x = myiffti (fromIntegral n) $ reverse $ padi n x
+
+myfft w lst = fst $ myffti w lst
 
 -- | Fast-fourier transform. w is the nth root of unity
 --   where n is the length of lst
-myfft :: (RealFloat a) =>  Complex a -> [Complex a] -> [Complex a]
-myfft w lst
-  | (realPart w) == 1 = lst --(fst ev):(snd ev)
+myffti :: (RealFloat a) =>  Complex a -> [Complex a] -> ([Complex a], AddsMults)
+myffti w lst
+  | (realPart w) == 1 = (lst, (0,0))
   | otherwise =
     let ev = splitVec lst
         w2 = w ** 2
-        s  = myfft w2 $ fst ev
-        sp = myfft w2 $ snd ev
-        rs = combine (s, sp) w 0
-    in (fst rs) ++ (snd rs)
+        s  = myffti w2 $ fst ev
+        sp = myffti w2 $ snd ev
+        rs = combine (fst s, fst sp) w 0
+        adds = (fst $ snd s) + (fst $ snd sp) + (fst $ third rs)
+        muls = (snd $ snd s) + (snd $ snd sp) + (snd $ third rs)
+        am = (adds, muls)
+        newlist = (first rs) ++ (second rs)
+    in (newlist, am)
 
          
 -- | Does the second half of the FFT, i.e. takes the values
 --   from the recursive part and combines them to get the 
 --   final vector
-combine :: (Floating a) => (EvenOdd a) -> a -> a -> ([a], [a])
-combine ([], []) _ _ = ([], [])
+combine :: (Floating a) => (EvenOdd a) -> a -> a -> ([a], [a], AddsMults)
+combine ([], []) _ _ = ([], [], (0, 0))
 combine ((x:xs), (y:ys)) w j =
   let r  = x + (w ** j) * y
       r' = x - (w ** j) * y
-      (left, right) = combine (xs,ys) w (j + 1)
-  in ((r:left), (r':right))
+      (left, right, (a, m)) = combine (xs,ys) w (j + 1)
+  in ((r:left), (r':right), (a + 2, m + 2))
 
 -- | nth root of unity
 omega n = exp(-2 * pi * i / n)
@@ -166,6 +212,22 @@ splitVec (x:y:xs) =
   let (even, odd) =  splitVec xs
   in (y:even, x:odd)
 splitVec (x:[]) = ([], [x])         
+
+{- ==== Utility methods ====
+   Things which aren't really related to the FFT but makes it easier
+-}
+
+-- | Like fst and snd, except they work with tuples of three
+first (x, y, z) = x
+second (x, y, z) = y
+third (x, y, z) = z
+
+-- | Allows us to declare complex numbers using the [a..b] syntax
+instance (Enum a, Num a, RealFloat a, RealFrac a) => (Enum (Complex a)) where
+  succ x           =  x+1
+  pred x           =  x-1
+  toEnum           =  fromIntegral
+  fromEnum         =  fromInteger . truncate . realPart  -- may overflow                                                                                                        
 
 {-- ==== Unit Tests ==== 
     In general, these just test my implementation versus the
@@ -253,7 +315,3 @@ generateVector =
   do i <- choose (0, 9)
      return $ take 100 $ repeat i
      
-{-
-vecProp :: Property     
-vecProp = forAll generateVector $ (\x y -> (mymult x y) == (mymult y x))
--}
