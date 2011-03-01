@@ -1,0 +1,854 @@
+$date
+	Tue Mar  1 15:08:38 2011
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb_sc_hier $end
+$var reg 8 ! cnt [7:0] $end
+$var reg 3 " rst [2:0] $end
+$scope module s1 $end
+$var wire 1 # clk $end
+$var wire 1 $ ctr_rst $end
+$var wire 1 % err $end
+$var wire 3 & out [2:0] $end
+$var wire 1 ' rst $end
+$scope module clk_generator $end
+$var wire 1 % err $end
+$var reg 1 ( clk $end
+$var integer 32 ) cycle_count [31:0] $end
+$var reg 1 * rst $end
+$upscope $end
+$scope module sc0 $end
+$var wire 1 # clk $end
+$var wire 1 $ ctr_rst $end
+$var wire 1 + doRst $end
+$var wire 1 % err $end
+$var wire 1 , maxedOut $end
+$var wire 3 - next [2:0] $end
+$var wire 3 . out [2:0] $end
+$var wire 1 ' rst $end
+$scope module d1 $end
+$var wire 1 # clk $end
+$var wire 1 / d $end
+$var wire 1 0 q $end
+$var wire 1 + rst $end
+$var reg 1 1 state $end
+$upscope $end
+$scope module d2 $end
+$var wire 1 # clk $end
+$var wire 1 2 d $end
+$var wire 1 3 q $end
+$var wire 1 + rst $end
+$var reg 1 4 state $end
+$upscope $end
+$scope module d3 $end
+$var wire 1 # clk $end
+$var wire 1 5 d $end
+$var wire 1 6 q $end
+$var wire 1 + rst $end
+$var reg 1 7 state $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module s2 $end
+$var wire 1 8 clk $end
+$var wire 1 9 ctr_rst $end
+$var wire 1 : err $end
+$var wire 3 ; out [2:0] $end
+$var wire 1 < rst $end
+$scope module clk_generator $end
+$var wire 1 : err $end
+$var reg 1 = clk $end
+$var integer 32 > cycle_count [31:0] $end
+$var reg 1 ? rst $end
+$upscope $end
+$scope module sc0 $end
+$var wire 1 8 clk $end
+$var wire 1 9 ctr_rst $end
+$var wire 1 @ doRst $end
+$var wire 1 : err $end
+$var wire 1 A maxedOut $end
+$var wire 3 B next [2:0] $end
+$var wire 3 C out [2:0] $end
+$var wire 1 < rst $end
+$scope module d1 $end
+$var wire 1 8 clk $end
+$var wire 1 D d $end
+$var wire 1 E q $end
+$var wire 1 @ rst $end
+$var reg 1 F state $end
+$upscope $end
+$scope module d2 $end
+$var wire 1 8 clk $end
+$var wire 1 G d $end
+$var wire 1 H q $end
+$var wire 1 @ rst $end
+$var reg 1 I state $end
+$upscope $end
+$scope module d3 $end
+$var wire 1 8 clk $end
+$var wire 1 J d $end
+$var wire 1 K q $end
+$var wire 1 @ rst $end
+$var reg 1 L state $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module s3 $end
+$var wire 1 M clk $end
+$var wire 1 N ctr_rst $end
+$var wire 1 O err $end
+$var wire 3 P out [2:0] $end
+$var wire 1 Q rst $end
+$scope module clk_generator $end
+$var wire 1 O err $end
+$var reg 1 R clk $end
+$var integer 32 S cycle_count [31:0] $end
+$var reg 1 T rst $end
+$upscope $end
+$scope module sc0 $end
+$var wire 1 M clk $end
+$var wire 1 N ctr_rst $end
+$var wire 1 U doRst $end
+$var wire 1 O err $end
+$var wire 1 V maxedOut $end
+$var wire 3 W next [2:0] $end
+$var wire 3 X out [2:0] $end
+$var wire 1 Q rst $end
+$scope module d1 $end
+$var wire 1 M clk $end
+$var wire 1 Y d $end
+$var wire 1 Z q $end
+$var wire 1 U rst $end
+$var reg 1 [ state $end
+$upscope $end
+$scope module d2 $end
+$var wire 1 M clk $end
+$var wire 1 \ d $end
+$var wire 1 ] q $end
+$var wire 1 U rst $end
+$var reg 1 ^ state $end
+$upscope $end
+$scope module d3 $end
+$var wire 1 M clk $end
+$var wire 1 _ d $end
+$var wire 1 ` q $end
+$var wire 1 U rst $end
+$var reg 1 a state $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module tb_sc_hier $end
+$scope module s1 $end
+$scope module clk_generator $end
+$upscope $end
+$scope module sc0 $end
+$scope module d1 $end
+$upscope $end
+$scope module d2 $end
+$upscope $end
+$scope module d3 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module s2 $end
+$scope module clk_generator $end
+$upscope $end
+$scope module sc0 $end
+$scope module d1 $end
+$upscope $end
+$scope module d2 $end
+$upscope $end
+$scope module d3 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module s3 $end
+$scope module clk_generator $end
+$upscope $end
+$scope module sc0 $end
+$scope module d1 $end
+$upscope $end
+$scope module d2 $end
+$upscope $end
+$scope module d3 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module tb_sc_hier $end
+$scope module s1 $end
+$scope module clk_generator $end
+$upscope $end
+$scope module sc0 $end
+$scope module d1 $end
+$upscope $end
+$scope module d2 $end
+$upscope $end
+$scope module d3 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module s2 $end
+$scope module clk_generator $end
+$upscope $end
+$scope module sc0 $end
+$scope module d1 $end
+$upscope $end
+$scope module d2 $end
+$upscope $end
+$scope module d3 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module s3 $end
+$scope module clk_generator $end
+$upscope $end
+$scope module sc0 $end
+$scope module d1 $end
+$upscope $end
+$scope module d2 $end
+$upscope $end
+$scope module d3 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+xa
+x`
+x_
+x^
+x]
+x\
+x[
+xZ
+xY
+bx X
+bx W
+xV
+1U
+1T
+b0 S
+1R
+1Q
+bx P
+zO
+0N
+1M
+xL
+xK
+xJ
+xI
+xH
+xG
+xF
+xE
+xD
+bx C
+bx B
+xA
+1@
+1?
+b0 >
+1=
+1<
+bx ;
+z:
+09
+18
+x7
+x6
+x5
+x4
+x3
+x2
+x1
+x0
+x/
+bx .
+bx -
+x,
+1+
+1*
+b0 )
+1(
+1'
+bx &
+z%
+0$
+1#
+b0 "
+b0 !
+$end
+#50
+0R
+0M
+0=
+08
+0(
+0#
+#100
+b1 S
+0[
+0^
+0a
+b1 >
+0F
+0I
+0L
+b1 )
+01
+04
+07
+b1 !
+1R
+1M
+1=
+18
+1(
+1#
+#101
+0_
+0J
+05
+1Y
+0\
+1D
+0G
+1/
+02
+b1 W
+b1 B
+b1 -
+0Z
+0]
+0`
+b0 P
+b0 X
+0V
+0E
+0H
+0K
+b0 ;
+b0 C
+0A
+00
+03
+06
+b0 &
+b0 .
+0,
+#150
+0R
+0M
+0=
+08
+0(
+0#
+#200
+b10 S
+b10 >
+b10 !
+b10 )
+1R
+1M
+1=
+18
+1(
+1#
+#201
+0U
+0@
+0+
+0T
+0Q
+0?
+0<
+0*
+0'
+#250
+0R
+0M
+0=
+08
+0(
+0#
+#300
+b11 S
+1[
+b11 >
+1F
+b11 )
+11
+b11 !
+1R
+1M
+1=
+18
+1(
+1#
+#301
+0Y
+1\
+0D
+1G
+0/
+12
+b10 W
+b10 B
+b10 -
+1Z
+b1 P
+b1 X
+1E
+b1 ;
+b1 C
+10
+b1 &
+b1 .
+#350
+0R
+0M
+0=
+08
+0(
+0#
+#400
+1^
+0[
+b100 S
+1I
+0F
+b100 >
+b100 !
+14
+01
+b100 )
+1R
+1M
+1=
+18
+1(
+1#
+#401
+1Y
+1D
+1/
+b11 W
+b11 B
+b11 -
+1]
+0Z
+b10 P
+b10 X
+1H
+0E
+b10 ;
+b10 C
+13
+00
+b10 &
+b10 .
+#450
+0R
+0M
+0=
+08
+0(
+0#
+#500
+b101 S
+1[
+b101 >
+1F
+b101 )
+11
+b101 !
+1R
+1M
+1=
+18
+1(
+1#
+#501
+1_
+1J
+15
+0\
+0G
+02
+0Y
+0D
+0/
+b100 W
+b100 B
+b100 -
+1Z
+b11 P
+b11 X
+1E
+b11 ;
+b11 C
+10
+b11 &
+b11 .
+#550
+0R
+0M
+0=
+08
+0(
+0#
+#600
+1@
+19
+1a
+0^
+0[
+b110 S
+1L
+0I
+0F
+b110 >
+b10 "
+b110 !
+17
+04
+01
+b110 )
+1R
+1M
+1=
+18
+1(
+1#
+#601
+1Y
+1D
+1/
+b101 W
+b101 B
+b101 -
+1`
+0]
+0Z
+b100 P
+b100 X
+1K
+0H
+0E
+b100 ;
+b100 C
+16
+03
+00
+b100 &
+b100 .
+#650
+0R
+0M
+0=
+08
+0(
+0#
+#700
+1+
+0@
+1$
+09
+b111 S
+1[
+b111 >
+0L
+b111 )
+11
+b1 "
+b111 !
+1R
+1M
+1=
+18
+1(
+1#
+#701
+0J
+b1 B
+1Z
+b101 P
+b101 X
+1V
+0K
+b0 ;
+b0 C
+10
+b101 &
+b101 .
+1,
+#750
+0R
+0M
+0=
+08
+0(
+0#
+#800
+0+
+0$
+b1000 S
+1F
+b1000 >
+b0 "
+b1000 !
+07
+01
+b1000 )
+1R
+1M
+1=
+18
+1(
+1#
+#801
+0D
+1G
+b10 B
+02
+05
+1/
+b1 -
+1E
+b1 ;
+b1 C
+06
+00
+b0 &
+b0 .
+0,
+#850
+0R
+0M
+0=
+08
+0(
+0#
+#900
+b1001 S
+b1001 >
+0F
+1I
+b1001 )
+11
+b1001 !
+1R
+1M
+1=
+18
+1(
+1#
+#901
+1D
+0/
+12
+b11 B
+b10 -
+0E
+1H
+b10 ;
+b10 C
+10
+b1 &
+b1 .
+#950
+0R
+0M
+0=
+08
+0(
+0#
+#1000
+b1010 S
+1F
+b1010 >
+b1010 !
+14
+01
+b1010 )
+1R
+1M
+1=
+18
+1(
+1#
+#1001
+1J
+0G
+0D
+1/
+b100 B
+b11 -
+1E
+b11 ;
+b11 C
+13
+00
+b10 &
+b10 .
+#1050
+0R
+0M
+0=
+08
+0(
+0#
+#1100
+b1011 S
+b1011 >
+0F
+0I
+1L
+b1011 )
+11
+b1011 !
+1R
+1M
+1=
+18
+1(
+1#
+#1101
+1J
+15
+02
+1D
+0/
+b101 B
+b100 -
+0E
+0H
+0A
+1K
+b100 ;
+b100 C
+10
+b11 &
+b11 .
+#1150
+0R
+0M
+0=
+08
+0(
+0#
+#1200
+b1100 S
+1F
+b1100 >
+b1100 !
+17
+04
+01
+b1100 )
+1R
+1M
+1=
+18
+1(
+1#
+#1201
+1/
+b101 -
+1E
+b101 ;
+b101 C
+1A
+16
+03
+00
+b100 &
+b100 .
+#1250
+0R
+0M
+0=
+08
+0(
+0#
+#1300
+b1101 S
+b1101 >
+b1101 )
+11
+b1101 !
+1R
+1M
+1=
+18
+1(
+1#
+#1301
+10
+b101 &
+b101 .
+1,
+#1350
+0R
+0M
+0=
+08
+0(
+0#
+#1400
+b1110 S
+b1110 >
+b1110 !
+b1110 )
+1R
+1M
+1=
+18
+1(
+1#
+#1450
+0R
+0M
+0=
+08
+0(
+0#
+#1500
+b1111 S
+b1111 >
+b1111 )
+b1111 !
+1R
+1M
+1=
+18
+1(
+1#
+#1550
+0R
+0M
+0=
+08
+0(
+0#
+#1600
+b10000 S
+b10000 >
+b10000 !
+b10000 )
+1R
+1M
+1=
+18
+1(
+1#

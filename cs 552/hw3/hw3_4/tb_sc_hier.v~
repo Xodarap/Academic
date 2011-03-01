@@ -1,0 +1,32 @@
+module tb_sc_hier;
+   wire [2:0] out;
+   reg 	      rst;
+   reg [7:0]  cnt;
+   
+   
+   sc_hier s1(.out(out), .ctr_rst(rst));
+
+   initial begin
+      rst = 1;
+      cnt = 0;
+   end
+   
+   always @(s1.clk) begin
+      cnt = cnt + 1;
+      $display("%d", out);
+
+      if(cnt == 6) begin
+	 rst = 1;
+	 #400 rst = 0;
+	 
+      end
+      
+
+      
+      if (cnt > 20) begin
+	 $finish;
+      end
+   end
+   
+
+endmodule // onebitreg
