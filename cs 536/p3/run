@@ -1,4 +1,4 @@
 #!/bin/bash
 make
-java -cp .:JLex.jar:java_cup.jar P3 test.Little output
-cat output
+java -cp .:JLex.jar:java_cup.jar P3 test2.Little output
+#cat output
