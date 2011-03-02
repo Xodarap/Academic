@@ -1,6 +1,11 @@
 import java.io.*;
 import java_cup.runtime.*;
 
+/*
+  CS 536 Program 3
+  Ben West
+ */
+
 // **********************************************************************
 // Main program to test the Little parser.
 //

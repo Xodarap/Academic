@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.*;
 
+/* Ben West */
+
 // **********************************************************************
 // The ASTnode class defines the nodes of the abstract-syntax tree that
 // represents a Little program.
@@ -767,8 +769,10 @@ class PlusPlusNode extends UnaryExpNode {
 
     // ** unparse **
     public void unparse(PrintWriter p, int indent) {
-	myExp.unparse(p, indent);
-	p.print("++");
+	doIndent(p, indent);
+	p.print("(");
+	myExp.unparse(p, 0);
+	p.print("++)");
     }
 }
 
@@ -779,8 +783,10 @@ class MinusMinusNode extends UnaryExpNode {
 
     // ** unparse **
     public void unparse(PrintWriter p, int indent) {
-	myExp.unparse(p, indent);
-	p.print("--");
+	doIndent(p, indent);
+	p.print("(");
+	myExp.unparse(p, 0);
+	p.print("--)");
     }
 }
 

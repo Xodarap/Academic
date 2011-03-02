@@ -1,100 +1,140 @@
-int g;
-double g;
-void g;
+int x;
+int y;
+int ab23;
+int bb_c;
 void f() {
-}
-int f(int x) {
-}
-double f(double y) {
-}
-void f(void x, int y) {
-}
-int g;
-double g;
-void g;
-int foo() {
- int x;
- int y;
- double z;
- _ = (_ = 10);
- if( (x = 22)) {
- }
- ++anotherId_;
- --_1;
- thisIsAnId++;
- hello2--;
- arm_1--;
- scanf("%d", &x);
- scanf("%f", &x);
- printf("%d", 10);
- printf("%f", f);
- printf("with \\ escaped");
- if( 0) {
- }
- if( (a > b)) {
-  scanf("%f", &x);
- }
- if( (a != b)) {
-  printf("%d", x);
- }
- if( 1) {
- }
- else {
- }
- if( (x == y)) {
-  x--;
- }
- else {
-  x = (y + 1);
-  z = (-w);
- }
- while( true) {
- }
- while( x) {
-  ++x;
- }
- return 22;
- return "hello";
- return (x + y);
  return ;
- x();
- x(1, 2, 3);
- x = (y + 10);
- if( (x - 22)) {
+}
+void g() {
+ int x;
+}
+void h() {
+ printf("hello");
+ printf("\"hello\"");
+ if( (a == b)) {
+  return ;
  }
- while( (10 * dd)) {
- }
- if( (a / b)) {
+ if( (a == b)) {
+  return ;
  }
  else {
+  return ;
  }
- x = (!y);
- y = (a && b);
- printf("%d", (1 || 0));
- if( (0 == 22)) {
+}
+int main() {
+ if( a) {
+  return 1;
  }
- if( (0 != 22)) {
+ else {
+  if( b) {
+   return false;
+  }
+  else {
+   if( c) {
+    return (x + y);
+   }
+   else {
+    if( d) {
+     return (a || (b && c));
+    }
+    else {
+     if( e) {
+      return ((x * y) + z);
+     }
+    }
+   }
+  }
  }
- if( (0 < 22)) {
+}
+void foo() {
+ ++a;
+ --a;
+ a++;
+ a--;
+ while( ((a + b) < (c - d))) {
  }
- x = (y > z);
- x = (y <= z);
- x = (y >= z);
- x = (-1);
- if( ((-1) * (-22))) {
+ while( 1) {
+  a = ((a++) - b);
+  a = ((a--) - b);
+  a = ((a--) * b);
+  a = ((a--) / b);
+  a = ((a--) || b);
+  a = ((a--) && b);
+  a = ((!(a--)) || b);
+  a = (b - (a++));
+  a = (b - (a--));
+  a = (b * (a--));
+  a = (b / (a--));
+  a = (b || (a--));
+  a = (b && (a--));
+  a = (b || (!(a--)));
+  a = (2.5 + (0.5 * 45.0));
+  a = (b = (c / d));
+  a = (a + b);
+  a = (a - b);
+  a = (a * b);
+  a = (a / b);
+  c = (!c);
+  a = (a && b);
+  a = (a || b);
+  c = (a == b);
+  c = (a != b);
+  c = (a < b);
+  c = (a > b);
+  c = (a <= b);
+  c = (a >= b);
+  a = b;
+  a = 50;
+  c = 1;
+  c = false;
+  a = (-50);
+  a = (!b);
+  a = (-(-b));
+  a = ((a + b) + c);
+  a = ((a - b) - c);
+  a = (a + (b * c));
+  a = (a - (b * c));
+  a = (a + (c / c));
+  a = ((-a) + b);
+  a = ((-a) * b);
+  a = ((!a) && b);
  }
- x = y++;
- if( (y++ - z++)) {
+ if( (a >= b)) {
  }
- x = y--;
- if( (y-- - z--)) {
+ if( (b == (-1))) {
+  x = 5;
+  while( c) {
+   y = (y + 1);
+  }
  }
- x = 15;
- x = 22.5;
- x = 0.33;
- x = 34.0;
- x = "hello";
- x = 5;
- x = foo();
- x = bar(23, 44);
+ a = 2147483647;
+}
+int a;
+int b25;
+void arr() {
+ int A;
+ int B;
+ a = (a + 4);
+ printf("str+4");
+ if( ((b251 + 4) == (B + 4))) {
+ }
+}
+void foo() {
+ scanf("%d", &a);
+ scanf("%f", &x);
+ printf("\n");
+ printf("%d", (x + y));
+ printf("%f", (x++));
+ scanf("%d", &A);
+}
+void params(int b, int a, double c, int x) {
+}
+void fncall() {
+ foo();
+ params(1, 99, (-1), (!1));
+ printf("a + foo()\n");
+ printf("%d", a);
+ printf("%f", a);
+ x = foo(a, b, c);
+ x = foo((a + 1), (b || true), (c = d));
 }

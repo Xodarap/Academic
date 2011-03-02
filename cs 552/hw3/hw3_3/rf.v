@@ -24,7 +24,7 @@ module rf (
    reg [15:0] 	 readDataReg1, readDataReg2;
 
    /* The write enable for each reg is always zero unless the reg sel is
-    exactly equal to its number (i.e. not xor) and write is true */
+    exactly equal to its number and write is true */
    assign writeEnable[0] = write & (3'b000 == writeregsel);
    assign writeEnable[1] = write & (3'b001 == writeregsel);
    assign writeEnable[2] = write & (3'b010 == writeregsel);
@@ -34,7 +34,6 @@ module rf (
    assign writeEnable[6] = write & (3'b110 == writeregsel);
    assign writeEnable[7] = write & (3'b111 == writeregsel);
    
-   
    reg16 r0(.readdata(readDatas[0]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[0]));
    reg16 r1(.readdata(readDatas[1]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[1]));
    reg16 r2(.readdata(readDatas[2]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[2]));
@@ -43,7 +42,6 @@ module rf (
    reg16 r5(.readdata(readDatas[5]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[5]));
    reg16 r6(.readdata(readDatas[6]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[6]));
    reg16 r7(.readdata(readDatas[7]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[7]));
-   
    
    always @* case (read1regsel)
 	       3'b000: readDataReg1 = readDatas[0];
@@ -69,6 +67,5 @@ module rf (
 
    assign read1data = readDataReg1;
    assign read2data = readDataReg2;
-   
 endmodule
 // DUMMY LINE FOR REV CONTROL :1:
