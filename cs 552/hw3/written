@@ -1,0 +1,5 @@
+1. 
+Easiest: #2 - "Bit Equal". You would just need to add "not xor" to the ALU.
+Middle:  #1 - "Split Register". This would also need to be added to the ALU, but it would require more logic.
+Hardest: #3 - "Replace under Mask". Right now, the sign-extender goes to the adder but the registers go to the ALU. So you would need to either make a new extender, or add a piece to the data path which lets the extender and the registers to the same unit.
+

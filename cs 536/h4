@@ -1,0 +1,44 @@
+Ben West
+HW 4
+CS 536
+
+1.
+{} \cup ({}) is legal but can't be constructed
+2.
+It's ambiguous: Way 1:
+
+      E
+      T
+ /--- F --\
+S          S
+E          E
+|          T
+|          F
+|       /    \
+|      F      S
+|      S      S
+|      E      E
+A \cap B \cap C
+
+
+         E
+         T
+    /--- F --\
+    S         S
+    E         E
+    T         |
+    F	      |
+ /    \	      |
+F      S      |
+S      S      |
+E      E      |
+A \cap B \cap C
+
+3.
+{} \cup ({}) is legal but can't be constructed
+4.
+{,NAME} isn't legal but can be constructed
+5.
+({}-{}) is legal but can't be constructed
+6.
+{} \cap {} \cap {} is legal but can't be constructed

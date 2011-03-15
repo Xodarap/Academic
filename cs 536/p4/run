@@ -1,0 +1,4 @@
+#!/bin/bash
+make
+java -cp .:JLex.jar:java_cup.jar P4 test1.Little output
+#cat output

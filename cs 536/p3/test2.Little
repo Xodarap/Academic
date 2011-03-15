@@ -1,0 +1,128 @@
+int g;
+double g;
+void g;
+
+void f() { }
+
+int f(int x) {}
+
+double f(double y) {}
+
+void f(void x, int y) {}
+
+int g;
+double g;
+void g;
+
+int foo() {
+int x;
+int y;
+double z;
+/* ALL STATEMENTS */
+    /* assign_exp */
+    _ = _ = 10;
+    if (x = 22) {}
+
+    /* PLUSPLUS id SEMICOLON */
+    ++ anotherId_;
+
+    /* MINUSMINUS id SEMICOLON */	
+    -- _1;
+
+    /* id PLUSPLUS SEMICOLON */
+    thisIsAnId++;
+
+    /* id MINUSMINUS SEMICOLON */
+    hello2--;
+    arm_1 --;
+
+    /* SCANF LPAREN INT_FORMAT COMMA AMPERSAND id RPAREN SEMICOLON */
+    scanf("%d", &x);
+
+    /* SCANF LPAREN DBL_FORMAT COMMA AMPERSAND id RPAREN SEMICOLON */
+    scanf("%f", &x);
+
+    /* PRINTF LPAREN INT_FORMAT COMMA exp RPAREN SEMICOLON */
+    printf("%d", 10);
+
+    /* PRINTF LPAREN DBL_FORMAT COMMA exp RPAREN SEMICOLON */
+    printf("%f", f);
+
+    /* PRINTF LPAREN STRINGLITERAL RPAREN SEMICOLON */
+    printf("with \\ escaped");
+
+    /* IF LPAREN exp RPAREN LCURLY varDeclList stmtList RCURLY */
+    if (0) {}
+    if (a>b) {scanf("%f", &x);}
+    if (a != b) { printf("%d", x);}
+    /* IF LPAREN exp RPAREN LCURLY varDeclList stmtList RCURLY ELSE LCURLY varDeclList stmtList RCURLY */
+    if (1) {} else {}
+    if (x==y) {x--;} else {x=y+1; z=-w;}
+    /* WHILE LPAREN exp RPAREN LCURLY varDeclList stmtList RCURLY */
+    while (true) {}
+    while (x) {
+       ++x;
+    }
+    /* RETURN exp SEMICOLON */
+    return 22;
+    return "hello";
+    return x+y;
+    /* RETURN SEMICOLON */
+    return;
+    /* fncall SEMICOLON */
+    x();
+    x(1,2,3);
+
+/* ALL EXPRESSIONS */
+   /* exp PLUS exp */
+   x = y + 10;
+   /* exp MINUS exp */
+   if (x-22) {}
+   /* exp STAR exp */
+   while (10*dd) {}
+   /* exp DIVIDE exp */
+   if (a/b) {} else {}
+   /* NOT exp */
+   x = !y;
+   /* exp AND exp */
+   y = a && b;
+   /* exp OR exp */
+   printf("%d", 1 || 0);
+   /* exp EQUALS exp */
+   if (0 == (22)) {}
+   /* exp NOTEQUALS exp */
+   if (0 != (22)) {}
+   /* exp LESS exp */
+   if ((0 < 22)) {}
+   /* exp GREATER exp */
+   x = y > z;
+   /* exp LESSEQ exp */
+   x = y <= z;
+   /* exp GREATEREQ exp */
+   x = y >= z;
+   /* MINUS term */
+   x = -1;
+   if (-1 * -22) {}
+
+/* ALL TERMS */
+   /* id PLUSPLUS */
+   x = y++;
+   if (y++ - z++) {}
+   /* id MINUSMINUS */
+   x = y--;
+   if (y-- - z--) {}
+   /* INTLITERAL */
+   x = 15;
+   /* DBLLITERAL */
+   x = 22.5;
+   x = .33;
+   x = 34.;
+   /* STRINGLITERAL */
+   x = "hello";
+   /* LPAREN exp RPAREN */
+   x = (5);
+   /* fncall */
+   x = foo();
+   x = bar(23, 44);
+
+}

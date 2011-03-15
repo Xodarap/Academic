@@ -1,0 +1,2 @@
+1. 
+Easiest: #2 - "Bit Equal". You would just need to add "not xor" to the ALU.
