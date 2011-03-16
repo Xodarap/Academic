@@ -176,7 +176,8 @@ class DeclListNode extends ASTnode implements SymTabNode {
     private List<DeclNode> myDecls;
 }
 
-class FormalsListNode extends ASTnode {
+// FormalsList is the parameters to a function
+class FormalsListNode extends ASTnode  implements SymTabNode {
     public FormalsListNode(List<FormalDeclNode> L) {
 	myFormals = L;
     }
@@ -193,11 +194,25 @@ class FormalsListNode extends ASTnode {
 		}
     }
 
+    public void provideSymTab(SymTab table) {
+		for (FormalDeclNode oneDecl : myFormals) {
+		    oneDecl.provideSymTab(table);
+		}
+    }
+
+    public List<TypeNode> getTypes(){
+	List<TypeNode> types = new ArrayList<TypeNode>();
+	for (FormalDeclNode node : myFormals){
+	    types.add(node.getType());
+	}
+	return types;
+    }
+
     // list of kids (FormalDeclNodes)
     private List<FormalDeclNode> myFormals;
 }
 
-class FnBodyNode extends ASTnode {
+class FnBodyNode extends ASTnode implements SymTabNode {
     public FnBodyNode(DeclListNode declList, StmtListNode stmtList) {
 	myDeclList = declList;
 	myStmtList = stmtList;
@@ -209,12 +224,17 @@ class FnBodyNode extends ASTnode {
 	myStmtList.unparse(p, indent);
     }
 
+    public void provideSymTab(SymTab table) {
+	myDeclList.provideSymTab(table);
+	myStmtList.provideSymTab(table);
+    }
+
     // 2 kids
     private DeclListNode myDeclList;
     private StmtListNode myStmtList;
 }
 
-class StmtListNode extends ASTnode {
+class StmtListNode extends ASTnode implements SymTabNode {
     public StmtListNode(List<StmtNode> L) {
 	myStmts = L;
     }
@@ -226,6 +246,11 @@ class StmtListNode extends ASTnode {
 	    it.next().unparse(p, indent);
 	}
     }
+
+    public void provideSymTab(SymTab table) {
+	
+    }
+
 
     // list of kids (StmtNodes)
     private List<StmtNode> myStmts;
@@ -312,6 +337,7 @@ class FnDeclNode extends DeclNode {
 		myType.unparse(p, 0);
 		p.print(" ");
 		myId.unparse(p, 0);
+		p.print("(" + mySym.getType() + ")");
 		p.print("(");
 		myFormalsList.unparse(p, 0);
 		p.print(") {");
@@ -322,6 +348,29 @@ class FnDeclNode extends DeclNode {
     
     public void provideSymTab(SymTab table) {
     	table.addMap();
+	myFormalsList.provideSymTab(table);
+	myBody.provideSymTab(table);
+
+	try { table.removeMap(); }
+	catch (Exception e) { System.out.println(e.toString()); }
+
+	String params = "";
+	Boolean first = true;
+	for(TypeNode tn : myFormalsList.getTypes()){
+	    if(!first) { params += ", ";}
+	    else { first = false; }
+	    params += tn.getTypeName();
+	}
+	params += " -> " + myType.getTypeName();
+	mySym = new Sym(params);
+	try {
+	    table.insert(myId.getName(), mySym);
+	} catch (DuplicateException e){
+	    Errors.errors = true;
+	    Errors.fatal(myId.getLine(), myId.getCharNum(), "Multiply declared identifier");
+	} catch (EmptySymTabException e){
+	    System.out.println(e.toString());
+	}
     }
     
     // 4 kids
@@ -329,12 +378,14 @@ class FnDeclNode extends DeclNode {
     private IdNode myId;
     private FormalsListNode myFormalsList;
     private FnBodyNode myBody;
+    private Sym mySym;
 }
 
 class FormalDeclNode extends DeclNode {
     public FormalDeclNode(TypeNode type, IdNode id) {
 	myType = type;
 	myId = id;
+	id.setSym(new Sym(type.getTypeName()));
     }
 
     // ** unparse **
@@ -346,6 +397,22 @@ class FormalDeclNode extends DeclNode {
     }
     
     public void provideSymTab(SymTab table) {
+	try {
+	    table.insert(myId.getName(), myId.getSym());
+	} catch (DuplicateException e) {
+	    Errors.fatal(myId.getLine(), myId.getCharNum(), "Multiply declared identifier");
+	} catch (EmptySymTabException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+		
+	if(myId.getSym().getType().equals("void")) {
+	    Errors.fatal(myId.getLine(), myId.getCharNum(), "Non-function declared void");
+	}
+    }
+
+    public TypeNode getType(){
+	return myType;
     }
 
     // 2 kids
@@ -405,7 +472,7 @@ class VoidNode extends TypeNode {
 // StmtNode and its subclasses
 // **********************************************************************
 
-abstract class StmtNode extends ASTnode {
+abstract class StmtNode extends ASTnode implements SymTabNode {
 }
 
 class AssignStmtNode extends StmtNode {
@@ -416,6 +483,10 @@ class AssignStmtNode extends StmtNode {
     public void unparse(PrintWriter p, int indent) {
 	myExp.unparseNoParens(p, indent);
 	p.println(";");
+    }
+
+    public void provideSymTab(SymTab table){
+        myExp.provideSymTab(table);
     }
 
     // 1 kid
@@ -434,6 +505,16 @@ class PreIncStmtNode extends StmtNode {
 	p.println(";");
     }
 
+    public void provideSymTab(SymTab table){
+	Sym stmt = table.globalLookup(myId.getName());
+	if (stmt == null){
+	    Errors.fatal(myId.getLine(), myId.getCharNum(), "Undeclared identifier");
+	    Errors.errors = true;
+	} else {
+	    myId.setSym(stmt);
+	}
+    }
+
     // 1 kid
     private IdNode myId;
 }
@@ -448,6 +529,16 @@ class PreDecStmtNode extends StmtNode {
 	p.print("--");
 	myId.unparse(p, 0);
 	p.println(";");
+    }
+
+    public void provideSymTab(SymTab table){
+	Sym stmt = table.globalLookup(myId.getName());
+	if (stmt == null){
+	    Errors.fatal(myId.getLine(), myId.getCharNum(), "Undeclared identifier");
+	    Errors.errors = true;
+	} else {
+	    myId.setSym(stmt);
+	}
     }
 
     // 1 kid
@@ -466,6 +557,16 @@ class PostIncStmtNode extends StmtNode {
 	p.println(";");
     }
 
+    public void provideSymTab(SymTab table){
+	Sym stmt = table.globalLookup(myId.getName());
+	if (stmt == null){
+	    Errors.fatal(myId.getLine(), myId.getCharNum(), "Undeclared identifier");
+	    Errors.errors = true;
+	} else {
+	    myId.setSym(stmt);
+	}
+    }
+
     // 1 kid
     private IdNode myId;
 }
@@ -480,6 +581,16 @@ class PostDecStmtNode extends StmtNode {
 	myId.unparse(p, 0);
 	p.print("--");
 	p.println(";");
+    }
+
+    public void provideSymTab(SymTab table){
+	Sym stmt = table.globalLookup(myId.getName());
+	if (stmt == null){
+	    Errors.fatal(myId.getLine(), myId.getCharNum(), "Undeclared identifier");
+	    Errors.errors = true;
+	} else {
+	    myId.setSym(stmt);
+	}
     }
 
     // 1 kid
@@ -499,6 +610,16 @@ class ReadIntStmtNode extends StmtNode {
 	p.println(";");
     }
 
+    public void provideSymTab(SymTab table){
+	Sym stmt = table.globalLookup(myId.getName());
+	if (stmt == null){
+	    Errors.fatal(myId.getLine(), myId.getCharNum(), "Undeclared identifier");
+	    Errors.errors = true;
+	} else {
+	    myId.setSym(stmt);
+	}
+    }
+
     // 1 kid
     private IdNode myId;
 }
@@ -514,6 +635,16 @@ class ReadDblStmtNode extends StmtNode {
 	myId.unparse(p, 0);
 	p.print(")");
 	p.println(";");
+    }
+
+    public void provideSymTab(SymTab table){
+	Sym stmt = table.globalLookup(myId.getName());
+	if (stmt == null){
+	    Errors.fatal(myId.getLine(), myId.getCharNum(), "Undeclared identifier");
+	    Errors.errors = true;
+	} else {
+	    myId.setSym(stmt);
+	}
     }
 
     // 1 kid
@@ -534,6 +665,16 @@ class WriteIntStmtNode extends StmtNode {
 	p.println(";");
     }
 
+    public void provideSymTab(SymTab table){
+	Sym stmt = table.globalLookup(myId.getName());
+	if (stmt == null){
+	    Errors.fatal(myId.getLine(), myId.getCharNum(), "Undeclared identifier");
+	    Errors.errors = true;
+	} else {
+	    myId.setSym(stmt);
+	}
+    }
+
     // 1 kid
     private ExpNode myExp;
 }
@@ -552,6 +693,16 @@ class WriteDblStmtNode extends StmtNode {
 	p.println(";");
     }
 
+    public void provideSymTab(SymTab table){
+	Sym stmt = table.globalLookup(myId.getName());
+	if (stmt == null){
+	    Errors.fatal(myId.getLine(), myId.getCharNum(), "Undeclared identifier");
+	    Errors.errors = true;
+	} else {
+	    myId.setSym(stmt);
+	}
+    }
+
     // 1 kid
     private ExpNode myExp;
 }
@@ -568,6 +719,16 @@ class WriteStrStmtNode extends StmtNode {
 	myExp.unparse(p, 0);
 	p.print(")");
 	p.println(";");
+    }
+
+    public void provideSymTab(SymTab table){
+	Sym stmt = table.globalLookup(myId.getName());
+	if (stmt == null){
+	    Errors.fatal(myId.getLine(), myId.getCharNum(), "Undeclared identifier");
+	    Errors.errors = true;
+	} else {
+	    myId.setSym(stmt);
+	}
     }
 
     // 1 kid
@@ -593,6 +754,11 @@ class IfStmtNode extends StmtNode {
 	p.println("}");
     }
 
+    public void provideSymTab(SymTab table){
+	myExp.provideSymTab(table);
+	myDeclList.provideSymTab(table);
+	myStmtList.provideSymTab(table);
+    }
     // 3 kids
     private ExpNode myExp;
     private DeclListNode myDeclList;
@@ -628,6 +794,14 @@ class IfElseStmtNode extends StmtNode {
 	p.println("}");
     }
 
+    public void provideSymTab(SymTab table){
+	myExp.provideSymTab(table);
+	myThenDeclList.provideSymTab(table);
+	myThenStmtList.provideSymTab(table);
+	myElseDeclList.provideSymTab(table);
+	myElseStmtList.provideSymTab(table);
+    }
+
     // 5 kids
     private ExpNode myExp;
     private DeclListNode myThenDeclList;
@@ -654,6 +828,11 @@ class WhileStmtNode extends StmtNode {
 	p.println("}");
     }
 
+    public void provideSymTab(SymTab table){
+	myExp.provideSymTab(table);
+	myDeclList.provideSymTab(table);
+	myStmtList.provideSymTab(table);
+    }
     // 3 kids
     private ExpNode myExp;
     private DeclListNode myDeclList;
@@ -672,6 +851,10 @@ class CallStmtNode extends StmtNode {
 	p.println(";");
     }
 
+    public void provideSymTab(SymTab table){
+	myCall.provideSymTab(table);
+    }
+
     // 1 kid
     private CallExpNode myCall;
 }
@@ -688,6 +871,11 @@ class ReturnStmtNode extends StmtNode {
 	if(myExp != null) { myExp.unparse(p, 0); }
 	p.println(";");
     }
+
+    public void provideSymTab(SymTab table){
+	myExp.provideSymTab(table);
+    }
+    
 
     // 1 kid
     private ExpNode myExp;
@@ -763,6 +951,7 @@ class IdNode extends ExpNode {
     public void unparse(PrintWriter p, int indent) {
 	doIndent(p, indent);
 	p.print(myStrVal);
+	p.print("(" + mySymVal.getType() + ")");
     }
     
     public String getName(){

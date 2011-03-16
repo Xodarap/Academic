@@ -15,7 +15,7 @@ void badDecl(void x){
 }
 
 
-void doubleDeclarations(int x, double y){
+void doubleDeclarations(int x, double y, double z, double z){
      double x;
      int y;
      int x;
@@ -84,4 +84,10 @@ void nestedUndeclared(int x){
      } else {
        z = 5;
      }
+}
+
+void undeclAndBad(void z, void z){
+     void k;
+     void z;
+     void k;
 }

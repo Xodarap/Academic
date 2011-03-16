@@ -1,8 +1,5 @@
 int z;
-int z;
-void x;
-void x;
-int foo(double x, int y) { 
-    int z;
-    int z;
+
+int foo(double x) {
+    return x + z;
 }

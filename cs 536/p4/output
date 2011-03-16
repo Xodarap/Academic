@@ -1,8 +1,0 @@
-int z;
-int z;
-void x;
-void x;
-int foo(double x, int y) {
- int z;
- int z;
-}
