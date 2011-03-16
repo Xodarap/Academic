@@ -1,39 +1,8 @@
-double z;
+int z;
+int z;
+void x;
+void x;
 int foo(double x, int y) { 
     int z;
-    if(k == 12){
-        double fafodjs;
-    	foo = 12;
-    } else {
-      myvar = 34.53;
-      str = "test";
-      foo = x++;
-      if (f(x) == 2) {
-      	 printf("whee");
-	 while (x++) {
-	       int x;
-	       x =5;
-	 }
-      }
-    }
-    if(x == y) { foo(x / 2); }
-    foo = x--;
-    ++x; --x; x++; x--;
-    y = x++; y = (x + k * (y * z++));
-    return;
-    return x * 5 +3;
-    blah = !x;
-    fd = -ds;
-    a = b + c * d / e - f;
-    scanf("%d", &myvar);
-    scanf("%d", &a);
-    printf("TEST");
-    printf("%f", a);
-    printf("%d", a);
-    fn("foo", bar, 3+5);
-    z = foo(5*x++, 123, "yay");
-    k = (x && y) || (!z) && (x < y) && (y <= x) || (x > y) && (x >= z);
+    int z;
 }
-
-void blah() {}
-double dd(int k) {}

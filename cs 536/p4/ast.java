@@ -142,7 +142,8 @@ class ProgramNode extends ASTnode implements SymTabNode {
     }
 
     public void provideSymTab(SymTab table) {
-	myDeclList.priveSymTab(table);
+		System.out.println("Adding global table");
+    	myDeclList.provideSymTab(table);
     }
 
     // 1 kid
@@ -166,11 +167,9 @@ class DeclListNode extends ASTnode implements SymTabNode {
 	}
     }
     public void provideSymTab(SymTab table) {
-	for (DeclNode oneDecl : myDecls) {
-	    table.addMap();
-	    oneDecl.provideSymTab(table);
-	    table.removeMap();
-	}
+		for (DeclNode oneDecl : myDecls) {
+		    oneDecl.provideSymTab(table);
+		}
     }
 
     // list of kids (DeclNodes)
@@ -184,14 +183,14 @@ class FormalsListNode extends ASTnode {
 
     // ** unparse **
     public void unparse(PrintWriter p, int indent) {
-	Iterator<FormalDeclNode> it = myFormals.iterator();
-	while(it.hasNext()){
-	    FormalDeclNode n = it.next();
-	    n.unparse(p, indent);
-	    if(it.hasNext()){
-		p.print(", ");
-	    }
-	}
+		Iterator<FormalDeclNode> it = myFormals.iterator();
+		while(it.hasNext()){
+		    FormalDeclNode n = it.next();
+		    n.unparse(p, indent);
+		    if(it.hasNext()){
+			p.print(", ");
+		    }
+		}
     }
 
     // list of kids (FormalDeclNodes)
@@ -257,13 +256,14 @@ class ExpListNode extends ASTnode {
 // **********************************************************************
 // DeclNode and its subclasses
 // **********************************************************************
-abstract class DeclNode extends ASTnode {
+abstract class DeclNode extends ASTnode implements SymTabNode {
 }
 
 class VarDeclNode extends DeclNode {
     public VarDeclNode(TypeNode type, IdNode id) {
-	myType = type;
-	myId = id;
+    	myType = type;
+		myId = id;
+		id.setSym(new Sym(type.getTypeName()));
     }
 
     // ** unparse **
@@ -273,6 +273,21 @@ class VarDeclNode extends DeclNode {
 	p.print(" ");
 	myId.unparse(p, 0);
 	p.println(";");
+    }
+    
+    public void provideSymTab(SymTab table) {
+		try {
+			table.insert(myId.getName(), myId.getSym());
+		} catch (DuplicateException e) {
+			Errors.fatal(myId.getLine(), myId.getCharNum(), "Multiply declared identifier");
+		} catch (EmptySymTabException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(myId.getSym().getType().equals("void")) {
+			Errors.fatal(myId.getLine(), myId.getCharNum(), "Non-function declared void");
+		}
     }
 
     // 2 kids
@@ -293,18 +308,22 @@ class FnDeclNode extends DeclNode {
 
     // ** unparse **
     public void unparse(PrintWriter p, int indent) {
-	doIndent(p, indent);
-	myType.unparse(p, 0);
-	p.print(" ");
-	myId.unparse(p, 0);
-	p.print("(");
-	myFormalsList.unparse(p, 0);
-	p.print(") {");
-	p.println();
-	myBody.unparse(p, indent+1);
-	p.println("}");
+		doIndent(p, indent);
+		myType.unparse(p, 0);
+		p.print(" ");
+		myId.unparse(p, 0);
+		p.print("(");
+		myFormalsList.unparse(p, 0);
+		p.print(") {");
+		p.println();
+		myBody.unparse(p, indent+1);
+		p.println("}");
     }
-
+    
+    public void provideSymTab(SymTab table) {
+    	table.addMap();
+    }
+    
     // 4 kids
     private TypeNode myType;
     private IdNode myId;
@@ -320,10 +339,13 @@ class FormalDeclNode extends DeclNode {
 
     // ** unparse **
     public void unparse(PrintWriter p, int indent) {
-	doIndent(p, indent);
-	myType.unparse(p, 0);
-	p.print(" ");
-	myId.unparse(p, 0);
+		doIndent(p, indent);
+		myType.unparse(p, 0);
+		p.print(" ");
+		myId.unparse(p, 0);
+    }
+    
+    public void provideSymTab(SymTab table) {
     }
 
     // 2 kids
@@ -335,6 +357,7 @@ class FormalDeclNode extends DeclNode {
 // TypeNode and its Subclasses
 // **********************************************************************
 abstract class TypeNode extends ASTnode {
+	abstract public String getTypeName();
 }
 
 class IntNode extends TypeNode {
@@ -345,6 +368,9 @@ class IntNode extends TypeNode {
     public void unparse(PrintWriter p, int indent) {
 	p.print("int");
     }
+	public String getTypeName(){
+		return "int";
+	}
 }
 
 class DblNode extends TypeNode {
@@ -355,6 +381,9 @@ class DblNode extends TypeNode {
     public void unparse(PrintWriter p, int indent) {
 	p.print("double");
     }
+	public String getTypeName(){
+		return "double";
+	}
 }
 
 class VoidNode extends TypeNode {
@@ -363,8 +392,12 @@ class VoidNode extends TypeNode {
 
     // ** unparse **
     public void unparse(PrintWriter p, int indent) {
-	p.print("void");
+    	p.print("void");
     }
+    
+	public String getTypeName(){
+		return "void";
+	}
 }
 
 
@@ -730,6 +763,26 @@ class IdNode extends ExpNode {
     public void unparse(PrintWriter p, int indent) {
 	doIndent(p, indent);
 	p.print(myStrVal);
+    }
+    
+    public String getName(){
+    	return myStrVal;
+    }
+    
+    public Sym getSym(){
+    	return mySymVal;
+    }
+    
+    public void setSym(Sym val){
+    	mySymVal = val;
+    }
+    
+    public int getLine(){
+    	return myLineNum;
+    }
+    
+    public int getCharNum(){
+    	return myCharNum;
     }
 
     // fields

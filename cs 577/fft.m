@@ -1,0 +1,5 @@
+function mult(x, y)
+n = length(x);
+omega = exp(i * 
+
+function fft
