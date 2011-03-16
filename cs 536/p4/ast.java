@@ -248,7 +248,9 @@ class StmtListNode extends ASTnode implements SymTabNode {
     }
 
     public void provideSymTab(SymTab table) {
-	
+	for(StmtNode stmt : myStmts){
+	    stmt.provideSymTab(table);
+	}
     }
 
 
@@ -256,7 +258,7 @@ class StmtListNode extends ASTnode implements SymTabNode {
     private List<StmtNode> myStmts;
 }
 
-class ExpListNode extends ASTnode {
+class ExpListNode extends ASTnode implements SymTabNode {
     public ExpListNode(List<ExpNode> L) {
 	myExps = L;
     }
@@ -272,6 +274,12 @@ class ExpListNode extends ASTnode {
 	    }
 	}
 
+    }
+
+    public void provideSymTab(SymTab table){
+	for(ExpNode node : myExps){
+	    node.provideSymTab(table);
+	}
     }
 
     // list of kids (ExpNodes)
@@ -337,7 +345,6 @@ class FnDeclNode extends DeclNode {
 		myType.unparse(p, 0);
 		p.print(" ");
 		myId.unparse(p, 0);
-		p.print("(" + mySym.getType() + ")");
 		p.print("(");
 		myFormalsList.unparse(p, 0);
 		p.print(") {");
@@ -371,6 +378,7 @@ class FnDeclNode extends DeclNode {
 	} catch (EmptySymTabException e){
 	    System.out.println(e.toString());
 	}
+	myId.setSym(mySym);
     }
     
     // 4 kids
@@ -486,7 +494,7 @@ class AssignStmtNode extends StmtNode {
     }
 
     public void provideSymTab(SymTab table){
-        myExp.provideSymTab(table);
+	        myExp.provideSymTab(table);
     }
 
     // 1 kid
@@ -666,13 +674,7 @@ class WriteIntStmtNode extends StmtNode {
     }
 
     public void provideSymTab(SymTab table){
-	Sym stmt = table.globalLookup(myId.getName());
-	if (stmt == null){
-	    Errors.fatal(myId.getLine(), myId.getCharNum(), "Undeclared identifier");
-	    Errors.errors = true;
-	} else {
-	    myId.setSym(stmt);
-	}
+	myExp.provideSymTab(table);
     }
 
     // 1 kid
@@ -694,13 +696,7 @@ class WriteDblStmtNode extends StmtNode {
     }
 
     public void provideSymTab(SymTab table){
-	Sym stmt = table.globalLookup(myId.getName());
-	if (stmt == null){
-	    Errors.fatal(myId.getLine(), myId.getCharNum(), "Undeclared identifier");
-	    Errors.errors = true;
-	} else {
-	    myId.setSym(stmt);
-	}
+	myExp.provideSymTab(table);
     }
 
     // 1 kid
@@ -722,13 +718,7 @@ class WriteStrStmtNode extends StmtNode {
     }
 
     public void provideSymTab(SymTab table){
-	Sym stmt = table.globalLookup(myId.getName());
-	if (stmt == null){
-	    Errors.fatal(myId.getLine(), myId.getCharNum(), "Undeclared identifier");
-	    Errors.errors = true;
-	} else {
-	    myId.setSym(stmt);
-	}
+	myExp.provideSymTab(table);
     }
 
     // 1 kid
@@ -873,7 +863,8 @@ class ReturnStmtNode extends StmtNode {
     }
 
     public void provideSymTab(SymTab table){
-	myExp.provideSymTab(table);
+	// returns can be null
+	if(myExp != null) { myExp.provideSymTab(table);}
     }
     
 
@@ -885,7 +876,10 @@ class ReturnStmtNode extends StmtNode {
 // ExpNode and its subclasses
 // **********************************************************************
 
-abstract class ExpNode extends ASTnode {
+abstract class ExpNode extends ASTnode implements SymTabNode {
+    public void provideSymTab(SymTab table){
+	// In a lot of cases, we don't need to do anything here
+    }
 }
 
 class IntLitNode extends ExpNode {
@@ -951,7 +945,11 @@ class IdNode extends ExpNode {
     public void unparse(PrintWriter p, int indent) {
 	doIndent(p, indent);
 	p.print(myStrVal);
-	p.print("(" + mySymVal.getType() + ")");
+	if(mySymVal == null){
+	    Errors.fatal(myLineNum, myCharNum, "Undeclared identifier");
+	} else {
+	    p.print("(" + mySymVal.getType() + ")");
+	}
     }
     
     public String getName(){
@@ -972,6 +970,15 @@ class IdNode extends ExpNode {
     
     public int getCharNum(){
     	return myCharNum;
+    }
+
+    public void provideSymTab(SymTab table){
+	if(mySymVal == null){
+	    mySymVal = table.globalLookup(myStrVal);
+	    if(mySymVal == null){
+		Errors.fatal(myLineNum, myCharNum, "Undeclared identifier");
+	    }
+	}
     }
 
     // fields
@@ -996,6 +1003,11 @@ class CallExpNode extends ExpNode {
 	p.print(")");
     }
 
+    public void provideSymTab(SymTab table){
+	myId.provideSymTab(table);
+	myExpList.provideSymTab(table);
+    }
+
     // 2 kids
     private IdNode myId;
     private ExpListNode myExpList;
@@ -1006,6 +1018,10 @@ abstract class UnaryExpNode extends ExpNode {
 	myExp = exp;
     }
 
+    public void provideSymTab(SymTab table){
+	myExp.provideSymTab(table);
+    }
+
     // one kid
     protected ExpNode myExp;
 }
@@ -1014,6 +1030,11 @@ abstract class BinaryExpNode extends ExpNode {
     public BinaryExpNode(ExpNode exp1, ExpNode exp2) {
 	myExp1 = exp1;
 	myExp2 = exp2;
+    }
+
+    public void provideSymTab(SymTab table){
+	myExp1.provideSymTab(table);
+	myExp2.provideSymTab(table);
     }
 
     // two kids
@@ -1113,7 +1134,10 @@ class AssignNode extends ExpNode {
 	p.print(" = ");
 	myExp.unparse(p, 0);		
     }
-
+    public void provideSymTab(SymTab table){
+	myLhs.provideSymTab(table);
+	myExp.provideSymTab(table);
+    }
     // 2 kids
     private ExpNode myLhs;
     private ExpNode myExp;

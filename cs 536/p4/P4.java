@@ -58,12 +58,14 @@ public class P4 {
 	    System.out.println ("program parsed correctly");	    
 	} catch (Exception ex){
 	    System.err.println("Exception occured during parse: " + ex);
+	    ex.printStackTrace();
 	    System.exit(-1);
 	}
 	try {
 		((SymTabNode)root.value).provideSymTab(new SymTab());
 	} catch (Exception ex) {
 	    System.err.println("Exception occured during parse: " + ex);
+	    ex.printStackTrace();
 	    System.exit(-1);
 	}
 	((ASTnode)root.value).unparse(outFile, 0);

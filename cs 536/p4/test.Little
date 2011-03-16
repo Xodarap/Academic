@@ -1,5 +1,75 @@
-int z;
+void declaredTwice(int x, double y){}
+double glob;
 
-int foo(double x) {
-    return x + z;
+void badDecl(int x){
+     int y;
+     int k;
+     int glob;
+
+     if(x){
+	int ifvar;
+	glob = ifvar + y;
+	while(y) {
+		 int z;
+	}
+     } else {
+       double elsevar;
+     }
 }
+
+
+void doubleDeclarations(int x, double y, double z, double z){
+     double x;
+     int y;
+     int x;
+     double y;
+
+     if(x){
+	while(y) {
+		 int x;
+	}
+     } else {
+       double y;
+     }
+}
+
+void undeclared(int x, double y){
+     int z;
+     return z++;
+
+     return z--;
+
+
+     return !z;
+     return z && x;
+     return x && z;
+     return z || x;
+     return x || z;
+     
+     return x == z;
+     return x != z;
+     return x <  z;
+     return x >  z;
+     return x <= z;
+     return x >= z;
+
+     x = z;
+     z = 5;
+     x = -z;
+     z = x;
+
+     return x + z;
+     return z + x;
+     return x - z;
+     return z - x;
+     return x * z;
+     return z * x;
+     return x / z;
+     return z / x;
+
+     printf("%d", z);
+     printf("%f", z);
+     scanf("%d", &z);
+     scanf("%f", &z);
+}
+
