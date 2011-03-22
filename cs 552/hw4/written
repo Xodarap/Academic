@@ -1,3 +1,61 @@
+== Problem 1 ==
+Cycle:         490 R1: 2 Sim: 22676 Exp: 22676 R2: 1 Sim: 41819 Exp: 41819 W: 1 data: 41819 enable: 1
+Eventlog: Read/write of same port
+Cycle:         491 R1: 1 Sim: 63818 Exp: 63818 R2: 3 Sim: 14987 Exp: 14987 W: 1 data: 63818 enable: 1
+Eventlog: Read/write of same port
+Cycle:         492 R1: 1 Sim: 63818 Exp: 63818 R2: 2 Sim: 22676 Exp: 22676 W: 5 data: 13000 enable: 1
+Cycle:         493 R1: 5 Sim: 13000 Exp: 13000 R2: 0 Sim: 26122 Exp: 26122 W: 1 data: 60343 enable: 1
+Cycle:         494 R1: 2 Sim: 22676 Exp: 22676 R2: 6 Sim: 53386 Exp: 53386 W: 6 data: 53386 enable: 1
+Eventlog: Read/write of same port
+Cycle:         495 R1: 1 Sim: 60343 Exp: 60343 R2: 0 Sim: 26122 Exp: 26122 W: 0 data: 42730 enable: 0
+Cycle:         496 R1: 6 Sim: 53386 Exp: 53386 R2: 1 Sim: 60343 Exp: 60343 W: 3 data: 62911 enable: 0
+Cycle:         497 R1: 3 Sim: 14987 Exp: 14987 R2: 6 Sim: 53386 Exp: 53386 W: 0 data: 63729 enable: 1
+Cycle:         498 R1: 2 Sim: 22676 Exp: 22676 R2: 7 Sim: 27326 Exp: 27326 W: 5 data: 40713 enable: 1
+Cycle:         499 R1: 3 Sim: 14987 Exp: 14987 R2: 5 Sim: 40713 Exp: 40713 W: 2 data: 36653 enable: 1
+Cycle:         500 R1: 6 Sim: 53386 Exp: 53386 R2: 5 Sim: 40713 Exp: 40713 W: 7 data: 48333 enable: 1
+Total errors:           0
+
+
+
+== Problem 2 ==
+
+1.    xor    $1, $2, $3
+2.    and    $4, $5, $6
+3.    sub    $7, $4, $5
+4.    add    $5, $1, $5
+5.    sw     $4, 100($7)
+6.    or     $4, $7, $4
+ 
+3-$4 is dependent on 2-$4
+4-$1 is dependent on 1-$1
+4-$5 anti-dependent on 3-$5
+4-$5 anti-dependent on 4-$5
+5-$7 dependent on 3-$7
+5-$4 anti-dependent on 3-$4
+5-$4 output dependent on 2-$4
+6-$4 output dependent on 5-$4
+6-$4 anti-dependent on 6-$4
+6-$4 anti-dependent on 3-$4
+6-$4 output dependent on 2-$4
+6-$4 dependent on 5-$4
+6-$4 dependent on 2-$4 (if the pipeline is long enough)
+6-$7 dependent on 3-$7
+
+
+No Forwarding
+Hazards:
+* 3-$4's dependence on 2-$4
+* 4-$1's dependence on 1-$1
+* 5-$7's dependence on 3-$7
+* 6-$4's dependence on 5-$4
+* 6-$7's dependence on 3-$7
+
+With forwarding 
+Hazards:
+* 6-$4's dependence on 5-$4
+
+== Problem 3 ==
+
 beq    $2, $3, foo
 add    $3, $4, $5
 sub    $5, $6, $7
@@ -24,3 +82,51 @@ and            F D X M W
 
 AND writes on the 10th cycle. "B" indicates a bubble / nop.    
 
+== Problem 4 ==
+beq  F D X M W
+lw     F B B B B
+add
+sw
+or       F D X M W
+
+A stall would tell the IF/ID flip flop "hold on to your value" whereas a flush says "convert your value to a nop." Suppose you had instructions 1, 2, 3, where 3 had a data dependency on 1 and 2 was a conditional branch. The flow would look like:
+
+1 F D X M W
+2   F D X M W
+3     F B B B B
+
+Since during decode of the branch we would detect the hazard. Since data hazards are detected during decode, and #3 is turned into a bubble before decode, there would be no contention.
+
+If you had to stall and flush an instruction there could be an issue, but I can't think of a situation in which this would occur. It seems like it would require there to be a data and control dependency between the same two instructions, and no branches write to data. Only if there was an anti-dependency would this occur, and it doesn't seem like this is possible in the processor drawn on that page in the book.
+
+== Problem 5 ==
+fragment 1
+ movei $3, 9	// branch on 9 instead of 10, since we're adding later
+ ...          // This assumes no other references to $2...
+ beq $2, $3, Target
+ addi $2, $2, 1
+
+40% of the time we get an extra cycle and 60% of the time it doesn't matter. So that saves .4 cycles per call.
+
+
+fragment 2
+ add $2, $2, $8
+ beq $2, $3, Target
+ lw $4, 0($7)		// $4 will be overwritten if we take the branch, so
+ ...            // we can write to it here always
+Target: sub $4, $5, $6
+
+Again, saves .4 cycles
+
+
+fragment 3
+ add $2, $2, $8
+ beq $2, $3, Target
+ nop
+ lw $4, 0($8)
+ ...
+Target: lw $5, 0($7)
+
+If the branch is taken, we don't gain anything, and if it's not taken we lose a cycle. So we lose .6 cycles.
+
+The delay is for an entire instruction. With a deep pipeline, when you are forced to put in a nop (like in frag 3) this is very expensive. If you can predict accurately, there is no benefit to branch delay, and even if you get it wrong, as long as you have early hazard detection you can flush before the next instruction finishes and therefore it costs you less than a whole instruction.
