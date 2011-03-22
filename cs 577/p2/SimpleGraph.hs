@@ -31,7 +31,9 @@ instance Eq WeightedEdge where
            destVertex x   == destVertex y
 
 instance Ord WeightedEdge where
-  x <= y = (compare x y `mappend`
+  x <= y = foldl
+    
+    ((compare x y `mappend`
             compare x y  `mappend`
             compare x y)
 

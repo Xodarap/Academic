@@ -1,0 +1,39 @@
+ 
+****************************************
+Report : reference
+Design : rf
+Version: B-2008.09-SP3
+Date   : Mon Mar 21 16:09:23 2011
+****************************************
+
+Attributes:
+    b - black box (unknown)
+   bo - allows boundary optimization
+    d - dont_touch
+   mo - map_only
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    s - synthetic operator
+    u - contains unmapped logic
+
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+AND2X1             gscl45nm       2.346500      34     79.780997  
+AOI22X1            gscl45nm       3.285100     128    420.492798  
+BUFX2              gscl45nm       2.346500     162    380.132987  
+INVX1              gscl45nm       1.407900      18     25.342200  
+INVX2              gscl45nm       1.877200       1      1.877200  
+NAND3X1            gscl45nm       2.346500      40     93.859997  
+NOR3X1             gscl45nm       2.815800      16     45.052799  
+reg16_0                         359.483793       1    359.483793  h, n
+reg16_1                         359.483793       1    359.483793  h, n
+reg16_2                         359.483793       1    359.483793  h, n
+reg16_3                         359.483793       1    359.483793  h, n
+reg16_4                         359.483793       1    359.483793  h, n
+reg16_5                         359.483793       1    359.483793  h, n
+reg16_6                         359.483793       1    359.483793  h, n
+reg16_7                         359.483793       1    359.483793  h, n
+-----------------------------------------------------------------------------
+Total 15 references                                  3922.409318
+1

@@ -1,0 +1,24 @@
+ 
+****************************************
+Report : hierarchy
+Design : rf
+Version: B-2008.09-SP3
+Date   : Mon Mar 21 16:08:50 2011
+****************************************
+
+Information: This design contains unmapped logic. (RPT-7)
+
+rf
+    GTECH_AND2                               gtech
+    GTECH_BUF                                gtech
+    GTECH_NOT                                gtech
+    GTECH_OR2                                gtech
+    reg16
+        onebitreg
+            GTECH_AND2                       gtech
+            GTECH_NOT                        gtech
+            GTECH_OR2                        gtech
+            dff
+                GTECH_BUF                    gtech
+                GTECH_NOT                    gtech
+1

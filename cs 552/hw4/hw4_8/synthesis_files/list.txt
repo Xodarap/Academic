@@ -1,0 +1,11 @@
+adder4.v
+counter5.v
+dff.v
+fifo.v
+fulladder1.v
+fulladder2.v
+fulladder4.v
+nand2.v
+onebitreg.v
+sub4.v
+xor2.v

@@ -1,0 +1,6 @@
+Ryan Peeters and Ben West
+ECE 552 Homework 4
+Problem 7
+
+Total Cell Area: 3922
+Slack Time: 0.28

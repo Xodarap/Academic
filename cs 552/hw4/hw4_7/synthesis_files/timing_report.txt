@@ -1,0 +1,695 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 20
+Design : rf
+Version: B-2008.09-SP3
+Date   : Mon Mar 21 16:09:23 2011
+****************************************
+
+Operating Conditions: typical   Library: gscl45nm
+Wire Load Model Mode: top
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r0/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r0/rst (onebitreg_127)                0.00       0.63 r
+  r0/r0/data/rst (dff_127)                 0.00       0.63 r
+  r0/r0/data/U4/Y (OR2X1)                  0.01       0.64 r
+  r0/r0/data/U5/Y (INVX1)                  0.02       0.66 f
+  r0/r0/data/state_reg/D (DFFPOSX1)        0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r0/data/state_reg/CLK (DFFPOSX1)      0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r1/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r1/rst (onebitreg_126)                0.00       0.63 r
+  r0/r1/data/rst (dff_126)                 0.00       0.63 r
+  r0/r1/data/U4/Y (OR2X1)                  0.01       0.64 r
+  r0/r1/data/U5/Y (INVX1)                  0.02       0.66 f
+  r0/r1/data/state_reg/D (DFFPOSX1)        0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r1/data/state_reg/CLK (DFFPOSX1)      0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r2/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r2/rst (onebitreg_125)                0.00       0.63 r
+  r0/r2/data/rst (dff_125)                 0.00       0.63 r
+  r0/r2/data/U4/Y (OR2X1)                  0.01       0.64 r
+  r0/r2/data/U5/Y (INVX1)                  0.02       0.66 f
+  r0/r2/data/state_reg/D (DFFPOSX1)        0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r2/data/state_reg/CLK (DFFPOSX1)      0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r3/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r3/rst (onebitreg_124)                0.00       0.63 r
+  r0/r3/data/rst (dff_124)                 0.00       0.63 r
+  r0/r3/data/U4/Y (OR2X1)                  0.01       0.64 r
+  r0/r3/data/U5/Y (INVX1)                  0.02       0.66 f
+  r0/r3/data/state_reg/D (DFFPOSX1)        0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r3/data/state_reg/CLK (DFFPOSX1)      0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r4/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r4/rst (onebitreg_123)                0.00       0.63 r
+  r0/r4/data/rst (dff_123)                 0.00       0.63 r
+  r0/r4/data/U4/Y (OR2X1)                  0.01       0.64 r
+  r0/r4/data/U5/Y (INVX1)                  0.02       0.66 f
+  r0/r4/data/state_reg/D (DFFPOSX1)        0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r4/data/state_reg/CLK (DFFPOSX1)      0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r5/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r5/rst (onebitreg_122)                0.00       0.63 r
+  r0/r5/data/rst (dff_122)                 0.00       0.63 r
+  r0/r5/data/U4/Y (OR2X1)                  0.01       0.64 r
+  r0/r5/data/U5/Y (INVX1)                  0.02       0.66 f
+  r0/r5/data/state_reg/D (DFFPOSX1)        0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r5/data/state_reg/CLK (DFFPOSX1)      0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r6/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r6/rst (onebitreg_121)                0.00       0.63 r
+  r0/r6/data/rst (dff_121)                 0.00       0.63 r
+  r0/r6/data/U4/Y (OR2X1)                  0.01       0.64 r
+  r0/r6/data/U5/Y (INVX1)                  0.02       0.66 f
+  r0/r6/data/state_reg/D (DFFPOSX1)        0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r6/data/state_reg/CLK (DFFPOSX1)      0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r7/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r7/rst (onebitreg_120)                0.00       0.63 r
+  r0/r7/data/rst (dff_120)                 0.00       0.63 r
+  r0/r7/data/U4/Y (OR2X1)                  0.01       0.64 r
+  r0/r7/data/U5/Y (INVX1)                  0.02       0.66 f
+  r0/r7/data/state_reg/D (DFFPOSX1)        0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r7/data/state_reg/CLK (DFFPOSX1)      0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r8/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r8/rst (onebitreg_119)                0.00       0.63 r
+  r0/r8/data/rst (dff_119)                 0.00       0.63 r
+  r0/r8/data/U4/Y (OR2X1)                  0.01       0.64 r
+  r0/r8/data/U5/Y (INVX1)                  0.02       0.66 f
+  r0/r8/data/state_reg/D (DFFPOSX1)        0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r8/data/state_reg/CLK (DFFPOSX1)      0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r9/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r9/rst (onebitreg_118)                0.00       0.63 r
+  r0/r9/data/rst (dff_118)                 0.00       0.63 r
+  r0/r9/data/U4/Y (OR2X1)                  0.01       0.64 r
+  r0/r9/data/U5/Y (INVX1)                  0.02       0.66 f
+  r0/r9/data/state_reg/D (DFFPOSX1)        0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r9/data/state_reg/CLK (DFFPOSX1)      0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r10/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r10/rst (onebitreg_117)               0.00       0.63 r
+  r0/r10/data/rst (dff_117)                0.00       0.63 r
+  r0/r10/data/U4/Y (OR2X1)                 0.01       0.64 r
+  r0/r10/data/U5/Y (INVX1)                 0.02       0.66 f
+  r0/r10/data/state_reg/D (DFFPOSX1)       0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r10/data/state_reg/CLK (DFFPOSX1)     0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r11/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r11/rst (onebitreg_116)               0.00       0.63 r
+  r0/r11/data/rst (dff_116)                0.00       0.63 r
+  r0/r11/data/U4/Y (OR2X1)                 0.01       0.64 r
+  r0/r11/data/U5/Y (INVX1)                 0.02       0.66 f
+  r0/r11/data/state_reg/D (DFFPOSX1)       0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r11/data/state_reg/CLK (DFFPOSX1)     0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r12/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r12/rst (onebitreg_115)               0.00       0.63 r
+  r0/r12/data/rst (dff_115)                0.00       0.63 r
+  r0/r12/data/U4/Y (OR2X1)                 0.01       0.64 r
+  r0/r12/data/U5/Y (INVX1)                 0.02       0.66 f
+  r0/r12/data/state_reg/D (DFFPOSX1)       0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r12/data/state_reg/CLK (DFFPOSX1)     0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r13/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r13/rst (onebitreg_114)               0.00       0.63 r
+  r0/r13/data/rst (dff_114)                0.00       0.63 r
+  r0/r13/data/U4/Y (OR2X1)                 0.01       0.64 r
+  r0/r13/data/U5/Y (INVX1)                 0.02       0.66 f
+  r0/r13/data/state_reg/D (DFFPOSX1)       0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r13/data/state_reg/CLK (DFFPOSX1)     0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r14/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r14/rst (onebitreg_113)               0.00       0.63 r
+  r0/r14/data/rst (dff_113)                0.00       0.63 r
+  r0/r14/data/U4/Y (OR2X1)                 0.01       0.64 r
+  r0/r14/data/U5/Y (INVX1)                 0.02       0.66 f
+  r0/r14/data/state_reg/D (DFFPOSX1)       0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r14/data/state_reg/CLK (DFFPOSX1)     0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r0/r15/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r0/rst (reg16_7)                         0.00       0.63 r
+  r0/r15/rst (onebitreg_112)               0.00       0.63 r
+  r0/r15/data/rst (dff_112)                0.00       0.63 r
+  r0/r15/data/U4/Y (OR2X1)                 0.01       0.64 r
+  r0/r15/data/U5/Y (INVX1)                 0.02       0.66 f
+  r0/r15/data/state_reg/D (DFFPOSX1)       0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r0/r15/data/state_reg/CLK (DFFPOSX1)     0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r1/r0/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r1/rst (reg16_6)                         0.00       0.63 r
+  r1/r0/rst (onebitreg_111)                0.00       0.63 r
+  r1/r0/data/rst (dff_111)                 0.00       0.63 r
+  r1/r0/data/U4/Y (OR2X1)                  0.01       0.64 r
+  r1/r0/data/U5/Y (INVX1)                  0.02       0.66 f
+  r1/r0/data/state_reg/D (DFFPOSX1)        0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r1/r0/data/state_reg/CLK (DFFPOSX1)      0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r1/r1/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r1/rst (reg16_6)                         0.00       0.63 r
+  r1/r1/rst (onebitreg_110)                0.00       0.63 r
+  r1/r1/data/rst (dff_110)                 0.00       0.63 r
+  r1/r1/data/U4/Y (OR2X1)                  0.01       0.64 r
+  r1/r1/data/U5/Y (INVX1)                  0.02       0.66 f
+  r1/r1/data/state_reg/D (DFFPOSX1)        0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r1/r1/data/state_reg/CLK (DFFPOSX1)      0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r1/r2/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r1/rst (reg16_6)                         0.00       0.63 r
+  r1/r2/rst (onebitreg_109)                0.00       0.63 r
+  r1/r2/data/rst (dff_109)                 0.00       0.63 r
+  r1/r2/data/U4/Y (OR2X1)                  0.01       0.64 r
+  r1/r2/data/U5/Y (INVX1)                  0.02       0.66 f
+  r1/r2/data/state_reg/D (DFFPOSX1)        0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r1/r2/data/state_reg/CLK (DFFPOSX1)      0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+  Startpoint: rst (input port clocked by clk)
+  Endpoint: r1/r3/data/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.10       0.10 r
+  rst (in)                                 0.01       0.11 r
+  U258/Y (INVX1)                           0.01       0.12 f
+  U257/Y (INVX2)                           0.51       0.63 r
+  r1/rst (reg16_6)                         0.00       0.63 r
+  r1/r3/rst (onebitreg_108)                0.00       0.63 r
+  r1/r3/data/rst (dff_108)                 0.00       0.63 r
+  r1/r3/data/U4/Y (OR2X1)                  0.01       0.64 r
+  r1/r3/data/U5/Y (INVX1)                  0.02       0.66 f
+  r1/r3/data/state_reg/D (DFFPOSX1)        0.00       0.66 f
+  data arrival time                                   0.66
+
+  clock clk (rise edge)                    1.00       1.00
+  clock network delay (ideal)              0.00       1.00
+  r1/r3/data/state_reg/CLK (DFFPOSX1)      0.00       1.00 r
+  library setup time                      -0.06       0.94
+  data required time                                  0.94
+  -----------------------------------------------------------
+  data required time                                  0.94
+  data arrival time                                  -0.66
+  -----------------------------------------------------------
+  slack (MET)                                         0.28
+
+
+1
