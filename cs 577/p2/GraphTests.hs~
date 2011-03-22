@@ -1,0 +1,5 @@
+import SimpleGraph
+import GraphData
+import Prim
+
+edgeOkTest = edgeOk (SimpleGraph graph1)

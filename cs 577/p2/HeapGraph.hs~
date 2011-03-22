@@ -1,0 +1,25 @@
+module HeapGraph () where
+
+import SimpleGraph as SG
+import Data.Heap as H
+import Data.Graph
+import Data.List as L  
+
+instance (HeapItem MinPolicy (a, WeightedEdge)) => TreeSpannable (HeapT MinPolicy (a, WeightedEdge)) where
+  graphVertices heap = 
+    let getVertex edge = (sourceVertex edge):[(destVertex edge)]
+        verts = flatten $ map (getVertex . snd) $ H.toList heap
+    in L.nub verts
+
+  
+heapContains :: ((Eq item), HeapItem pol item) => Heap pol item -> item -> Bool
+heapContains heap item =
+  let filterFn = (\x -> x == item)
+      match = H.filter filterFn heap
+      cnt = size match
+  in (cnt > 0)    
+     
+heap :: Heap MinPolicy WeightedEdge     
+heap = H.fromList [WeightedEdge (1,2,3)] ::  MinHeap WeightedEdge
+
+flatten lst = foldr (\x ac -> ac ++ x) [] lst
