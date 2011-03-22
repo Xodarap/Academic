@@ -1,5 +1,5 @@
 $date
-	Sat Mar 19 16:12:21 2011
+	Tue Mar 22 09:57:27 2011
 $end
 $version
 	Icarus Verilog
@@ -12,8 +12,8 @@ $var wire 1 ! clk $end
 $var wire 16 " read1data [15:0] $end
 $var wire 16 # read2data [15:0] $end
 $var wire 1 $ rst $end
-$var integer 32 % cycle_count [31:0] $end
-$var integer 32 & n_errors [31:0] $end
+$var reg 32 % cycle_count [31:0] $end
+$var reg 32 & n_errors [31:0] $end
 $var reg 3 ' read1regsel [2:0] $end
 $var reg 3 ( read2regsel [2:0] $end
 $var reg 16 ) ref_r1data [15:0] $end
@@ -35,7 +35,7 @@ $var wire 3 7 writeregsel [2:0] $end
 $scope module clk_generator $end
 $var wire 1 / err $end
 $var reg 1 8 clk $end
-$var integer 32 9 cycle_count [31:0] $end
+$var reg 32 9 cycle_count [31:0] $end
 $var reg 1 : rst $end
 $upscope $end
 $scope module rf0 $end
@@ -5170,6 +5170,7 @@ b101001000010010 J
 b101001000010010 =
 b101001000010010 C
 b1100 9
+b101001000010010 )
 b110 -
 b110 7
 b110 B
@@ -5199,7 +5200,6 @@ b1 D
 1!
 #1210
 b1100 %
-b1 &
 #1250
 08
 0.
