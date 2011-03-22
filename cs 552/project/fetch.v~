@@ -1,0 +1,13 @@
+// Holds the info for the Fetch stage
+module fetch(Clk, Rst, NewPc, Instruction);
+
+   memory2c instruction_memory(.data_out(instruction), 
+			       .data_in(foo),          // We never write instructions
+			       .addr(pc), 
+			       .enable(1), 
+			       .wr(0),                 // We never write instructions
+			       .createdump(0), 
+			       .clk(clk), 
+			       .rst(rst));
+   
+endmodule // fetch
