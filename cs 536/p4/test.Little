@@ -5,40 +5,42 @@ void badDecl(int x){
      int y;
      int k;
      int glob;
-
+     doubleDeclarations(x,y);
      if(x){
 	int ifvar;
-	glob = ifvar + y;
+	glob = ifvar + y + lateDeclared;
 	while(y) {
 		 int z;
+		 z = k / 3 + lateDeclared;
 	}
      } else {
        double elsevar;
+       elsevar = glob * 3 + lateDeclared;
      }
 }
 
 
-void doubleDeclarations(int x, double y, double z, double z){
-     double x;
-     int y;
-     int x;
-     double y;
-
+void doubleDeclarations(int x, double y, double z){
      if(x){
 	while(y) {
-		 int x;
+		 int k;
+		 k++;
+		 k =  2 + lateDeclared;
 	}
      } else {
-       double y;
+       double yz;
+       yz = 5 + lateDeclared;
      }
 }
 
 void undeclared(int x, double y){
      int z;
      return z++;
-
+     lateDeclared = 5;
      return z--;
-
+     --x;
+     ++y;
+     undeclared(glob, y);
 
      return !z;
      return z && x;
@@ -73,3 +75,4 @@ void undeclared(int x, double y){
      scanf("%f", &z);
 }
 
+double lateDeclared;

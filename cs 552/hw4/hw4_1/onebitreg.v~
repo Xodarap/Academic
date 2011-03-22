@@ -1,0 +1,4 @@
+module onebitreg(readdata, clk, rst, writedata, write);
+
+
+endmodule // onebitreg

@@ -142,7 +142,6 @@ class ProgramNode extends ASTnode implements SymTabNode {
     }
 
     public void provideSymTab(SymTab table) {
-		System.out.println("Adding global table");
     	myDeclList.provideSymTab(table);
     }
 
@@ -167,8 +166,26 @@ class DeclListNode extends ASTnode implements SymTabNode {
 	}
     }
     public void provideSymTab(SymTab table) {
+	// handle variable declarations first, because the
+	// stuff inside functions can depend on the global
+	// function declarations. Then we add the function declarations
+	// to the sym tab. Finally, we recurse and add the conents of
+	// the functions into the table
 		for (DeclNode oneDecl : myDecls) {
-		    oneDecl.provideSymTab(table);
+		    if (oneDecl instanceof VarDeclNode){
+			oneDecl.provideSymTab(table);
+		    }
+		}
+		for (DeclNode oneDecl : myDecls) {
+		    if (oneDecl instanceof FnDeclNode){
+			FnDeclNode fnDec = (FnDeclNode) oneDecl;
+			fnDec.putFnInTable(table);
+		    }
+		}
+		for (DeclNode oneDecl : myDecls) {
+		    if (oneDecl instanceof FnDeclNode){
+			oneDecl.provideSymTab(table);
+		    }
 		}
     }
 
@@ -304,7 +321,7 @@ class VarDeclNode extends DeclNode {
 	doIndent(p, indent);
 	myType.unparse(p, 0);
 	p.print(" ");
-	myId.unparse(p, 0);
+	myId.unparseNoType(p, 0);
 	p.println(";");
     }
     
@@ -344,7 +361,7 @@ class FnDeclNode extends DeclNode {
 		doIndent(p, indent);
 		myType.unparse(p, 0);
 		p.print(" ");
-		myId.unparse(p, 0);
+		myId.unparseNoType(p, 0);
 		p.print("(");
 		myFormalsList.unparse(p, 0);
 		p.print(") {");
@@ -353,14 +370,7 @@ class FnDeclNode extends DeclNode {
 		p.println("}");
     }
     
-    public void provideSymTab(SymTab table) {
-    	table.addMap();
-	myFormalsList.provideSymTab(table);
-	myBody.provideSymTab(table);
-
-	try { table.removeMap(); }
-	catch (Exception e) { System.out.println(e.toString()); }
-
+    public void putFnInTable(SymTab table){
 	String params = "";
 	Boolean first = true;
 	for(TypeNode tn : myFormalsList.getTypes()){
@@ -379,6 +389,16 @@ class FnDeclNode extends DeclNode {
 	    System.out.println(e.toString());
 	}
 	myId.setSym(mySym);
+    }
+
+    public void provideSymTab(SymTab table) {
+    	table.addMap();
+	myFormalsList.provideSymTab(table);
+	myBody.provideSymTab(table);
+
+	try { table.removeMap(); }
+	catch (Exception e) { System.out.println(e.toString()); }
+
     }
     
     // 4 kids
@@ -401,7 +421,7 @@ class FormalDeclNode extends DeclNode {
 		doIndent(p, indent);
 		myType.unparse(p, 0);
 		p.print(" ");
-		myId.unparse(p, 0);
+		myId.unparseNoType(p, 0);
     }
     
     public void provideSymTab(SymTab table) {
@@ -952,6 +972,11 @@ class IdNode extends ExpNode {
 	}
     }
     
+    public void unparseNoType(PrintWriter p, int indent){
+	doIndent(p, indent);
+	p.print(myStrVal);
+    }
+
     public String getName(){
     	return myStrVal;
     }

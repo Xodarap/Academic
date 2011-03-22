@@ -1,0 +1,26 @@
+beq    $2, $3, foo
+add    $3, $4, $5
+sub    $5, $6, $7
+or     $7, $8, $9
+foo:    and    $5, $6, $7
+
+No Jump
+     1 2 3 4 5 6 7 8 9 0 1 2 3 4
+beq  F D X M W
+add    F F F F D X M W
+sub            F D X M W
+or               F D X M W
+and                F D D D X M W
+
+AND writes on the 14th cycle
+
+Jump
+     1 2 3 4 5 6 7 8 9 0 1 2 3 4
+beq  F D X M W
+add    F F F F B B B B
+sub            
+or               
+and            F D X M W
+
+AND writes on the 10th cycle. "B" indicates a bubble / nop.    
+

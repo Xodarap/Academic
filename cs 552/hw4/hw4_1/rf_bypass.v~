@@ -1,0 +1,6 @@
+module rf_bypass (
+           // Outputs
+           read1data, read2data, err,
+           // Inputs
+           clk, rst, read1regsel, read2regsel, writeregsel, writedata, write
+           );

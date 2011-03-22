@@ -7,6 +7,7 @@ class Errors {
 
     static void fatal(int lineNum, int charNum, String msg) {
         System.err.println(lineNum + ":" + charNum + " **ERROR** " + msg);
+	Errors.errors = true;
     }
 
     static void warn(int lineNum, int charNum, String msg) {

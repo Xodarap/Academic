@@ -1,39 +1,45 @@
-void declaredTwice(int, double -> void)(int x(int), double y(double)) {
+void declaredTwice(int x, double y) {
 }
-double glob(double);
-void badDecl(int -> void)(int x(int)) {
- int y(int);
- int k(int);
- int glob(int);
+double glob;
+void badDecl(int x) {
+ int y;
+ int k;
+ int glob;
+ doubleDeclarations(int, double, double -> void)(x(int), y(int));
  if( x(int)) {
-  int ifvar(int);
-  glob(int) = (ifvar(int) + y(int));
+  int ifvar;
+  glob(int) = ((ifvar(int) + y(int)) + lateDeclared(double));
   while( y(int)) {
-   int z(int);
+   int z;
+   z(int) = ((k(int) / 3) + lateDeclared(double));
   }
  }
  else {
-  double elsevar(double);
+  double elsevar;
+  elsevar(double) = ((glob(int) * 3) + lateDeclared(double));
  }
 }
-void doubleDeclarations(int, double, double, double -> void)(int x(int), double y(double), double z(double), double z(double)) {
- double x(double);
- int y(int);
- int x(int);
- double y(double);
+void doubleDeclarations(int x, double y, double z) {
  if( x(int)) {
   while( y(double)) {
-   int x(int);
+   int k;
+   k(int)++;
+   k(int) = (2 + lateDeclared(double));
   }
  }
  else {
-  double y(double);
+  double yz;
+  yz(double) = (5 + lateDeclared(double));
  }
 }
-void undeclared(int, double -> void)(int x(int), double y(double)) {
- int z(int);
+void undeclared(int x, double y) {
+ int z;
  return (z(int)++);
+ lateDeclared(double) = 5;
  return (z(int)--);
+ --x(int);
+ ++y(double);
+ undeclared(int, double -> void)(glob(double), y(double));
  return (!z(int));
  return (z(int) && x(int));
  return (x(int) && z(int));
@@ -62,3 +68,4 @@ void undeclared(int, double -> void)(int x(int), double y(double)) {
  scanf("%d", &z(int));
  scanf("%f", &z(int));
 }
+double lateDeclared;
