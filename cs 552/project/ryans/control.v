@@ -13,8 +13,6 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
   output reg [2:0] BranchCode;
   output reg [2:0] SetCode;
   output reg err;
-  reg      halt;
-   
   
   assign opcode = instruction[15:11];
   
@@ -22,7 +20,6 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
     casex(opcode)
       //HALT
       5'b00000:begin
-         halt = 1;
 	 
       end
       

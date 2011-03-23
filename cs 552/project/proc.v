@@ -38,7 +38,7 @@ module proc (/*AUTOARG*/
 
    /* Control */
    /* Control -> Fetch */
-   wire        ctlPcSrc;
+   wire [1:0]  ctlBranchCode;
    
    /* Control -> Decode */
    wire        ctlRegWrite;
@@ -58,8 +58,6 @@ module proc (/*AUTOARG*/
 
    /* Control -> TODO */
    wire 	ctlImmSrc;
-   wire [2:0]	ctlBranchCode;
-   
    
    /* Fetch -> Decode */
    wire [15:0] instruction;
@@ -71,6 +69,9 @@ module proc (/*AUTOARG*/
    /* Execute -> Memory */
    wire [15:0] aluResult;
 
+   /* Execute -> Fetch */
+   wire        pcSrc;
+   
    /* Memory -> Writeback */
    wire [15:0] memReadData;
       
@@ -97,7 +98,7 @@ module proc (/*AUTOARG*/
 
    fetch fetch0(.Clk(clk), .Rst(rst), .NewPc(0), 
 		.Instruction(instruction),
-		.PcSrc(0));
+		.PcSrc(pcSrc));
    
    decode decode0(.Clk(clk), .Rst(rst), 
 		  .Reg1(instruction[10:8]), .Reg2(instruction[7:5]), .Reg3(instruction[4:2]), 
@@ -117,8 +118,10 @@ module proc (/*AUTOARG*/
 		    .Imm(immExtend), 
 		    .AluSrc(ctlAluSrc), 
 		    .AluOp(ctlAluOp), 
-		    .CondOp(ctlCondOp), 
-		    .Output(aluResult));
+		    .CondOp(ctlCondOp),
+		    .BranchCode(ctlBranchCode),
+		    .Output(aluResult),
+		    .PcSrc(pcSrc));
    
    memory memory0(.Clk(clk), .Rst(rst), 
 		  .Addr(aluResult), 
