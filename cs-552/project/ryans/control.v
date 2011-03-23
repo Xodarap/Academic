@@ -21,8 +21,8 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
     casex(opcode)
       //HALT
       5'b00000:begin
-	 RegWrite = 1;
-	 MemWrite = 1;
+	 RegWrite = 0;
+	 MemWrite = 0;
 	 
       end
       
