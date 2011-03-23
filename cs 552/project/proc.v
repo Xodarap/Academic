@@ -58,6 +58,7 @@ module proc (/*AUTOARG*/
 
    /* Control -> TODO */
    wire 	ctlImmSrc;
+   wire [2:0]	ctlBranchCode;
    
    
    /* Fetch -> Decode */
@@ -82,16 +83,16 @@ module proc (/*AUTOARG*/
    wire haltxout;            // Processor Halted
    
    control control0(.instruction(instruction), 
-	   .RegDst(ctlRegDst), 
+	   .RegDst(ctlRegDest), 
 	   .RegWrite(ctlRegWrite), 
 	   .ALUSrc(ctlAluSrc), 
-	   //.PCSrc(ctlPcSrc), 
 	   .MemRead(ctlMemRead), 
 	   .MemWrite(ctlMemWrite),
 	   .MemToReg(ctlMemToReg), 
 	   .ALUOpcode(ctlAluOp), 
 	   .ImmSrc(ctlImmSrc), 
-	   .SetCode(ctlCondOp), 
+	   .SetCode(ctlCondOp),
+           .BranchCode(ctlBranchCode),
 	   .err(err));
 
    fetch fetch0(.Clk(clk), .Rst(rst), .NewPc(0), 
@@ -129,6 +130,6 @@ module proc (/*AUTOARG*/
    writeback writeback0(.AluData(aluResult), 
 			.MemoryData(memReadData), 
 			.MemToReg(ctlMemToReg), 
-			.WriteData(regWriteData));
+			.WriteData(ctlRegWrite));
 endmodule // proc
 // DUMMY LINE FOR REV CONTROL :0:

@@ -25,7 +25,7 @@ module decode(Clk, Rst, Reg1, Reg2, Reg3, Imm, Address,
 
    wire [2:0] 	 regToWriteTo;
    
-   rf_hier reg0(.read1data(RegVal1), .read2data(RegVal2), 
+   rf_hier rf0(.read1data(RegVal1), .read2data(RegVal2), 
 		.read1regsel(Reg1), .read2regsel(Reg2), 
 		.writeregsel(regToWriteTo), .writedata(WriteData), 
 		.write(RegWrite)
