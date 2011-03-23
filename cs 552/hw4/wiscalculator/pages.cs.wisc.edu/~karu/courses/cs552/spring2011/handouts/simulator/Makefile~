@@ -1,3 +1,0 @@
-default:
-	gcc -o wiscalculator -lreadline -ltermcap -lm wiscfl06.c
-	cp wiscalculator ../bins/

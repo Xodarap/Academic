@@ -10,6 +10,7 @@ import GraphData
 import Control.Applicative
 import Control.Monad
 import Test.QuickCheck
+import Prim
 
 data EdgeHeap = EdgeHeap (MinHeap WeightedEdge) deriving (Show)
     
@@ -25,7 +26,8 @@ instance TreeSpannable EdgeHeap where
         verts = foldr (\x ac -> (sourceVertex x):(destVertex x):ac) [] edges
     in sort $ L.nub verts    
   graphFromList lst = EdgeHeap (H.fromList lst)
-
+  numVertices graph = length $ graphVertices graph
+  
 heapContains :: ((Eq item), HeapItem pol item) => Heap pol item -> item -> Bool
 heapContains heap item =
   let filterFn = (\x -> x == item)
@@ -80,7 +82,18 @@ removeBestTest pred x =
 instance Arbitrary WeightedEdge where     
   arbitrary = liftM (\x -> WeightedEdge x) (arbitrary :: Gen (Int, Int, Int))
   
-
+-- | Compares Prim's algorithm on the naive graph to the heap
+--   implementation
+primTest :: WeightedGraph -> Bool
+primTest [] = True
+primTest graph = 
+  let simpGraph = graphFromList graph :: SimpleGraph
+      heap      = graphFromList graph :: EdgeHeap
+      store1    = SimpleGraph []
+      store2    = SimpleGraph []
+      prim1     = prim simpGraph store1
+      prim2     = prim heap store2
+  in prim1 == prim2    
 {- =============== Data =============== -}  
 heap1 :: Heap MinPolicy WeightedEdge     
 heap1 = H.fromList [WeightedEdge (1,2,3)] :: MinHeap WeightedEdge

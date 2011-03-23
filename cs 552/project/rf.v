@@ -18,7 +18,8 @@ module rf (
    output [15:0] read2data;
    output        err;
 
-   wire [15:0] 	 readDatas [0:7];
+   /*wire [15:0] 	 readDatas ;*/
+   wire[127:0] readDatas;
    wire [7:0] 	 writeEnable;
    
    reg [15:0] 	 readDataReg1, readDataReg2;
@@ -33,37 +34,38 @@ module rf (
    assign writeEnable[5] = write & (3'b101 == writeregsel);
    assign writeEnable[6] = write & (3'b110 == writeregsel);
    assign writeEnable[7] = write & (3'b111 == writeregsel);
-   
-   reg16 r0(.readdata(readDatas[0]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[0]));
-   reg16 r1(.readdata(readDatas[1]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[1]));
-   reg16 r2(.readdata(readDatas[2]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[2]));
-   reg16 r3(.readdata(readDatas[3]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[3]));
-   reg16 r4(.readdata(readDatas[4]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[4]));
-   reg16 r5(.readdata(readDatas[5]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[5]));
-   reg16 r6(.readdata(readDatas[6]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[6]));
-   reg16 r7(.readdata(readDatas[7]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[7]));
-   
+     
+   reg16 r0(.readdata(readDatas[15:0]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[0]));
+   reg16 r1(.readdata(readDatas[31:16]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[1]));
+   reg16 r2(.readdata(readDatas[47:32]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[2]));
+   reg16 r3(.readdata(readDatas[63:48]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[3]));
+   reg16 r4(.readdata(readDatas[79:64]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[4]));
+   reg16 r5(.readdata(readDatas[95:80]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[5]));
+   reg16 r6(.readdata(readDatas[111:96]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[6]));
+   reg16 r7(.readdata(readDatas[127:112]), .clk(clk), .rst(rst), .writedata(writedata), .write(writeEnable[7]));
+
    always @* case (read1regsel)
-	       3'b000: readDataReg1 = readDatas[0];
-	       3'b001: readDataReg1 = readDatas[1];
-	       3'b010: readDataReg1 = readDatas[2];
-	       3'b011: readDataReg1 = readDatas[3];
-	       3'b100: readDataReg1 = readDatas[4];
-	       3'b101: readDataReg1 = readDatas[5];
-	       3'b110: readDataReg1 = readDatas[6];
-	       3'b111: readDataReg1 = readDatas[7];
+	       3'b000: readDataReg1 = readDatas[15:0];
+	       3'b001: readDataReg1 = readDatas[31:16];
+	       3'b010: readDataReg1 = readDatas[47:32];
+	       3'b011: readDataReg1 = readDatas[63:48];
+	       3'b100: readDataReg1 = readDatas[79:64];
+	       3'b101: readDataReg1 = readDatas[95:80];
+	       3'b110: readDataReg1 = readDatas[111:96];
+	       3'b111: readDataReg1 = readDatas[127:112];
 	     endcase // case (read1regsel)
    
+
    always @* case (read2regsel)
-	       3'b000: readDataReg2 = readDatas[0];
-	       3'b001: readDataReg2 = readDatas[1];
-	       3'b010: readDataReg2 = readDatas[2];
-	       3'b011: readDataReg2 = readDatas[3];
-	       3'b100: readDataReg2 = readDatas[4];
-	       3'b101: readDataReg2 = readDatas[5];
-	       3'b110: readDataReg2 = readDatas[6];
-	       3'b111: readDataReg2 = readDatas[7];
-	     endcase // case (read2regsel)
+	       3'b000: readDataReg2 = readDatas[15:0];
+	       3'b001: readDataReg2 = readDatas[31:16];
+	       3'b010: readDataReg2 = readDatas[47:32];
+	       3'b011: readDataReg2 = readDatas[63:48];
+	       3'b100: readDataReg2 = readDatas[79:64];
+	       3'b101: readDataReg2 = readDatas[95:80];
+	       3'b110: readDataReg2 = readDatas[111:96];
+	       3'b111: readDataReg2 = readDatas[127:112];
+	     endcase // case (read1regsel)
 
    assign read1data = readDataReg1;
    assign read2data = readDataReg2;

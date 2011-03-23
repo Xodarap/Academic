@@ -21,32 +21,40 @@ import Data.Set as S
 import Data.List as L
 import Data.Monoid
 
+{- ========== Basic Datatypes of the graph ======= -}
 type Weight = Int
-data WeightedEdge = WeightedEdge (Vertex, Vertex, Weight)
+data WeightedEdge = WeightedEdge (Vertex, Vertex, Weight) deriving (Show)
 type WeightedGraph = [WeightedEdge]
 
 instance Eq WeightedEdge where
-  x == y = (getWeight x)  == (getWeight y) &&
-           sourceVertex x == sourceVertex y &&
-           destVertex x   == destVertex y
+  x == y = foldr (&&) True $ zipWith (==) (edgeToArray x) (edgeToArray y)
 
 instance Ord WeightedEdge where
-  x <= y = foldl
-    
-    ((compare x y `mappend`
-            compare x y  `mappend`
-            compare x y)
+  -- | To compare two edges, we first check their weights,
+  --   then the source, then the dest. We really only care
+  --   about weight, but in order for this to be consistent
+  --   we have to specify an exact comparison
+  x `compare` y =
+    let xdata = edgeToArray x
+        ydata = edgeToArray y
+        -- As a monoid, Order just keeps going till it finds something not EQ
+    in foldl mappend EQ $ zipWith compare xdata ydata
 
-instance Show WeightedEdge where
-  show (WeightedEdge x) = show x
+-- instance Functor WeightedEdge
+
+-- | An edge is an (Int, Int, Int); this translates it to an [Int, Int, Int]
+edgeToArray :: WeightedEdge -> [Int]
+edgeToArray edge =
+  let ordFns = [getWeight, sourceVertex, destVertex]
+  in zipWith (\f x -> f x) ordFns $ repeat edge      
 
 -- | An object which can contain vertices
 --   This abstracts over both the graph and the 
 --   structure containing the minimum spanning tree
-class VertexContainer a  where
+class VertexContainer a where
   contains :: a -> Vertex -> Bool
-  insert :: a -> WeightedEdge -> a
-  numVertices :: a -> Int
+  insert :: a -> Maybe WeightedEdge -> a
+
   
 -- | An object which we can calculate the MST for  
 --   Basically, all we need to be able to do is find the
@@ -56,7 +64,10 @@ class TreeSpannable a where
   graphVertices :: a -> [Vertex]
   graphFromList :: WeightedGraph -> a
   bestEdgeWhere :: (WeightedEdge -> Bool) -> a -> (Maybe WeightedEdge, a)
-
+  numVertices :: a -> Int
+  
+-- | SimpleGraph is a naive implementation which is used for unit
+--   testing
 data SimpleGraph = SimpleGraph WeightedGraph
 
 instance TreeSpannable SimpleGraph where
@@ -72,18 +83,23 @@ instance TreeSpannable SimpleGraph where
         g2      = tail' $ sort $ L.filter fn graph -- sort by weight and remove highest
         graph'  = graphFromList $ g1 ++ g2
     in (headM $ sort okEdges, graph')
-
+  numVertices graph = length $ graphVertices graph
+  
 instance VertexContainer SimpleGraph where
   contains (SimpleGraph []) _ = False
   contains (SimpleGraph (x:xs)) elem
    | (sourceVertex x) == elem = True
    | (destVertex x) == elem = True
    | otherwise = contains (SimpleGraph xs) elem  
-  insert (SimpleGraph graph) edge = graphFromList (edge:graph)
-  numVertices graph = length $ graphVertices graph
+  insert graph Nothing = graph
+  insert (SimpleGraph graph) (Just edge) = graphFromList $ edge:graph
+
 
 instance Show SimpleGraph where
   show (SimpleGraph a) = show a
+
+instance Eq SimpleGraph where
+  (SimpleGraph x) == (SimpleGraph y) = (x == y)
 
 headM :: [a] -> Maybe a
 headM [] = Nothing
