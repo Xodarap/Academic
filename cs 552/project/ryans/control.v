@@ -192,6 +192,6 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
     endcase
   end // always@ (*)
 
-   assign RegWrite = regwrite;
+   assign RegWrite = 1'b1;
    
 endmodule
