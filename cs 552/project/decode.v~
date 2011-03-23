@@ -1,0 +1,22 @@
+module decode(Clk, Rst, Read1, Read2, Imm, Address, RegWrite, RegDest, WriteData, RegVal1, RegVal2, ImmExt, AddressExt);
+   input Clk, Rst, RegWrite, RegDest;
+   input [2:0] Read1, Read2;
+   input [7:0] Imm;         // In I-type instructions, Imm is the I
+   input [10:0] Address;    // Address is the J stuff in J-type
+   input [15:0] WriteData;
+      
+   output [15:0] RegVal1, RegVal2;
+   output [15:0] ImmExt, AddressExt;
+
+   wire [2:0] 	 regToWriteTo;
+   
+   rf_hier reg0(.read1data(RegVal1), .read2data(RegVal2), 
+		.read1regsel(Read1), .read2regsel(Read2), 
+		.writeregsel(regToWriteTo), .writedata(WriteData), 
+		.write(RegWrite)
+                );
+   
+   assign ImmExt = {Imm, {8{1'b0}}};
+   assign AddressExt = {Address, {5{1'b0}}};
+   assign regToWriteTo = RegDest ? Read2 : Read1;
+endmodule // decode
