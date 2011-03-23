@@ -33,7 +33,7 @@ module decode(Clk, Rst, Reg1, Reg2, Reg3, Imm, Address,
    
    assign ImmExt = {Imm, {8{1'b0}}};
    assign AddressExt = {Address, {5{1'b0}}};
-   assign regToWriteTo = (RegDest == 0) ? Reg1 : 
-			 (RegDest == 1) ? Reg2 :
-			                  Reg3;
+   assign regToWriteTo = (RegDest == 1'b0) ? Reg1 : 
+			 (RegDest == 1'b1) ? Reg2 :
+			                     Reg3;
 endmodule // decode
