@@ -134,6 +134,6 @@ module proc (/*AUTOARG*/
 			.MemoryData(memReadData), 
 			.MemToReg(ctlMemToReg),
 			.Halt(instruction[15:11] == 5'b0),
-			.WriteData(ctlRegWrite));
+			.WriteData(regWriteData));
 endmodule // proc
 // DUMMY LINE FOR REV CONTROL :0:
