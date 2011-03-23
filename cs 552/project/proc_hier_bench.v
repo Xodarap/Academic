@@ -132,14 +132,10 @@ module proc_hier_bench();
    assign WriteData = DUT.p0.decode0.rf0.writedata;   // Data being written to the register. (16 bits)
    assign MemRead =  DUT.p0.memory0.MemRead;   // Is memory being read, one bit signal (1 means yes, 0 means no)
    assign MemWrite = DUT.p0.memory0.MemWrite;  // Is memory being written to (1 bit signal)
+   assign MemAddress = DUT.p0.memory0.Addr;    // Address to access memory with (for both reads and writes to memory, 16 bits)
+   assign MemData = DUT.p0.memory0.Data;       // Data to be written to memory for memory writes (16 bits)
    
-   //assign MemAddress = DUT.p0.memory0.aluResult;
-   // Address to access memory with (for both reads and writes to memory, 16 bits)
-   
-   //assign MemData = DUT.p0.memory0.writeData;
-   // Data to be written to memory for memory writes (16 bits)
-   
-   //assign Halt = DUT.p0.memory0.halt;
+   assign Halt = DUT.p0.control0.halt;
    // Is processor halted (1 bit signal)
    
    /* Add anything else you want here */
