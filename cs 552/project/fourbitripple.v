@@ -2,7 +2,6 @@ module fourbitripple(A, B, Cin, S);
    input [3:0] A, B;
    input       Cin;
    output [3:0] S;
-   output 	Cout;
    wire [3:0] 	Carries;
  	
    onebitadder a1(A[0], B[0], Cin, S[0], Carries[0]);

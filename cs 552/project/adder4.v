@@ -2,7 +2,6 @@ module adder4(A, B, Cin, S);
    input [3:0] A, B;
    input       Cin;
    output [3:0] S;
-   output 	Cout;
    wire [3:0] 	C;
    
    // Note that we just throw out the carries

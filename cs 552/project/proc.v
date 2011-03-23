@@ -81,7 +81,7 @@ module proc (/*AUTOARG*/
    wire cacheHit;            // Signal indicating a valid instruction cache hit
    wire haltxout;            // Processor Halted
    
-   control(.instruction(instruction), 
+   control control0(.instruction(instruction), 
 	   .RegDst(ctlRegDst), 
 	   .RegWrite(ctlRegWrite), 
 	   .ALUSrc(ctlAluSrc), 
