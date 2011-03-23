@@ -19,7 +19,7 @@ module control(instruction, RegDst, RegWrite, ALUSrc, PCSrc, MemRead, MemWrite,
     casex(opcode)
       //HALT
       5'b00000:begin
-         $finish;
+         //$finish;
 	 
       end
       
