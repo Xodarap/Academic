@@ -28,7 +28,7 @@ module decode(Clk, Rst, Reg1, Reg2, Reg3, Imm, Address,
    rf_hier rf0(.read1data(RegVal1), .read2data(RegVal2), 
 		.read1regsel(Reg1), .read2regsel(Reg2), 
 		.writeregsel(regToWriteTo), .writedata(WriteData), 
-		.write(1'b1)  //RegWrite)
+		.write(RegWrite)
                 );
    
    assign ImmExt = {Imm, {8{1'b0}}};

@@ -104,7 +104,7 @@ module proc (/*AUTOARG*/
 		  .Reg1(instruction[10:8]), .Reg2(instruction[7:5]), .Reg3(instruction[4:2]), 
 		  .Imm(instruction[7:0]),      // The I in I-type
 		  .Address(instruction[10:0]), // The J in J-type
-		  .RegWrite(ctlRegWrite),         // If the value from Wb should be written
+		  .RegWrite(1'b1), //ctlRegWrite),         // If the value from Wb should be written
 		  .RegDest(ctlRegDest),           // Rd = Reg1, Reg2 or Reg3?
 		  .WriteData(regWriteData),    // Data from Wb to write
 		  .RegVal1(readData1),         // Value of Reg1
