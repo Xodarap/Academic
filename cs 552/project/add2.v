@@ -4,7 +4,7 @@ module add2(Pc, PcPrime);
    output [15:0] PcPrime;
    wire 	 foo;   // The compiler yells at us if we don't use outputs
    
-   adder16 a16(.A(Pc), .B (16'b2), .Cin(1'b0), .S(PcPrime), .Cout(foo));
+   adder16 a16(.A(Pc), .B (16'd2), .Cin(1'b0), .S(PcPrime), .Cout(foo));
 endmodule // add2
 
    
