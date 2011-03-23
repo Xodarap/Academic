@@ -7,13 +7,16 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
                      MemToReg, ALUOpcode, ImmSrc, SetCode, BranchCode, err);
   input [15:0] instruction;
   wire [4:0] opcode;
-  output reg RegWrite, ALUSrc, MemRead, MemWrite, MemToReg, ImmSrc;
+  output reg ALUSrc, MemRead, MemWrite, MemToReg, ImmSrc;
   output reg [3:0] ALUOpcode;
   output reg [1:0] RegDst;
   output reg [2:0] BranchCode;
   output reg [2:0] SetCode;
   output reg err;
-  
+   output    RegWrite;
+   
+   reg 	     regwrite;
+   
   assign opcode = instruction[15:11];
   
   always@(*)begin
@@ -26,7 +29,9 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
       //NOP
       5'b00001:begin
         //RegDst = 2'bxx;
-        RegWrite = 1'b0;
+        //RegWrite = 1'b0;
+	 regwrite = 1'b0;
+	 
         //ALUSrc = 1'bx;
         MemWrite = 1'b0;
         MemRead = 1'b0;
@@ -40,7 +45,7 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
       //ADDI, SUBI, XORI, ANDNI
       5'b010xx:begin
         RegDst = 2'b01;
-        RegWrite = 1'b1;
+        regwrite = 1'b1;
         ALUSrc = 1'b1;
         MemWrite = 1'b0;
         MemRead = 1'b0;
@@ -54,7 +59,7 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
       //ROLI, SLLI, RORI, SRLI
       5'b101xx:begin
         RegDst = 2'b01;
-        RegWrite = 1'b1;
+        regwrite = 1'b1;
         ALUSrc = 1'b1;
         MemWrite = 1'b0;
         MemRead = 1'b0;
@@ -80,7 +85,7 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
 	  //BTR
       5'b11001:begin
         RegDst = 2'b10;
-		RegWrite = 1'b1;
+		regwrite = 1'b1;
         //ALUSrc = 1'bx;
         MemWrite = 1'b0;
         MemRead = 1'b0;
@@ -95,7 +100,7 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
 	  //ADD, SUB, XOR, ANDN
       5'b11011:begin
         RegDst = 2'b10;
-        RegWrite = 1'b1;
+        regwrite = 1'b1;
         ALUSrc = 1'b0;
         MemWrite = 1'b0;
         MemRead = 1'b0;
@@ -109,7 +114,7 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
 	  //ROL, SLL, ROR, SRL
       5'b11010:begin
         RegDst = 2'b10;
-        RegWrite = 1'b1;
+        regwrite = 1'b1;
         ALUSrc = 1'b0;
         MemWrite = 1'b0;
         MemRead = 1'b0;
@@ -123,7 +128,7 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
 	  //SEQ, SLT, SLE, SCO
 	  5'b111xx:begin
 		RegDst = 2'b10;
-		RegWrite = 1'b1;
+		regwrite = 1'b1;
         ALUSrc = 1'b0;
         MemWrite = 1'b0;
         MemRead = 1'b0;
@@ -137,7 +142,7 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
 	  //BEQ, BNEZ, BLTZ, BGEZ
 	  5'b011xx:begin
 		//RegDst = 2'bxx;
-		RegWrite = 1'b0;
+		regwrite = 1'b0;
         //ALUSrc = 1'bx;
         MemWrite = 1'b0;
         MemRead = 1'b0;
@@ -151,7 +156,7 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
 	  //LBI
 	  5'b11000:begin
 		RegDst = 2'b00;
-		RegWrite = 1'b1;
+		regwrite = 1'b1;
         ALUSrc = 1'b1;
         MemWrite = 1'b0;
         MemRead = 1'b0;
@@ -185,5 +190,8 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
       end
     
     endcase
-  end
+  end // always@ (*)
+
+   assign RegWrite = regwrite;
+   
 endmodule
