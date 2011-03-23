@@ -95,7 +95,8 @@ module proc (/*AUTOARG*/
 	   .err(err));
 
    fetch fetch0(.Clk(clk), .Rst(rst), .NewPc(0), 
-		.Instruction(instruction));
+		.Instruction(instruction),
+		.PcSrc(ctlPcSrc));
    
    decode decode0(.Clk(clk), .Rst(rst), 
 		  .Reg1(instruction[10:8]), .Reg2(instruction[7:5]), .Reg3(instruction[4:2]), 
