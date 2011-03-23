@@ -22,8 +22,6 @@ module rf_hier (
    wire          clk, rst;
    wire          err;
   
-   $display("Write: %d", write);
-   
    // Ignore err for now
    clkrst clk_generator(.clk(clk), .rst(rst), .err(err) );
    rf_bypass rf0(
