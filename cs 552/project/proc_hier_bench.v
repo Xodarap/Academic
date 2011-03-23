@@ -57,7 +57,7 @@ module proc_hier_bench();
                   MemWrite,
                   MemAddress,
                   MemData);
-         if (RegWrite || 1) begin
+         if (RegWrite) begin
             if (MemWrite) begin
                // stu
                $fdisplay(trace_file,"INUM: %8d PC: 0x%04x REG: %d VALUE: 0x%04x ADDR: 0x%04x VALUE: 0x%04x",
