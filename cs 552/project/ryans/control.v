@@ -49,6 +49,8 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
         ALUOpcode = {2'b01, opcode[1:0]};
 		SetCode = 3'b000;
 		BranchCode = 3'b000;
+	 $display("RegWrite: %d", RegWrite);
+	 
       end
       
       //ROLI, SLLI, RORI, SRLI
