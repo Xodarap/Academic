@@ -14,6 +14,5 @@ module memory(Clk, Rst, Addr, Data, MemWrite, MemRead, ReadData);
 		    .createdump(0), 
 		    .clk(Clk), 
 		    .rst(Rst));
-   assign ReadData = readTemp;
-// & MemRead;
+   assign ReadData = readTemp & {16{MemRead}};
 endmodule // memory
