@@ -19,7 +19,8 @@ module control(instruction, RegDst, RegWrite, ALUSrc, PCSrc, MemRead, MemWrite,
     casex(opcode)
       //HALT
       5'b00000:begin
-        
+         $finish;
+	 
       end
       
       //NOP
@@ -37,7 +38,7 @@ module control(instruction, RegDst, RegWrite, ALUSrc, PCSrc, MemRead, MemWrite,
         MemToReg = 1'b0;
         PCSrc = 1'b0;
         ImmSrc = ~opcode[1];
-		SetCode = 3'b000;
+	SetCode = 3'b000;
         ALUOpcode = {2'b01, opcode[1:0]};
       end
       

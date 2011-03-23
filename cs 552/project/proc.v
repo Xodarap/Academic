@@ -37,6 +37,9 @@ module proc (/*AUTOARG*/
    wire [15:0] memWriteData; // Data to be written to memory for memory writes (16 bits)
 
    /* Control */
+   /* Control -> Fetch */
+   wire        ctlPcSrc;
+   
    /* Control -> Decode */
    wire        ctlRegWrite;
    wire [1:0]  ctlRegDest;
@@ -52,7 +55,11 @@ module proc (/*AUTOARG*/
 
    /* Control -> Writeback */
    wire 	ctlMemToReg;
-      
+
+   /* Control -> TODO */
+   wire 	ctlImmSrc;
+   
+   
    /* Fetch -> Decode */
    wire [15:0] instruction;
 
@@ -74,6 +81,19 @@ module proc (/*AUTOARG*/
    wire cacheHit;            // Signal indicating a valid instruction cache hit
    wire haltxout;            // Processor Halted
    
+   control(.instruction(instruction), 
+	   .RegDst(ctlRegDst), 
+	   .RegWrite(ctlRegWrite), 
+	   .ALUSrc(ctlAluSrc), 
+	   .PCSrc(ctlPcSrc), 
+	   .MemRead(ctlMemRead), 
+	   .MemWrite(ctlMemWrite),
+	   .MemToReg(ctlMemToReg), 
+	   .ALUOpcode(ctlAluOp), 
+	   .ImmSrc(ctlImmSrc), 
+	   .SetCode(ctlCondOp), 
+	   .err(err));
+
    fetch fetch0(.Clk(clk), .Rst(rst), .NewPc(0), 
 		.Instruction(instruction));
    
