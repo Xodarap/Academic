@@ -62,10 +62,14 @@ module memory2c (data_out, data_in, addr, enable, wr, createdump, clk, rst);
       for (i = 0; i< 65536; i=i+1) begin
          mem[i] = 8'd0;
       end
+      //mem[0] = 8'b01000001;
+      //mem[1] = 8'b00100001;
+      
    end
 
    always @(posedge clk) begin
       if (rst) begin
+
          // first init to 0, then load loadfile_all.img
          if (!loaded) begin
             $readmemh("loadfile_all.img", mem);

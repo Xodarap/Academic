@@ -27,7 +27,7 @@ module clkrst (clk, rst, err);
       #201 rst = 0; // delay until slightly after two clock periods
     end
 
-    always #50 begin   // delay 1/2 clock period each time thru loop
+    always #5000 begin   // delay 1/2 clock period each time thru loop
       clk = ~clk;
       if (clk & err) begin
         $display("Error signal asserted");

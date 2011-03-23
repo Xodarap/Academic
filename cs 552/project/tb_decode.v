@@ -89,8 +89,8 @@ module tb_decode(/*AUTOARG*/);
       
       // Reference model. We compare simulation against this
       // Write data into reference model
-      if ((cycle_count >= 1) && write) begin
-         ref_rf[ writeregsel ] = writedata;
+      if ((cycle_count >= 4) && write) begin
+         #100 ref_rf[ writeregsel ] = writedata;
       end
       #10;
       
