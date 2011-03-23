@@ -14,8 +14,8 @@ module execute(Clk, Rst, Reg1, Reg2, Imm, AluSrc, AluOp, CondOp, BranchCode, Out
    wire 	 ofl, z, resultSign;
       
    assign aluInput2 = AluSrc ? Imm : Reg1;
-   alu alu0(.A(Reg1), .B(aluInput2), .Cin(0), .Op(AluOp), 
-	    .invA(0), .invB(0), .sign(1), .Out(aluOut), 
+   alu alu0(.A(Reg1), .B(aluInput2), .Cin(1'b0), .Op(AluOp), 
+	    .invA(1'b0), .invB(1'b0), .sign(1'b1), .Out(aluOut), 
 	    .Ofl(ofl), .Z(z), .resultSign(resultSign));
 
    cond_set cond_set0(.In(aluOut), .Control(CondOp), .Zero(z), .Ofl(ofl), .Sign(resultSign), 

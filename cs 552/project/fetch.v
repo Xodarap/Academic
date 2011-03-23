@@ -12,12 +12,12 @@ module fetch(Clk, Rst, PcSrc, NewPc, Instruction);
    memory2c instruction_memory(.data_out(Instruction), 
 			       .data_in(foo),          // We never write instructions
 			       .addr(pc), 
-			       .enable(1), 
-			       .wr(0),                 // We never write instructions
-			       .createdump(0), 
+			       .enable(1'b1), 
+			       .wr(1'b0),                 // We never write instructions
+			       .createdump(1'b0), 
 			       .clk(Clk), 
 			       .rst(Rst));
    add2 pcIncrementer(.Pc (pc), .PcPrime (pcPlusTwo));
    assign nextPc = PcSrc ? NewPc : pcPlusTwo;
-   reg16 r16(.readdata(pc), .clk(Clk), .rst(Rst), .writedata(nextPc), .write(1));   
+   reg16 r16(.readdata(pc), .clk(Clk), .rst(Rst), .writedata(nextPc), .write(1'b1));   
 endmodule // fetch

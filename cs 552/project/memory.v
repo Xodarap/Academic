@@ -9,9 +9,9 @@ module memory(Clk, Rst, Addr, Data, MemWrite, MemRead, ReadData);
    memory2c memory0(.data_out(readTemp), 
 		    .data_in(Data), 
 		    .addr(Addr), 
-		    .enable(1), 
+		    .enable(1'b1), 
 		    .wr(MemWrite), 
-		    .createdump(0), 
+		    .createdump(1'b0), 
 		    .clk(Clk), 
 		    .rst(Rst));
    assign ReadData = readTemp & {16{MemRead}};

@@ -96,7 +96,7 @@ module proc (/*AUTOARG*/
            .BranchCode(ctlBranchCode),
 	   .err(err));
 
-   fetch fetch0(.Clk(clk), .Rst(rst), .NewPc(0), 
+   fetch fetch0(.Clk(clk), .Rst(rst), .NewPc(16'b0), 
 		.Instruction(instruction),
 		.PcSrc(pcSrc));
    
