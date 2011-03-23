@@ -10,16 +10,16 @@ module tb_onebitreg;
    initial begin
       write = 1;
       writedata = 1;
-      #300 write = 0;
-      writedata = 0;
-      #100 write = 1;
-      #100 write = 0;
-      
-   end
+    end
    
    always @(posedge Clk) begin
       $display("%b", readdata);
 
+      writedata = (clk.cycle_count % 3 == 0) ? !writedata : writedata;
+      if(clk.cycle_count % 3 == 0) begin
+	 $display("Changing value to: %d", writedata);
+      end
+      
       
       if (clk.cycle_count > 10) begin
 	 $finish;

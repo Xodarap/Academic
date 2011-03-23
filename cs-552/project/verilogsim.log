@@ -1,2 +1,1 @@
-SIMLOG:: Cycle           2 PC:     0002 I:     0800 R: 1   0     xxxx M: 0 0     xxxx     xxxx
-SIMLOG:: Cycle           3 PC:     0004 I:     4221 R: 1   1     2100 M: 0 0     2100     2100
+SIMLOG:: Cycle           2 PC:     0002 I:     0800 R: 0   0     0000 M: 0 0     0000     0000

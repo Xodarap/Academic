@@ -30,9 +30,6 @@ module proc (/*AUTOARG*/
    wire [15:0] wData;        // Data being written to the register. (16 bits)
    
    /* Memory */
-   reg 	       notdonem;     // What's this?
-   wire        memRxout;     // Mem being read?
-   wire        memWxout;     // Mem being written?
    wire [15:0] memAddr;      // Address to access memory with (for both reads and writes to memory, 16 bits)
    wire [15:0] memWriteData; // Data to be written to memory for memory writes (16 bits)
 

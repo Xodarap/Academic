@@ -83,6 +83,6 @@
 run -all
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.trace for output
-# ** Fatal: (vsim-3603) Zero-delay oscillation loop detected at time 20001 ns.
+# ** Fatal: (vsim-3603) Zero-delay oscillation loop detected at time 10001 ns.
 # 
 # <EOF> 
