@@ -5,13 +5,15 @@ module execute(Clk, Rst, Reg1, Reg2, Imm, AluSrc, AluOp, CondOp, BranchCode, Out
    input 	AluSrc;
    input [3:0] 	AluOp;
    input [2:0] 	CondOp;
-   input [1:0] 	BranchCode;
+   input [2:0] 	BranchCode;
    
    output [15:0] Output;
    output 	 PcSrc;
    
    wire [15:0] 	 aluInput2, aluOut;
    wire 	 ofl, z, resultSign;
+   wire 	 specBranch;
+   
       
    assign aluInput2 = AluSrc ? Imm : Reg1;
    alu alu0(.A(Reg1), .B(aluInput2), .Cin(1'b0), .Op(AluOp), 
@@ -23,7 +25,9 @@ module execute(Clk, Rst, Reg1, Reg2, Imm, AluSrc, AluOp, CondOp, BranchCode, Out
 
    branchlogic branchlogic0(.branchCode(BranchCode), 
 			    .A(Reg1), 
-			    .Out(PcSrc));
+			    .Out(specBranch));
+   assign PcSrc = BranchCode[2] & specBranch;
+   
 endmodule // execute
 
      
