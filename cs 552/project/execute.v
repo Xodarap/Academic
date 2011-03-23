@@ -26,7 +26,8 @@ module execute(Clk, Rst, Reg1, Reg2, Imm, AluSrc, AluOp, CondOp, BranchCode, Out
    branchlogic branchlogic0(.branchCode(BranchCode), 
 			    .A(Reg1), 
 			    .Out(specBranch));
-   assign PcSrc = BranchCode[2] & specBranch;
+   assign PcSrc = 0;
+//BranchCode[2] & specBranch;
    
 endmodule // execute
 
