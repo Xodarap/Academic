@@ -49,7 +49,10 @@ module proc (/*AUTOARG*/
    /* Control -> Memory */
    wire 	ctlMemWrite;
    wire 	ctlMemRead;
-   
+
+   /* Control -> Writeback */
+   wire 	ctlMemToReg;
+      
    /* Fetch -> Decode */
    wire [15:0] instruction;
 
@@ -71,22 +74,24 @@ module proc (/*AUTOARG*/
    wire cacheHit;            // Signal indicating a valid instruction cache hit
    wire haltxout;            // Processor Halted
    
-   fetch fetch0(.Clk(clk), .Rst(rst), .NewPc(0), .Instruction(instruction));
+   fetch fetch0(.Clk(clk), .Rst(rst), .NewPc(0), 
+		.Instruction(instruction));
+   
    decode decode0(.Clk(clk), .Rst(rst), 
 		  .Reg1(instruction[10:8]), .Reg2(instruction[7:5]), .Reg3(instruction[4:2]), 
 		  .Imm(instruction[7:0]),      // The I in I-type
 		  .Address(instruction[10:0]), // The J in J-type
 		  .RegWrite(ctlRegWrite),         // If the value from Wb should be written
-		  .RegDest(ctlRxegDest),           // Rd = Reg1, Reg2 or Reg3?
+		  .RegDest(ctlRegDest),           // Rd = Reg1, Reg2 or Reg3?
 		  .WriteData(regWriteData),    // Data from Wb to write
-		  .RegVal1(readdata1),         // Value of Reg1
-		  .RegVal2(readdata2),         // Value of Reg2
+		  .RegVal1(readData1),         // Value of Reg1
+		  .RegVal2(readData2),         // Value of Reg2
 	          .ImmExt(immExtend),          // Imm value extended
 		  .AddressExt(jExtend));       // J value extended
 
    execute execute0(.Clk(clk), .Rst(rst), 
-		    .Reg1(readdata1),          
-		    .Reg2(readdata2), 
+		    .Reg1(readData1),          
+		    .Reg2(readData2), 
 		    .Imm(immExtend), 
 		    .AluSrc(ctlAluSrc), 
 		    .AluOp(ctlAluOp), 
@@ -95,9 +100,14 @@ module proc (/*AUTOARG*/
    
    memory memory0(.Clk(clk), .Rst(rst), 
 		  .Addr(aluResult), 
-		  .Data(readdata2), 
+		  .Data(readData2), 
 		  .MemWrite(ctlMemWrite), 
 		  .MemRead(ctlMemRead), 
-		  .ReadData(memReadData));   
+		  .ReadData(memReadData));
+   
+   writeback writeback0(.AluData(aluResult), 
+			.MemoryData(memReadData), 
+			.MemToReg(ctlMemToReg), 
+			.WriteData(regWriteData));
 endmodule // proc
 // DUMMY LINE FOR REV CONTROL :0:
