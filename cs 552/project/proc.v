@@ -85,7 +85,7 @@ module proc (/*AUTOARG*/
 	   .RegDst(ctlRegDst), 
 	   .RegWrite(ctlRegWrite), 
 	   .ALUSrc(ctlAluSrc), 
-	   .PCSrc(ctlPcSrc), 
+	   //.PCSrc(ctlPcSrc), 
 	   .MemRead(ctlMemRead), 
 	   .MemWrite(ctlMemWrite),
 	   .MemToReg(ctlMemToReg), 
@@ -96,7 +96,7 @@ module proc (/*AUTOARG*/
 
    fetch fetch0(.Clk(clk), .Rst(rst), .NewPc(0), 
 		.Instruction(instruction),
-		.PcSrc(ctlPcSrc));
+		.PcSrc(0));
    
    decode decode0(.Clk(clk), .Rst(rst), 
 		  .Reg1(instruction[10:8]), .Reg2(instruction[7:5]), .Reg3(instruction[4:2]), 

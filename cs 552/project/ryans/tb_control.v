@@ -3,14 +3,15 @@ module tb_control;
 	reg [15:0] instruction;
 	wire [3:0] ALUOpcode;
 	wire [2:0] SetCode;
+	wire [2:0] BranchCode;
 	wire [1:0] RegDst;
-	wire RegWrite, ALUSrc, PCSrc, MemRead, MemWrite, MemToReg, ImmSrc;
+	wire RegWrite, ALUSrc, MemRead, MemWrite, MemToReg, ImmSrc;
 	wire err;
 	
 	control ctrl(.instruction(instruction), .RegDst(RegDst), .RegWrite(RegWrite), 
-				.ALUSrc(ALUSrc), .PCSrc(PCSrc), .MemRead(MemRead), .MemWrite(MemWrite),
+				.ALUSrc(ALUSrc), .MemRead(MemRead), .MemWrite(MemWrite),
                 .MemToReg(MemToReg), .ALUOpcode(ALUOpcode), .ImmSrc(ImmSrc), 
-				.SetCode(SetCode), .err(err));
+				.SetCode(SetCode), .BranchCode(BranchCode), .err(err));
 				
 	initial begin
 	//SPECIAL
@@ -106,6 +107,28 @@ module tb_control;
 		#50;
 		
 	//BRANCH
+		//BEQZ
+		instruction = 16'b01100_101_010_101_11;
+		#50;
+		//BNEZ
+		instruction = 16'b01101_101_010_101_11;
+		#50;
+		//BLTZ
+		instruction = 16'b01110_101_010_101_11;
+		#50;
+		//BGEZ
+		instruction = 16'b01111_101_010_101_11;
+		#50;
+		
+	//LOAD
+		//LBI
+		instruction = 16'b11000_101_010_101_11;
+		#50;
+		//SLBI
+		instruction = 16'b10010_101_010_101_11;
+		#50;
+		
+		
 	end
 
 endmodule

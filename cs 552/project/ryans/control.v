@@ -3,13 +3,14 @@
 //
 //Processor control logic
 
-module control(instruction, RegDst, RegWrite, ALUSrc, PCSrc, MemRead, MemWrite,
-                     MemToReg, ALUOpcode, ImmSrc, SetCode, err);
+module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
+                     MemToReg, ALUOpcode, ImmSrc, SetCode, BranchCode, err);
   input [15:0] instruction;
   wire [4:0] opcode;
-  output reg RegWrite, ALUSrc, PCSrc, MemRead, MemWrite, MemToReg, ImmSrc;
+  output reg RegWrite, ALUSrc, MemRead, MemWrite, MemToReg, ImmSrc;
   output reg [3:0] ALUOpcode;
   output reg [1:0] RegDst;
+  output reg [2:0] BranchCode;
   output reg [2:0] SetCode;
   output reg err;
   
@@ -19,13 +20,21 @@ module control(instruction, RegDst, RegWrite, ALUSrc, PCSrc, MemRead, MemWrite,
     casex(opcode)
       //HALT
       5'b00000:begin
-         //$finish;
-	 
+        
       end
       
       //NOP
       5'b00001:begin
-        
+        //RegDst = 2'bxx;
+        RegWrite = 1'b0;
+        //ALUSrc = 1'bx;
+        MemWrite = 1'b0;
+        MemRead = 1'b0;
+        //MemToReg = 1'bx;
+        //ImmSrc = 1'bx;
+        //ALUOpcode = 4'bxxxx;
+		SetCode = 3'b000;
+		BranchCode = 3'b000;
       end
       
       //ADDI, SUBI, XORI, ANDNI
@@ -36,10 +45,10 @@ module control(instruction, RegDst, RegWrite, ALUSrc, PCSrc, MemRead, MemWrite,
         MemWrite = 1'b0;
         MemRead = 1'b0;
         MemToReg = 1'b0;
-        PCSrc = 1'b0;
         ImmSrc = ~opcode[1];
-	SetCode = 3'b000;
         ALUOpcode = {2'b01, opcode[1:0]};
+		SetCode = 3'b000;
+		BranchCode = 3'b000;
       end
       
       //ROLI, SLLI, RORI, SRLI
@@ -50,10 +59,10 @@ module control(instruction, RegDst, RegWrite, ALUSrc, PCSrc, MemRead, MemWrite,
         MemWrite = 1'b0;
         MemRead = 1'b0;
         MemToReg = 1'b0;
-        PCSrc = 1'b0;
         //ImmSrc = 1'bx; 
-		SetCode = 3'b000;
         ALUOpcode = {2'b00, opcode[1:0]};
+		SetCode = 3'b000;
+		BranchCode = 3'b000;
       end
       
       5'b10000:begin
@@ -76,11 +85,11 @@ module control(instruction, RegDst, RegWrite, ALUSrc, PCSrc, MemRead, MemWrite,
         MemWrite = 1'b0;
         MemRead = 1'b0;
         MemToReg = 1'b0;
-        PCSrc = 1'b0;
         //ImmSrc = 1'bx;
         //ALUOpcode = 4'b10xx;
-		SetCode = 3'b000;
 		ALUOpcode = 4'b1000;
+		SetCode = 3'b000;
+		BranchCode = 3'b000;
       end
       
 	  //ADD, SUB, XOR, ANDN
@@ -91,10 +100,10 @@ module control(instruction, RegDst, RegWrite, ALUSrc, PCSrc, MemRead, MemWrite,
         MemWrite = 1'b0;
         MemRead = 1'b0;
         MemToReg = 1'b0;
-        PCSrc = 1'b0;
         //ImmSrc = 1'bx;
-		//SetCode = 3'bxxx;
         ALUOpcode = {2'b01, instruction[1:0]};
+		SetCode = 3'b000;
+		BranchCode = 3'b000;
       end
 	  
 	  //ROL, SLL, ROR, SRL
@@ -105,10 +114,10 @@ module control(instruction, RegDst, RegWrite, ALUSrc, PCSrc, MemRead, MemWrite,
         MemWrite = 1'b0;
         MemRead = 1'b0;
         MemToReg = 1'b0;
-        PCSrc = 1'b0;
         //ImmSrc = 1'bx;
-		//SetCode = 3'bxxx;
         ALUOpcode = {2'b00, instruction[1:0]};
+		SetCode = 3'b000;
+		BranchCode = 3'b000;
       end
 	  
 	  //SEQ, SLT, SLE, SCO
@@ -119,28 +128,58 @@ module control(instruction, RegDst, RegWrite, ALUSrc, PCSrc, MemRead, MemWrite,
         MemWrite = 1'b0;
         MemRead = 1'b0;
         MemToReg = 1'b0;
-        PCSrc = 1'b0;
         //ImmSrc = 1'bx;
 		SetCode = opcode[2:0];	//for set condition logic
         ALUOpcode = 4'b0101;	//subtraction
+		BranchCode = 3'b000;
 	  end
 	  
 	  //BEQ, BNEZ, BLTZ, BGEZ
-      /*
-	  5'b111xx:begin
-		RegDst =
-		RegWrite = 
-        ALUSrc = 
-        MemWrite = 
-        MemRead = 
-        MemToReg = 
-        PCSrc = 
-        ImmSrc = 
-		SetCode = 
-        ALUOpcode = 
+	  5'b011xx:begin
+		//RegDst = 2'bxx;
+		RegWrite = 1'b0;
+        //ALUSrc = 1'bx;
+        MemWrite = 1'b0;
+        MemRead = 1'b0;
+        //MemToReg = 1'bx;
+        //ImmSrc = 1'bx;
+        //ALUOpcode = 4'bxxxx;
+		SetCode = 3'b000;
+		BranchCode = opcode[2:0];
 	  end
-	*/  
-      //should never happen
+	  
+	  //LBI
+	  5'b11000:begin
+		RegDst = 2'b00;
+		RegWrite = 1'b1;
+        ALUSrc = 1'b1;
+        MemWrite = 1'b0;
+        MemRead = 1'b0;
+        MemToReg = 1'b0;
+        ImmSrc = 1'b1;
+        ALUOpcode = 4'b1100;
+		SetCode = 3'b000;
+		BranchCode = 3'b000;
+	  end
+	  
+	  //SLBI
+	  5'b11000:begin
+		//RegDst = 
+		//RegWrite = 
+        //ALUSrc = 
+        //MemWrite = 
+        //MemRead = 
+        //MemToReg = 
+        //ImmSrc = 
+        //ALUOpcode = 
+		//SetCode = 
+		//BranchCode = 
+	  end
+	  
+//JUMP
+	//5'b
+	  
+      //should never happen in finished program
       default:begin
         err = 1'b1;
       end
