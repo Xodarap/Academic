@@ -38,7 +38,7 @@ module proc (/*AUTOARG*/
 
    /* Control */
    /* Control -> Fetch */
-   wire [1:0]  ctlBranchCode;
+   wire [2:0]  ctlBranchCode;
    
    /* Control -> Decode */
    wire        ctlRegWrite;
@@ -132,7 +132,8 @@ module proc (/*AUTOARG*/
    
    writeback writeback0(.AluData(aluResult), 
 			.MemoryData(memReadData), 
-			.MemToReg(ctlMemToReg), 
+			.MemToReg(ctlMemToReg),
+			.Halt(instruction[15:11] == 5'b0),
 			.WriteData(ctlRegWrite));
 endmodule // proc
 // DUMMY LINE FOR REV CONTROL :0:

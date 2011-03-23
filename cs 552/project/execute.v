@@ -23,8 +23,8 @@ module execute(Clk, Rst, Reg1, Reg2, Imm, AluSrc, AluOp, CondOp, BranchCode, Out
    cond_set cond_set0(.In(aluOut), .Control(CondOp), .Zero(z), .Ofl(ofl), .Sign(resultSign), 
 		      .Out(Output));
 
-   branchlogic branchlogic0(.branchCode(BranchCode), 
-			    .A(Reg1), 
+   branchlogic branchlogic0(.branchCode(BranchCode[1:0]), 
+			    .A(Reg1),
 			    .Out(specBranch));
    assign PcSrc = 0;
 //BranchCode[2] & specBranch;
