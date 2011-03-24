@@ -1,1 +1,1 @@
-./programs/andni_4.asm FAILED
+programs/addi_1.asm SUCCESS CPI:1.2 CYCLES:5 ICOUNT:4 IHITRATE: 0 DHITRATE: 0

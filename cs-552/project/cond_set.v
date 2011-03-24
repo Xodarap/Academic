@@ -17,13 +17,13 @@ module cond_set(In, Control, Zero, Ofl, Sign, Out);
       // Pass through: Do nothing
       3'b0xx: outTemp = In;
       // SEQ: If Rs - Rt = Zero, then set out = 1
-      3'b100: outTemp = Zero;
+      3'b100: outTemp = {15'b0, Zero};
       // SLT: If Rs - Rt < 0, out = 1
-      3'b101: outTemp = Sign;
+      3'b101: outTemp = {15'b0, ~Sign};
       // SLE: If Rs - Rt <= 0, out = 1
-      3'b110: outTemp = Zero | Sign;
+      3'b110: outTemp = {15'b0, Zero | (~Sign)};
       // SCO: If Rs + Rt causes carry out, out = 1
-      3'b111: outTemp = Ofl;
+      3'b111: outTemp = {15'b0, Ofl};
    endcase
 	       
    assign Out = outTemp;

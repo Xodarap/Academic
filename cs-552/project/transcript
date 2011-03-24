@@ -53,7 +53,6 @@
 # ** Warning: (vsim-3009) [TSCALE] - Module 'decode' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_bench/DUT/p0/decode0
 # Loading __work.rf_hier
-# Loading __work.rf_bypass
 # Loading __work.rf
 # Loading __work.execute
 # ** Warning: (vsim-3009) [TSCALE] - Module 'execute' does not have a `timescale directive in effect, but previous modules do.
@@ -112,4 +111,4 @@ run -all
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.trace for output
 # ** Note: $finish    : proc_hier_bench.v(96)
-#    Time: 30 us  Iteration: 0  Instance: /proc_hier_bench
+#    Time: 40 us  Iteration: 0  Instance: /proc_hier_bench

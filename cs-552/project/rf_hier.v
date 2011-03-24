@@ -24,7 +24,7 @@ module rf_hier (
   
    // Ignore err for now
    clkrst clk_generator(.clk(clk), .rst(rst), .err(err) );
-   rf_bypass rf0(
+   rf rf0(
           // Outputs
           .read1data                    (read1data[15:0]),
           .read2data                    (read2data[15:0]),
