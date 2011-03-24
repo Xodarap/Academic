@@ -23,6 +23,11 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
     casex(opcode)
       //HALT
       5'b00000:begin
+<<<<<<< HEAD
+=======
+	 RegWrite = 0;
+	 MemWrite = 0;
+>>>>>>> 7ce484fe69fcb03eb3d620b20defdc7d25a2857b
 	 
       end
       
