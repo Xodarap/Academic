@@ -93,8 +93,10 @@ module proc (/*AUTOARG*/
            .BranchCode(ctlBranchCode),
 	   .err(err));
 
-   fetch fetch0(.Clk(clk), .Rst(rst), .NewPc(16'b0), 
-		.Instruction(instruction),
+	
+
+   fetch fetch0(.Clk(clk), .Rst(rst), 
+		.Instruction(instruction), .Immediate(immExtend),
 		.PcSrc(pcSrc));
    
    decode decode0(.Clk(clk), .Rst(rst), 
