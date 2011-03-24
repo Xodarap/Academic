@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="45cm" height="28cm" viewBox="60 67 884 558" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="100" y="200" width="80" height="144"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="100" y="200" width="80" height="144"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="140" y="275.9">
+      <tspan x="140" y="275.9">Fetch</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="280" y="200" width="80" height="144"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="280" y="200" width="80" height="144"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="320" y="275.9">
+      <tspan x="320" y="275.9">Decode</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="480" y="200" width="80" height="144"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="480" y="200" width="80" height="144"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="520" y="275.9">
+      <tspan x="520" y="275.9">Execute</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="640" y="200" width="80" height="144"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="640" y="200" width="80" height="144"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="680" y="275.9">
+      <tspan x="680" y="275.9">Memory</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="797.4" y="200" width="85.2" height="144"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="797.4" y="200" width="85.2" height="144"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="840" y="275.9">
+      <tspan x="840" y="275.9">Writeback</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="360" y="480" width="80" height="144"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="360" y="480" width="80" height="144"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="400" y="555.9">
+      <tspan x="400" y="555.9">Control</tspan>
+    </text>
+  </g>
+  <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="200" y="200">
+    <tspan x="200" y="200">Inst[10:8]</tspan>
+  </text>
+  <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="200" y="240">
+    <tspan x="200" y="240">Inst[7:5]</tspan>
+  </text>
+  <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="200" y="280">
+    <tspan x="200" y="280">Inst[4:2]</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="200" y1="220" x2="250.264" y2="220"/>
+    <polygon style="fill: #000000" points="257.764,220 247.764,225 250.264,220 247.764,215 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="257.764,220 247.764,225 250.264,220 247.764,215 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="200" y1="260" x2="250.264" y2="260"/>
+    <polygon style="fill: #000000" points="257.764,260 247.764,265 250.264,260 247.764,255 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="257.764,260 247.764,265 250.264,260 247.764,255 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="200" y1="300" x2="250.264" y2="300"/>
+    <polygon style="fill: #000000" points="257.764,300 247.764,305 250.264,300 247.764,295 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="257.764,300 247.764,305 250.264,300 247.764,295 "/>
+  </g>
+  <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="240" y="440">
+    <tspan x="240" y="440">ctlRegWrite</tspan>
+    <tspan x="240" y="456">ctlRegDest</tspan>
+  </text>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" points="360,560 320.977,560 320.977,377.736 "/>
+    <polygon style="fill: #000000" points="320.977,370.236 325.977,380.236 320.977,377.736 315.977,380.236 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="320.977,370.236 325.977,380.236 320.977,377.736 315.977,380.236 "/>
+  </g>
+  <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="380" y="200">
+    <tspan x="380" y="200">ReadData1</tspan>
+  </text>
+  <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="380" y="240">
+    <tspan x="380" y="240">ReadData2</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="380" y1="220" x2="450.264" y2="220"/>
+    <polygon style="fill: #000000" points="457.764,220 447.764,225 450.264,220 447.764,215 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="457.764,220 447.764,225 450.264,220 447.764,215 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="380" y1="260" x2="450.264" y2="260"/>
+    <polygon style="fill: #000000" points="457.764,260 447.764,265 450.264,260 447.764,255 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="457.764,260 447.764,265 450.264,260 447.764,255 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="180,200 180,160 480,160 480,190.264 "/>
+    <polygon style="fill: #000000" points="480,197.764 475,187.764 480,190.264 485,187.764 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="480,197.764 475,187.764 480,190.264 485,187.764 "/>
+  </g>
+  <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="200" y="140">
+    <tspan x="200" y="140">ImmediateExtend</tspan>
+  </text>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="560,200 560,100 100,100 100,190.264 "/>
+    <polygon style="fill: #000000" points="100,197.764 95,187.764 100,190.264 105,187.764 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="100,197.764 95,187.764 100,190.264 105,187.764 "/>
+  </g>
+  <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="100" y="80">
+    <tspan x="100" y="80">ctlPcSrc</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="580" y1="260" x2="610.264" y2="260"/>
+    <polygon style="fill: #000000" points="617.764,260 607.764,265 610.264,260 607.764,255 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="617.764,260 607.764,265 610.264,260 607.764,255 "/>
+  </g>
+  <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="580" y="280">
+    <tspan x="580" y="280">AluResult</tspan>
+  </text>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="420,260 420,380 660,380 660,369.736 "/>
+    <polygon style="fill: #000000" points="660,362.236 665,372.236 660,369.736 655,372.236 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="660,362.236 665,372.236 660,369.736 655,372.236 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" points="440,500 520,500 520,369.736 "/>
+    <polygon style="fill: #000000" points="520,362.236 525,372.236 520,369.736 515,372.236 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="520,362.236 525,372.236 520,369.736 515,372.236 "/>
+  </g>
+  <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="540" y="420">
+    <tspan x="540" y="420">ctlAluSrc</tspan>
+    <tspan x="540" y="436">ctlAluOp</tspan>
+    <tspan x="540" y="452">ctlCondOp</tspan>
+    <tspan x="540" y="468">ctlBranchCode</tspan>
+  </text>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="140,344 140,600 330.264,600 "/>
+    <polygon style="fill: #000000" points="337.764,600 327.764,605 330.264,600 327.764,595 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="337.764,600 327.764,605 330.264,600 327.764,595 "/>
+  </g>
+  <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="60" y="440">
+    <tspan x="60" y="440">Instruction</tspan>
+  </text>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" points="460,520 460,520 680,520 680,369.736 "/>
+    <polygon style="fill: #000000" points="680,362.236 685,372.236 680,369.736 675,372.236 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="680,362.236 685,372.236 680,369.736 675,372.236 "/>
+  </g>
+  <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="700" y="500">
+    <tspan x="700" y="500">ctlMemRead</tspan>
+    <tspan x="700" y="516">ctlMemWrite</tspan>
+  </text>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="600,260 600,160 840,160 840,190.264 "/>
+    <polygon style="fill: #000000" points="840,197.764 835,187.764 840,190.264 845,187.764 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="840,197.764 835,187.764 840,190.264 845,187.764 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="740" y1="260" x2="770.264" y2="260"/>
+    <polygon style="fill: #000000" points="777.764,260 767.764,265 770.264,260 767.764,255 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="777.764,260 767.764,265 770.264,260 767.764,255 "/>
+  </g>
+  <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="740" y="280">
+    <tspan x="740" y="280">Mem</tspan>
+    <tspan x="740" y="296">Result</tspan>
+  </text>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" points="460,580 460,580 840,580 840,369.736 "/>
+    <polygon style="fill: #000000" points="840,362.236 845,372.236 840,369.736 835,372.236 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="840,362.236 845,372.236 840,369.736 835,372.236 "/>
+  </g>
+  <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="860" y="480">
+    <tspan x="860" y="480">Halt</tspan>
+    <tspan x="860" y="496">ctlMemToReg</tspan>
+  </text>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="861.3,200 860,140 360,140 360,190.264 "/>
+    <polygon style="fill: #000000" points="360,197.764 355,187.764 360,190.264 365,187.764 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="360,197.764 355,187.764 360,190.264 365,187.764 "/>
+  </g>
+  <text style="fill: #000000;text-anchor:start;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="740" y="120">
+    <tspan x="740" y="120">RegWriteData</tspan>
+  </text>
+</svg>

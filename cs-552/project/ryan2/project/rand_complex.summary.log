@@ -1,0 +1,8 @@
+/u/k/a/karu/courses/cs552/spring2009/handouts/testprograms/public/rand_complex/t_1_all.asm FAILED
+/u/k/a/karu/courses/cs552/spring2009/handouts/testprograms/public/rand_complex/t_2_all.asm SUCCESS CPI:1.0 CYCLES:585 ICOUNT:584 IHITRATE: 0 DHITRATE: 0
+/u/k/a/karu/courses/cs552/spring2009/handouts/testprograms/public/rand_complex/t_3_all.asm FAILED
+/u/k/a/karu/courses/cs552/spring2009/handouts/testprograms/public/rand_complex/t_4_all.asm FAILED
+/u/k/a/karu/courses/cs552/spring2009/handouts/testprograms/public/rand_complex/t_5_all.asm SUCCESS CPI:1.0 CYCLES:624 ICOUNT:623 IHITRATE: 0 DHITRATE: 0
+/u/k/a/karu/courses/cs552/spring2009/handouts/testprograms/public/rand_complex/t_6_all.asm FAILED
+/u/k/a/karu/courses/cs552/spring2009/handouts/testprograms/public/rand_complex/t_7_all.asm SUCCESS CPI:1.0 CYCLES:545 ICOUNT:544 IHITRATE: 0 DHITRATE: 0
+/u/k/a/karu/courses/cs552/spring2009/handouts/testprograms/public/rand_complex/t_8_all.asm SUCCESS CPI:1.0 CYCLES:582 ICOUNT:581 IHITRATE: 0 DHITRATE: 0
