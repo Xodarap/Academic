@@ -87,16 +87,45 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
       
 	//ST
       5'b10000:begin
-	  
+	//RegDst = 
+        RegWrite = 1'b0;
+        ALUSrc = 1'b1;
+        MemWrite = 1'b1;
+        MemRead = 1'b0;
+        MemToReg = 1'b0;
+        Immediate = {{11{instruction[4]}}, instruction[4:0]};
+        ALUOpcode = 4'b0100;
+	SetCode = 3'b000;
+	BranchCode = 3'b000;	  
 	  end
+
       //LD
       5'b10001:begin
-	  
-	  end
+	RegDst = 2'b01;
+        RegWrite = 1'b1;
+        ALUSrc = 1'b1;
+        MemWrite = 1'b0;
+        MemRead = 1'b1;
+        MemToReg = 1'b1;
+        Immediate = {{11{instruction[4]}}, instruction[4:0]};
+        ALUOpcode = 4'b0100;
+	SetCode = 3'b000;
+	BranchCode = 3'b000;
+	 end
+
       //STU
       5'b10011:begin
-	  
-	  end
+	RegDst = 2'b00;
+        RegWrite = 1'b1;
+        ALUSrc = 1'b1;
+        MemWrite = 1'b1;
+        MemRead = 1'b0;
+        MemToReg = 1'b0;
+        Immediate = {{11{instruction[4]}}, instruction[4:0]};
+        ALUOpcode = 4'b0100;
+	SetCode = 3'b000;
+	BranchCode = 3'b000;
+	end
       
 	  //BTR
       5'b11001:begin

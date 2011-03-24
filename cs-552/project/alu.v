@@ -1,7 +1,7 @@
 //Ryan Peeters
 //ECE 552
 
-module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, Z, resultSign);
+module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, Z, Cout, resultSign);
 
    input [15:0] A;
    input [15:0] B;
@@ -14,7 +14,8 @@ module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, Z, resultSign);
    output 	 Ofl;
    output 	 Z;
    output	resultSign;
-   wire     Cout, PG, GG, CintoMSB;
+	output Cout;
+   wire     PG, GG, CintoMSB;
    
    wire SignedOverflow;
    wire overflow;

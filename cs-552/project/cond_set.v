@@ -3,10 +3,10 @@
      SEQ, SLT, SLE, SCO
    Will do nothing if Control = 3'b0__
 */ 
-module cond_set(In, Control, Zero, Ofl, Sign, Out);
+module cond_set(In, Control, Zero, Ofl, Cout, Sign, Out);
    input [15:0] In;
    input [2:0] 	Control;
-   input 	Zero, Ofl, Sign;
+   input 	Zero, Ofl, Sign, Cout;
    output [15:0] Out;
    reg [15:0] 	 outTemp;
    
@@ -19,11 +19,11 @@ module cond_set(In, Control, Zero, Ofl, Sign, Out);
       // SEQ: If Rs - Rt = Zero, then set out = 1
       3'b100: outTemp = {15'b0, Zero};
       // SLT: If Rs - Rt < 0, out = 1
-      3'b101: outTemp = {15'b0, ~Sign};
+      3'b101: outTemp = {15'b0, (~Sign) & (~Zero)};
       // SLE: If Rs - Rt <= 0, out = 1
       3'b110: outTemp = {15'b0, Zero | (~Sign)};
       // SCO: If Rs + Rt causes carry out, out = 1
-      3'b111: outTemp = {15'b0, Ofl};
+      3'b111: outTemp = {15'b0, Cout};
    endcase
 	       
    assign Out = outTemp;
