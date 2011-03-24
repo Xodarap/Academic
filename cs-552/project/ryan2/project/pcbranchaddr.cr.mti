@@ -1,0 +1,71 @@
+/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/cla16b.v {1 {vlog -work work /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/cla16b.v
+Model Technology ModelSim SE vlog 5.8b Compiler 2004.01 Jan 26 2004
+-- Compiling module cla16b
+
+Top level modules:
+	cla16b
+
+} {} {}} /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/adder1.v {1 {vlog -work work /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/adder1.v
+Model Technology ModelSim SE vlog 5.8b Compiler 2004.01 Jan 26 2004
+-- Compiling module adder1
+
+Top level modules:
+	adder1
+
+} {} {}} /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/cla4b.v {1 {vlog -work work /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/cla4b.v
+Model Technology ModelSim SE vlog 5.8b Compiler 2004.01 Jan 26 2004
+-- Compiling module cla4b
+
+Top level modules:
+	cla4b
+
+} {} {}} /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/pc_plus2_plusimm.v {1 {vlog -work work /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/pc_plus2_plusimm.v
+Model Technology ModelSim SE vlog 5.8b Compiler 2004.01 Jan 26 2004
+-- Compiling module pc_plus2_plusimm
+
+Top level modules:
+	pc_plus2_plusimm
+
+} {} {}} /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/xor2.v {1 {vlog -work work /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/xor2.v
+Model Technology ModelSim SE vlog 5.8b Compiler 2004.01 Jan 26 2004
+-- Compiling module xor2
+
+Top level modules:
+	xor2
+
+} {} {}} /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/nand2.v {1 {vlog -work work /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/nand2.v
+Model Technology ModelSim SE vlog 5.8b Compiler 2004.01 Jan 26 2004
+-- Compiling module nand2
+
+Top level modules:
+	nand2
+
+} {} {}} /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/adder16.v {1 {vlog -work work /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/adder16.v
+Model Technology ModelSim SE vlog 5.8b Compiler 2004.01 Jan 26 2004
+-- Compiling module adder16
+
+Top level modules:
+	adder16
+
+} {} {}} /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/add2.v {1 {vlog -work work /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/add2.v
+Model Technology ModelSim SE vlog 5.8b Compiler 2004.01 Jan 26 2004
+-- Compiling module add2
+
+Top level modules:
+	add2
+
+} {} {}} /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/fulladder1.v {1 {vlog -work work /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/fulladder1.v
+Model Technology ModelSim SE vlog 5.8b Compiler 2004.01 Jan 26 2004
+-- Compiling module fulladder1
+
+Top level modules:
+	fulladder1
+
+} {} {}} /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/adder4.v {1 {vlog -work work /afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/adder4.v
+Model Technology ModelSim SE vlog 5.8b Compiler 2004.01 Jan 26 2004
+-- Compiling module adder4
+
+Top level modules:
+	adder4
+
+} {} {}}

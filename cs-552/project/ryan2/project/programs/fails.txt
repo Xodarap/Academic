@@ -1,0 +1,6 @@
+/u/k/a/karu//courses/cs552/spring2011/handouts/testprograms/public/inst_tests/bnez_5.asm	//uses jump
+/u/k/a/karu//courses/cs552/spring2011/handouts/testprograms/public/inst_tests/sco_0.asm		//Cout wrong?
+/u/k/a/karu//courses/cs552/spring2011/handouts/testprograms/public/inst_tests/sco_2.asm		//Cout wrong?
+/u/k/a/karu//courses/cs552/spring2011/handouts/testprograms/public/inst_tests/seq_0.asm		//uses jump
+/u/k/a/karu//courses/cs552/spring2011/handouts/testprograms/public/inst_tests/siic_0.asm	//extra credit
+/u/k/a/karu//courses/cs552/spring2011/handouts/testprograms/public/inst_tests/slt_2.asm

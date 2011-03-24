@@ -1,0 +1,9 @@
+module onebitreg;
+   wire Clk, Rst, Err, data, write, out;
+   
+   
+   clkrst clk(.clk (Clk), .rst (Rst), .err(Err));
+
+   
+
+endmodule // onebitreg
