@@ -1,0 +1,5 @@
+3/31 - Fix remaining issues in non-pipelined implementation
+4/4  - Flip-flops between stages, but no hazard detection
+4/8  - Processor finalized - Hazards detected and handled
+4/12 - Hand in. All tests pass.
+
