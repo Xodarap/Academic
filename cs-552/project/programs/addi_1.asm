@@ -8,9 +8,6 @@
 //
 
 //Test of loading a register with addi
-//lbi r1, 0x0
-//addi r1, r1, 0x1a
 lbi r1, 0x0
-lbi r2, 0x0
-addi r2, r2, 0x1a	
+addi r1, r1, 0x1a
 halt

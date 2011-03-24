@@ -21,6 +21,22 @@
 # Loading __work.fetch
 # ** Warning: (vsim-3009) [TSCALE] - Module 'fetch' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_bench/DUT/p0/fetch0
+# Loading __work.cla16b
+# ** Warning: (vsim-3009) [TSCALE] - Module 'cla16b' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/fetch0/addjumpaddress
+# Loading __work.cla4b
+# ** Warning: (vsim-3009) [TSCALE] - Module 'cla4b' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/fetch0/addjumpaddress/add0
+# Loading __work.fulladder1
+# ** Warning: (vsim-3009) [TSCALE] - Module 'fulladder1' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/fetch0/addjumpaddress/add0/add0
+# Loading __work.xor2
+# Loading __work.nand2
+# ** Warning: (vsim-3009) [TSCALE] - Module 'nand2' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/fetch0/addjumpaddress/add0/add0/n3
+# Loading __work.pc_plus2_plusimm
+# ** Warning: (vsim-3009) [TSCALE] - Module 'pc_plus2_plusimm' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/fetch0/calcbranchaddr
 # Loading __work.memory2c
 # ** Warning: (vsim-3009) [TSCALE] - Module 'memory2c' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_bench/DUT/p0/fetch0/instruction_memory
@@ -60,20 +76,8 @@
 # Loading __work.alu
 # ** Warning: (vsim-3009) [TSCALE] - Module 'alu' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_bench/DUT/p0/execute0/alu0
-# Loading __work.cla16b
-# ** Warning: (vsim-3009) [TSCALE] - Module 'cla16b' does not have a `timescale directive in effect, but previous modules do.
-#         Region: /proc_hier_bench/DUT/p0/execute0/alu0/adder
-# Loading __work.cla4b
-# ** Warning: (vsim-3009) [TSCALE] - Module 'cla4b' does not have a `timescale directive in effect, but previous modules do.
-#         Region: /proc_hier_bench/DUT/p0/execute0/alu0/adder/add0
-# Loading __work.fulladder1
-# ** Warning: (vsim-3009) [TSCALE] - Module 'fulladder1' does not have a `timescale directive in effect, but previous modules do.
-#         Region: /proc_hier_bench/DUT/p0/execute0/alu0/adder/add0/add0
-# Loading __work.xor2
-# Loading __work.nand2
-# ** Warning: (vsim-3009) [TSCALE] - Module 'nand2' does not have a `timescale directive in effect, but previous modules do.
-#         Region: /proc_hier_bench/DUT/p0/execute0/alu0/adder/add0/add0/n3
 # Loading __work.sub16b
+# Loading __work.slbi
 # Loading __work.btr16b
 # ** Warning: (vsim-3009) [TSCALE] - Module 'btr16b' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_bench/DUT/p0/execute0/alu0/btr
@@ -111,4 +115,4 @@ run -all
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.trace for output
 # ** Note: $finish    : proc_hier_bench.v(96)
-#    Time: 40 us  Iteration: 0  Instance: /proc_hier_bench
+#    Time: 21530 us  Iteration: 0  Instance: /proc_hier_bench

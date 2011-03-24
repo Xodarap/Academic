@@ -48,10 +48,15 @@ module proc (/*AUTOARG*/
    wire 	ctlAluSrc;
    wire [3:0] 	ctlAluOp;
    wire [2:0] 	ctlCondOp;
+   wire		isJump;
+   wire		isJumpRegister;
 
    /* Control -> Memory */
    wire 	ctlMemWrite;
    wire 	ctlMemRead;
+
+   /* Fetch -> Execute */
+   wire	[15:0]	pcPlusTwo;
 
    /* Control -> Writeback */
    wire 	ctlMemToReg;
@@ -91,13 +96,15 @@ module proc (/*AUTOARG*/
 	   .Immediate(immExtend), 
 	   .SetCode(ctlCondOp),
            .BranchCode(ctlBranchCode),
+	   .isJumpRegister(isJumpRegister),
+	   .isJump(isJump),
 	   .err(err));
 
 	
 
-   fetch fetch0(.Clk(clk), .Rst(rst), 
+   fetch fetch0(.Clk(clk), .Rst(rst), .pcPlusTwo(pcPlusTwo),
 		.Instruction(instruction), .Immediate(immExtend),
-		.PcSrc(pcSrc));
+		.PcSrc(pcSrc|isJump|isJumpRegister), .regRS(readData1), .isJumpRegister(isJumpRegister));
    
    decode decode0(.Clk(clk), .Rst(rst), 
 		  .Reg1(instruction[10:8]), .Reg2(instruction[7:5]), .Reg3(instruction[4:2]), 
@@ -116,6 +123,7 @@ module proc (/*AUTOARG*/
 		    .CondOp(ctlCondOp),
 		    .BranchCode(ctlBranchCode),
 		    .Output(aluResult),
+			.pcPlusTwo(pcPlusTwo),
 		    .PcSrc(pcSrc));
    
    memory memory0(.Clk(clk), .Rst(rst), 

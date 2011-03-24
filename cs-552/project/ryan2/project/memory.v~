@@ -1,4 +1,0 @@
-module memory(Clk, Rst, Addr, Data, MemWrite, MemRead);
-   input Clk, Rst;
-   input [15:0] Addr, Data;
-   

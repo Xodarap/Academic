@@ -8,5 +8,5 @@
 lbi r1, 50
 lbi r2, -25
 sub r3, r1, r2
-sub r4, r2, r1
+sub r2, r2, r1
 halt

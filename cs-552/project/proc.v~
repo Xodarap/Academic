@@ -48,10 +48,15 @@ module proc (/*AUTOARG*/
    wire 	ctlAluSrc;
    wire [3:0] 	ctlAluOp;
    wire [2:0] 	ctlCondOp;
+   wire		isJump;
+   wire		isJumpRegister;
 
    /* Control -> Memory */
    wire 	ctlMemWrite;
    wire 	ctlMemRead;
+
+   /* Fetch -> Execute */
+   wire	[15:0]	pcPlusTwo;
 
    /* Control -> Writeback */
    wire 	ctlMemToReg;
@@ -91,11 +96,14 @@ module proc (/*AUTOARG*/
 	   .Immediate(immExtend), 
 	   .SetCode(ctlCondOp),
            .BranchCode(ctlBranchCode),
+	   .isJumpRegister(isJumpRegister),
 	   .err(err));
 
-   fetch fetch0(.Clk(clk), .Rst(rst), .NewPc(16'b0), 
-		.Instruction(instruction),
-		.PcSrc(pcSrc));
+	
+
+   fetch fetch0(.Clk(clk), .Rst(rst), .pcPlusTwo(pcPlusTwo),
+		.Instruction(instruction), .Immediate(immExtend),
+		.PcSrc(pcSrc|isJump|isJumpRegister), .regRS(readData1), .isJumpRegister(isJumpRegister));
    
    decode decode0(.Clk(clk), .Rst(rst), 
 		  .Reg1(instruction[10:8]), .Reg2(instruction[7:5]), .Reg3(instruction[4:2]), 
@@ -103,7 +111,7 @@ module proc (/*AUTOARG*/
 		  .RegDest(ctlRegDest),           // Rd = Reg1, Reg2 or Reg3?
 		  .WriteData(regWriteData),    // Data from Wb to write
 		  .RegVal1(readData1),         // Value of Reg1
-		  .RegVal2(readData2),         // Value of Reg2
+		  .RegVal2(readData2));         // Value of Reg2
 
    execute execute0(.Clk(clk), .Rst(rst), 
 		    .Reg1(readData1),          
@@ -114,6 +122,7 @@ module proc (/*AUTOARG*/
 		    .CondOp(ctlCondOp),
 		    .BranchCode(ctlBranchCode),
 		    .Output(aluResult),
+			.pcPlusTwo(pcPlusTwo),
 		    .PcSrc(pcSrc));
    
    memory memory0(.Clk(clk), .Rst(rst), 

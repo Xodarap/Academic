@@ -12,6 +12,7 @@ entity alu is
         \Out\           : out    vl_logic_vector(15 downto 0);
         ofl             : out    vl_logic;
         z               : out    vl_logic;
+        cout            : out    vl_logic;
         resultsign      : out    vl_logic
     );
 end alu;

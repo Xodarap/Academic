@@ -1,7 +1,7 @@
 //Ryan Peeters
 //ECE 552
 
-module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, Z, Cout, resultSign);
+module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, Z, Cout, resultSign, pcPlusTwo);
 
    input [15:0] A;
    input [15:0] B;
@@ -10,6 +10,7 @@ module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, Z, Cout, resultSign);
    input 	invA;
    input 	invB;
    input 	sign;
+   input [15:0] pcPlusTwo;
    output [15:0] Out;
    output 	 Ofl;
    output 	 Z;
@@ -49,7 +50,7 @@ module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, Z, Cout, resultSign);
    mux16b4_1 muxlogic (.InA(out_add), .InB(out_sub), .InC(out_xor),
                         .InD(out_and), .S(Op[1:0]), .Out(mux4_out));
 
-   mux16b2_1 muxlogic1 (.InA(B_new), .InB(out_slbi), .S(Op[1]), .Out(mux2_slbi_out));
+   mux16b4_1 muxlogic1 (.InA(B_new), .InB(16'b0), .InC(out_slbi), .InD(pcPlusTwo), .S(Op[1:0]), .Out(mux2_slbi_out));
    
    
    //Op[3:2] decides if output is from shifter, add/or/xor/and, or btr

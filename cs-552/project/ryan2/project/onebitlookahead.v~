@@ -1,7 +1,0 @@
-module onebitlookahead (A, B, G, P);
-	input A, B, Cin;
-	output S, C;
-
-	assign G = A & B;
-	assign P = A ^ B;
-endmodule

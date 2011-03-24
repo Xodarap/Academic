@@ -20,6 +20,7 @@ module decode(Clk, Rst, Reg1, Reg2, Reg3,
       
    output [15:0] RegVal1, RegVal2;
 
+	reg [2:0] writeReg;
    wire [2:0] 	 regToWriteTo;
    
    rf_hier rf0(.read1data(RegVal1), .read2data(RegVal2), 
@@ -27,8 +28,14 @@ module decode(Clk, Rst, Reg1, Reg2, Reg3,
 		.writeregsel(regToWriteTo), .writedata(WriteData), 
 		.write(RegWrite)
                 );
-   
-   assign regToWriteTo = (RegDest == 1'b0) ? Reg1 : 
-			 (RegDest == 1'b1) ? Reg2 :
-			                     Reg3;
+	always@(*) begin
+	case(RegDest)
+		2'b00:writeReg = Reg1;
+		2'b01:writeReg = Reg2;
+		2'b10:writeReg = Reg3;
+		2'b11:writeReg = 3'b111;
+	endcase
+	end
+
+   assign regToWriteTo = writeReg;
 endmodule // decode

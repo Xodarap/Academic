@@ -22,10 +22,9 @@ module rf_hier (
    wire          clk, rst;
    wire          err;
   
-
    // Ignore err for now
    clkrst clk_generator(.clk(clk), .rst(rst), .err(err) );
-   rf rf0(
+   rf_bypass rf0(
           // Outputs
           .read1data                    (read1data[15:0]),
           .read2data                    (read2data[15:0]),

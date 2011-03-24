@@ -6,6 +6,10 @@
  lbi  r1,-3
  bgez r1,3
  lbi r2,0
- bgez r2,9
-
+ bgez r2,4
+ nop
+ nop
+ nop
+ nop
+ halt
  

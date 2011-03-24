@@ -1,8 +1,0 @@
-module tb_add2();
-   reg [15:0] Pc;
-   wire [15:0] PcOut;
-   wire        Clk, Rst, Err;
-   
-   clkrst clk(.clk (Clk), .rst (Rst), .err(Err));
-
-   
