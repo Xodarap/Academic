@@ -183,17 +183,17 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
 	  end
 	  
 	  //SLBI
-	  5'b11000:begin
-		//RegDst = 
-		//RegWrite = 
-        	//ALUSrc = 
-        	//MemWrite = 
-        	//MemRead = 
-        	//MemToReg = 
-		//Immediate = ??
-        	//ALUOpcode = 
-		//SetCode = 
-		//BranchCode = 
+	  5'b10010:begin
+	     RegDst = 2'b00;
+	     RegWrite = 1'b1;
+	     ALUSrc = 1'b1;
+	     MemWrite = 1'b0;
+	     MemRead = 1'b0;
+             MemToReg = 1'b0;
+             Immediate = {{8{instruction[7]}}, instruction[7:0]};
+             ALUOpcode = 4'b1110;
+	     SetCode = 3'b000;
+	     BranchCode = 3'b000;
 	  end
 	  
 //JUMP

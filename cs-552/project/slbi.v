@@ -5,7 +5,7 @@ module slbi(Rs, Imm, Out);
    wire [15:0] 	 extImm;
    
    assign extImm = {8'b0, Imm[7:0]};   
-   assign Out = (Rs << 8) | extImm;
+   assign Out = (Rs << 4'd8) | extImm;
 endmodule // slbi
 
    
