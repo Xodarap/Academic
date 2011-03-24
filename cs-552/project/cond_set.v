@@ -13,9 +13,9 @@ module cond_set(In, Control, Zero, Ofl, Sign, Out);
 
    // Control should be passed bits 13..11 of the instruction
    // Or 0__ if we don't need to do anything.
-   always @* case (Control)
+   always @* casex (Control)
       // Pass through: Do nothing
-      3'b0__: outTemp = In;
+      3'b0xx: outTemp = In;
       // SEQ: If Rs - Rt = Zero, then set out = 1
       3'b100: outTemp = Zero;
       // SLT: If Rs - Rt < 0, out = 1

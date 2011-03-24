@@ -30,6 +30,9 @@ module proc (/*AUTOARG*/
    wire [15:0] wData;        // Data being written to the register. (16 bits)
    
    /* Memory */
+   reg 	       notdonem;     // What's this?
+   wire        memRxout;     // Mem being read?
+   wire        memWxout;     // Mem being written?
    wire [15:0] memAddr;      // Address to access memory with (for both reads and writes to memory, 16 bits)
    wire [15:0] memWriteData; // Data to be written to memory for memory writes (16 bits)
 
@@ -52,16 +55,13 @@ module proc (/*AUTOARG*/
 
    /* Control -> Writeback */
    wire 	ctlMemToReg;
-
-   /* Control -> TODO */
-   wire 	ctlImmSrc;
    
    /* Fetch -> Decode */
    wire [15:0] instruction;
 
    /* Decode -> Execute */
    wire [15:0] readData1, readData2,
-	       immExtend, jExtend;
+	       immExtend;
 
    /* Execute -> Memory */
    wire [15:0] aluResult;
@@ -88,7 +88,7 @@ module proc (/*AUTOARG*/
 	   .MemWrite(ctlMemWrite),
 	   .MemToReg(ctlMemToReg), 
 	   .ALUOpcode(ctlAluOp), 
-	   .ImmSrc(ctlImmSrc), 
+	   .Immediate(immExtend), 
 	   .SetCode(ctlCondOp),
            .BranchCode(ctlBranchCode),
 	   .err(err));
@@ -99,15 +99,11 @@ module proc (/*AUTOARG*/
    
    decode decode0(.Clk(clk), .Rst(rst), 
 		  .Reg1(instruction[10:8]), .Reg2(instruction[7:5]), .Reg3(instruction[4:2]), 
-		  .Imm(instruction[7:0]),      // The I in I-type
-		  .Address(instruction[10:0]), // The J in J-type
 		  .RegWrite(ctlRegWrite),         // If the value from Wb should be written
 		  .RegDest(ctlRegDest),           // Rd = Reg1, Reg2 or Reg3?
 		  .WriteData(regWriteData),    // Data from Wb to write
 		  .RegVal1(readData1),         // Value of Reg1
-		  .RegVal2(readData2),         // Value of Reg2
-	          .ImmExt(immExtend),          // Imm value extended
-		  .AddressExt(jExtend));       // J value extended
+		  .RegVal2(readData2));         // Value of Reg2
 
    execute execute0(.Clk(clk), .Rst(rst), 
 		    .Reg1(readData1),          

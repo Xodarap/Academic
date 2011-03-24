@@ -16,6 +16,8 @@
 #         Region: /proc_hier_bench/DUT/c0
 # Loading __work.proc
 # Loading __work.control
+# ** Warning: (vsim-3009) [TSCALE] - Module 'control' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/control0
 # Loading __work.fetch
 # ** Warning: (vsim-3009) [TSCALE] - Module 'fetch' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_bench/DUT/p0/fetch0
@@ -57,25 +59,51 @@
 # ** Warning: (vsim-3009) [TSCALE] - Module 'execute' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_bench/DUT/p0/execute0
 # Loading __work.alu
+# ** Warning: (vsim-3009) [TSCALE] - Module 'alu' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/execute0/alu0
 # Loading __work.cla16b
+# ** Warning: (vsim-3009) [TSCALE] - Module 'cla16b' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/execute0/alu0/adder
 # Loading __work.cla4b
+# ** Warning: (vsim-3009) [TSCALE] - Module 'cla4b' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/execute0/alu0/adder/add0
 # Loading __work.fulladder1
+# ** Warning: (vsim-3009) [TSCALE] - Module 'fulladder1' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/execute0/alu0/adder/add0/add0
 # Loading __work.xor2
 # Loading __work.nand2
+# ** Warning: (vsim-3009) [TSCALE] - Module 'nand2' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/execute0/alu0/adder/add0/add0/n3
 # Loading __work.sub16b
 # Loading __work.btr16b
+# ** Warning: (vsim-3009) [TSCALE] - Module 'btr16b' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/execute0/alu0/btr
 # Loading __work.shifter
 # Loading __work.mux16b4_1
+# ** Warning: (vsim-3009) [TSCALE] - Module 'mux16b4_1' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/execute0/alu0/shift1/muxa
 # Loading __work.quadmux4_1
 # Loading __work.mux4_1
+# ** Warning: (vsim-3009) [TSCALE] - Module 'mux4_1' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/execute0/alu0/shift1/muxa/mux0/mux0
 # Loading __work.mux2_1
+# ** Warning: (vsim-3009) [TSCALE] - Module 'mux2_1' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/execute0/alu0/shift1/muxa/mux0/mux0/mux1
 # Loading __work.not1
+# ** Warning: (vsim-3009) [TSCALE] - Module 'not1' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/execute0/alu0/shift1/muxa/mux0/mux0/mux1/not_s
 # Loading __work.mux16b2_1
+# ** Warning: (vsim-3009) [TSCALE] - Module 'mux16b2_1' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/execute0/alu0/shift1/muxa2
 # Loading __work.mux4b2_1
+# ** Warning: (vsim-3009) [TSCALE] - Module 'mux4b2_1' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/execute0/alu0/shift1/muxa2/mux0
 # Loading __work.cond_set
 # ** Warning: (vsim-3009) [TSCALE] - Module 'cond_set' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_bench/DUT/p0/execute0/cond_set0
 # Loading __work.branchlogic
+# ** Warning: (vsim-3009) [TSCALE] - Module 'branchlogic' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/execute0/branchlogic0
 # Loading __work.memory
 # ** Warning: (vsim-3009) [TSCALE] - Module 'memory' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_bench/DUT/p0/memory0
@@ -83,6 +111,5 @@
 run -all
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.trace for output
-# ** Fatal: (vsim-3603) Zero-delay oscillation loop detected at time 10001 ns.
-# 
-# <EOF> 
+# ** Note: $finish    : proc_hier_bench.v(96)
+#    Time: 30 us  Iteration: 0  Instance: /proc_hier_bench

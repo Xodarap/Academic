@@ -15,7 +15,8 @@ module execute(Clk, Rst, Reg1, Reg2, Imm, AluSrc, AluOp, CondOp, BranchCode, Out
    wire 	 specBranch;
    
       
-   assign aluInput2 = AluSrc ? Imm : Reg1;
+   assign aluInput2 = AluSrc ? Imm : Reg2;
+
    alu alu0(.A(Reg1), .B(aluInput2), .Cin(1'b0), .Op(AluOp), 
 	    .invA(1'b0), .invB(1'b0), .sign(1'b1), .Out(aluOut), 
 	    .Ofl(ofl), .Z(z), .resultSign(resultSign));
