@@ -19,7 +19,7 @@ module cond_set(In, Control, Zero, Ofl, Cout, Sign, Out);
       // SEQ: If Rs - Rt = Zero, then set out = 1
       3'b100: outTemp = {15'b0, Zero};
       // SLT: If Rs - Rt < 0, out = 1
-      3'b101: outTemp = {15'b0, (~Sign) & (~Zero)};
+      3'b101: outTemp = {15'b0, ((~Sign & ~Ofl) | (Sign & Ofl)) & (~Zero) };
       // SLE: If Rs - Rt <= 0, out = 1
       3'b110: outTemp = {15'b0, Zero | (~Sign)};
       // SCO: If Rs + Rt causes carry out, out = 1
