@@ -729,9 +729,14 @@ class IfStmtNode extends StmtNode {
     }
 
     public void provideSymTab(SymTab table){
+	table.addMap();
 	myExp.provideSymTab(table);
 	myDeclList.provideSymTab(table);
 	myStmtList.provideSymTab(table);
+	try { table.removeMap(); }
+	catch (EmptySymTabException e){
+	    System.err.println(e.toString());
+	}
     }
     // 3 kids
     private ExpNode myExp;
@@ -769,11 +774,22 @@ class IfElseStmtNode extends StmtNode {
     }
 
     public void provideSymTab(SymTab table){
+	table.addMap();
 	myExp.provideSymTab(table);
 	myThenDeclList.provideSymTab(table);
 	myThenStmtList.provideSymTab(table);
+	try { table.removeMap(); }
+	catch (EmptySymTabException e){
+	    System.err.println(e.toString());
+	}
+
+	table.addMap();
 	myElseDeclList.provideSymTab(table);
 	myElseStmtList.provideSymTab(table);
+	try { table.removeMap(); }
+	catch (EmptySymTabException e){
+	    System.err.println(e.toString());
+	}
     }
 
     // 5 kids
@@ -803,9 +819,14 @@ class WhileStmtNode extends StmtNode {
     }
 
     public void provideSymTab(SymTab table){
+	table.addMap();
 	myExp.provideSymTab(table);
 	myDeclList.provideSymTab(table);
 	myStmtList.provideSymTab(table);
+	try { table.removeMap(); }
+	catch (EmptySymTabException e){
+	    System.err.println(e.toString());
+	}
     }
     // 3 kids
     private ExpNode myExp;
