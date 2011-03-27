@@ -55,7 +55,7 @@ public class P4 {
 
 	try {
 	    root = P.parse(); // do the parse
-	    System.out.println ("program parsed correctly");	    
+	    System.out.println ("Little program parsed correctly.");	    
 	} catch (Exception ex){
 	    System.err.println("Exception occured during parse: " + ex);
 	    ex.printStackTrace();
@@ -68,7 +68,9 @@ public class P4 {
 	    ex.printStackTrace();
 	    System.exit(-1);
 	}
-	((ASTnode)root.value).unparse(outFile, 0);
+	if(!Errors.errors){
+	    ((ASTnode)root.value).unparse(outFile, 0);
+	}
 	outFile.close();
 
 	return;

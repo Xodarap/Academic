@@ -1,0 +1,4 @@
+#!/bin/bash
+make
+(java -cp .:JLex.jar:java_cup.jar P4 $1.Little output) >& out.errs
+meld out.errs $1.errs

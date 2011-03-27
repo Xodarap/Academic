@@ -99,10 +99,8 @@ precedence right ASSIGN;
 precedence left OR;
 precedence left AND;
 precedence nonassoc EQUALS, NOTEQUALS, LESS, GREATER, LESSEQ, GREATEREQ;
-precedence left PLUS;
-precedence left MINUS;
-precedence left STAR;
-precedence left DIVIDE;
+precedence left PLUS, MINUS;
+precedence left STAR, DIVIDE;
 precedence left NOT, PLUSPLUS, MINUSMINUS;
 
 
