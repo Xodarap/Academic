@@ -1,0 +1,148 @@
+int x;
+int y;
+int ab23;
+int bb_c;
+
+void f() { return;}
+
+void g() { int x;}
+
+int h() {
+    int a;
+    int b;
+    if (a == b ) { return 1; }
+    if (a == b ) { return a;} else { return h(); }
+}
+
+double i() {
+  double a;
+  double b;
+  if (a==b) { return 22.5; }
+  else { if (b>a) { return a; }
+       else { if (a!=b) { return a+b; }
+            else { if (a<b) { return -a; }
+	         else { if (a>=b || a <=b) { return (a*b/a); }
+		      }
+		 }
+ 	    }
+       }
+}
+
+void foo() {
+  int a;
+  int b;
+  int c;
+  int d;
+
+    ++a;
+    --a;
+    a++;
+    a--;
+    while ( (a+b) < (c-d) ) { }
+    while (1) {
+      a = a++ - b;
+      a = a-- - b;
+      a = a-- * b;
+      a = a-- / b;
+      a =  a-- ||b;
+      a =  a-- &&b;
+      a =  ! a-- ||b;
+      a = b - a++;
+      a = b - a--;
+      a = b * a--;
+      a = b / a--;
+      a = b || a--;
+      a = b && a--;
+      a = b || ! a--;
+      a = b = c/d;
+      a = a + b;
+      a = a - b;
+      a = a * b;
+      a = a / b;
+      c = ! c;
+      a = a && b ;
+      a = a || b;
+      c = a == b;
+      c = a != b;
+      c = a < b;
+      c = a > b;
+      c = a <= b;
+      c = a >= b;
+      a = b;
+      a = 50;
+      c = 1;
+      a = - 50;
+      a = !b;
+      a = -(-b);	
+      a = a + b + c;
+      a = a - b - c;
+      a = a + b * c;
+      a = a - b * c;
+      a = a + c / c;
+      a = - a + b;
+      a = -a * b;
+      a = ! a && b;
+    }
+
+    if (a >= b) {}
+    if (b == -1) {
+  	x = 5;
+  	while (c) {y = y + 1;}
+    }
+    a = 2147483647;
+}
+
+int a;
+int b25;
+
+void arr( ) {
+int A;
+int B;
+    a = (a+4);
+    printf("str+4");
+    if (A+4 == B+4) {}
+}
+
+void foobar() {
+  double x;
+  double y;
+     scanf("%d",&a);
+     scanf("%f",&x);
+     printf("\n");
+     printf("%d", x+y);
+     printf("%f", x++);
+}
+
+void params( int b, int a, double c, int x ) {}
+
+int fncall(int a, double b, double c) {
+  foo();
+  params(a, a, b, a);
+  printf("%d", a);
+  printf("%f", i());
+  x = fncall(a, b, c, fncall(a, b, b));
+  x = foo();
+}
+
+void nestedDeclsAndUses() {
+  if (0) {
+    int x;
+    double y;
+    x = y;
+    if (1) {
+      int a;
+      double b;
+      b = a * 3 || 4;
+    } else {
+      int n;
+      double d;
+      while (1) {
+        int k;
+	int m;
+	m = n+y-ab23;
+      }
+      n++;
+      --n;
+    }
+  }
+}

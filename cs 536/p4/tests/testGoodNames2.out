@@ -1,0 +1,65 @@
+int x;
+int y;
+
+void f(double a, int c, int d) {
+  return;
+}
+
+int g(int x) {
+  int y;
+  return 0;
+}
+
+void foo() {
+  int a;
+  int b;
+  int c;
+  int B;
+  foo(->void)();
+  while (1) {
+  }
+  scanf("%d", &a(int));
+  scanf("%d", &B(int));
+  B(int) = (1<3);
+  a(int) = (a(int)+b(int));
+  a(int) = (a(int)-b(int));
+  a(int) = (a(int)*b(int));
+  a(int) = (a(int)/b(int));
+  c(int) = (!c(int));
+  c(int) = (c(int)&&1);
+  c(int) = (0||(!c(int)));
+  c(int) = (a(int)==b(int));
+  c(int) = (a(int)!=b(int));
+  c(int) = (a(int)<b(int));
+  c(int) = (a(int)>b(int));
+  c(int) = (a(int)<=b(int));
+  c(int) = (a(int)>=b(int));
+  a(int) = b(int);
+  a(int) = 50;
+  a(int) = (g(int->int)(3)+1);
+  c(int) = 1;
+  c(int) = 0;
+  a(int) = (-50);
+  if ((a(int)>=b(int))) {
+    int a;
+    while ((a(int)>0)) {
+      int a;
+      a(int) = b(int);
+    }
+  }
+  a(int) = a(int);
+  if ((b(int)==(-1))) {
+    x(int) = 5;
+    while (c(int)) {
+      y(int) = (y(int)+1);
+    }
+  }
+  else {
+    printf("test");
+    a(int) = 0;
+  }
+  a(int) = 2147483647;
+  g(int->int)(a(int));
+  f(double,int,int->void)(a(int), c(int), b(int));
+}
+int b;

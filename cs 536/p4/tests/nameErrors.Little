@@ -1,0 +1,89 @@
+/* bad global decl */
+void g;
+
+/* multiply declared global */
+int g1;
+double g1;
+
+/* multiply declared fn */
+void f() {}
+int f() {}
+
+/* functions with multiply declared params */
+void multParams1(int x, double y, int x) {}
+void multParams2(int x, double y, int y) {}
+void multParams3(int x, double x) {}
+
+/* function with bad params, one both bad and multiply declared */
+void badParams(void x, int y, void y) {}
+
+/* function with bad and multiply declared locals */
+void locals() {
+  int x;
+  double x;
+  void x;
+  if (0) {
+    int y;
+    double y;
+    void y;
+  }
+  if (0) {
+  } else {
+    int y;
+    double y;
+    void y;
+  }
+  while (1) {
+    int y;
+    double y;
+    void y;
+  }
+}
+
+/* function with uses of undeclared vars in all stmts */
+void undeclared() {
+  x = x;
+  ++x;
+  --x;
+  x++;
+  x--;
+  scanf("%d", &x);
+  scanf("%f", &x);
+  printf("%d", x);
+  printf("%f", x);
+  if (x) {
+    x = y;
+  }
+  if (x) {
+  } else {
+    x = y;
+  }
+  while (x) {
+    x = y;
+  }
+  return x;
+  x();
+  x(y, z);
+}
+
+/* function with uses of undeclared vars in all exprs */
+void undeclaredInExps() {
+  int x;
+  x = y = z;
+  x = y + z;
+  x = y - z;
+  x = y * z;
+  x = y / z;
+  x = ! z;
+  x = y && z;
+  x = y || z;
+  x = y == z;
+  x = y != z;
+  x = y < z;
+  x = y > z;
+  x = y <= z;
+  x = y >= z;
+  x = -y;
+  x = y++;
+  x = y--;
+}

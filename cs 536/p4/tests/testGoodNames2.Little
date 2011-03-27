@@ -1,0 +1,64 @@
+int x;
+int y;
+
+void f(double a, int c, int d) { return; }
+
+int g(int x) { 
+  int y; 
+  return 0;
+}
+
+void foo() {
+  int a;
+  int b;
+  int c;
+  int B;
+  
+  foo();
+  while (1) {}
+  scanf("%d", &a);
+  scanf("%d", &B);
+  B = 1 < 3;
+  a = a + b;
+  a = a - b;
+  a = a * b;
+  a = a / b;
+  c = ! c;
+  c = c && 1;
+  c = 0 || (!c);
+  c = a == b;
+  c = a != b;
+  c = a < b;
+  c = a > b;
+  c = a <= b;
+  c = a >= b;
+  a = b;
+  a = 50;
+  a = g(3) + 1;
+  c = 1;
+  c = 0;
+  a = - 50;
+  
+  if (a >= b) {
+    int a;
+    while (a > 0) {
+      int a;
+      a = b;
+    }
+  }
+  a = a;
+  if (b == -1) {
+    x = 5;
+    while (c) {y = y + 1;}
+  }
+  else {
+    printf("test");
+    a = 0;
+  }
+  a = 2147483647;		
+  g(a);
+  f(a,c,b);
+} 
+
+int b;
+

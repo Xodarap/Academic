@@ -1,0 +1,76 @@
+Little program parsed correctly.
+2:6 **ERROR** Non-function declared void
+6:8 **ERROR** Multiply declared identifier
+10:5 **ERROR** Multiply declared identifier
+13:39 **ERROR** Multiply declared identifier
+14:39 **ERROR** Multiply declared identifier
+15:32 **ERROR** Multiply declared identifier
+18:21 **ERROR** Non-function declared void
+18:36 **ERROR** Non-function declared void
+18:36 **ERROR** Multiply declared identifier
+23:10 **ERROR** Multiply declared identifier
+24:8 **ERROR** Non-function declared void
+24:8 **ERROR** Multiply declared identifier
+27:12 **ERROR** Multiply declared identifier
+28:10 **ERROR** Non-function declared void
+28:10 **ERROR** Multiply declared identifier
+33:12 **ERROR** Multiply declared identifier
+34:10 **ERROR** Non-function declared void
+34:10 **ERROR** Multiply declared identifier
+38:12 **ERROR** Multiply declared identifier
+39:10 **ERROR** Non-function declared void
+39:10 **ERROR** Multiply declared identifier
+45:3 **ERROR** Undeclared identifier
+45:7 **ERROR** Undeclared identifier
+46:5 **ERROR** Undeclared identifier
+47:5 **ERROR** Undeclared identifier
+48:3 **ERROR** Undeclared identifier
+49:3 **ERROR** Undeclared identifier
+50:16 **ERROR** Undeclared identifier
+51:16 **ERROR** Undeclared identifier
+52:16 **ERROR** Undeclared identifier
+53:16 **ERROR** Undeclared identifier
+54:7 **ERROR** Undeclared identifier
+55:5 **ERROR** Undeclared identifier
+55:9 **ERROR** Undeclared identifier
+57:7 **ERROR** Undeclared identifier
+59:5 **ERROR** Undeclared identifier
+59:9 **ERROR** Undeclared identifier
+61:10 **ERROR** Undeclared identifier
+62:5 **ERROR** Undeclared identifier
+62:9 **ERROR** Undeclared identifier
+64:10 **ERROR** Undeclared identifier
+65:3 **ERROR** Undeclared identifier
+66:3 **ERROR** Undeclared identifier
+66:5 **ERROR** Undeclared identifier
+66:8 **ERROR** Undeclared identifier
+72:7 **ERROR** Undeclared identifier
+72:11 **ERROR** Undeclared identifier
+73:7 **ERROR** Undeclared identifier
+73:11 **ERROR** Undeclared identifier
+74:7 **ERROR** Undeclared identifier
+74:11 **ERROR** Undeclared identifier
+75:7 **ERROR** Undeclared identifier
+75:11 **ERROR** Undeclared identifier
+76:7 **ERROR** Undeclared identifier
+76:11 **ERROR** Undeclared identifier
+77:9 **ERROR** Undeclared identifier
+78:7 **ERROR** Undeclared identifier
+78:12 **ERROR** Undeclared identifier
+79:7 **ERROR** Undeclared identifier
+79:12 **ERROR** Undeclared identifier
+80:7 **ERROR** Undeclared identifier
+80:12 **ERROR** Undeclared identifier
+81:7 **ERROR** Undeclared identifier
+81:12 **ERROR** Undeclared identifier
+82:7 **ERROR** Undeclared identifier
+82:11 **ERROR** Undeclared identifier
+83:7 **ERROR** Undeclared identifier
+83:11 **ERROR** Undeclared identifier
+84:7 **ERROR** Undeclared identifier
+84:12 **ERROR** Undeclared identifier
+85:7 **ERROR** Undeclared identifier
+85:12 **ERROR** Undeclared identifier
+86:8 **ERROR** Undeclared identifier
+87:7 **ERROR** Undeclared identifier
+88:7 **ERROR** Undeclared identifier

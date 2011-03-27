@@ -1,0 +1,83 @@
+int g;
+double g1;
+
+void f() {}
+int f1() {}
+
+void multParams1(int x, double y, int z) {}
+void multParams2(int x, double y, int z) {}
+void multParams3(int x, double y) {}
+
+/* function with decls of vars in all stmtlists */
+void locals() {
+  int x;
+  double y;
+  if (0) {
+    int y;
+    double x;
+  }
+  if (0) {
+  } else {
+    int y;
+    double x;
+  }
+  while (1) {
+    int y;
+    double x;
+  }
+}
+
+/* function with uses of vars in all stmts */
+int uses() {
+  int x;
+  double d;
+  g1 = g;
+  ++x;
+  --x;
+  x++;
+  x--;
+  scanf("%d", &x);
+  scanf("%f", &d);
+  printf("%d", x);
+  printf("%f", d);
+  if (x) {
+    int y;
+    x = y;
+  }
+  if (x) {
+  } else {
+    int y;
+    x = y;
+  }
+  while (x) {
+    int y;
+    x = y;
+  }
+  return x;
+  f();
+  multParams1(x, g1, 22);
+}
+
+/* function with uses of declared vars in all exprs */
+void declaredInExps() {
+  int x;
+  int y;
+  int z;
+  x = y = z;
+  x = y + z;
+  x = y - z;
+  x = y * z;
+  x = y / z;
+  x = ! z;
+  x = y && z;
+  x = y || z;
+  x = y == z;
+  x = y != z;
+  x = y < z;
+  x = y > z;
+  x = y <= z;
+  x = y >= z;
+  x = -y;
+  x = y++;
+  x = y--;
+}

@@ -1,0 +1,90 @@
+int g;
+double g1;
+
+void f() {
+}
+
+int f1() {
+}
+
+void multParams1(int x, double y, int z) {
+}
+
+void multParams2(int x, double y, int z) {
+}
+
+void multParams3(int x, double y) {
+}
+
+void locals() {
+  int x;
+  double y;
+  if (0) {
+    int y;
+    double x;
+  }
+  if (0) {
+  }
+  else {
+    int y;
+    double x;
+  }
+  while (1) {
+    int y;
+    double x;
+  }
+}
+
+int uses() {
+  int x;
+  double d;
+  g1(double) = g(int);
+  ++x(int);
+  --x(int);
+  x(int)++;
+  x(int)--;
+  scanf("%d", &x(int));
+  scanf("%f", &d(double));
+  printf("%d", x(int));
+  printf("%f", d(double));
+  if (x(int)) {
+    int y;
+    x(int) = y(int);
+  }
+  if (x(int)) {
+  }
+  else {
+    int y;
+    x(int) = y(int);
+  }
+  while (x(int)) {
+    int y;
+    x(int) = y(int);
+  }
+  return x(int);
+  f(->void)();
+  multParams1(int,double,int->void)(x(int), g1(double), 22);
+}
+
+void declaredInExps() {
+  int x;
+  int y;
+  int z;
+  x(int) = (y(int) = z(int));
+  x(int) = (y(int)+z(int));
+  x(int) = (y(int)-z(int));
+  x(int) = (y(int)*z(int));
+  x(int) = (y(int)/z(int));
+  x(int) = (!z(int));
+  x(int) = (y(int)&&z(int));
+  x(int) = (y(int)||z(int));
+  x(int) = (y(int)==z(int));
+  x(int) = (y(int)!=z(int));
+  x(int) = (y(int)<z(int));
+  x(int) = (y(int)>z(int));
+  x(int) = (y(int)<=z(int));
+  x(int) = (y(int)>=z(int));
+  x(int) = (-y(int));
+  x(int) = (y(int)++);
+  x(int) = (y(int)--);
+}

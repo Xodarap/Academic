@@ -1,0 +1,177 @@
+int x;
+int y;
+int ab23;
+int bb_c;
+
+void f() {
+  return;
+}
+
+void g() {
+  int x;
+}
+
+int h() {
+  int a;
+  int b;
+  if ((a(int)==b(int))) {
+    return 1;
+  }
+  if ((a(int)==b(int))) {
+    return a(int);
+  }
+  else {
+    return h(->int)();
+  }
+}
+
+double i() {
+  double a;
+  double b;
+  if ((a(double)==b(double))) {
+    return 22.5;
+  }
+  else {
+    if ((b(double)>a(double))) {
+      return a(double);
+    }
+    else {
+      if ((a(double)!=b(double))) {
+        return (a(double)+b(double));
+      }
+      else {
+        if ((a(double)<b(double))) {
+          return (-a(double));
+        }
+        else {
+          if (((a(double)>=b(double))||(a(double)<=b(double)))) {
+            return ((a(double)*b(double))/a(double));
+          }
+        }
+      }
+    }
+  }
+}
+
+void foo() {
+  int a;
+  int b;
+  int c;
+  int d;
+  ++a(int);
+  --a(int);
+  a(int)++;
+  a(int)--;
+  while (((a(int)+b(int))<(c(int)-d(int)))) {
+  }
+  while (1) {
+    a(int) = ((a(int)++)-b(int));
+    a(int) = ((a(int)--)-b(int));
+    a(int) = ((a(int)--)*b(int));
+    a(int) = ((a(int)--)/b(int));
+    a(int) = ((a(int)--)||b(int));
+    a(int) = ((a(int)--)&&b(int));
+    a(int) = ((!(a(int)--))||b(int));
+    a(int) = (b(int)-(a(int)++));
+    a(int) = (b(int)-(a(int)--));
+    a(int) = (b(int)*(a(int)--));
+    a(int) = (b(int)/(a(int)--));
+    a(int) = (b(int)||(a(int)--));
+    a(int) = (b(int)&&(a(int)--));
+    a(int) = (b(int)||(!(a(int)--)));
+    a(int) = (b(int) = (c(int)/d(int)));
+    a(int) = (a(int)+b(int));
+    a(int) = (a(int)-b(int));
+    a(int) = (a(int)*b(int));
+    a(int) = (a(int)/b(int));
+    c(int) = (!c(int));
+    a(int) = (a(int)&&b(int));
+    a(int) = (a(int)||b(int));
+    c(int) = (a(int)==b(int));
+    c(int) = (a(int)!=b(int));
+    c(int) = (a(int)<b(int));
+    c(int) = (a(int)>b(int));
+    c(int) = (a(int)<=b(int));
+    c(int) = (a(int)>=b(int));
+    a(int) = b(int);
+    a(int) = 50;
+    c(int) = 1;
+    a(int) = (-50);
+    a(int) = (!b(int));
+    a(int) = (-(-b(int)));
+    a(int) = ((a(int)+b(int))+c(int));
+    a(int) = ((a(int)-b(int))-c(int));
+    a(int) = (a(int)+(b(int)*c(int)));
+    a(int) = (a(int)-(b(int)*c(int)));
+    a(int) = (a(int)+(c(int)/c(int)));
+    a(int) = ((-a(int))+b(int));
+    a(int) = ((-a(int))*b(int));
+    a(int) = ((!a(int))&&b(int));
+  }
+  if ((a(int)>=b(int))) {
+  }
+  if ((b(int)==(-1))) {
+    x(int) = 5;
+    while (c(int)) {
+      y(int) = (y(int)+1);
+    }
+  }
+  a(int) = 2147483647;
+}
+int a;
+int b25;
+
+void arr() {
+  int A;
+  int B;
+  a(int) = (a(int)+4);
+  printf("str+4");
+  if (((A(int)+4)==(B(int)+4))) {
+  }
+}
+
+void foobar() {
+  double x;
+  double y;
+  scanf("%d", &a(int));
+  scanf("%f", &x(double));
+  printf("\n");
+  printf("%d", (x(double)+y(double)));
+  printf("%f", (x(double)++));
+}
+
+void params(int b, int a, double c, int x) {
+}
+
+int fncall(int a, double b, double c) {
+  foo(->void)();
+  params(int,int,double,int->void)(a(int), a(int), b(double), a(int));
+  printf("%d", a(int));
+  printf("%f", i(->double)());
+  x(int) = fncall(int,double,double->int)(a(int), b(double), c(double), fncall(int,double,double->int)(a(int), b(double), b(double)));
+  x(int) = foo(->void)();
+}
+
+void nestedDeclsAndUses() {
+  if (0) {
+    int x;
+    double y;
+    x(int) = y(double);
+    if (1) {
+      int a;
+      double b;
+      b(double) = ((a(int)*3)||4);
+    }
+    else {
+      int n;
+      double d;
+      while (1) {
+        int k;
+        int m;
+        m(int) = ((n(int)+y(double))-ab23(int));
+      }
+      n(int)++;
+      --n(int);
+    }
+  }
+}
