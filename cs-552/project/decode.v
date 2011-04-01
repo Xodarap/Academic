@@ -12,7 +12,7 @@ module decode(Clk, Rst, Reg1, Reg2, Reg3,
     
    */
 
-
+	wire err;
    input Clk, Rst, RegWrite;
    input [1:0] RegDest;
    input [2:0] Reg1, Reg2, Reg3;
@@ -23,8 +23,8 @@ module decode(Clk, Rst, Reg1, Reg2, Reg3,
 	reg [2:0] writeReg;
    wire [2:0] 	 regToWriteTo;
    
-   rf_hier rf0(.read1data(RegVal1), .read2data(RegVal2), 
-		.read1regsel(Reg1), .read2regsel(Reg2), 
+   rf rf0(.read1data(RegVal1), .read2data(RegVal2), .clk(Clk), .rst(Rst),
+		.read1regsel(Reg1), .read2regsel(Reg2), .err(err),
 		.writeregsel(regToWriteTo), .writedata(WriteData), 
 		.write(RegWrite)
                 );

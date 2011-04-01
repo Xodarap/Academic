@@ -24,7 +24,7 @@ module execute(Clk, Rst, Reg1, Reg2, Imm, AluSrc, AluOp, CondOp, BranchCode, Out
 		.pcPlusTwo(pcPlusTwo));
 
    cond_set cond_set0(.In(aluOut), .Control(CondOp), .Zero(z), .Ofl(ofl), .Cout(Cout), .Sign(resultSign), 
-		      .Out(Output));
+			.Out(Output));
 
    branchlogic branchlogic0(.branchCode(BranchCode[2:0]), 
 			    .A(Reg1),

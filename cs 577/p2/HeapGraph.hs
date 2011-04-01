@@ -11,6 +11,8 @@ import Control.Applicative
 import Control.Monad
 import Test.QuickCheck
 import Prim
+import Data.Set as Set
+import System.Random
 
 data EdgeHeap = EdgeHeap (MinHeap WeightedEdge) deriving (Show)
     
@@ -32,7 +34,7 @@ heapContains :: ((Eq item), HeapItem pol item) => Heap pol item -> item -> Bool
 heapContains heap item =
   let filterFn = (\x -> x == item)
       match = H.filter filterFn heap
-      cnt = size match
+      cnt = H.size match
   in (cnt > 0)    
 
 -- | Displays the heap in sorted order. Useful for debugging
@@ -82,6 +84,28 @@ removeBestTest pred x =
 instance Arbitrary WeightedEdge where     
   arbitrary = liftM (\x -> WeightedEdge x) (arbitrary :: Gen (Int, Int, Int))
   
+{-
+instance Arbitrary WeightedGraph where  
+  arbitrary =
+-}
+
+makeGraph :: WeightedGraph -> Gen WeightedEdge -> WeightedGraph
+makeGraph g gen = 
+
+addEdge :: WeightedGraph -> WeightedEdge -> WeightedGraph  
+addEdge [] x = [x]
+addEdge xs x
+  | any (edgesConnect x) xs = x:xs
+  | otherwise =                               
+    let x' = WeightedEdge (sourceVertex $ head xs, destVertex x, getWeight x)
+    in x':xs
+       
+edgesConnect :: WeightedEdge -> WeightedEdge -> Bool       
+edgesConnect x y =
+  let sx = Set.fromList [sourceVertex x, destVertex x]
+      sy = Set.fromList [sourceVertex y, destVertex y]
+  in Set.intersection sx sy /= Set.empty    
+
 -- | Compares Prim's algorithm on the naive graph to the heap
 --   implementation
 primTest :: WeightedGraph -> Bool
@@ -94,10 +118,11 @@ primTest graph =
       prim1     = prim simpGraph store1
       prim2     = prim heap store2
   in prim1 == prim2    
+
+
 {- =============== Data =============== -}  
 heap1 :: Heap MinPolicy WeightedEdge     
 heap1 = H.fromList [WeightedEdge (1,2,3)] :: MinHeap WeightedEdge
 
 heap2 :: Heap MinPolicy WeightedEdge
 heap2 = H.fromList graph2 :: MinHeap WeightedEdge
-  

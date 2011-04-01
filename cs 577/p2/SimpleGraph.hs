@@ -13,7 +13,8 @@ module SimpleGraph
          VertexContainer,
          wgFromList,
          sourceVertex,
-         destVertex
+         destVertex,
+         getWeight
        ) where
 
 import Data.Graph 
@@ -54,7 +55,7 @@ edgeToArray edge =
 class VertexContainer a where
   contains :: a -> Vertex -> Bool
   insert :: a -> Maybe WeightedEdge -> a
-
+  empty :: a -> Bool
   
 -- | An object which we can calculate the MST for  
 --   Basically, all we need to be able to do is find the
@@ -93,7 +94,8 @@ instance VertexContainer SimpleGraph where
    | otherwise = contains (SimpleGraph xs) elem  
   insert graph Nothing = graph
   insert (SimpleGraph graph) (Just edge) = graphFromList $ edge:graph
-
+  empty (SimpleGraph []) = True
+  empty _ = False
 
 instance Show SimpleGraph where
   show (SimpleGraph a) = show a

@@ -193,17 +193,46 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
 		isJumpRegister = 1'b0;
       end
 	  
-	  //SEQ, SLT, SLE, SCO
-	  5'b111xx:begin
+	  //SEQ, SLE
+	  5'b111x0:begin
 		RegDst = 2'b10;
 		RegWrite = 1'b1;
         	ALUSrc = 1'b0;
         	MemWrite = 1'b0;
         	MemRead = 1'b0;
         	MemToReg = 1'b0;
-        	//ImmSrc = 1'bx;
-		SetCode = opcode[2:0];	//for set condition logic
+		SetCode = instruction[13:11];	//for set condition logic
         	ALUOpcode = 4'b0101;	//subtraction
+		BranchCode = 3'b000;
+		isJump = 1'b0;
+		isJumpRegister = 1'b0;
+	  end
+
+	//SLT
+	  5'b11101:begin
+		RegDst = 2'b10;
+		RegWrite = 1'b1;
+        	ALUSrc = 1'b0;
+        	MemWrite = 1'b0;
+        	MemRead = 1'b0;
+        	MemToReg = 1'b0;
+		SetCode = instruction[13:11];	//for set condition logic
+        	ALUOpcode = 4'b0101;	//subtract
+		BranchCode = 3'b000;
+		isJump = 1'b0;
+		isJumpRegister = 1'b0;
+	  end
+
+	//SCO
+	  5'b11111:begin
+		RegDst = 2'b10;
+		RegWrite = 1'b1;
+        	ALUSrc = 1'b0;
+        	MemWrite = 1'b0;
+        	MemRead = 1'b0;
+        	MemToReg = 1'b0;
+		SetCode = instruction[13:11];	//for set condition logic
+        	ALUOpcode = 4'b0100;	//add
 		BranchCode = 3'b000;
 		isJump = 1'b0;
 		isJumpRegister = 1'b0;
