@@ -65,10 +65,12 @@
 # Loading __work.dff
 # ** Warning: (vsim-3009) [TSCALE] - Module 'dff' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_bench/DUT/p0/fetch0/r16/r0/data
+# Loading __work.fetch2decode
+# ** Warning: (vsim-3009) [TSCALE] - Module 'fetch2decode' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_bench/DUT/p0/f2b
 # Loading __work.decode
 # ** Warning: (vsim-3009) [TSCALE] - Module 'decode' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_bench/DUT/p0/decode0
-# Loading __work.rf_hier
 # Loading __work.rf
 # Loading __work.execute
 # ** Warning: (vsim-3009) [TSCALE] - Module 'execute' does not have a `timescale directive in effect, but previous modules do.
@@ -111,8 +113,11 @@
 # ** Warning: (vsim-3009) [TSCALE] - Module 'memory' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_bench/DUT/p0/memory0
 # Loading __work.writeback
+# ** Warning: (vsim-3017) proc.v(123): [TFMPC] - Too few port connections. Expected 16, found 15.
+#         Region: /proc_hier_bench/DUT/p0/f2b
+# ** Warning: (vsim-3722) proc.v(123): [TFMPC] - Missing connection for port 'Instruction'.
 run -all
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.trace for output
 # ** Note: $finish    : proc_hier_bench.v(96)
-#    Time: 21530 us  Iteration: 0  Instance: /proc_hier_bench
+#    Time: 40 us  Iteration: 0  Instance: /proc_hier_bench

@@ -6,7 +6,7 @@ module memory(Clk, Rst, Addr, Data, MemWrite, MemRead, ReadData);
    wire [15:0] 	 readTemp;
    
    
-   memory2csyn memory0(.data_out(readTemp), 
+   memory2c memory0(.data_out(readTemp), 
 		    .data_in(Data), 
 		    .addr(Addr), 
 		    .enable(1'b1), 

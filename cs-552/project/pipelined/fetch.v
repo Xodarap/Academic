@@ -22,7 +22,7 @@ module fetch(Clk, Rst, PcSrc, Immediate, Instruction, pcPlusTwo, regRS, isJumpRe
 
 	pc_plus2_plusimm calcbranchaddr(.pc(pc), .imm(Immediate), .branchAddr(BranchNewPc));
 
-   memory2csyn instruction_memory(.data_out(Instruction), 
+   memory2c instruction_memory(.data_out(Instruction), 
 			       .data_in(foo),          // We never write instructions
 			       .addr(pc), 
 			       .enable(1'b1), 

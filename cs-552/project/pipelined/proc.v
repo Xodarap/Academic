@@ -122,9 +122,9 @@ module proc (/*AUTOARG*/
 		    .WriteDataOut(WriteDataNext)
 		    );
 
-   decode decoe0(.Clk(clk), .Rst(rst),
+   decode decode0(.Clk(clk), .Rst(rst),
 		 .Reg1(ctlReg1Next), .Reg2(ctlReg2Next), .Reg3(ctlReg3Next),
-		 .RegWrite(ctlRegWriteNext), .RegDst(ctlRegDestNext),
+		 .RegWrite(ctlRegWriteNext), .RegDest(ctlRegDestNext),
 		 .WriteData(WriteDataNext),
 		 .RegVal1(readData1),
 		 .RegVal2(readData2));
