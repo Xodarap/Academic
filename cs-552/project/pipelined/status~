@@ -1,0 +1,23 @@
+x    * ADD Rd, Rs, Rt
+x    * SUB Rd, Rs, Rt
+x    * ANDN Rd, Rs, Rt
+x    * ROL Rd, Rs, Rt
+x    * SLL Rd, Rs, Rt
+    * ROR Rd, Rs, Rt
+x    * SRL Rd, Rs, Rt
+    * SEQ Rd, Rs, Rt
+    * SLT Rd, Rs, Rt
+    * SLE Rd, Rs, Rt
+    * SCO Rd, Rs, Rt
+    * BTR Rd, Rs 
+x    * ADDI Rd, Rs, immediate
+x    * SUBI Rd, Rs, immediate
+x    * XORI Rd, Rs, immediate
+x    * ANDNI Rd, Rs, immediate
+x    * ROLI Rd, Rs, immediate
+x    * SLLI Rd, Rs, immediate
+    * RORI Rd, Rs, immediate
+x    * SRLI Rd, Rs, immediate
+    * ST Rd, Rs, immediate
+    * LD Rd, Rs, immediate
+    * STU Rd, Rs, immediate 

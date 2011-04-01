@@ -8,9 +8,13 @@ import Debug.Trace
 import SimpleGraph as SG
 
 
-prim :: (TreeSpannable a, VertexContainer b) => a -> b -> b
+prim :: (TreeSpannable a, VertexContainer b, TreeSpannable b) => a -> b -> b
 prim graph soFar
-  | (numVertices soFar) == (numVertices graph) = soFar       -- If all the vertices are in the tree, we're done
+  | (numVertices graph) == 0 = soFar       -- If all the vertices are in the tree, we're done
+  | (numVertices soFar) == 0 =             -- If it's the first time through, we arbitrarily choose one             
+    let (edge, graph') = bestEdgeWhere (\x -> True) graph
+        tree = SG.insert soFar edge
+    in prim graph' tree
   | otherwise =                                              -- Otherwise, recurse
     let (edge, graph') = bestEdgeWhere (edgeOk soFar) graph
         tree = SG.insert soFar edge
@@ -20,10 +24,10 @@ prim graph soFar
 -- | An edge is OK if one and only one of the vertices
 --   are in the subset
 edgeOk :: (VertexContainer a) => a -> WeightedEdge -> Bool 
-edgeOk subset edge = 
-  let firstInSub = contains subset $ sourceVertex edge
-      secInSub = contains subset $ destVertex edge
-  in firstInSub `xor` secInSub    
+edgeOk subset edge =
+    let firstInSub = contains subset $ sourceVertex edge
+        secInSub = contains subset $ destVertex edge
+    in firstInSub `xor` secInSub    
 
 {- ==== Utilities ==== -}
 xor a b
