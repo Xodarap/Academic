@@ -1,0 +1,12 @@
+module fetch2decode(Clk, Rst, RegWrite,
+		    RegDest, Reg1, Reg2, Reg3,
+		    WriteData
+		    );
+
+   input Clk, Rst, RegWrite;
+   input [1:0] RegDest;
+   input [2:0] Reg1, Reg2, Reg3;
+   input [15:0] WriteData;
+
+
+endmodule // fetch2decode
