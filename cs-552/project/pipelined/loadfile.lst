@@ -1,8 +1,8 @@
-          // Original test: ./atessmer/hw4/problem6/slt_1.asm
+          // Original test: ./atessmer/hw4/problem6/slt_0.asm
           // Author: atessmer
           // Test source code follows
           
           
 0000 c1ff lbi r1, 255
 0002 c200 lbi r2, 0
-0004 ea2c slt r3, r2, r1
+0004 e94c slt r3, r1, r2

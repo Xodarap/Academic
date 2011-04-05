@@ -84,6 +84,12 @@ module proc (/*AUTOARG*/
    wire validCacheRead;      // Signal indicating a valid instruction read request to cache
    wire cacheHit;            // Signal indicating a valid instruction cache hit
    wire haltxout;            // Processor Halted
+
+   /* Pipelining stuff */
+   wire ctlRegWriteNext, Stall;
+   wire [1:0] ctlRegDestNext;
+   wire [2:0] ctlReg1Next, ctlReg2Next, ctlReg3Next;
+   wire [15:0] WriteDataNext;
    
    control control0(.instruction(instruction), 
 	   .RegDst(ctlRegDest), 
@@ -105,7 +111,25 @@ module proc (/*AUTOARG*/
    fetch fetch0(.Clk(clk), .Rst(rst), .pcPlusTwo(pcPlusTwo),
 		.Instruction(instruction), .Immediate(immExtend),
 		.PcSrc(pcSrc|isJump|isJumpRegister), .regRS(readData1), .isJumpRegister(isJumpRegister));
+
+   fetch2decode f2b(.Clk(clk), .Rst(rst), .RegWriteIn(ctlRegWrite),
+		    .RegDestIn(ctlRegDest), 
+		    .Reg1In(instruction[10:8]), .Reg2In(instruction[7:5]), .Reg3In(instruction[4:2]),
+		    .WriteDataIn(regWriteData), .Stall(1'b0),
+		    /* Out */
+		    .RegWriteOut(ctlRegWriteNext), .RegDestOut(ctlRegDestNext), 
+		    .Reg1Out(ctlReg1Next), .Reg2Out(ctlReg2Next), .Reg3Out(ctlReg3Next),
+		    .WriteDataOut(WriteDataNext)
+		    );
+
+   decode decode0(.Clk(clk), .Rst(rst),
+		 .Reg1(ctlReg1Next), .Reg2(ctlReg2Next), .Reg3(ctlReg3Next),
+		 .RegWrite(ctlRegWriteNext), .RegDest(ctlRegDestNext),
+		 .WriteData(WriteDataNext),
+		 .RegVal1(readData1),
+		 .RegVal2(readData2));
    
+   /*
    decode decode0(.Clk(clk), .Rst(rst), 
 		  .Reg1(instruction[10:8]), .Reg2(instruction[7:5]), .Reg3(instruction[4:2]), 
 		  .RegWrite(ctlRegWrite),         // If the value from Wb should be written
@@ -113,7 +137,7 @@ module proc (/*AUTOARG*/
 		  .WriteData(regWriteData),    // Data from Wb to write
 		  .RegVal1(readData1),         // Value of Reg1
 		  .RegVal2(readData2));         // Value of Reg2
-
+*/
    execute execute0(.Clk(clk), .Rst(rst), 
 		    .Reg1(readData1),          
 		    .Reg2(readData2), 

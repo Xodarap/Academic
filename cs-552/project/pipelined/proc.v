@@ -91,6 +91,10 @@ module proc (/*AUTOARG*/
    wire [2:0] ctlReg1Next, ctlReg2Next, ctlReg3Next;
    wire [15:0] WriteDataNext;
    
+   fetch fetch0(.Clk(clk), .Rst(rst), .pcPlusTwo(pcPlusTwo),
+		.Instruction(instruction), .Immediate(immExtend),
+		.PcSrc(pcSrc|isJump|isJumpRegister), .regRS(readData1), .isJumpRegister(isJumpRegister));
+   
    control control0(.instruction(instruction), 
 	   .RegDst(ctlRegDest), 
 	   .RegWrite(ctlRegWrite), 
@@ -106,16 +110,10 @@ module proc (/*AUTOARG*/
 	   .isJump(isJump),
 	   .err(err));
 
-	
-
-   fetch fetch0(.Clk(clk), .Rst(rst), .pcPlusTwo(pcPlusTwo),
-		.Instruction(instruction), .Immediate(immExtend),
-		.PcSrc(pcSrc|isJump|isJumpRegister), .regRS(readData1), .isJumpRegister(isJumpRegister));
-
    fetch2decode f2b(.Clk(clk), .Rst(rst), .RegWriteIn(ctlRegWrite),
 		    .RegDestIn(ctlRegDest), 
 		    .Reg1In(instruction[10:8]), .Reg2In(instruction[7:5]), .Reg3In(instruction[4:2]),
-		    .WriteDataIn(regWriteData), .Stall(1'b0),
+		    .WriteDataIn(regWriteData), .Stall(1'b0), .Instruction(instruction),
 		    /* Out */
 		    .RegWriteOut(ctlRegWriteNext), .RegDestOut(ctlRegDestNext), 
 		    .Reg1Out(ctlReg1Next), .Reg2Out(ctlReg2Next), .Reg3Out(ctlReg3Next),

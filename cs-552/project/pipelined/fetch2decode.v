@@ -22,9 +22,9 @@ module fetch2decode(Clk, Rst, RegWriteIn,
    
    reg16 controlSignals(
 			/* We only use the 12 lowest bits */
-			.readdata({4'b0, RegWriteIn, RegDestIn, Reg1In, Reg2In, Reg3In}), 
+			.writedata({4'b0, RegWriteIn, RegDestIn, Reg1In, Reg2In, Reg3In}), 
 			.clk(Clk), .rst(Rst), 
-			.writedata({foo, RegWriteOut, RegDestOut, Reg1Out, Reg2Out, Reg3Out}), 
+			.readdata({foo, RegWriteOut, RegDestOut, Reg1Out, Reg2Out, Reg3Out}), 
 			.write(1'b1));
 //~Stall));
    reg16 writeData(.readdata(WriteDataOut), .clk(Clk), .rst(Rst), .writedata(WriteDataIn), .write(1'b1));

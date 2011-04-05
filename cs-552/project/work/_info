@@ -1,0 +1,113 @@
+m255
+cModel Technology
+d/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/hw3/hw3_6
+vadd2
+I5;6Z84lD>Eb2e[1j;aIXB3
+V:X?Dea7>CKhX9ej5A<E=L2
+d/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project
+w1300888972
+F/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/add2.v
+L0 2
+OE;L;5.8b;17
+r1
+31
+o-work work
+vadder1
+I:l8?5c65`?1VYleKP8kAB3
+VMGH^^Wo]kHP26F7?5m:M80
+d/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project
+w1300888972
+F/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/adder1.v
+L0 1
+OE;L;5.8b;17
+r1
+31
+o-work work
+vadder16
+I9c6onSHl]08hijlPnJk:`3
+VB06n5Dk@3OJ:MQZXjMG;63
+d/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project
+w1300888972
+F/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/adder16.v
+L0 1
+OE;L;5.8b;17
+r1
+31
+o-work work
+vadder4
+IXzLSB=:^DH91QZSPS24KN1
+VIJG_[=FN=JV9RINYnX;b[2
+d/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project
+w1300888972
+F/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/adder4.v
+L0 1
+OE;L;5.8b;17
+r1
+31
+o-work work
+vcla16b
+IWF9mXlCVQG5Wl9l?BD<fP1
+VbWWUbEF1AG]NJhWemXli71
+d/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project
+w1300894384
+F/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/cla16b.v
+L0 1
+OE;L;5.8b;17
+r1
+31
+o-work work
+vcla4b
+II@zM=;zYeSSWW32aVNaR63
+Vg68lGnZIaBhB?`bD81XDl1
+d/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project
+w1300894384
+F/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/cla4b.v
+L0 4
+OE;L;5.8b;17
+r1
+31
+o-work work
+vfulladder1
+IK5`TUCR=8[=4Znjk2`azf1
+V=PicOk=Z`nmm0M?>;BLFC0
+d/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project
+w1300894384
+F/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/fulladder1.v
+L0 4
+OE;L;5.8b;17
+r1
+31
+o-work work
+vnand2
+IoGQe8KlJG6lL=;F2U@=3<0
+VFj8;Tc7Ik2H]aWAK<K`3j0
+d/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project
+w1300894384
+F/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/nand2.v
+L0 1
+OE;L;5.8b;17
+r1
+31
+o-work work
+vpc_plus2_plusimm
+IlIcCEgWdBk=BDV;mMR]DM1
+VR@]AgUdI5TXZP6]go7emW0
+d/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project
+w1300930177
+F/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/pc_plus2_plusimm.v
+L0 1
+OE;L;5.8b;17
+r1
+31
+o-work work
+vxor2
+I>Zec<UW3g=`VI2m:BI;>z0
+VL6hE8jIicKH=5U7FBelES1
+d/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project
+w1300894384
+F/afs/cs.wisc.edu/u/p/e/peeters/private/ece552/processor/Xodarap-Academic-7835756/cs552/project/xor2.v
+L0 1
+OE;L;5.8b;17
+r1
+31
+o-work work

@@ -1,0 +1,4 @@
+lbi r1, -1
+lbi r2, 1
+slt r3, r1,r2
+halt	

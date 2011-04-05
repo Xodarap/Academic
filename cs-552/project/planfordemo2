@@ -1,0 +1,3 @@
+1. Add flip-flops between stages
+2. Detect & stall for data hazards
+3. Detect & stall/kill for control hazards

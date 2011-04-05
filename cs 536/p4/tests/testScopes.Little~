@@ -1,0 +1,36 @@
+/* test that when scope is exited, outer names remain
+   test that recursive fn calls are OK
+ */
+void testNested() {
+  if (0) {
+    int xxx;
+    testNested();
+    if (1) {
+      int yyy;
+      zzz = www; /* bad uses of zzz and www */
+    } else {
+      int zzz;
+      while (1) {
+         int www;
+	 xxx = yyy + zzz * www; /* no error here */
+      }
+      printf("%d", www); /* bad use of www */
+      yyy = 0; /* bad use of yyy */
+    }
+    scanf("%d", &zzz); /* bad use of zzz */
+  }
+  xxx = yyy + zzz + www; /* bad uses of xxx yyy zzz www */
+}
+
+int fn (int n) {
+    if (n>0) {
+      fn(n-1);
+    }
+}
+
+/* test that formals are in inner scope */
+int g;
+void tstFormals(int g, int tstFormals) {
+  int g;  /* multiply declared */
+}
+
