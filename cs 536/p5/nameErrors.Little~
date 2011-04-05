@@ -1,0 +1,85 @@
+void declaredTwice(int x, double y){}
+void declaredTwice(double x, int y){}
+
+void badDecl(void x){
+     void y;
+     if(x){
+	while(y) {
+		 void z;
+	}
+     } else {
+       void z;
+     }
+}
+
+
+void doubleDeclarations(int x, double y){
+     double x;
+     int y;
+     int x;
+     double y;
+
+     if(x){
+	while(y) {
+		 int x;
+	}
+     } else {
+       double y;
+     }
+}
+
+void undeclared(int x, double y){
+     return z++;
+     return ++z;
+     return z--;
+     return --z;
+
+     return !z;
+     return z && x;
+     return x && z;
+     return z || x;
+     return x || z;
+     
+     return x == z;
+     return x != z;
+     return x <  z;
+     return x >  z;
+     return x <= z;
+     return x >= z;
+
+     x = z;
+     z = 5;
+     x = -z;
+     z = x;
+
+     return x + z;
+     return z + x;
+     return x - z;
+     return z - x;
+     return x * z;
+     return z * x;
+     return x / z;
+     return z / x;
+
+     printf("%d", z);
+     printf("%f", z);
+     scanf ("%d", z);
+     scanf ("%f", z);
+
+     g();
+     undeclared(z);
+}
+
+void nestedUndeclared(int x){
+     return (x - z)++;
+     return ((x + z) * (x - z)) && (z--);
+
+     if (x || z){
+     	while (z++){
+	      z--;
+	      g(z);
+	}
+     } else {
+       z = 5;
+     }
+}

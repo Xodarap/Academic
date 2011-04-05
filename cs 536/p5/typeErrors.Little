@@ -1,0 +1,70 @@
+void conditionalTests(){
+     double x;
+     int y;
+
+     if(2.0)  {}
+     if(x++)  {}  // cascade a few errors for good luck
+     if(x--)  {}
+     if(++x)  {}
+     if(--x)  {}
+     if(x+y)  {}
+     if(x*y)  {}
+     if(x-y)  {}
+     if(x/y)  {}
+     if(x=y)  {}
+     if(x==y) {}
+     if(x&&y) {}
+     if(x||y) {}
+     if(x!=y) {}
+     if(!x)   {}
+     if(-x)   {}
+     if(x>y  ){}
+     if(x>=y ){}
+     if(x<y  ){}
+     if(x<=y ){}
+     if(1)    {}
+
+     if(2.0)  {} else {} 
+     if(x++)  {} else {}
+     if(x--)  {} else {}
+     if(++x)  {} else {}
+     if(--x)  {} else {}
+     if(x+y)  {} else {}
+     if(x*y)  {} else {}
+     if(x-y)  {} else {}
+     if(x/y)  {} else {}
+     if(x=y)  {} else {}
+     if(x==y) {} else {}
+     if(x&&y) {} else {}
+     if(x||y) {} else {}
+     if(x!=y) {} else {}
+     if(!x)   {} else {}
+     if(-x)   {} else {}  
+     if(x>y  ){} else {}
+     if(x>=y ){} else {}
+     if(x<y  ){} else {}
+     if(x<=y ){} else {}
+     if(1)    {} else {}
+
+     while(2.0)  {}
+     while(x++)  {}
+     while(x--)  {}
+     while(++x)  {}
+     while(--x)  {}
+     while(x+y)  {}
+     while(x*y)  {}
+     while(x-y)  {}
+     while(x/y)  {}
+     while(x=y)  {}
+     while(x==y) {}
+     while(x&&y) {}
+     while(x||y) {}
+     while(x!=y) {}
+     while(!x)   {}
+     while(-x)   {}
+     while(x>y  ){}
+     while(x>=y ){}
+     while(x<y  ){}
+     while(x<=y ){}
+     while(1)    {}
+}

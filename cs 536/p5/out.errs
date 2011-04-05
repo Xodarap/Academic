@@ -1,0 +1,12 @@
+Little program parsed correctly.
+10:7 **ERROR** Undeclared identifier
+10:13 **ERROR** Undeclared identifier
+15:9 **ERROR** Undeclared identifier
+17:20 **ERROR** Undeclared identifier
+18:7 **ERROR** Undeclared identifier
+20:18 **ERROR** Undeclared identifier
+22:3 **ERROR** Undeclared identifier
+22:9 **ERROR** Undeclared identifier
+22:15 **ERROR** Undeclared identifier
+22:21 **ERROR** Undeclared identifier
+34:7 **ERROR** Multiply declared identifier

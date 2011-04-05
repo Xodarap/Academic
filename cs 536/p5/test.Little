@@ -1,0 +1,254 @@
+void conditionalTests(){
+     int x;
+     int y;
+     
+     if(x++)  {}
+     if(x--)  {}
+     if(++x)  {}
+     if(--x)  {}
+     if(x+y)  {}
+     if(x*y)  {}
+     if(x-y)  {}
+     if(x/y)  {}
+     if(x=y)  {}
+     if(x==y) {}
+     if(x&&y) {}
+     if(x||y) {}
+     if(x!=y) {}
+     if(!x)   {}
+     if(-x)   {}
+     if(x>y  ){}
+     if(x>=y ){}
+     if(x<y  ){}
+     if(x<=y ){}
+     if(1)    {}
+
+     if(x++)  {} else {}
+     if(x--)  {} else {}
+     if(++x)  {} else {}
+     if(--x)  {} else {}
+     if(x+y)  {} else {}
+     if(x*y)  {} else {}
+     if(x-y)  {} else {}
+     if(x/y)  {} else {}
+     if(x=y)  {} else {}
+     if(x==y) {} else {}
+     if(x&&y) {} else {}
+     if(x||y) {} else {}
+     if(x!=y) {} else {}
+     if(!x)   {} else {}
+     if(-x)   {} else {}  
+     if(x>y  ){} else {}
+     if(x>=y ){} else {}
+     if(x<y  ){} else {}
+     if(x<=y ){} else {}
+     if(1)    {} else {}
+
+     while(x++)  {}
+     while(x--)  {}
+     while(++x)  {}
+     while(--x)  {}
+     while(x+y)  {}
+     while(x*y)  {}
+     while(x-y)  {}
+     while(x/y)  {}
+     while(x=y)  {}
+     while(x==y) {}
+     while(x&&y) {}
+     while(x||y) {}
+     while(x!=y) {}
+     while(!x)   {}
+     while(-x)   {}
+     while(x>y  ){}
+     while(x>=y ){}
+     while(x<y  ){}
+     while(x<=y ){}
+     while(1)    {}
+}
+
+void assignTests(int x, double y){
+     // equality/relational are always ints
+     x = x==x;
+     x = x&&x;
+     x = x||x;
+     x = x!=x;
+     x = !x; 
+     x = -x; 
+     x =x>x  ;
+     x =x>=x ;
+     x =x<x  ;
+     x =x<=x ;
+     x = x==y; // double on right
+     x = x!=y;
+     x =x>y  ;
+     x =x>=y ;
+     x =x<y  ;
+     x =x<=y ;
+     x = y==x; // double on left
+     x = y!=x;
+     x =y>x  ;
+     x =y>=x ;
+     x =y<x  ;
+     x =y<=x ;
+     y = y==y; // double on both
+     y = y!=y;
+     y =y>y  ;
+     y =y>=y ;
+     y =y<y  ;
+     y =y<=y ;
+
+     // Ints can be cast to double
+     y = x++;
+     y = x--;
+     y = ++x;
+     y = --x;
+     y = x+x;
+     y = x*x;
+     y = x-x;
+     y = x/x;
+     y = x=x;
+     y = x==x;
+     y = x&&x;
+     y = x||x;
+     y = x!=x;
+     y = !x; 
+     y = -x; 
+     y =x>x  ;
+     y =x>=x ;
+     y =x<x  ;
+     y =x<=x ;
+
+     // unary double or double on right side is a double
+     y = x+y;
+     y = x*y;
+     y = x-y;
+     y = x/y;
+     y = x=y;
+     y = x==y;
+     y = x!=y;
+     y = -y; 
+     y =x>y  ;
+     y =x>=y ;
+     y =x<y  ;
+     y =x<=y ;
+
+     // double on left side is a double
+     y = y+x;
+     y = y*x;
+     y = y-x;
+     y = y/x;
+     y = y=x;
+     y = y==x;
+     y = y!=x;
+     y =y>x  ;
+     y =y>=x ;
+     y =y<x  ;
+     y =y<=x ;
+
+     // double on both sides is a double
+     y = y+y;
+     y = y*y;
+     y = y-y;
+     y = y/y;
+     y = y=y;
+     y = y==y;
+     y = y!=y;
+     y =y>y  ;
+     y =y>=y ;
+     y =y<y  ;
+     y =y<=y ;
+
+}
+// Functions
+// Ints
+int f1(int x) { return x++;  }
+int f2(int x) { return x--;  }
+int f3(int x) { return ++x;  }
+int f4(int x) { return --x;  }
+int f5(int x) { return x+x;  }
+int f6(int x) { return x*x;  }
+int f7(int x) { return x-x;  }
+int f8(int x) { return x/x;  }
+int f9(int x) { return x=x;  }
+int f0(int x) { return x==x; }
+int f11(int x) { return x&&x; }
+int f12(int x) { return x||x; }
+int f13(int x) { return x!=x; }
+int f14(int x) { return !x;   }
+int f15(int x) { return -x;   }
+int f16(int x) { return x;  }
+
+// Ints can be cast to double
+double e1(int x) { return x++;  }
+double e2(int x) { return x--;  }
+double e3(int x) { return ++x;  }
+double e4(int x) { return --x;  }
+double e5(int x) { return x+x;  }
+double e6(int x) { return x*x;  }
+double e7(int x) { return x-x;  }
+double e8(int x) { return x/x;  }
+double e9(int x) { return x=x;  }
+double e0(int x) { return x==x; }
+double e11(int x) { return x&&x; }
+double e12(int x) { return x||x; }
+double e13(int x) { return x!=x; }
+double e14(int x) { return !x;   }
+double e15(int x) { return -x;   }
+double e16(int x) { return x;  }
+
+// unary double or double on right side is a double
+double g5(int x, double y) { return x+y;	 }
+double g6(int x, double y) { return x*y;	 }
+double g7(int x, double y) { return x-y;	 }
+double g8(int x, double y) { return x/y;	 }
+double g9(int x, double y) { return x=y;	 }
+double g0(int x, double y) { return x==y; }
+double h3(int x, double y) { return x!=y; }
+double h5(int x, double y) { return -y;   }
+
+// double on left side is a double
+double h6(int x, double y) { return y+x;   }
+double h7(int x, double y) { return y*x;	  }
+double h8(int x, double y) { return y-x;	  }
+double h9(int x, double y) { return y/x;	  }
+double h0(int x, double y) { return y=x;	  }
+double i1(int x, double y) { return y==x;  }
+double i4(int x, double y) { return y!=x;  }
+
+// double on both sides is a double
+double i5(int x, double y) { return y+y;	  }
+double i6(int x, double y) { return y*y;	  }
+double i7(int x, double y) { return y-y;	  }
+double i8(int x, double y) { return y/y;	  }
+double i9(int x, double y) { return y=y;	  }
+double i0(int x, double y) { return y==y;  }
+double j1(int x, double y) { return y!=y;  }
+
+// Make sure the type checking filters down through lower blocks
+void j2(int x, double y) { return; }
+void j3() { if(1) { return; } }
+void j4() { if(1) { returrn; } else { return; }}
+void j5() { while(1) { return; }}
+int  j6(int x) { if(1) { return x; }}
+int  j7(int x) { if(1) { return x; } else { return x; }}
+int  j8(int x) { while(1) { return x; }}
+int  j9(int x) { return x; }
+double  k6(double x) { if(1) { return x; }}
+double  k7(double x) { if(1) { return x; } else { return x; }}
+double  k8(double x) { while(1) { return x; }}
+double  k9(double x) { return x; }
+double  k6(double x) { if(1) { return x; }}
+double  k7(double x) { if(1) { return x; } else { return x; }}
+double  k8(double x) { while(1) { return x; }}
+double  k9(double x) { return x; }
+
+void iotests(){
+     if(1) {
+     	   int x;
+	   double y;
+	   printf("%d", x);
+	   scanf ("%d", x);
+	   printf("%f", y);
+	   scanf ("%f", y);
+     }
+}
