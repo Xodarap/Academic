@@ -1,0 +1,4 @@
+module control_ff(input control_in,
+		  output control_out);
+
+endmodule // control_ff

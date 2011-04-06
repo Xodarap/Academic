@@ -90,28 +90,30 @@ module proc (/*AUTOARG*/
    wire [1:0] ctlRegDestNext;
    wire [2:0] ctlReg1Next, ctlReg2Next, ctlReg3Next;
    wire [15:0] WriteDataNext;
+   wire [35:0] controlSignals;
+   
    
    fetch fetch0(.Clk(clk), .Rst(rst), .pcPlusTwo(pcPlusTwo),
 		.Instruction(instruction), .Immediate(immExtend),
 		.PcSrc(pcSrc|isJump|isJumpRegister), .regRS(readData1), .isJumpRegister(isJumpRegister));
    
    control control0(.instruction(instruction), 
-	   .RegDst(ctlRegDest), 
-	   .RegWrite(ctlRegWrite), 
-	   .ALUSrc(ctlAluSrc), 
-	   .MemRead(ctlMemRead), 
-	   .MemWrite(ctlMemWrite),
-	   .MemToReg(ctlMemToReg), 
-	   .ALUOpcode(ctlAluOp), 
-	   .Immediate(immExtend), 
-	   .SetCode(ctlCondOp),
-           .BranchCode(ctlBranchCode),
-	   .isJumpRegister(isJumpRegister),
-	   .isJump(isJump),
-	   .err(err));
+	   .RegDst(controlSignals[1:0]), 
+	   .RegWrite(controlSignals[2]), 
+	   .ALUSrc(controlSignals[3]), 
+	   .MemRead(controlSignals[4]), 
+	   .MemWrite(controlSignals[5]),
+	   .MemToReg(controlSignals[6]), 
+	   .ALUOpcode(controlSignals[10:7]), 
+	   .Immediate(controlSignals[26:11]), 
+	   .SetCode(controlSignals[29:27]),
+           .BranchCode(controlSignals[32:30]),
+	   .isJumpRegister(controlSignals[33]),
+	   .isJump(controlSignals[34]),
+	   .err(controlSignals[35]));
 
-   fetch2decode f2b(.Clk(clk), .Rst(rst), .RegWriteIn(ctlRegWrite),
-		    .RegDestIn(ctlRegDest), 
+   fetch2decode f2b(.Clk(clk), .Rst(rst), .RegWriteIn(controlSignals[2]),
+		    .RegDestIn(controlSignals[1:0]), 
 		    .Reg1In(instruction[10:8]), .Reg2In(instruction[7:5]), .Reg3In(instruction[4:2]),
 		    .WriteDataIn(regWriteData), .Stall(1'b0), .Instruction(instruction),
 		    /* Out */
@@ -120,6 +122,23 @@ module proc (/*AUTOARG*/
 		    .WriteDataOut(WriteDataNext)
 		    );
 
+   control_ff control_ff0(.control_in(controlSignals), .clk(clk), .rst(rst),
+			  .control_out({ctlRegDest, 
+			   ctlRegWrite, 
+			   ctlAluSrc, 
+			   ctlMemRead, 
+			   ctlMemWrite,
+			   ctlMemToReg, 
+			   ctlAluOp, 
+			   immExtend, 
+			   ctlCondOp,
+			   ctlBranchCode,
+			   isJumpRegister,
+			   isJump,
+			   err}));
+   
+
+   
    decode decode0(.Clk(clk), .Rst(rst),
 		 .Reg1(ctlReg1Next), .Reg2(ctlReg2Next), .Reg3(ctlReg3Next),
 		 .RegWrite(ctlRegWriteNext), .RegDest(ctlRegDestNext),
