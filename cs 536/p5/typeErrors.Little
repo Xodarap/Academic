@@ -178,3 +178,26 @@ void iotests(){
      }
 }
 
+void intfn(int x) {}
+void ii(int x, int y) {}
+void dfn(double x) {}
+void ddfn(double x, double y) {}
+
+void callTests() {
+     int y;
+     double x;
+
+     intfn(x);
+     intfn(y + x);
+     intfn(y && x);
+     ii(y,x);
+     ii(x,y);
+     ii(y,y);
+     ii(y, y && x);
+
+     dfn(x);
+     dfn(x,x,x, x && y);
+     ddfn(x,x);
+     ddfn(x && y);
+     dfn();
+}

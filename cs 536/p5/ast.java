@@ -376,6 +376,10 @@ class ExpListNode extends ASTnode {
 	}
     }
 
+    public List<ExpNode> expressions() {
+	return myExps;
+    }
+
     // list of kids (ExpNodes)
     private List<ExpNode> myExps;
 }
@@ -1419,8 +1423,31 @@ class CallExpNode extends ExpNode {
     public void checkTypes(String returnType){
 	if(!(myId.sym() instanceof FnSym)) {
 	    Errors.fatal(myId.linenum(), myId.charnum(), "Attempt to call a non-function");
+	    return;
 	}
 	myExpList.checkTypes(returnType);
+
+	Iterator iter = myExpList.expressions().iterator();
+	FnSym fSym = (FnSym) myId.sym();
+	for(Sym params : fSym.paramTypes()){
+	    if(!iter.hasNext()) {
+		Errors.fatal(myId.linenum(), myId.charnum(), "Function call with wrong number of args");
+		return;
+	    }
+	    iter.next();
+	}
+	if(iter.hasNext()){
+	    Errors.fatal(myId.linenum(), myId.charnum(), "Function call with wrong number of args");
+	    return;
+	}
+	iter = myExpList.expressions().iterator();
+	for(Sym params : fSym.paramTypes()){
+	    ExpNode param = (ExpNode) iter.next();
+	    if(!param.type().equals(params.type())){
+		Errors.fatal(param.linenum(), param.charnum(), "Type of actual does not match type of formal");
+	    }
+	}
+
     }
 
     public String type() {

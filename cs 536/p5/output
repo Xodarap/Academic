@@ -428,3 +428,32 @@ void iotests() {
     scanf("%f", &y(int));
   }
 }
+
+void intfn(int x) {
+}
+
+void ii(int x, int y) {
+}
+
+void dfn(double x) {
+}
+
+void ddfn(double x, double y) {
+}
+
+void callTests() {
+  int y;
+  double x;
+  intfn(int->void)(x(double));
+  intfn(int->void)((y(int)+x(double)));
+  intfn(int->void)((y(int)&&x(double)));
+  ii(int,int->void)(y(int), x(double));
+  ii(int,int->void)(x(double), y(int));
+  ii(int,int->void)(y(int), y(int));
+  ii(int,int->void)(y(int), (y(int)&&x(double)));
+  dfn(double->void)(x(double));
+  dfn(double->void)(x(double), x(double), x(double), (x(double)&&y(int)));
+  ddfn(double,double->void)(x(double), x(double));
+  ddfn(double,double->void)((x(double)&&y(int)));
+  dfn(double->void)();
+}
