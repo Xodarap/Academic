@@ -62,7 +62,8 @@ public class P5 {
 	    System.exit(-1);
 	}
 	try {
-		((SymTabNode)root.value).provideSymTab(new SymTab());
+	    //		((SymTabNode)root.value).provideSymTab(new SymTab());
+	    ((ProgramNode)root.value).processNames();
 	} catch (Exception ex) {
 	    System.err.println("Exception occured during parse: " + ex);
 	    ex.printStackTrace();
@@ -70,6 +71,13 @@ public class P5 {
 	}
 	if(!Errors.errors){
 	    ((ASTnode)root.value).unparse(outFile, 0);
+	    try {
+		((ASTnode)root.value).checkTypes(null);
+	    } catch (Exception ex) {
+		System.err.println("Exception occured during typecheck: " + ex);
+		ex.printStackTrace();
+		System.exit(-1);
+	    }
 	}
 	outFile.close();
 

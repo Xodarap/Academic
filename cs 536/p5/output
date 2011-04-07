@@ -1,0 +1,430 @@
+
+void fn() {
+}
+
+void conditionalTests() {
+  double x;
+  int y;
+  if (2.0) {
+  }
+  if ((x(double)++)) {
+  }
+  if ((x(double)--)) {
+  }
+  if ((x(double)+y(int))) {
+  }
+  if ((x(double)*y(int))) {
+  }
+  if ((x(double)-y(int))) {
+  }
+  if ((x(double)/y(int))) {
+  }
+  if ((x(double) = y(int))) {
+  }
+  if ((x(double)&&y(int))) {
+  }
+  if ((x(double)||y(int))) {
+  }
+  if ((!x(double))) {
+  }
+  if ((-x(double))) {
+  }
+  if (fn(->void)) {
+  }
+  if (2.0) {
+  }
+  else {
+  }
+  if ((x(double)++)) {
+  }
+  else {
+  }
+  if ((x(double)--)) {
+  }
+  else {
+  }
+  if ((x(double)+y(int))) {
+  }
+  else {
+  }
+  if ((x(double)*y(int))) {
+  }
+  else {
+  }
+  if ((x(double)-y(int))) {
+  }
+  else {
+  }
+  if ((x(double)/y(int))) {
+  }
+  else {
+  }
+  if ((x(double) = y(int))) {
+  }
+  else {
+  }
+  if ((x(double)&&y(int))) {
+  }
+  else {
+  }
+  if ((x(double)||y(int))) {
+  }
+  else {
+  }
+  if ((!x(double))) {
+  }
+  else {
+  }
+  if ((-x(double))) {
+  }
+  else {
+  }
+  if (1) {
+  }
+  else {
+  }
+  if (fn(->void)) {
+  }
+  else {
+  }
+  while (2.0) {
+  }
+  while ((x(double)++)) {
+  }
+  while ((x(double)--)) {
+  }
+  while ((x(double)+y(int))) {
+  }
+  while ((x(double)*y(int))) {
+  }
+  while ((x(double)-y(int))) {
+  }
+  while ((x(double)/y(int))) {
+  }
+  while ((x(double) = y(int))) {
+  }
+  while ((x(double)&&y(int))) {
+  }
+  while ((x(double)||y(int))) {
+  }
+  while ((!x(double))) {
+  }
+  while ((-x(double))) {
+  }
+  while (fn(->void)) {
+  }
+}
+
+void doubleTests() {
+  double x;
+  int y;
+  x(double) = (x(double)++);
+  x(double) = (x(double)--);
+  x(double) = (x(double)+y(int));
+  x(double) = (x(double)*y(int));
+  x(double) = (x(double)-y(int));
+  x(double) = (x(double)/y(int));
+  x(double) = (x(double) = y(int));
+  x(double) = (x(double)&&y(int));
+  x(double) = (x(double)||y(int));
+  x(double) = (!x(double));
+  x(double) = (-x(double));
+  x(double) = y(int);
+  x(double) = (x(double) = y(int));
+}
+
+void fnTests() {
+  double x;
+  int y;
+  x(double) = (fn(->void)++);
+  x(double) = (fn(->void)--);
+  x(double) = (fn(->void)+y(int));
+  x(double) = (fn(->void)*y(int));
+  x(double) = (fn(->void)-y(int));
+  x(double) = (fn(->void)/y(int));
+  x(double) = (fn(->void) = y(int));
+  x(double) = (fn(->void)&&y(int));
+  x(double) = (fn(->void)||y(int));
+  x(double) = (!fn(->void));
+  x(double) = (-fn(->void));
+  fn(->void) = y(int);
+  fn(->void) = (x(double) = y(int));
+  return x(double);
+  return y(int);
+  return (x(double)++);
+  return (x(double)&&y(int));
+  return (x(double)/y(int));
+  return;
+  x(double)();
+  x(double)((x(double)&&y(int)));
+  x(double)(y(int)(x(double)));
+}
+
+double d(int x) {
+  return x(int);
+  return (x(int)++);
+  return;
+}
+
+int i(double x) {
+  return x(double);
+  return (x(double)++);
+  return;
+}
+
+int f1(double x) {
+  return (x(double)++);
+}
+
+int f2(double x) {
+  return (x(double)--);
+}
+
+int f5(double x) {
+  return (x(double)+x(double));
+}
+
+int f6(double x) {
+  return (x(double)*x(double));
+}
+
+int f7(double x) {
+  return (x(double)-x(double));
+}
+
+int f8(double x) {
+  return (x(double)/x(double));
+}
+
+int f9(double x) {
+  return (x(double) = x(double));
+}
+
+int f0(double x) {
+  return (x(double)==x(double));
+}
+
+int f11(double x) {
+  return (x(double)&&x(double));
+}
+
+int f12(double x) {
+  return (x(double)||x(double));
+}
+
+int f13(double x) {
+  return (x(double)!=x(double));
+}
+
+int f14(double x) {
+  return (!x(double));
+}
+
+int f15(double x) {
+  return (-x(double));
+}
+
+int f16(double x) {
+  return x(double);
+}
+
+int g5(int x, double y) {
+  return (x(int)+y(double));
+}
+
+int g6(int x, double y) {
+  return (x(int)*y(double));
+}
+
+int g7(int x, double y) {
+  return (x(int)-y(double));
+}
+
+int g8(int x, double y) {
+  return (x(int)/y(double));
+}
+
+int g9(int x, double y) {
+  return (x(int) = y(double));
+}
+
+int g0(int x, double y) {
+  return (x(int)==y(double));
+}
+
+int h3(int x, double y) {
+  return (x(int)!=y(double));
+}
+
+int h5(int x, double y) {
+  return (-y(double));
+}
+
+int h6(int x, double y) {
+  return (y(double)+x(int));
+}
+
+int h7(int x, double y) {
+  return (y(double)*x(int));
+}
+
+int h8(int x, double y) {
+  return (y(double)-x(int));
+}
+
+int h9(int x, double y) {
+  return (y(double)/x(int));
+}
+
+int h0(int x, double y) {
+  return (y(double) = x(int));
+}
+
+int i1(int x, double y) {
+  return (y(double)==x(int));
+}
+
+int i4(int x, double y) {
+  return (y(double)!=x(int));
+}
+
+int i5(int x, double y) {
+  return (y(double)+y(double));
+}
+
+int i6(int x, double y) {
+  return (y(double)*y(double));
+}
+
+int i7(int x, double y) {
+  return (y(double)-y(double));
+}
+
+int i8(int x, double y) {
+  return (y(double)/y(double));
+}
+
+int i9(int x, double y) {
+  return (y(double) = y(double));
+}
+
+int i0(int x, double y) {
+  return (y(double)==y(double));
+}
+
+int j1(int x, double y) {
+  return (y(double)!=y(double));
+}
+
+void j2(int x, double y) {
+  return;
+}
+
+void j3() {
+  if (1) {
+    return;
+  }
+}
+
+void j4() {
+  if (1) {
+    return;
+  }
+  else {
+    return;
+  }
+}
+
+void j5() {
+  while (1) {
+    return;
+  }
+}
+
+int j6(int x) {
+  if (1) {
+    return x(int);
+  }
+}
+
+int j7(int x) {
+  if (1) {
+    return x(int);
+  }
+  else {
+    return x(int);
+  }
+}
+
+int j8(int x) {
+  while (1) {
+    return x(int);
+  }
+}
+
+int j9(int x) {
+  return x(int);
+}
+
+int k6(double x) {
+  if (1) {
+    return x(double);
+  }
+}
+
+int k7(double x) {
+  if (1) {
+    return x(double);
+  }
+  else {
+    return x(double);
+  }
+}
+
+int k8(double x) {
+  while (1) {
+    return x(double);
+  }
+}
+
+int k9(double x) {
+  return x(double);
+}
+
+int k0(double x) {
+  if (1) {
+    return x(double);
+  }
+}
+
+int k1(double x) {
+  if (1) {
+    return x(double);
+  }
+  else {
+    return x(double);
+  }
+}
+
+int k2(double x) {
+  while (1) {
+    return x(double);
+  }
+}
+
+int k3(double x) {
+  return x(double);
+}
+
+void iotests() {
+  if (1) {
+    double x;
+    int y;
+    printf("%d", x(double));
+    printf("%d", (x(double)++));
+    scanf("%d", &x(double));
+    printf("%f", y(int));
+    printf("%f", (y(int)&&x(double)));
+    scanf("%f", &y(int));
+  }
+}
