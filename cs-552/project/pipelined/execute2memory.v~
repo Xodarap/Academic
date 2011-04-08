@@ -1,0 +1,7 @@
+module execute2memory(input [15:0] AluOut, input PcSrc, input Clk, input Rst, input Stall,
+		      output[15:0] nxtAluOut, output nxtPcSrc);
+   wire [14:0] 			   foo;
+   
+   reg16 r0(.readdata(nxtAluOut), .clk(Clk), .rst(Rst), .writeData(AluOut), .write(~Stall));
+   reg16 r1(.readdata({foo, nxtPcSrc}), .clk(Clk), .rst(Rst), .writeData({15'b0, PcSrc}), .write(~Stall));
+endmodule // execute2memory

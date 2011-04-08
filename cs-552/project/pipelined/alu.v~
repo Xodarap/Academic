@@ -15,8 +15,9 @@ module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, Z, Cout, resultSign, pcPl
    output 	 Ofl;
    output 	 Z;
    output	resultSign;
+
 	output Cout;
-   wire     PG, GG, CintoMSB;
+   wire     PG, GG, CintoMSB, sub_ofl;
    
    wire SignedOverflow;
    wire overflow;
@@ -30,11 +31,11 @@ module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, Z, Cout, resultSign, pcPl
    assign A_new = invA? ~A: A;
    assign B_new = invB? ~B: B;
    
-   //assign out_and = A + B
+   //assign out_add = A + B
    cla16b adder(.A(A_new), .B(B_new), .Cin(Cin), .Sum(out_add), .Cout(Cout),
                          .PG(PG), .GG(GG), .CintoMSB(CintoMSB));
-                         
-    sub16b subtractor(.A(A_new), .B(B_new), .Out(out_sub));
+   
+   sub16b subtractor(.A(A_new), .B(B_new), .Out(out_sub), .ofl(sub_ofl));
 
    slbi slbi0(.Rs(A), .Imm(B), .Out(out_slbi));
    
@@ -42,6 +43,7 @@ module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, Z, Cout, resultSign, pcPl
   btr16b btr(.In(A_new), .Out(out_btr));
    assign out_xor = A ^ B;
    assign out_and = A & (~B);  
+
    
    //shift A by amount in B[3:0] according to Op[1:0]
    shifter shift1(.In(A_new), .Cnt(B_new[3:0]), .Op(Op[1:0]), 
@@ -50,7 +52,7 @@ module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, Z, Cout, resultSign, pcPl
    mux16b4_1 muxlogic (.InA(out_add), .InB(out_sub), .InC(out_xor),
                         .InD(out_and), .S(Op[1:0]), .Out(mux4_out));
 
-   mux16b4_1 muxlogic1 (.InA(B_new), .InB(16'b0), .InC(out_slbi), .InD(16'habcd), .S(Op[1:0]), .Out(mux2_slbi_out));
+   mux16b4_1 muxlogic1 (.InA(B_new), .InB(16'b0), .InC(out_slbi), .InD(pcPlusTwo), .S(Op[1:0]), .Out(mux2_slbi_out));
    
    
    //Op[3:2] decides if output is from shifter, add/or/xor/and, or btr
@@ -65,8 +67,17 @@ module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, Z, Cout, resultSign, pcPl
    //overflow from unsigned addition = Cout
    assign overflow = (~sign & Cout) | (sign & SignedOverflow);
    //if not doing addition (add Op = 0100), OFL = 0
-   assign Ofl = (~Op[3] & Op[2] & ~Op[1] & ~Op[0])? overflow: 1'b0;
-                            
+
+   //assign Ofl = (~Op[3] & Op[2] & ~Op[1] & ~Op[0])? overflow: 1'b0;
+   reg oflResult;                    
+   always @(*)begin
+	case(Op)
+	  4'b0100: oflResult = overflow;
+	  4'b0101: oflResult = sub_ofl;
+	  default: oflResult = 1'b0;
+	endcase
+   end
+   assign Ofl = oflResult;
    //if all bits of Out are zero Z = 1;                            
    assign Z = ~|(Out);
    

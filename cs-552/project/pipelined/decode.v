@@ -24,7 +24,7 @@ module decode(Clk, Rst, Reg1, Reg2, Reg3, regToWriteTo,
    reg [2:0] 	 writeReg;
    input [2:0] 	 regToWriteTo;
    
-   rf rf0(.read1data(RegVal1), .read2data(RegVal2), .clk(Clk), .rst(Rst),
+   rf_bypass rf0(.read1data(RegVal1), .read2data(RegVal2), .clk(Clk), .rst(Rst),
 		.read1regsel(Reg1), .read2regsel(Reg2), .err(err),
 		.writeregsel(regToWriteTo), .writedata(WriteData), 
 		.write(RegWrite)

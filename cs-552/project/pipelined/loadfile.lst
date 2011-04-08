@@ -1,8 +1,11 @@
-          // Original test: ./atessmer/hw4/problem6/slt_0.asm
-          // Author: atessmer
+          // Original test: ./ziliang/hw4/problem6/add_1.asm
+          // Author: ziliang
           // Test source code follows
           
           
-0000 c1ff lbi r1, 255
+          //This tests the 0 output value check in the ALU
+          
+0000 c100 lbi r1, 0
 0002 c200 lbi r2, 0
-0004 e94c slt r3, r1, r2
+0004 d94c add r3, r1, r2
+0006 0000 halt

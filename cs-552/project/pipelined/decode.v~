@@ -1,5 +1,5 @@
-module decode(Clk, Rst, Reg1, Reg2, Reg3, 
-	      RegWrite, RegDest, WriteData, RegVal1, RegVal2);
+module decode(Clk, Rst, Reg1, Reg2, Reg3, regToWriteTo,
+	      RegWrite, RegDest, WriteData, RegVal1, RegVal2, nxtRegToWriteTo);
 
    /* Reg1, Reg2 and Reg3 are purposefully vaguely named, because depending on
       the instruction type, they can be different things. Lookup table:
@@ -12,23 +12,31 @@ module decode(Clk, Rst, Reg1, Reg2, Reg3,
     
    */
 
-
+	wire err;
    input Clk, Rst, RegWrite;
    input [1:0] RegDest;
    input [2:0] Reg1, Reg2, Reg3;
    input [15:0] WriteData;
       
    output [15:0] RegVal1, RegVal2;
-
-   wire [2:0] 	 regToWriteTo;
+   output [2:0]  nxtRegToWriteTo;
    
-   rf_hier rf0(.read1data(RegVal1), .read2data(RegVal2), 
-		.read1regsel(Reg1), .read2regsel(Reg2), 
+   reg [2:0] 	 writeReg;
+   input [2:0] 	 regToWriteTo;
+   
+   rf rf0(.read1data(RegVal1), .read2data(RegVal2), .clk(Clk), .rst(Rst),
+		.read1regsel(Reg1), .read2regsel(Reg2), .err(err),
 		.writeregsel(regToWriteTo), .writedata(WriteData), 
 		.write(RegWrite)
                 );
-   
-   assign regToWriteTo = (RegDest == 1'b0) ? Reg1 : 
-			 (RegDest == 1'b1) ? Reg2 :
-			                     Reg3;
+	always@(*) begin
+	case(RegDest)
+		2'b00:writeReg = Reg1;
+		2'b01:writeReg = Reg2;
+		2'b10:writeReg = Reg3;
+		2'b11:writeReg = 3'b111;
+	endcase
+	end
+
+   assign nxtRegToWriteTo = writeReg;
 endmodule // decode

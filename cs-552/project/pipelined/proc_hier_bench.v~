@@ -124,7 +124,7 @@ module proc_hier_bench();
    // Edit the example below. You must change the signal
    // names on the right hand side
     
-   assign PC = DUT.p0.fetch0.nextPc;
+   assign PC = DUT.p0.fetch0.pc;
    assign Inst = DUT.p0.fetch0.Instruction;
    
    assign RegWrite = DUT.p0.decode0.rf0.write;   // Is memory being read, one bit signal (1 means yes, 0 means no)
