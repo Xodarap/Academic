@@ -1,5 +1,5 @@
-module decode(Clk, Rst, Reg1, Reg2, Reg3, 
-	      RegWrite, RegDest, WriteData, RegVal1, RegVal2);
+module decode(Clk, Rst, Reg1, Reg2, Reg3, regToWriteTo,
+	      RegWrite, RegDest, WriteData, RegVal1, RegVal2, nxtRegToWriteTo);
 
    /* Reg1, Reg2 and Reg3 are purposefully vaguely named, because depending on
       the instruction type, they can be different things. Lookup table:
@@ -19,9 +19,10 @@ module decode(Clk, Rst, Reg1, Reg2, Reg3,
    input [15:0] WriteData;
       
    output [15:0] RegVal1, RegVal2;
-
-	reg [2:0] writeReg;
-   wire [2:0] 	 regToWriteTo;
+   output [2:0]  nxtRegToWriteTo;
+   
+   reg [2:0] 	 writeReg;
+   input [2:0] 	 regToWriteTo;
    
    rf rf0(.read1data(RegVal1), .read2data(RegVal2), .clk(Clk), .rst(Rst),
 		.read1regsel(Reg1), .read2regsel(Reg2), .err(err),
@@ -37,5 +38,5 @@ module decode(Clk, Rst, Reg1, Reg2, Reg3,
 	endcase
 	end
 
-   assign regToWriteTo = writeReg;
+   assign nxtRegToWriteTo = writeReg;
 endmodule // decode
