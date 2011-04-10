@@ -71,10 +71,10 @@ module proc (/*AUTOARG*/
    /* Pipelining stuff */
    wire Stall;
    wire [1:0] ctlRegDestNext;
-   wire [2:0] ctlReg1Next, ctlReg2Next, ctlReg3Next;
+   wire [2:0] ctlReg1Next, ctlReg2Next, ctlReg3Next, xReg1Sel, xReg2Sel;
    wire [35:0] controlSignals, ctlF2D, ctlD2E, ctlE2M;
    wire [31:0] d2ewire, d2mwire;
-   wire [15:0] aluwire;
+   wire [15:0] aluwire, fRegVal1, fRegVal2;
    wire        pcSrcWire;
    wire [2:0]  reg2write2de, reg2write2em, reg2write2mw, reg2write2wd;
     wire [15:0] ALUResultm2wb, ReadDatam2wb, Instructionm2wb;
@@ -127,16 +127,23 @@ module proc (/*AUTOARG*/
 		 .nxtRegToWriteTo(reg2write2de));
 
    decode2execute d2e(.RegVal1(d2ewire[15:0]), .RegVal2(d2ewire[31:16]), .Reg2Write2(reg2write2de),
+		      .Reg1Sel(ctlReg1Next), .Reg2Sel(ctlReg2Next),
 		      .Clk(clk), .Rst(rst), .Stall(1'b0),
-		      .nextRV1(d2mwire[15:0]), .nextRV2(d2mwire[31:16]), .nxtReg2Write2(reg2write2em));
+		      .nextRV1(d2mwire[15:0]), .nextRV2(d2mwire[31:16]), .nxtReg2Write2(reg2write2em),
+		      .nextReg1Sel(xReg1Sel), .nextReg2Sel(xReg2Sel));
 
    control_ff control_ff1(.control_in(ctlF2D), .clk(clk), .rst(rst), .Stall(1'b0),
 			  .Inst_in(instfd), .Halt_in(haltfd),
 			  .control_out(ctlD2E), .Inst_out(instde), .Halt_out(haltde));
-      
+   
+   forwarder forwarder0(.MRd(3'b0), .WRd(3'b0), .XRs(xReg1Sel), .XRt(xReg2Sel), .MRegWrite(1'b0), .WRegWrite(1'b0),
+			.XRegVal1(d2mwire[15:0]), .XRegVal2(d2mwire[31:16]), .MRegVal1(16'b0), .MRegVal2(16'b0), 
+			.WRegVal1(16'b0), .WRegVal2(16'b0),
+			.RegVal1(fRegVal1), .RegVal2(fRegVal2));
+   
    execute execute0(.Clk(clk), .Rst(rst), 
-		    .Reg1(d2mwire[15:0]), //readData1),          
-		    .Reg2(d2mwire[31:16]), //readData2), 
+		    .Reg1(fRegVal1), //readData1),          
+		    .Reg2(fRegVal2), //readData2), 
 		    .Imm(ctlD2E[26:11]), //immExtend), 
 		    .AluSrc(ctlD2E[3]), // ctlAluSrc  ), 
 		    .AluOp(ctlD2E[10:7]),  //ctlAluOp), 
