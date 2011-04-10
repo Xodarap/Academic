@@ -1,0 +1,2 @@
+#!/s/std/bin/bash
+wsrun.pl -prog ../programs/$1 proc_hier_bench *.v | egrep '(^<)|(^>)|(^FAILED)'

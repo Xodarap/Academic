@@ -1,0 +1,4 @@
+module forwarder(MRd, WRd, XRs, XRt, ForwardA, ForwardB);
+
+
+endmodule // forwarder

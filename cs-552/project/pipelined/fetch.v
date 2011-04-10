@@ -35,5 +35,6 @@ module fetch(Clk, Rst, PcSrc, Immediate, Instruction, pcPlusTwo, regRS, isJumpRe
 	assign NewPc = isJumpRegister ? JumpNewPc : BranchNewPc;
 
    assign nextPc = PcSrc ? NewPc : pcPlusTwo;
+   
    reg16 r16(.readdata(pc), .clk(Clk), .rst(Rst), .writedata(nextPc), .write(1'b1));   
 endmodule // fetch

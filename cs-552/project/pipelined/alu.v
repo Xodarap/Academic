@@ -2,7 +2,24 @@
 //ECE 552
 
 module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, Z, Cout, resultSign, pcPlusTwo);
-
+   /* === OP CODE DEFINITIONS ===
+    0000
+    0001
+    0010
+    0010
+    0100 add
+    0101 sub
+    0110 xor
+    0111 andn
+    1000 btr
+    1001 btr
+    1010 btr
+    1011 btr
+    1100 not
+    1101 0
+    1110 slbi
+    1111 pc+2
+   */ 
    input [15:0] A;
    input [15:0] B;
    input 	Cin;
