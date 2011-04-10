@@ -89,9 +89,9 @@ module proc (/*AUTOARG*/
    wire ctlRegWriteNext, Stall;
    wire [1:0] ctlRegDestNext;
    wire [2:0] ctlReg1Next, ctlReg2Next, ctlReg3Next;
-   wire [15:0] WriteDataNext;
-   wire [35:0] controlSignals;
-   
+   wire [15:0] WriteDataNext, fReg1, fReg2;
+   wire [35:0] controlSignals, ctlD2X;
+      
    
    fetch fetch0(.Clk(clk), .Rst(rst), .pcPlusTwo(pcPlusTwo),
 		.Instruction(instruction), .Immediate(immExtend),
@@ -136,35 +136,28 @@ module proc (/*AUTOARG*/
 			   isJumpRegister,
 			   isJump,
 			   err}));
-   
 
-   
    decode decode0(.Clk(clk), .Rst(rst),
 		 .Reg1(ctlReg1Next), .Reg2(ctlReg2Next), .Reg3(ctlReg3Next),
 		 .RegWrite(ctlRegWriteNext), .RegDest(ctlRegDestNext),
 		 .WriteData(WriteDataNext),
 		 .RegVal1(readData1),
 		 .RegVal2(readData2));
+
+   forwarder forwarder0(MRd, WRd, .XRs(ctlReg1Next), .XRt(ctlReg2Next), .MRegWrite, WRegWrite,
+		 XRegVal1, XRegVal2, MRegVal1, MRegVal2, WRegVal1, WRegVal2,
+		 .RegVal1(fReg1), .RegVal2(fReg2));
    
-   /*
-   decode decode0(.Clk(clk), .Rst(rst), 
-		  .Reg1(instruction[10:8]), .Reg2(instruction[7:5]), .Reg3(instruction[4:2]), 
-		  .RegWrite(ctlRegWrite),         // If the value from Wb should be written
-		  .RegDest(ctlRegDest),           // Rd = Reg1, Reg2 or Reg3?
-		  .WriteData(regWriteData),    // Data from Wb to write
-		  .RegVal1(readData1),         // Value of Reg1
-		  .RegVal2(readData2));         // Value of Reg2
-*/
    execute execute0(.Clk(clk), .Rst(rst), 
-		    .Reg1(readData1),          
-		    .Reg2(readData2), 
+		    .Reg1(fReg1),          
+		    .Reg2(fReg2), 
 		    .Imm(immExtend), 
 		    .AluSrc(ctlAluSrc), 
 		    .AluOp(ctlAluOp), 
 		    .CondOp(ctlCondOp),
 		    .BranchCode(ctlBranchCode),
 		    .Output(aluResult),
-			.pcPlusTwo(pcPlusTwo),
+		    .pcPlusTwo(pcPlusTwo),
 		    .PcSrc(pcSrc));
    
    memory memory0(.Clk(clk), .Rst(rst), 
