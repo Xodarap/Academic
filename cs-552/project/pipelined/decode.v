@@ -29,14 +29,15 @@ module decode(Clk, Rst, Reg1, Reg2, Reg3, regToWriteTo,
 		.writeregsel(regToWriteTo), .writedata(WriteData), 
 		.write(RegWrite)
                 );
-	always@(*) begin
-	case(RegDest)
-		2'b00:writeReg = Reg1;
-		2'b01:writeReg = Reg2;
-		2'b10:writeReg = Reg3;
-		2'b11:writeReg = 3'b111;
-	endcase
-	end
+   
+   always@(*) begin
+      case(RegDest)
+	2'b00:writeReg = Reg1;
+	2'b01:writeReg = Reg2;
+	2'b10:writeReg = Reg3;
+	2'b11:writeReg = 3'b111;
+      endcase
+   end
 
    assign nxtRegToWriteTo = writeReg;
 endmodule // decode
