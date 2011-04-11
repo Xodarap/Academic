@@ -20,6 +20,8 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
   assign opcode = instruction[15:11];
   
   always@(*)begin
+     err = 0;
+     
     casex(opcode)
       //HALT
       5'b00000:begin

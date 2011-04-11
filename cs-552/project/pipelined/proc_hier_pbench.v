@@ -183,7 +183,8 @@ module proc_hier_pbench();
    assign MemRead =  DUT.p0.memory0.MemRead;   // Is memory being read, one bit signal (1 means yes, 0 means no)
    assign MemWrite = DUT.p0.memory0.MemWrite;  // Is memory being written to (1 bit signal)
    assign MemAddress = DUT.p0.memory0.Addr;    // Address to access memory with (for both reads and writes to memory, 16 bits)
-   assign MemData = DUT.p0.memory0.Data;       // Data to be written to memory for memory writes (16 bits)
+   assign MemDataIn = DUT.p0.memory0.Data;       // Data to be written to memory for memory writes (16 bits)
+   assign MemDataOut = DUT.p0.memory0.ReadData;
    
    assign Halt = DUT.p0.writeback0.Halt;
    /* Add anything else you want here */

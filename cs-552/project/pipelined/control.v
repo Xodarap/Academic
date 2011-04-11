@@ -31,6 +31,8 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite,
 	 	BranchCode = 3'b000;
 		isJump = 1'b0;
 		isJumpRegister = 1'b0;
+	 MemRead = 1'b0;
+	 
       end
       
       //NOP

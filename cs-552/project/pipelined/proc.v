@@ -75,14 +75,16 @@ module proc (/*AUTOARG*/
    wire [35:0] controlSignals, ctlF2D, ctlD2E, ctlE2M;
    wire [31:0] d2ewire, d2mwire;
    wire [15:0] aluwire, fRegVal1, fRegVal2;
-   wire        pcSrcWire;
+   wire        pcSrcWire, stallFD;
    wire [2:0]  reg2write2de, reg2write2em, reg2write2mw, reg2write2wd;
-    wire [15:0] ALUResultm2wb, ReadDatam2wb, Instructionm2wb;
+   wire [15:0] ALUResultm2wb, ReadDatam2wb, Instructionm2wb;
    wire 	RegWritem2wb, MemToRegm2wb, haltfd, haltde, haltem, haltmw;
    
    wire [15:0] instfd, instde, instem, instmw;
+
    
    assign Stall = 0;
+   //assign stallFD = 1'b0;
    
          
    fetch fetch0(.Clk(clk), .Rst(rst), .pcPlusTwo(pcPlusTwo),
@@ -107,7 +109,7 @@ module proc (/*AUTOARG*/
    fetch2decode f2d(.Clk(clk), .Rst(rst),
 		    .RegDestIn(controlSignals[1:0]), 
 		    .Reg1In(instruction[10:8]), .Reg2In(instruction[7:5]), .Reg3In(instruction[4:2]),
-		    .Stall(1'b0), .Instruction(instruction),
+		    .Stall(stallFD), .Instruction(instruction),
 		    /* Out */
 		    .RegDestOut(ctlRegDestNext), 
 		    .Reg1Out(ctlReg1Next), .Reg2Out(ctlReg2Next), .Reg3Out(ctlReg3Next)
@@ -128,7 +130,7 @@ module proc (/*AUTOARG*/
 
    decode2execute d2e(.RegVal1(d2ewire[15:0]), .RegVal2(d2ewire[31:16]), .Reg2Write2(reg2write2de),
 		      .Reg1Sel(ctlReg1Next), .Reg2Sel(ctlReg2Next),
-		      .Clk(clk), .Rst(rst), .Stall(1'b0),
+		      .Clk(clk), .Rst(rst), .Stall(stallFD),
 		      .nextRV1(d2mwire[15:0]), .nextRV2(d2mwire[31:16]), .nxtReg2Write2(reg2write2em),
 		      .nextReg1Sel(xReg1Sel), .nextReg2Sel(xReg2Sel));
 
@@ -140,7 +142,10 @@ module proc (/*AUTOARG*/
 			.MRegWrite(ctlE2M[2]), .WRegWrite(ctlRegWrite),
 			.XRegVal1(d2mwire[15:0]), .XRegVal2(d2mwire[31:16]), .MRegVal(aluResult), 
 			.WRegVal(regWriteData), .RegVal1(fRegVal1), .RegVal2(fRegVal2));
-   
+
+   hazarddetector hazarddetector0(.XMemRead(ctlE2M[4]), .XRt(xReg2Sel), .DRs(ctlReg1Next), .DRt(ctlReg2Next), 
+				  .Stall(stallFD));
+  
    execute execute0(.Clk(clk), .Rst(rst), 
 		    .Reg1(fRegVal1),
 		    .Reg2(fRegVal2), 
@@ -153,9 +158,9 @@ module proc (/*AUTOARG*/
 		    .pcPlusTwo(pcPlusTwo),
 		    .PcSrc(pcSrcWire));
 
-   execute2memory e2m0(.AluOut(aluwire), .PcSrc(pcSrc), .RegVal1(d2mwire[15:0]), .RegVal2(d2mwire[31:16]),
-		  .Reg2Write2(reg2write2em), .Clk(clk), .Rst(rst), .Stall(1'b0),
-		  .nxtAluOut(aluResult), .nxtRV1(readData1), .nxtRV2(readData2), .nxtPcSrc(pcSrc),
+   execute2memory e2m0(.AluOut(aluwire), .PcSrc(pcSrc), .RegVal1(fRegVal1), .RegVal2(fRegVal2),  //.RegVal1(d2mwire[15:0]), .RegVal2(d2mwire[31:16]),
+		       .Reg2Write2(reg2write2em), .Clk(clk), .Rst(rst), .Stall(1'b0),
+		       .nxtAluOut(aluResult), .nxtRV1(readData1), .nxtRV2(readData2), .nxtPcSrc(pcSrc),
 		       .nxtReg2Write2(reg2write2mw));
    
    control_ff control_ff2(.control_in(ctlD2E), .clk(clk), .rst(rst),
@@ -166,8 +171,8 @@ module proc (/*AUTOARG*/
    memory memory0(.Clk(clk), .Rst(rst), 
 		  .Addr(aluResult), 
 		  .Data(readData2), 
-		  .MemWrite(ctlMemWrite), 
-		  .MemRead(ctlMemRead), 
+		  .MemWrite(ctlE2M[5]), 
+		  .MemRead(ctlE2M[4]), 
 		  .ReadData(memReadData));
     
    control_ff control_ff3(.control_in(ctlE2M), .clk(clk), .rst(rst),
@@ -197,7 +202,7 @@ module proc (/*AUTOARG*/
    
    writeback writeback0(.AluData(ALUResultm2wb), 
 			.MemoryData(ReadDatam2wb), 
-			.MemToReg(MemToRegm2wb),
+			.MemToReg(ctlMemToReg),
 			.Halt(haltmw),
 			.WriteData(regWriteData));
 endmodule // proc

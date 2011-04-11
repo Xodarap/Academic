@@ -82,6 +82,9 @@
 # Loading __work.forwarder
 # ** Warning: (vsim-3009) [TSCALE] - Module 'forwarder' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_pbench/DUT/p0/forwarder0
+# Loading __work.hazarddetector
+# ** Warning: (vsim-3009) [TSCALE] - Module 'hazarddetector' does not have a `timescale directive in effect, but previous modules do.
+#         Region: /proc_hier_pbench/DUT/p0/hazarddetector0
 # Loading __work.execute
 # ** Warning: (vsim-3009) [TSCALE] - Module 'execute' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_pbench/DUT/p0/execute0
@@ -133,4 +136,4 @@ run -all
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
-#    Time: 130005 ns  Iteration: 0  Instance: /proc_hier_pbench
+#    Time: 80005 ns  Iteration: 0  Instance: /proc_hier_pbench

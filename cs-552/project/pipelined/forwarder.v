@@ -18,16 +18,16 @@ module forwarder(MRd, WRd, XRs, XRt, MRegWrite, WRegWrite,
     */
    
    assign ForwardA = // If we're writing to mem, use that instead
-		     (MRegWrite & MRd != 3'b0 & MRd == XRs) ? 2'b10 :
+		     (MRegWrite & MRd == XRs) ? 2'b10 :
 		     // If we're writing back, but NOT writing to mem, use the WB value
-		     (WRegWrite & WRd != 3'b0 & WRd == XRs) ? 2'b01 :
+		     (WRegWrite & /*WRd != 3'b0 & */ WRd == XRs) ? 2'b01 :
 		     // Otherwise, just get it from the ID/EX FF
 		     2'b00;
    
    assign ForwardB = // If we're writing to mem, use that instead
-		     (MRegWrite & MRd != 3'b0 & MRd == XRt) ? 2'b10 :
+		     (MRegWrite & /*MRd != 3'b0*/ MRd == XRt) ? 2'b10 :
 		     // If we're writing back, but NOT writing to mem, use the WB value
-		     (WRegWrite & WRd != 3'b0 & WRd == XRt) ? 2'b01 :
+		     (WRegWrite & /*WRd != 3'b0*/ WRd == XRt) ? 2'b01 :
 		     // Otherwise, just get it from the ID/EX FF
 		     2'b00;
   
