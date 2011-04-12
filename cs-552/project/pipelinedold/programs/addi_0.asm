@@ -1,3 +1,0 @@
-lbi r1, 0xff
-addi r2, r1, 0x1
-halt

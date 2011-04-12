@@ -1,8 +1,0 @@
-
-// btr_1.asm
-
-
-
-lbi r1, 0x0f
-btr r2, r1
-halt
