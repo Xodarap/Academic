@@ -1,0 +1,5 @@
+/u/k/a/karu/courses/cs552/spring2011/handouts/testprograms/public/complex_demo1/shiftTest.asm
+/u/k/a/karu/courses/cs552/spring2009/handouts/testprograms/public/rand_complex/t_1_all.asm
+/u/k/a/karu/courses/cs552/spring2009/handouts/testprograms/public/rand_complex/t_3_all.asm
+/u/k/a/karu/courses/cs552/spring2009/handouts/testprograms/public/rand_complex/t_4_all.asm
+/u/k/a/karu/courses/cs552/spring2009/handouts/testprograms/public/rand_complex/t_6_all.asm
