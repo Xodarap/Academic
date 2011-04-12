@@ -1,15 +1,1 @@
 Little program parsed correctly.
-6:8 **ERROR** Illegal use of non-numeric operand
-7:16 **ERROR** Illegal use of non-numeric operand
-8:13 **ERROR** Logical operator applied to non-int operand
-9:10 **ERROR** Function call with wrong number of args
-9:10 **ERROR** Non-int expression used as a while condition
-10:20 **ERROR** Attempt to call a non-function
-11:7 **ERROR** Illegal use of non-numeric operand
-12:8 **ERROR** Illegal use of non-numeric operand
-15:3 **ERROR** Illegal use of non-numeric operand
-15:7 **ERROR** Illegal use of non-numeric operand
-16:8 **ERROR** Function call with wrong number of args
-17:13 **ERROR** Type of actual does not match type of formal
-18:11 **ERROR** Function call with wrong number of args
-19:12 **ERROR** Illegal use of non-numeric operand
