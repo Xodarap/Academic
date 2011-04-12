@@ -10,6 +10,10 @@ Little program parsed correctly.
 15:3 **ERROR** Illegal use of non-numeric operand
 15:7 **ERROR** Illegal use of non-numeric operand
 16:8 **ERROR** Function call with wrong number of args
+16:8 **ERROR** Illegal use of non-numeric operand
 17:13 **ERROR** Type of actual does not match type of formal
+17:11 **ERROR** Illegal use of non-numeric operand
 18:11 **ERROR** Function call with wrong number of args
+18:11 **ERROR** Illegal use of non-numeric operand
 19:12 **ERROR** Illegal use of non-numeric operand
+19:10 **ERROR** Return with a value in a void function

@@ -1,0 +1,472 @@
+Little program parsed correctly.
+16:16 **ERROR** Attempt to write a non-int value with an int format
+17:16 **ERROR** Attempt to write a non-double value with a dbl format
+18:16 **ERROR** Attempt to read a non-int id with an int format
+19:16 **ERROR** Attempt to read a non-double id with a dbl format
+21:3 **ERROR** Attempt to call a non-function
+22:3 **ERROR** Attempt to call a non-function
+24:3 **ERROR** Function call with wrong number of args
+25:3 **ERROR** Function call with wrong number of args
+26:3 **ERROR** Function call with wrong number of args
+27:3 **ERROR** Function call with wrong number of args
+29:7 **ERROR** Type of actual does not match type of formal
+30:7 **ERROR** Type of actual does not match type of formal
+31:7 **ERROR** Type of actual does not match type of formal
+32:13 **ERROR** Type of actual does not match type of formal
+33:7 **ERROR** Type of actual does not match type of formal
+0:0 **ERROR** Missing return value
+38:25 **ERROR** Return with a value in a void function
+39:25 **ERROR** Return with a value in a void function
+40:25 **ERROR** Return with a value in a void function
+41:25 **ERROR** Return with a value in a void function
+43:24 **ERROR** Bad return value
+44:24 **ERROR** Bad return value
+45:24 **ERROR** Bad return value
+46:27 **ERROR** Bad return value
+47:27 **ERROR** Bad return value
+53:8 **ERROR** Logical operator applied to non-int operand
+54:12 **ERROR** Logical operator applied to non-int operand
+55:7 **ERROR** Logical operator applied to non-int operand
+56:12 **ERROR** Logical operator applied to non-int operand
+57:7 **ERROR** Logical operator applied to non-int operand
+58:8 **ERROR** Logical operator applied to non-int operand
+59:12 **ERROR** Logical operator applied to non-int operand
+60:7 **ERROR** Logical operator applied to non-int operand
+61:12 **ERROR** Logical operator applied to non-int operand
+63:7 **ERROR** Non-int expression used as an if condition
+64:7 **ERROR** Non-int expression used as an if condition
+65:7 **ERROR** Non-int expression used as an if condition
+66:7 **ERROR** Non-int expression used as an if condition
+67:7 **ERROR** Non-int expression used as an if condition
+68:7 **ERROR** Non-int expression used as an if condition
+70:10 **ERROR** Non-int expression used as a while condition
+71:10 **ERROR** Non-int expression used as a while condition
+72:10 **ERROR** Non-int expression used as a while condition
+74:3 **ERROR** Non-int identifier used with ++ or --
+75:3 **ERROR** Non-int identifier used with ++ or --
+76:3 **ERROR** Non-int identifier used with ++ or --
+77:3 **ERROR** Non-int identifier used with ++ or --
+78:3 **ERROR** Non-int identifier used with ++ or --
+79:3 **ERROR** Non-int identifier used with ++ or --
+81:5 **ERROR** Non-int identifier used with ++ or --
+82:5 **ERROR** Non-int identifier used with ++ or --
+83:5 **ERROR** Non-int identifier used with ++ or --
+84:5 **ERROR** Non-int identifier used with ++ or --
+85:5 **ERROR** Non-int identifier used with ++ or --
+86:5 **ERROR** Non-int identifier used with ++ or --
+88:7 **ERROR** Non-int identifier used with ++ or --
+89:7 **ERROR** Non-int identifier used with ++ or --
+90:7 **ERROR** Non-int identifier used with ++ or --
+91:7 **ERROR** Non-int identifier used with ++ or --
+92:7 **ERROR** Non-int identifier used with ++ or --
+93:7 **ERROR** Non-int identifier used with ++ or --
+95:11 **ERROR** Illegal use of non-numeric operand
+96:7 **ERROR** Illegal use of non-numeric operand
+97:11 **ERROR** Illegal use of non-numeric operand
+98:7 **ERROR** Illegal use of non-numeric operand
+99:11 **ERROR** Illegal use of non-numeric operand
+100:7 **ERROR** Illegal use of non-numeric operand
+101:7 **ERROR** Illegal use of non-numeric operand
+102:11 **ERROR** Illegal use of non-numeric operand
+103:7 **ERROR** Illegal use of non-numeric operand
+104:7 **ERROR** Illegal use of non-numeric operand
+105:11 **ERROR** Illegal use of non-numeric operand
+106:7 **ERROR** Illegal use of non-numeric operand
+107:9 **ERROR** Illegal use of non-numeric operand
+108:9 **ERROR** Illegal use of non-numeric operand
+109:9 **ERROR** Illegal use of non-numeric operand
+111:12 **ERROR** Illegal use of non-numeric operand
+112:12 **ERROR** Illegal use of non-numeric operand
+113:12 **ERROR** Illegal use of non-numeric operand
+114:7 **ERROR** Illegal use of non-numeric operand
+115:7 **ERROR** Illegal use of non-numeric operand
+116:7 **ERROR** Illegal use of non-numeric operand
+118:12 **ERROR** Illegal use of non-numeric operand
+119:12 **ERROR** Illegal use of non-numeric operand
+120:12 **ERROR** Illegal use of non-numeric operand
+121:7 **ERROR** Illegal use of non-numeric operand
+122:7 **ERROR** Illegal use of non-numeric operand
+123:7 **ERROR** Illegal use of non-numeric operand
+125:11 **ERROR** Illegal use of non-numeric operand
+126:11 **ERROR** Illegal use of non-numeric operand
+127:11 **ERROR** Illegal use of non-numeric operand
+128:7 **ERROR** Illegal use of non-numeric operand
+129:7 **ERROR** Illegal use of non-numeric operand
+130:7 **ERROR** Illegal use of non-numeric operand
+132:12 **ERROR** Illegal use of non-numeric operand
+133:12 **ERROR** Illegal use of non-numeric operand
+134:12 **ERROR** Illegal use of non-numeric operand
+135:7 **ERROR** Illegal use of non-numeric operand
+136:7 **ERROR** Illegal use of non-numeric operand
+137:7 **ERROR** Illegal use of non-numeric operand
+139:11 **ERROR** Illegal use of non-numeric operand
+140:11 **ERROR** Illegal use of non-numeric operand
+141:11 **ERROR** Illegal use of non-numeric operand
+142:7 **ERROR** Illegal use of non-numeric operand
+143:7 **ERROR** Illegal use of non-numeric operand
+144:7 **ERROR** Illegal use of non-numeric operand
+146:12 **ERROR** Illegal use of non-numeric operand
+147:12 **ERROR** Illegal use of non-numeric operand
+148:12 **ERROR** Illegal use of non-numeric operand
+149:7 **ERROR** Illegal use of non-numeric operand
+150:7 **ERROR** Illegal use of non-numeric operand
+151:7 **ERROR** Illegal use of non-numeric operand
+153:11 **ERROR** Illegal use of non-numeric operand
+154:11 **ERROR** Illegal use of non-numeric operand
+155:11 **ERROR** Illegal use of non-numeric operand
+156:7 **ERROR** Illegal use of non-numeric operand
+158:7 **ERROR** Possible loss of precision
+159:7 **ERROR** Possible loss of precision
+162:10 **ERROR** Logical operator applied to non-int operand
+163:14 **ERROR** Logical operator applied to non-int operand
+164:9 **ERROR** Logical operator applied to non-int operand
+165:14 **ERROR** Logical operator applied to non-int operand
+166:9 **ERROR** Logical operator applied to non-int operand
+167:10 **ERROR** Logical operator applied to non-int operand
+168:14 **ERROR** Logical operator applied to non-int operand
+169:9 **ERROR** Logical operator applied to non-int operand
+170:14 **ERROR** Logical operator applied to non-int operand
+172:9 **ERROR** Non-int expression used as an if condition
+173:9 **ERROR** Non-int expression used as an if condition
+174:9 **ERROR** Non-int expression used as an if condition
+175:9 **ERROR** Non-int expression used as an if condition
+176:9 **ERROR** Non-int expression used as an if condition
+177:9 **ERROR** Non-int expression used as an if condition
+179:12 **ERROR** Non-int expression used as a while condition
+180:12 **ERROR** Non-int expression used as a while condition
+181:12 **ERROR** Non-int expression used as a while condition
+183:5 **ERROR** Non-int identifier used with ++ or --
+184:5 **ERROR** Non-int identifier used with ++ or --
+185:5 **ERROR** Non-int identifier used with ++ or --
+186:5 **ERROR** Non-int identifier used with ++ or --
+187:5 **ERROR** Non-int identifier used with ++ or --
+188:5 **ERROR** Non-int identifier used with ++ or --
+190:7 **ERROR** Non-int identifier used with ++ or --
+191:7 **ERROR** Non-int identifier used with ++ or --
+192:7 **ERROR** Non-int identifier used with ++ or --
+193:7 **ERROR** Non-int identifier used with ++ or --
+194:7 **ERROR** Non-int identifier used with ++ or --
+195:7 **ERROR** Non-int identifier used with ++ or --
+197:9 **ERROR** Non-int identifier used with ++ or --
+198:9 **ERROR** Non-int identifier used with ++ or --
+199:9 **ERROR** Non-int identifier used with ++ or --
+200:9 **ERROR** Non-int identifier used with ++ or --
+201:9 **ERROR** Non-int identifier used with ++ or --
+202:9 **ERROR** Non-int identifier used with ++ or --
+204:13 **ERROR** Illegal use of non-numeric operand
+205:9 **ERROR** Illegal use of non-numeric operand
+206:13 **ERROR** Illegal use of non-numeric operand
+207:9 **ERROR** Illegal use of non-numeric operand
+208:13 **ERROR** Illegal use of non-numeric operand
+209:9 **ERROR** Illegal use of non-numeric operand
+210:9 **ERROR** Illegal use of non-numeric operand
+211:13 **ERROR** Illegal use of non-numeric operand
+212:9 **ERROR** Illegal use of non-numeric operand
+213:9 **ERROR** Illegal use of non-numeric operand
+214:13 **ERROR** Illegal use of non-numeric operand
+215:9 **ERROR** Illegal use of non-numeric operand
+216:11 **ERROR** Illegal use of non-numeric operand
+217:11 **ERROR** Illegal use of non-numeric operand
+218:11 **ERROR** Illegal use of non-numeric operand
+220:14 **ERROR** Illegal use of non-numeric operand
+221:14 **ERROR** Illegal use of non-numeric operand
+222:14 **ERROR** Illegal use of non-numeric operand
+223:9 **ERROR** Illegal use of non-numeric operand
+224:9 **ERROR** Illegal use of non-numeric operand
+225:9 **ERROR** Illegal use of non-numeric operand
+227:14 **ERROR** Illegal use of non-numeric operand
+228:14 **ERROR** Illegal use of non-numeric operand
+229:14 **ERROR** Illegal use of non-numeric operand
+230:9 **ERROR** Illegal use of non-numeric operand
+231:9 **ERROR** Illegal use of non-numeric operand
+232:9 **ERROR** Illegal use of non-numeric operand
+234:13 **ERROR** Illegal use of non-numeric operand
+235:13 **ERROR** Illegal use of non-numeric operand
+236:13 **ERROR** Illegal use of non-numeric operand
+237:9 **ERROR** Illegal use of non-numeric operand
+238:9 **ERROR** Illegal use of non-numeric operand
+239:9 **ERROR** Illegal use of non-numeric operand
+241:14 **ERROR** Illegal use of non-numeric operand
+242:14 **ERROR** Illegal use of non-numeric operand
+243:14 **ERROR** Illegal use of non-numeric operand
+244:9 **ERROR** Illegal use of non-numeric operand
+245:9 **ERROR** Illegal use of non-numeric operand
+246:9 **ERROR** Illegal use of non-numeric operand
+248:13 **ERROR** Illegal use of non-numeric operand
+249:13 **ERROR** Illegal use of non-numeric operand
+250:13 **ERROR** Illegal use of non-numeric operand
+251:9 **ERROR** Illegal use of non-numeric operand
+252:9 **ERROR** Illegal use of non-numeric operand
+253:9 **ERROR** Illegal use of non-numeric operand
+255:14 **ERROR** Illegal use of non-numeric operand
+256:14 **ERROR** Illegal use of non-numeric operand
+257:14 **ERROR** Illegal use of non-numeric operand
+258:9 **ERROR** Illegal use of non-numeric operand
+259:9 **ERROR** Illegal use of non-numeric operand
+260:9 **ERROR** Illegal use of non-numeric operand
+262:13 **ERROR** Illegal use of non-numeric operand
+263:13 **ERROR** Illegal use of non-numeric operand
+264:13 **ERROR** Illegal use of non-numeric operand
+265:9 **ERROR** Illegal use of non-numeric operand
+266:9 **ERROR** Illegal use of non-numeric operand
+268:9 **ERROR** Possible loss of precision
+269:9 **ERROR** Possible loss of precision
+274:10 **ERROR** Logical operator applied to non-int operand
+275:14 **ERROR** Logical operator applied to non-int operand
+276:9 **ERROR** Logical operator applied to non-int operand
+277:14 **ERROR** Logical operator applied to non-int operand
+278:9 **ERROR** Logical operator applied to non-int operand
+279:10 **ERROR** Logical operator applied to non-int operand
+280:14 **ERROR** Logical operator applied to non-int operand
+281:9 **ERROR** Logical operator applied to non-int operand
+282:14 **ERROR** Logical operator applied to non-int operand
+284:9 **ERROR** Non-int expression used as an if condition
+285:9 **ERROR** Non-int expression used as an if condition
+286:9 **ERROR** Non-int expression used as an if condition
+287:9 **ERROR** Non-int expression used as an if condition
+288:9 **ERROR** Non-int expression used as an if condition
+289:9 **ERROR** Non-int expression used as an if condition
+291:12 **ERROR** Non-int expression used as a while condition
+292:12 **ERROR** Non-int expression used as a while condition
+293:12 **ERROR** Non-int expression used as a while condition
+295:5 **ERROR** Non-int identifier used with ++ or --
+296:5 **ERROR** Non-int identifier used with ++ or --
+297:5 **ERROR** Non-int identifier used with ++ or --
+298:5 **ERROR** Non-int identifier used with ++ or --
+299:5 **ERROR** Non-int identifier used with ++ or --
+300:5 **ERROR** Non-int identifier used with ++ or --
+302:7 **ERROR** Non-int identifier used with ++ or --
+303:7 **ERROR** Non-int identifier used with ++ or --
+304:7 **ERROR** Non-int identifier used with ++ or --
+305:7 **ERROR** Non-int identifier used with ++ or --
+306:7 **ERROR** Non-int identifier used with ++ or --
+307:7 **ERROR** Non-int identifier used with ++ or --
+309:9 **ERROR** Non-int identifier used with ++ or --
+310:9 **ERROR** Non-int identifier used with ++ or --
+311:9 **ERROR** Non-int identifier used with ++ or --
+312:9 **ERROR** Non-int identifier used with ++ or --
+313:9 **ERROR** Non-int identifier used with ++ or --
+314:9 **ERROR** Non-int identifier used with ++ or --
+316:13 **ERROR** Illegal use of non-numeric operand
+317:9 **ERROR** Illegal use of non-numeric operand
+318:13 **ERROR** Illegal use of non-numeric operand
+319:9 **ERROR** Illegal use of non-numeric operand
+320:13 **ERROR** Illegal use of non-numeric operand
+321:9 **ERROR** Illegal use of non-numeric operand
+322:9 **ERROR** Illegal use of non-numeric operand
+323:13 **ERROR** Illegal use of non-numeric operand
+324:9 **ERROR** Illegal use of non-numeric operand
+325:9 **ERROR** Illegal use of non-numeric operand
+326:13 **ERROR** Illegal use of non-numeric operand
+327:9 **ERROR** Illegal use of non-numeric operand
+328:11 **ERROR** Illegal use of non-numeric operand
+329:11 **ERROR** Illegal use of non-numeric operand
+330:11 **ERROR** Illegal use of non-numeric operand
+332:14 **ERROR** Illegal use of non-numeric operand
+333:14 **ERROR** Illegal use of non-numeric operand
+334:14 **ERROR** Illegal use of non-numeric operand
+335:9 **ERROR** Illegal use of non-numeric operand
+336:9 **ERROR** Illegal use of non-numeric operand
+337:9 **ERROR** Illegal use of non-numeric operand
+339:14 **ERROR** Illegal use of non-numeric operand
+340:14 **ERROR** Illegal use of non-numeric operand
+341:14 **ERROR** Illegal use of non-numeric operand
+342:9 **ERROR** Illegal use of non-numeric operand
+343:9 **ERROR** Illegal use of non-numeric operand
+344:9 **ERROR** Illegal use of non-numeric operand
+346:13 **ERROR** Illegal use of non-numeric operand
+347:13 **ERROR** Illegal use of non-numeric operand
+348:13 **ERROR** Illegal use of non-numeric operand
+349:9 **ERROR** Illegal use of non-numeric operand
+350:9 **ERROR** Illegal use of non-numeric operand
+351:9 **ERROR** Illegal use of non-numeric operand
+353:14 **ERROR** Illegal use of non-numeric operand
+354:14 **ERROR** Illegal use of non-numeric operand
+355:14 **ERROR** Illegal use of non-numeric operand
+356:9 **ERROR** Illegal use of non-numeric operand
+357:9 **ERROR** Illegal use of non-numeric operand
+358:9 **ERROR** Illegal use of non-numeric operand
+360:13 **ERROR** Illegal use of non-numeric operand
+361:13 **ERROR** Illegal use of non-numeric operand
+362:13 **ERROR** Illegal use of non-numeric operand
+363:9 **ERROR** Illegal use of non-numeric operand
+364:9 **ERROR** Illegal use of non-numeric operand
+365:9 **ERROR** Illegal use of non-numeric operand
+367:14 **ERROR** Illegal use of non-numeric operand
+368:14 **ERROR** Illegal use of non-numeric operand
+369:14 **ERROR** Illegal use of non-numeric operand
+370:9 **ERROR** Illegal use of non-numeric operand
+371:9 **ERROR** Illegal use of non-numeric operand
+372:9 **ERROR** Illegal use of non-numeric operand
+374:13 **ERROR** Illegal use of non-numeric operand
+375:13 **ERROR** Illegal use of non-numeric operand
+376:13 **ERROR** Illegal use of non-numeric operand
+377:9 **ERROR** Illegal use of non-numeric operand
+378:9 **ERROR** Illegal use of non-numeric operand
+380:9 **ERROR** Possible loss of precision
+381:9 **ERROR** Possible loss of precision
+385:10 **ERROR** Logical operator applied to non-int operand
+386:14 **ERROR** Logical operator applied to non-int operand
+387:9 **ERROR** Logical operator applied to non-int operand
+388:14 **ERROR** Logical operator applied to non-int operand
+389:9 **ERROR** Logical operator applied to non-int operand
+390:10 **ERROR** Logical operator applied to non-int operand
+391:14 **ERROR** Logical operator applied to non-int operand
+392:9 **ERROR** Logical operator applied to non-int operand
+393:14 **ERROR** Logical operator applied to non-int operand
+395:9 **ERROR** Non-int expression used as an if condition
+396:9 **ERROR** Non-int expression used as an if condition
+397:9 **ERROR** Non-int expression used as an if condition
+398:9 **ERROR** Non-int expression used as an if condition
+399:9 **ERROR** Non-int expression used as an if condition
+400:9 **ERROR** Non-int expression used as an if condition
+402:12 **ERROR** Non-int expression used as a while condition
+403:12 **ERROR** Non-int expression used as a while condition
+404:12 **ERROR** Non-int expression used as a while condition
+406:5 **ERROR** Non-int identifier used with ++ or --
+407:5 **ERROR** Non-int identifier used with ++ or --
+408:5 **ERROR** Non-int identifier used with ++ or --
+409:5 **ERROR** Non-int identifier used with ++ or --
+410:5 **ERROR** Non-int identifier used with ++ or --
+411:5 **ERROR** Non-int identifier used with ++ or --
+413:7 **ERROR** Non-int identifier used with ++ or --
+414:7 **ERROR** Non-int identifier used with ++ or --
+415:7 **ERROR** Non-int identifier used with ++ or --
+416:7 **ERROR** Non-int identifier used with ++ or --
+417:7 **ERROR** Non-int identifier used with ++ or --
+418:7 **ERROR** Non-int identifier used with ++ or --
+420:9 **ERROR** Non-int identifier used with ++ or --
+421:9 **ERROR** Non-int identifier used with ++ or --
+422:9 **ERROR** Non-int identifier used with ++ or --
+423:9 **ERROR** Non-int identifier used with ++ or --
+424:9 **ERROR** Non-int identifier used with ++ or --
+425:9 **ERROR** Non-int identifier used with ++ or --
+427:13 **ERROR** Illegal use of non-numeric operand
+428:9 **ERROR** Illegal use of non-numeric operand
+429:13 **ERROR** Illegal use of non-numeric operand
+430:9 **ERROR** Illegal use of non-numeric operand
+431:13 **ERROR** Illegal use of non-numeric operand
+432:9 **ERROR** Illegal use of non-numeric operand
+433:9 **ERROR** Illegal use of non-numeric operand
+434:13 **ERROR** Illegal use of non-numeric operand
+435:9 **ERROR** Illegal use of non-numeric operand
+436:9 **ERROR** Illegal use of non-numeric operand
+437:13 **ERROR** Illegal use of non-numeric operand
+438:9 **ERROR** Illegal use of non-numeric operand
+439:11 **ERROR** Illegal use of non-numeric operand
+440:11 **ERROR** Illegal use of non-numeric operand
+441:11 **ERROR** Illegal use of non-numeric operand
+443:14 **ERROR** Illegal use of non-numeric operand
+444:14 **ERROR** Illegal use of non-numeric operand
+445:14 **ERROR** Illegal use of non-numeric operand
+446:9 **ERROR** Illegal use of non-numeric operand
+447:9 **ERROR** Illegal use of non-numeric operand
+448:9 **ERROR** Illegal use of non-numeric operand
+450:14 **ERROR** Illegal use of non-numeric operand
+451:14 **ERROR** Illegal use of non-numeric operand
+452:14 **ERROR** Illegal use of non-numeric operand
+453:9 **ERROR** Illegal use of non-numeric operand
+454:9 **ERROR** Illegal use of non-numeric operand
+455:9 **ERROR** Illegal use of non-numeric operand
+457:13 **ERROR** Illegal use of non-numeric operand
+458:13 **ERROR** Illegal use of non-numeric operand
+459:13 **ERROR** Illegal use of non-numeric operand
+460:9 **ERROR** Illegal use of non-numeric operand
+461:9 **ERROR** Illegal use of non-numeric operand
+462:9 **ERROR** Illegal use of non-numeric operand
+464:14 **ERROR** Illegal use of non-numeric operand
+465:14 **ERROR** Illegal use of non-numeric operand
+466:14 **ERROR** Illegal use of non-numeric operand
+467:9 **ERROR** Illegal use of non-numeric operand
+468:9 **ERROR** Illegal use of non-numeric operand
+469:9 **ERROR** Illegal use of non-numeric operand
+471:13 **ERROR** Illegal use of non-numeric operand
+472:13 **ERROR** Illegal use of non-numeric operand
+473:13 **ERROR** Illegal use of non-numeric operand
+474:9 **ERROR** Illegal use of non-numeric operand
+475:9 **ERROR** Illegal use of non-numeric operand
+476:9 **ERROR** Illegal use of non-numeric operand
+478:14 **ERROR** Illegal use of non-numeric operand
+479:14 **ERROR** Illegal use of non-numeric operand
+480:14 **ERROR** Illegal use of non-numeric operand
+481:9 **ERROR** Illegal use of non-numeric operand
+482:9 **ERROR** Illegal use of non-numeric operand
+483:9 **ERROR** Illegal use of non-numeric operand
+485:13 **ERROR** Illegal use of non-numeric operand
+486:13 **ERROR** Illegal use of non-numeric operand
+487:13 **ERROR** Illegal use of non-numeric operand
+488:9 **ERROR** Illegal use of non-numeric operand
+489:9 **ERROR** Illegal use of non-numeric operand
+491:9 **ERROR** Possible loss of precision
+492:9 **ERROR** Possible loss of precision
+495:12 **ERROR** Logical operator applied to non-int operand
+496:16 **ERROR** Logical operator applied to non-int operand
+497:11 **ERROR** Logical operator applied to non-int operand
+498:16 **ERROR** Logical operator applied to non-int operand
+499:11 **ERROR** Logical operator applied to non-int operand
+500:12 **ERROR** Logical operator applied to non-int operand
+501:16 **ERROR** Logical operator applied to non-int operand
+502:11 **ERROR** Logical operator applied to non-int operand
+503:16 **ERROR** Logical operator applied to non-int operand
+504:11 **ERROR** Non-int identifier used with ++ or --
+505:11 **ERROR** Non-int identifier used with ++ or --
+506:11 **ERROR** Non-int identifier used with ++ or --
+507:11 **ERROR** Non-int identifier used with ++ or --
+508:11 **ERROR** Non-int identifier used with ++ or --
+509:11 **ERROR** Non-int identifier used with ++ or --
+510:15 **ERROR** Illegal use of non-numeric operand
+511:11 **ERROR** Illegal use of non-numeric operand
+512:15 **ERROR** Illegal use of non-numeric operand
+513:11 **ERROR** Illegal use of non-numeric operand
+514:15 **ERROR** Illegal use of non-numeric operand
+515:11 **ERROR** Illegal use of non-numeric operand
+516:11 **ERROR** Illegal use of non-numeric operand
+517:15 **ERROR** Illegal use of non-numeric operand
+518:11 **ERROR** Illegal use of non-numeric operand
+519:11 **ERROR** Illegal use of non-numeric operand
+520:15 **ERROR** Illegal use of non-numeric operand
+521:11 **ERROR** Illegal use of non-numeric operand
+522:13 **ERROR** Illegal use of non-numeric operand
+523:13 **ERROR** Illegal use of non-numeric operand
+524:13 **ERROR** Illegal use of non-numeric operand
+525:16 **ERROR** Illegal use of non-numeric operand
+526:16 **ERROR** Illegal use of non-numeric operand
+527:16 **ERROR** Illegal use of non-numeric operand
+528:11 **ERROR** Illegal use of non-numeric operand
+529:11 **ERROR** Illegal use of non-numeric operand
+530:11 **ERROR** Illegal use of non-numeric operand
+531:16 **ERROR** Illegal use of non-numeric operand
+532:16 **ERROR** Illegal use of non-numeric operand
+533:16 **ERROR** Illegal use of non-numeric operand
+534:11 **ERROR** Illegal use of non-numeric operand
+535:11 **ERROR** Illegal use of non-numeric operand
+536:11 **ERROR** Illegal use of non-numeric operand
+537:15 **ERROR** Illegal use of non-numeric operand
+538:15 **ERROR** Illegal use of non-numeric operand
+539:15 **ERROR** Illegal use of non-numeric operand
+540:11 **ERROR** Illegal use of non-numeric operand
+541:11 **ERROR** Illegal use of non-numeric operand
+542:11 **ERROR** Illegal use of non-numeric operand
+543:16 **ERROR** Illegal use of non-numeric operand
+544:16 **ERROR** Illegal use of non-numeric operand
+545:16 **ERROR** Illegal use of non-numeric operand
+546:11 **ERROR** Illegal use of non-numeric operand
+547:11 **ERROR** Illegal use of non-numeric operand
+548:11 **ERROR** Illegal use of non-numeric operand
+549:15 **ERROR** Illegal use of non-numeric operand
+550:15 **ERROR** Illegal use of non-numeric operand
+551:15 **ERROR** Illegal use of non-numeric operand
+552:11 **ERROR** Illegal use of non-numeric operand
+553:11 **ERROR** Illegal use of non-numeric operand
+554:11 **ERROR** Illegal use of non-numeric operand
+555:16 **ERROR** Illegal use of non-numeric operand
+556:16 **ERROR** Illegal use of non-numeric operand
+557:16 **ERROR** Illegal use of non-numeric operand
+558:11 **ERROR** Illegal use of non-numeric operand
+559:11 **ERROR** Illegal use of non-numeric operand
+560:11 **ERROR** Illegal use of non-numeric operand
+561:15 **ERROR** Illegal use of non-numeric operand
+562:15 **ERROR** Illegal use of non-numeric operand
+563:15 **ERROR** Illegal use of non-numeric operand
+564:11 **ERROR** Illegal use of non-numeric operand
+565:11 **ERROR** Illegal use of non-numeric operand

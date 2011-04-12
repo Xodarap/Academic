@@ -884,7 +884,8 @@ class WriteIntStmtNode extends StmtNode {
     public void checkTypes(String returnType) {
 	myExp.checkTypes(returnType);
 
-	if(!myExp.type().equals("int")) {
+	if(myExp.type().equals("error")) {
+	}else if(!myExp.type().equals("int")) {
 	    Errors.fatal(myExp.linenum(), myExp.charnum(), "Attempt to write a non-int value with an int format");
 	}
     }
@@ -913,7 +914,8 @@ class WriteDblStmtNode extends StmtNode {
     public void checkTypes(String returnType) {
 	myExp.checkTypes(returnType);
 
-	if(!myExp.type().equals("double")) {
+	if(myExp.type().equals("error")) {
+	}else if(!myExp.type().equals("double")) {
 	    Errors.fatal(myExp.linenum(), myExp.charnum(), "Attempt to write a non-double value with a dbl format");
 	}
     }
@@ -1181,16 +1183,25 @@ class ReturnStmtNode extends StmtNode {
     }
 
     public void checkTypes(String returnType){
+	if(myExp != null) {
+	    myExp.checkTypes(returnType);
+	    if(myExp.type().equals("error")) { return; }
+	}
+
 	if(myExp == null && !returnType.equals("void")) { 
 	    Errors.fatal(0, 0, "Missing return value");
+	    return;
 	}
 	if(myExp != null && returnType.equals("void")) { 
 	    Errors.fatal(myExp.linenum(), myExp.charnum(), "Return with a value in a void function");
+	    return;
 	}
 	if(myExp != null){
 	    if(!returnType.equals(myExp.type()) && 
 	       !(returnType.equals("double") && myExp.type().equals("int"))) { 
 		Errors.fatal(myExp.linenum(), myExp.charnum(), "Bad return value");
+	    } else if (returnType.equals("int") && myExp.type().equals("double")) {
+		Errors.fatal(myExp.linenum(), myExp.charnum(), "Possible loss of precision");
 	    }
 	}
     }
@@ -1209,7 +1220,13 @@ abstract class ExpNode extends ASTnode {
 
     abstract public int linenum();
     abstract public int charnum();
-    abstract public String type();
+    abstract protected String typeInternal();
+    protected Boolean isError = false;
+    // Errors always have the special type of error
+    public String type() {
+	if(isError) { return "error"; }
+	else { return typeInternal(); }
+    }
 }
 
 class IntLitNode extends ExpNode {
@@ -1236,7 +1253,7 @@ class IntLitNode extends ExpNode {
 
     public void checkTypes(String returnType){}
 
-    public String type() {
+    public String typeInternal() {
 	return "int";
     }
 
@@ -1269,7 +1286,7 @@ class DblLitNode extends ExpNode {
 
     public void checkTypes(String returnType){}
 
-    public String type() {
+    public String typeInternal() {
 	return "double";
     }
 
@@ -1302,7 +1319,7 @@ class StringLitNode extends ExpNode {
 
     public void checkTypes(String returnType){}
 
-    public String type() {
+    public String typeInternal() {
 	return "string";
     }
 
@@ -1354,7 +1371,7 @@ class IdNode extends ExpNode {
     }
 
     /** type **/
-    public String type() {
+    public String typeInternal() {
 	if (mySym != null) return mySym.type();
 	else {
 	    System.err.println("ID with null sym field");
@@ -1423,35 +1440,44 @@ class CallExpNode extends ExpNode {
     public void checkTypes(String returnType){
 	if(!(myId.sym() instanceof FnSym)) {
 	    Errors.fatal(myId.linenum(), myId.charnum(), "Attempt to call a non-function");
+	    isError = true;
 	    return;
 	}
-	myExpList.checkTypes(returnType);
 
 	Iterator iter = myExpList.expressions().iterator();
 	FnSym fSym = (FnSym) myId.sym();
 	for(Sym params : fSym.paramTypes()){
 	    if(!iter.hasNext()) {
 		Errors.fatal(myId.linenum(), myId.charnum(), "Function call with wrong number of args");
+		isError = true;
 		return;
 	    }
 	    iter.next();
 	}
 	if(iter.hasNext()){
 	    Errors.fatal(myId.linenum(), myId.charnum(), "Function call with wrong number of args");
+	    isError = true;
 	    return;
 	}
+	myExpList.checkTypes(returnType);
 	iter = myExpList.expressions().iterator();
 	for(Sym params : fSym.paramTypes()){
 	    ExpNode param = (ExpNode) iter.next();
-	    if(!param.type().equals(params.type())){
+	    if(!param.type().equals(params.type()) && 
+	       !(param.type().equals("int") && params.type().equals("double"))){
 		Errors.fatal(param.linenum(), param.charnum(), "Type of actual does not match type of formal");
+		isError = true;
 	    }
 	}
 
     }
 
-    public String type() {
+    public String typeInternal() {
 	return myId.type();
+    }
+
+    public FnSym sym() {
+	return (FnSym) myId.sym();
     }
 
     // 2 kids
@@ -1479,7 +1505,7 @@ abstract class UnaryExpNode extends ExpNode {
 	return myExp.charnum();
     }
 
-    public String type(){
+    public String typeInternal(){
 	return myExp.type();
     }
 
@@ -1514,6 +1540,7 @@ abstract class BinaryExpNode extends ExpNode {
 	myExp2.checkTypes(returnType);
 
 	if(myExp1.type().equals("error") || myExp2.type().equals("error")) { 
+	    isError = true;
 	    return;
 	}
 	
@@ -1522,7 +1549,7 @@ abstract class BinaryExpNode extends ExpNode {
 
     public void checkBinaryTypes(String returnType){ }
 
-    public String type(){
+    public String typeInternal(){
 	return binaryType();
     }
 
@@ -1553,8 +1580,11 @@ class PlusPlusNode extends UnaryExpNode {
 
     public void checkTypes(String returnType){
 	myExp.checkTypes(returnType);
-	if(!myExp.type().equals("int")){
+	if(myExp.type().equals("error")) {
+	    isError = true;
+	}else if(!myExp.type().equals("int")){
 	    Errors.fatal(myExp.linenum(), myExp.charnum(), "Non-int identifier used with ++ or --");
+	    isError = true;
 	}
     }
 }
@@ -1573,8 +1603,11 @@ class MinusMinusNode extends UnaryExpNode {
 
     public void checkTypes(String returnType){
 	myExp.checkTypes(returnType);
-	if(!myExp.type().equals("int")){
+	if(myExp.type().equals("error")) {
+	    isError = true;
+	}else if(!myExp.type().equals("int")){
 	    Errors.fatal(myExp.linenum(), myExp.charnum(), "Non-int identifier used with ++ or --");
+	    isError = true;
 	}
     }
 }
@@ -1593,8 +1626,11 @@ class UnaryMinusNode extends UnaryExpNode {
 
     public void checkTypes(String returnType){
 	myExp.checkTypes(returnType);
-	if(!myExp.type().equals("int") && !myExp.type().equals("double")){
+	if(myExp.type().equals("error")) {
+	    isError = true;
+	}else if(!myExp.type().equals("int") && !myExp.type().equals("double")){
 	    Errors.fatal(myExp.linenum(), myExp.charnum(), "Illegal use of non-numeric operand");
+	    isError = true;
 	}
     }
 }
@@ -1610,11 +1646,14 @@ class NotNode extends UnaryExpNode {
 	myExp.unparse(p, 0);
 	p.print(")");
     }
-
+    
     public void checkTypes(String returnType){
 	myExp.checkTypes(returnType);
-	if(!myExp.type().equals("int")){
-	    Errors.fatal(myExp.linenum(), myExp.charnum(), "Illegal use of non-numeric operand");
+	if(myExp.type().equals("error")) {
+	    isError = true;
+	}else if(!myExp.type().equals("int")){
+	    Errors.fatal(myExp.linenum(), myExp.charnum(), "Logical operator applied to non-int operand");
+	    isError = true;
 	}
     }
 }
@@ -1631,10 +1670,12 @@ abstract class ArithmeticExpNode extends BinaryExpNode {
     public void checkBinaryTypes(String returnType) {
 	if(parseUtils.typeNonNumeric(myExp1.type())){
 	    Errors.fatal(myExp1.linenum(), myExp1.charnum(), "Illegal use of non-numeric operand");
+	    isError = true;
 	}
 
 	if(parseUtils.typeNonNumeric(myExp2.type())){
 	    Errors.fatal(myExp2.linenum(), myExp2.charnum(), "Illegal use of non-numeric operand");
+	    isError = true;
 	}
     }
 
@@ -1655,10 +1696,14 @@ abstract class LogicalExpNode extends BinaryExpNode {
     public void checkBinaryTypes(String returnType) {
 	if(!myExp1.type().equals("int")){
 	    Errors.fatal(myExp1.linenum(), myExp1.charnum(), "Logical operator applied to non-int operand");
+	    isError = true;
+	    //return;
 	}
 
 	if(!myExp2.type().equals("int")){
 	    Errors.fatal(myExp2.linenum(), myExp2.charnum(), "Logical operator applied to non-int operand");
+	    isError = true;
+	    //return;
 	}
     }
 
@@ -1675,10 +1720,12 @@ abstract class EqualityExpNode extends BinaryExpNode {
     public void checkBinaryTypes(String returnType) {
 	if(parseUtils.typeNonNumeric(myExp1.type())){
 	    Errors.fatal(myExp1.linenum(), myExp1.charnum(), "Illegal use of non-numeric operand");
+	    isError = true;
 	}
 
 	if(parseUtils.typeNonNumeric(myExp2.type())){
 	    Errors.fatal(myExp2.linenum(), myExp2.charnum(), "Illegal use of non-numeric operand");
+	    isError = true;
 	}
     }
 
@@ -1695,10 +1742,12 @@ abstract class RelationalExpNode extends BinaryExpNode {
     public void checkBinaryTypes(String returnType) {
 	if(parseUtils.typeNonNumeric(myExp1.type())){
 	    Errors.fatal(myExp1.linenum(), myExp1.charnum(), "Illegal use of non-numeric operand");
+	    isError = true;
 	}
 
 	if(parseUtils.typeNonNumeric(myExp2.type())){
 	    Errors.fatal(myExp2.linenum(), myExp2.charnum(), "Illegal use of non-numeric operand");
+	    isError = true;
 	}
     }
 
@@ -1748,12 +1797,24 @@ class AssignNode extends BinaryExpNode {
 	
 	if(parseUtils.typeNonNumeric(myExp1.type())) {
 	    Errors.fatal(myExp1.linenum(), myExp1.charnum(), "Illegal use of non-numeric operand");
+	    isError = true;
 	}
-	if(parseUtils.typeNonNumeric(myExp2.type())) {
+	if(myExp2 instanceof CallExpNode) {
+	    FnSym call = ((CallExpNode)myExp2).sym();
+	    if(parseUtils.typeNonNumeric(call.returnType())) {
+		Errors.fatal(myExp2.linenum(), myExp2.charnum(), "Illegal use of non-numeric operand");
+		isError = true;
+	    } else if(myExp1.type().equals("int") && call.returnType().equals("double")){
+		Errors.fatal(myExp2.linenum(), myExp2.charnum(), "Possible loss of precision");
+	    }
+	} 
+	else if(parseUtils.typeNonNumeric(myExp2.type())) {
 	    Errors.fatal(myExp2.linenum(), myExp2.charnum(), "Illegal use of non-numeric operand");
+	    isError = true;
 	}
 	if(myExp1.type().equals("int") && myExp2.type().equals("double")){
 	    Errors.fatal(myExp2.linenum(), myExp2.charnum(), "Possible loss of precision");
+	    isError = true;
 	}
     }
 
