@@ -1,0 +1,2 @@
+beq  r1, 0x00
+addi r1, 0x00

@@ -1,0 +1,8 @@
+work/
+_work/
+__work/x
+__work/
+archsim.trace
+dump.wlf
+diff.ptrace
+verilogsim.log

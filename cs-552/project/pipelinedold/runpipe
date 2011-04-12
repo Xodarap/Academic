@@ -1,0 +1,2 @@
+#!/s/std/bin/bash
+wsrun.pl -pipe -prog ../programs/$1.asm proc_hier_pbench *.v | egrep -i '(^<)|(^>)|(^FAILED)|(ERROR)|WARNING|SUCCESS' | egrep -vi 'timescale'
