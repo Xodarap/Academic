@@ -1184,8 +1184,7 @@ class ReturnStmtNode extends StmtNode {
 
     public void checkTypes(String returnType){
 	if(myExp != null) {
-	    myExp.checkTypes(returnType);
-	    if(myExp.type().equals("error")) { return; }
+	    myExp.checkTypes(returnType);	    
 	}
 
 	if(myExp == null && !returnType.equals("void")) { 
@@ -1195,6 +1194,9 @@ class ReturnStmtNode extends StmtNode {
 	if(myExp != null && returnType.equals("void")) { 
 	    Errors.fatal(myExp.linenum(), myExp.charnum(), "Return with a value in a void function");
 	    return;
+	}
+	if(myExp != null) {
+	    if(myExp.type().equals("error")) { return; }
 	}
 	if(myExp != null){
 	    if(!returnType.equals(myExp.type()) && 
@@ -1437,6 +1439,9 @@ class CallExpNode extends ExpNode {
 	return myId.charnum();
     }
 
+    // Cascading in fn calls is a bit unituitive
+    // The same error can't count twice, but we can still get multiple errors from the same
+    // function if the return type doesn't match. 
     public void checkTypes(String returnType){
 	if(!(myId.sym() instanceof FnSym)) {
 	    Errors.fatal(myId.linenum(), myId.charnum(), "Attempt to call a non-function");
@@ -1449,14 +1454,12 @@ class CallExpNode extends ExpNode {
 	for(Sym params : fSym.paramTypes()){
 	    if(!iter.hasNext()) {
 		Errors.fatal(myId.linenum(), myId.charnum(), "Function call with wrong number of args");
-		isError = true;
 		return;
 	    }
 	    iter.next();
 	}
 	if(iter.hasNext()){
 	    Errors.fatal(myId.linenum(), myId.charnum(), "Function call with wrong number of args");
-	    isError = true;
 	    return;
 	}
 	myExpList.checkTypes(returnType);
@@ -1466,7 +1469,6 @@ class CallExpNode extends ExpNode {
 	    if(!param.type().equals(params.type()) && 
 	       !(param.type().equals("int") && params.type().equals("double"))){
 		Errors.fatal(param.linenum(), param.charnum(), "Type of actual does not match type of formal");
-		isError = true;
 	    }
 	}
 

@@ -1,22 +1,282 @@
 int x;
+int y;
+double d;
 
-void f(int a, int b) {
+double intToDbl(double d) {
+  int k;
+  d(double) = k(int);
+  intToDbl(double->double)(k(int));
+  d(double) = (k(int) = 2);
+  k(int) = (d(double)==k(int));
+  k(int) = (d(double)!=k(int));
+  k(int) = (d(double)<k(int));
+  k(int) = (d(double)<=k(int));
+  k(int) = (d(double)>k(int));
+  k(int) = (d(double)>=k(int));
+  return k(int);
 }
 
+void f(double a, int c, int d) {
+  printf("%f", a(double));
+  printf("  ");
+  printf("%d", c(int));
+  printf("  ");
+  printf("%d", d(int));
+  printf("\n");
+  return;
+}
+
+int g(int x) {
+  return x(int);
+}
+
+double gg(double dd) {
+  return (d(double)+dd(double));
+}
+
+void foo() {
+  int a;
+  int b;
+  int c;
+  int B;
+  a(int) = 6;
+  while ((a(int)<10)) {
+    printf("%d", a(int));
+    printf(" ");
+    a(int)++;
+  }
+  printf("\n");
+  a(int) = 6;
+  while ((a(int)>=(-1))) {
+    printf("%d", a(int));
+    printf(" ");
+    a(int)--;
+  }
+  printf("\n");
+  a(int) = 10;
+  B(int) = (1<3);
+  printf("%d", B(int));
+  printf(" ");
+  b(int) = 22;
+  a(int) = (a(int)+b(int));
+  printf("%d", a(int));
+  printf(" ");
+  a(int) = (a(int)-b(int));
+  printf("%d", a(int));
+  printf(" ");
+  a(int) = (a(int)*b(int));
+  printf("%d", a(int));
+  printf(" ");
+  a(int) = (a(int)/b(int));
+  printf("%d", a(int));
+  printf("  ");
+  b(int) = (a(int)--);
+  printf("%d", a(int));
+  printf("\n");
+  b(int) = (a(int)++);
+  printf("%d", a(int));
+  printf("\n");
+  a(int) = 10;
+  b(int) = 22;
+  c(int) = 1;
+  c(int) = (!c(int));
+  printf("%d", c(int));
+  printf(" ");
+  c(int) = (c(int)&&1);
+  printf("%d", c(int));
+  printf(" ");
+  c(int) = (0||(!c(int)));
+  printf("%d", c(int));
+  printf(" ");
+  c(int) = (a(int)==b(int));
+  printf("%d", c(int));
+  printf(" ");
+  c(int) = (a(int)!=b(int));
+  printf("%d", c(int));
+  printf(" ");
+  c(int) = (a(int)<b(int));
+  printf("%d", c(int));
+  printf("\n");
+  c(int) = (a(int)>b(int));
+  printf("%d", c(int));
+  printf(" ");
+  c(int) = (a(int)<=b(int));
+  printf("%d", c(int));
+  printf(" ");
+  c(int) = (a(int)>=b(int));
+  printf("%d", c(int));
+  printf(" ");
+  printf("%d", (b(int)<=b(int)));
+  printf(" ");
+  printf("%d", (b(int)>=b(int)));
+  printf("\n");
+  a(int) = (-50);
+  printf("%d", a(int));
+  printf("  ");
+  if ((a(int)<=10)) {
+    int a;
+    a(int) = 3;
+    while ((a(int)>=(-2))) {
+      printf("%d", a(int));
+      printf(" ");
+      a(int) = (a(int)-1);
+    }
+  }
+  printf("\n");
+  b(int) = (-(1*1));
+  if ((b(int)==(-1))) {
+    x(int) = (-5);
+    while ((x(int)<=b(int))) {
+      printf("%d", x(int));
+      printf(" ");
+      x(int) = (x(int)+1);
+    }
+  }
+  else {
+    printf("ERROR\n");
+  }
+  printf("\n");
+}
+
+void bar() {
+  double a;
+  double b;
+  int c;
+  double B;
+  a(double) = 6.5;
+  while ((a(double)<10.0)) {
+    printf("%f", a(double));
+    printf(" ");
+  }
+  printf("\n");
+  a(double) = 6.5;
+  while ((a(double)>=(-1.0))) {
+    printf("%f", a(double));
+    printf(" ");
+    a(double) = (a(double)-1.0);
+  }
+  printf("\n");
+  a(double) = 10.5;
+  b(double) = 22.5;
+  a(double) = (a(double)+b(double));
+  printf("%f", a(double));
+  printf(" ");
+  a(double) = (a(double)-b(double));
+  printf("%f", a(double));
+  printf(" ");
+  a(double) = (a(double)*b(double));
+  printf("%f", a(double));
+  printf(" ");
+  a(double) = (a(double)/b(double));
+  printf("%f", a(double));
+  printf("\n");
+  c(int) = (a(double)==b(double));
+  printf("%d", c(int));
+  printf(" ");
+  c(int) = (a(double)!=b(double));
+  printf("%d", c(int));
+  printf(" ");
+  c(int) = (a(double)<b(double));
+  printf("%d", c(int));
+  printf(" ");
+  c(int) = (a(double)>b(double));
+  printf("%d", c(int));
+  printf(" ");
+  c(int) = (a(double)<=b(double));
+  printf("%d", c(int));
+  printf(" ");
+  c(int) = (a(double)>=b(double));
+  printf("%d", c(int));
+  printf("\n");
+  a(double) = (b(double) = 66.0);
+  printf("%f", a(double));
+  printf(" ");
+  printf("%f", b(double));
+  printf("\n");
+  a(double) = (-50.0);
+  printf("%f", a(double));
+  printf("  ");
+  if ((a(double)<=10.0)) {
+    double a;
+    a(double) = 3.0;
+    while ((a(double)>=(-2.0))) {
+      printf("%f", a(double));
+      printf(" ");
+      a(double) = (a(double)-1.0);
+    }
+  }
+  printf("\n");
+  b(double) = (-(1.0*1.0));
+  if ((b(double)==(-1.0))) {
+    a(double) = (-5.0);
+    while ((a(double)<b(double))) {
+      printf("%f", a(double));
+      printf(" ");
+      a(double) = (a(double)+1.0);
+    }
+  }
+  else {
+    printf("ERROR\n");
+  }
+  printf("\n");
+}
+int b;
+
 void main() {
-  x(int) = ((f(int,int->void)+3)*4);
-  printf("%d", (f(int,int->void)+1));
-  if ((1&&(f(int,int->void)||3))) {
+  double myd;
+  scanf("%d", &x(int));
+  scanf("%f", &myd(double));
+  d(double) = 22.5;
+  x(int) = 55;
+  y(int) = 65;
+  ++x(int);
+  ++y(int);
+  printf("%d", x(int));
+  printf("  ");
+  printf("%d", x(int));
+  printf("  ");
+  --x(int);
+  --y(int);
+  printf("%d", x(int));
+  printf("  ");
+  printf("%d", x(int));
+  printf("\n");
+  f(double,int,int->void)(d(double), x(int), y(int));
+  x(int) = g(int->int)(x(int));
+  printf("%d", x(int));
+  printf("\n\n");
+  myd(double) = gg(double->double)(d(double));
+  printf("%f", myd(double));
+  printf("  ");
+  printf("%f", d(double));
+  printf("\n\n");
+  foo(->void)();
+  bar(->void)();
+  b(int) = 1;
+  x(int) = 2;
+  if ((b(int)||(x(int) = 5))) {
+    printf("%d", x(int));
+    printf("  ");
   }
-  while (f(int,int->void)((f(int,int->void)*4))) {
+  x(int) = 2;
+  if ((x(int) = (5||(b(int) = 2)))) {
+    printf("%d", x(int));
+    printf("  ");
   }
-  printf("%d", (1+x(int)()));
-  x(int) = (f(int,int->void) = 3);
-  if (((f(int,int->void)+3)==x(int))) {
+  b(int) = 1;
+  x(int) = 2;
+  if (((!b(int))&&(x(int) = 5))) {
   }
-  f(int,int->void) = f(int,int->void);
-  x(int) = (-f(int,int->void)());
-  x(int) = (1+f(int,int->void)(4.5, 0));
-  x(int) = (1+f(int,int->void)(10));
-  return (3+f(int,int->void));
+  else {
+    printf("%d", x(int));
+    printf("  ");
+  }
+  b(int) = 0;
+  x(int) = 2;
+  if (((x(int) = 5)&&(b(int) = 2))) {
+    printf("%d", x(int));
+    printf("  ");
+    printf("%d", b(int));
+    printf("\n");
+  }
 }
