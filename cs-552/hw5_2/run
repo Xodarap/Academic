@@ -1,0 +1,4 @@
+#!/usr/bin/fish
+iverilog -s  mem_system_hier_tb *.v
+./a.out
+gtkwave dump.vcd &

@@ -1,0 +1,203 @@
+m255
+cModel Technology
+d/afs/cs.wisc.edu/u/w/e/west/git/Academic/Academic/cs-552/hw5_1
+vcache
+IHfh7naN89QSGe>c;C`>ic0
+V_^<WX=Pof?6:UF]BcMSVE2
+w1303195362
+Fcache.v
+L0 17
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vcache_controller
+IaY^9O9WJlEN1aCMD07gS:2
+V3BB6oG63ST?Fl<64JP]c[2
+w1303195362
+Fcache_controller.v
+L0 1
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vcache_two_way
+IE`M0LG0DLC`nbob[RDL0E1
+VNEooMW:jdQ1_SoR]IzMZF1
+w1303196161
+Fcache_two_way.v
+L0 1
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vclkrst
+I?XzA6a@=UE7biS_VbjF1=2
+VK>2=mbfl0iJWOIS>jZz]C0
+w1303195362
+Fclkrst.v
+L0 13
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vdff
+IDX1IR`Dk[;SUJ;F<;6i_G1
+V;GC@fJC4l9bF1doI@Q2XK3
+w1303195362
+Fdff.v
+L0 6
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vfinal_memory
+IE2e72`8Vic61IGIhkHb4G0
+VNQhUkihf`R^V20en7f2@41
+w1303195362
+Ffinal_memory.v
+L0 54
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vfour_bank_mem
+I0[JXnDn3F@;A_Y@Gb9RVR0
+VZ@Nz1LRg;BLdd_^dWlJ<N0
+w1303195362
+Ffour_bank_mem.v
+L0 65
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vmem_interface
+I8hnhfan6kU6FRnG4lA8Wb0
+VR?NUBV32IUGCn?c?P?iRW3
+w1303195362
+Fmem_interface.v
+L0 1
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vmem_interface_tb
+I^[1NUQ>[87TW?d2jV6SR83
+VhiPYn^lMYPE]bazgZSoT60
+w1303195362
+Fmem_interface_tb.v
+L0 1
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vmem_system
+INf<HMn0zQ::^VFAEceQBh2
+V2n_?fzW0cX>UcGKJ^2h0z0
+w1303195362
+Fmem_system.v
+L0 5
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vmem_system_hier
+I3RWRHV3M_A4Yol>QYmESW1
+V99B;oOInQUPolBk;5UmmZ1
+w1303195362
+Fmem_system_hier.v
+L0 5
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vmem_system_hier_tb
+IVl;^31nZ8]28bLFHY@=hO2
+V;RGozRhR2hHCgLH@dcGkn3
+w1303195362
+Fmem_system_hier_tb.v
+L0 1
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vmem_system_perfbench
+Ib2BIQWafiHE?26UNo6>mk2
+VKlRBU5:hT_2ie37fNCmF?3
+w1303195362
+Fmem_system_perfbench.v
+L0 7
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vmem_system_randbench
+ISS^KmGlS_cCY]GJIiPN3L0
+VZJ5AP4M1BlRNJJZO4Q3b10
+w1303195362
+Fmem_system_randbench.v
+L0 6
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vmem_system_ref
+I4`4<3PV[@3Al[Nz_?G6FO0
+Vf]iY09Ljc8c?0:GNJ9G^=1
+w1303195362
+Fmem_system_ref.v
+L0 5
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vmemc
+Ioe5>7j@W9Ya]R5ziL>Q3k0
+VbJaKN6?aokK0?f?YEcRQ11
+w1303195362
+Fmemc.v
+L0 6
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vmemory
+IL>_6l_TLfNYHGKl]dVS6k0
+VSEdLzN?03TdH4zROGkZZG1
+w1303195362
+Fmemory.v
+L0 1
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vmemv
+IHN0EB@jQ9]fC]@V>42]6O3
+V<]b9FCg<gKIGMMBaZPe871
+w1303195362
+Fmemv.v
+L0 6
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vonebitreg
+IQMkEA2AV;1HNf3dJ0RoOc2
+ViLeYH0N4Z^jaJ:6DnN9WI1
+w1303195362
+Fonebitreg.v
+L0 1
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work
+vreg16
+I[gnR2=cYfiaU=@VnQg;EO0
+Vm21m[kUbOA32g>QVS78=?0
+w1303195363
+Freg16.v
+L0 1
+OE;L;5.8b;17
+r1
+31
+o+define+RANDSEED=3 -work __work

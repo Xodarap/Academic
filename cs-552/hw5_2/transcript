@@ -1,0 +1,38 @@
+# vsim +addr_trace_file_name=.//test_traces//mem_2way6.addr -lib __work -c mem_system_perfbench 
+# //  ModelSim SE 5.8b Jan 01 2004 Linux 2.6.18-238.1.1.el5
+# //
+# //  Copyright Model Technology, a Mentor Graphics Corporation company, 2004
+# //                         All Rights Reserved.
+# //                   UNPUBLISHED, LICENSED SOFTWARE.
+# //         CONFIDENTIAL AND PROPRIETARY INFORMATION WHICH IS THE
+# //        PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS.
+# //
+# Loading __work.mem_system_perfbench
+# Loading __work.mem_system_hier
+# Loading __work.clkrst
+# Loading __work.mem_system
+# Loading __work.cache_two_way
+# Loading __work.cache
+# Loading __work.memc
+# Loading __work.memv
+# Loading __work.onebitreg
+# Loading __work.dff
+# Loading __work.cache_controller
+# Loading __work.reg16
+# Loading __work.four_bank_mem
+# Loading __work.final_memory
+# Loading __work.mem_system_ref
+run -all
+# Using trace file                                                                                                                                                                                                                                   .//test_traces//mem_2way6.addr
+# LOG: ReQNum    1 Cycle       12 ReqCycle        3 Wr Addr 0x015c Value 0x0038 ValueRef 0x0038 HIT 0
+# 
+# LOG: ReQNum    2 Cycle       22 ReqCycle       13 Wr Addr 0x095c Value 0x0020 ValueRef 0x0020 HIT 0
+# 
+# LOG: ReQNum    3 Cycle       37 ReqCycle       23 Wr Addr 0x115c Value 0x003d ValueRef 0x003d HIT 0
+# 
+# LOG: Done all Requests:          3 Replies:          3 Cycles:         38 Hits:          0
+# Test status: SUCCESS
+# Break at mem_system_perfbench.v line 200
+# Stopped at mem_system_perfbench.v line 200 
+# 
+# <EOF> 

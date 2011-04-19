@@ -1,0 +1,347 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Modeltech_pe_edu_10.0\examples
+vcache
+Z1 !s100 Hfh7naN89QSGe>c;C`>ic0
+Z2 Iiz7]XIMHKiF=1P0JL2J;G1
+Z3 V]kdD64]gfgQ81H`@?8?M;0
+Z4 dC:\Users\Ryan\Documents\!School\Spring11\552\hw5\hw5_1
+Z5 w1303095850
+Z6 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/cache.v
+Z7 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/cache.v
+L0 17
+Z8 OP;L;10.0;49
+r1
+31
+Z9 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/cache.v|
+Z10 !s102 -nocovercells
+Z11 o-work work -nocovercells -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF -O0
+Z12 !s108 1303146354.198000
+Z13 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/cache.v|
+!s85 0
+!s101 -O0
+vcache_controller
+Z14 I0>LRh;iak>@522@8czcID3
+Z15 V[3M?h]Ug:2gHVJNae?^Xd1
+R4
+Z16 w1303146351
+Z17 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/cache_controller.v
+Z18 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/cache_controller.v
+L0 1
+R8
+r1
+31
+Z19 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/cache_controller.v|
+R10
+R11
+Z20 !s100 IlQ8@5?]D;2e1YU_Q@FO23
+Z21 !s108 1303146354.308000
+Z22 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/cache_controller.v|
+!s85 0
+!s101 -O0
+vclkrst
+Z23 !s100 ?XzA6a@=UE7biS_VbjF1=2
+Z24 IKJ^40@mzahA;6YNl?YC9?1
+Z25 VK>2=mbfl0iJWOIS>jZz]C0
+R4
+Z26 w1240583294
+Z27 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/clkrst.v
+Z28 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/clkrst.v
+L0 13
+R8
+r1
+31
+Z29 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/clkrst.v|
+R10
+R11
+Z30 !s108 1303146354.470000
+Z31 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/clkrst.v|
+!s85 0
+!s101 -O0
+vdff
+Z32 !s100 DX1IR`Dk[;SUJ;F<;6i_G1
+Z33 ImUBJ9n4KJ33N2EP1AJ]NM2
+Z34 V;GC@fJC4l9bF1doI@Q2XK3
+R4
+Z35 w1303074374
+Z36 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/dff.v
+Z37 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/dff.v
+L0 6
+R8
+r1
+31
+Z38 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/dff.v|
+R10
+R11
+Z39 !s108 1303146354.624000
+Z40 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/dff.v|
+!s85 0
+!s101 -O0
+vfinal_memory
+Z41 !s100 E2e72`8Vic61IGIhkHb4G0
+Z42 I]4JfQ2THAa4D>Fc2BQLCH1
+Z43 VNQhUkihf`R^V20en7f2@41
+R4
+Z44 w1303074544
+Z45 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/final_memory.v
+Z46 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/final_memory.v
+L0 54
+R8
+r1
+31
+Z47 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/final_memory.v|
+R10
+R11
+Z48 !s108 1303146354.767000
+Z49 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/final_memory.v|
+!s85 0
+!s101 -O0
+vfour_bank_mem
+Z50 !s100 0[JXnDn3F@;A_Y@Gb9RVR0
+Z51 IS@nE@izWSE<zZ>C0VL^LH3
+Z52 VZ@Nz1LRg;BLdd_^dWlJ<N0
+R4
+Z53 w1303071092
+Z54 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/four_bank_mem.v
+Z55 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/four_bank_mem.v
+L0 65
+R8
+r1
+31
+Z56 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/four_bank_mem.v|
+R10
+R11
+Z57 !s108 1303146354.921000
+Z58 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/four_bank_mem.v|
+!s85 0
+!s101 -O0
+vmem_interface
+Z59 !s100 8hnhfan6kU6FRnG4lA8Wb0
+Z60 IDk:d?gY_Z4ecEfn3d4:h]3
+Z61 VR?NUBV32IUGCn?c?P?iRW3
+R4
+Z62 w1303098964
+Z63 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_interface.v
+Z64 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_interface.v
+L0 1
+R8
+r1
+31
+Z65 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_interface.v|
+R10
+R11
+Z66 !s108 1303146355.093000
+Z67 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_interface.v|
+!s85 0
+!s101 -O0
+vmem_interface_tb
+Z68 !s100 ^[1NUQ>[87TW?d2jV6SR83
+Z69 I4iMgMZ:d7NOfbI<OXhhjR3
+Z70 VhiPYn^lMYPE]bazgZSoT60
+R4
+Z71 w1303077642
+Z72 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_interface_tb.v
+Z73 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_interface_tb.v
+L0 1
+R8
+r1
+31
+Z74 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_interface_tb.v|
+R10
+R11
+Z75 !s108 1303146355.256000
+Z76 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_interface_tb.v|
+!s85 0
+!s101 -O0
+vmem_system
+Z77 !s100 JUoi@]0XZjfZ:CUUaeejH3
+Z78 Ia3D_i:G`0F]UJhhHHGm9@2
+Z79 VfMQ]jWRG3Q1=@fjF=>dze1
+R4
+Z80 w1303146019
+Z81 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system.v
+Z82 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system.v
+L0 5
+R8
+r1
+31
+Z83 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system.v|
+R10
+R11
+Z84 !s108 1303146355.549000
+Z85 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system.v|
+!s85 0
+!s101 -O0
+vmem_system_hier
+Z86 !s100 3RWRHV3M_A4Yol>QYmESW1
+Z87 I^jC1RJ9ij1Nl=WdzKh7@i3
+Z88 Vli26@B[LaK_A7l^Z_`j[:0
+R4
+R26
+Z89 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_hier.v
+Z90 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_hier.v
+L0 5
+R8
+r1
+31
+Z91 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_hier.v|
+R10
+R11
+Z92 !s108 1303146355.709000
+Z93 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_hier.v|
+!s85 0
+!s101 -O0
+vmem_system_hier_tb
+Z94 !s100 Vl;^31nZ8]28bLFHY@=hO2
+Z95 IR=cV1z6018MZRWaeR^B2i0
+Z96 V;RGozRhR2hHCgLH@dcGkn3
+R4
+Z97 w1303133800
+Z98 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_hier_tb.v
+Z99 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_hier_tb.v
+L0 1
+R8
+r1
+31
+Z100 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_hier_tb.v|
+R10
+R11
+Z101 !s108 1303146355.833000
+Z102 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_hier_tb.v|
+!s85 0
+!s101 -O0
+vmem_system_perfbench
+Z103 !s100 b2BIQWafiHE?26UNo6>mk2
+Z104 I?B@UA@mmFmY[dggY_2DBM1
+Z105 VKlRBU5:hT_2ie37fNCmF?3
+R4
+R26
+Z106 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_perfbench.v
+Z107 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_perfbench.v
+L0 7
+R8
+r1
+31
+Z108 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_perfbench.v|
+R10
+R11
+Z109 !s108 1303146355.969000
+Z110 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_perfbench.v|
+!s85 0
+!s101 -O0
+vmem_system_randbench
+Z111 !s100 J75zTj7YhkKXKhg@Q16Yn3
+Z112 I8EU4]>4_l:CGbQMdGTnG[3
+Z113 VZJ5AP4M1BlRNJJZO4Q3b10
+R4
+Z114 w1303092374
+Z115 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_randbench.v
+Z116 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_randbench.v
+L0 6
+R8
+r1
+31
+Z117 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_randbench.v|
+R10
+R11
+Z118 !s108 1303146356.137000
+Z119 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_randbench.v|
+!s85 0
+!s101 -O0
+vmem_system_ref
+Z120 !s100 4`4<3PV[@3Al[Nz_?G6FO0
+Z121 I0CVU3FEkA_8l4:3c7i__30
+Z122 VI8]SifUNmRC@Ykf@8PaGM1
+R4
+R26
+Z123 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_ref.v
+Z124 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_ref.v
+L0 5
+R8
+r1
+31
+Z125 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_ref.v|
+R10
+R11
+Z126 !s108 1303146356.270000
+Z127 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_ref.v|
+!s85 0
+!s101 -O0
+vmemc
+Z128 !s100 oe5>7j@W9Ya]R5ziL>Q3k0
+Z129 IFZ3V5[>mfa@0CbEhfX:1g1
+Z130 VE=5S99K6gE`c72`GGf?QR1
+R4
+Z131 w1303071050
+Z132 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/memc.v
+Z133 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/memc.v
+L0 6
+R8
+r1
+31
+Z134 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/memc.v|
+R10
+R11
+Z135 !s108 1303146356.430000
+Z136 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/memc.v|
+!s85 0
+!s101 -O0
+vmemv
+Z137 !s100 HN0EB@jQ9]fC]@V>42]6O3
+Z138 I;:9FRodCOHODIoczWm8cY3
+Z139 V<]b9FCg<gKIGMMBaZPe871
+R4
+Z140 w1303071058
+Z141 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/memv.v
+Z142 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/memv.v
+L0 6
+R8
+r1
+31
+Z143 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/memv.v|
+R10
+R11
+Z144 !s108 1303146356.629000
+Z145 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/memv.v|
+!s85 0
+!s101 -O0
+vonebitreg
+Z146 !s100 QMkEA2AV;1HNf3dJ0RoOc2
+Z147 IMK9MzXFPl`Q><1iXQZo<B2
+Z148 ViLeYH0N4Z^jaJ:6DnN9WI1
+R4
+Z149 w1303074368
+Z150 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/onebitreg.v
+Z151 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/onebitreg.v
+L0 1
+R8
+r1
+31
+Z152 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/onebitreg.v|
+R10
+R11
+!s85 0
+Z153 !s108 1303146357.216000
+Z154 !s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/onebitreg.v|
+!s101 -O0
+vreg16
+Z155 !s100 [gnR2=cYfiaU=@VnQg;EO0
+Z156 IW8iKdZLI8KLnmedk0RMbd1
+Z157 Vm21m[kUbOA32g>QVS78=?0
+R4
+Z158 w1303073224
+Z159 8C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/reg16.v
+Z160 FC:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/reg16.v
+L0 1
+R8
+r1
+!s85 0
+31
+!s108 1303146357.367000
+!s107 C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/reg16.v|
+Z161 !s90 -reportprogress|300|-work|work|-nocovercells|C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/reg16.v|
+!s101 -O0
+R10
+R11
