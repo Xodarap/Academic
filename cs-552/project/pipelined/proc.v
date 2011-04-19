@@ -158,7 +158,7 @@ module proc (/*AUTOARG*/
 		      .nextRV1(d2mwire[15:0]), .nextRV2(d2mwire[31:16]), .nxtReg2Write2(reg2write2em),
 		      .nextReg1Sel(xReg1Sel), .nextReg2Sel(xReg2Sel), .pcplustwoout(pcplustwod2e));
 
-   control_ff control_ff1(.control_in({36{~stallFD}} & ctlF2D), .clk(clk), .rst(rst), .Stall(1'b0),
+   control_ff2 control_ff1(.control_in({36{~stallFD}} & ctlF2D), .clk(clk), .rst(rst), .Stall(1'b0),
 			  .Inst_in(instfd), .Halt_in(haltfd), 
 			  .control_out(ctlD2E), .Inst_out(instde), .Halt_out(haltde));
    
@@ -187,7 +187,7 @@ module proc (/*AUTOARG*/
 		       .nxtAluOut(aluResult), .nxtRV1(readData1), .nxtRV2(readData2),
 		       .nxtReg2Write2(reg2write2mw));
    
-   control_ff control_ff2(.control_in(ctlD2E), .clk(clk), .rst(rst),
+   control_ff2 control_ff2(.control_in(ctlD2E), .clk(clk), .rst(rst),
 			  .Inst_in(instde), .Stall(1'b0), .Halt_in(haltde),
 			  .control_out(ctlE2M), .Halt_out(haltem), .Inst_out(instem));
   
@@ -195,11 +195,11 @@ module proc (/*AUTOARG*/
    memory memory0(.Clk(clk), .Rst(rst), 
 		  .Addr(aluResult), 
 		  .Data(readData2), 
-		  .MemWrite(ctlE2M[5]), 
+		  .MemWrite((ctlE2M[5])&(~haltmw)), 
 		  .MemRead(ctlE2M[4]), 
 		  .ReadData(memReadData));
     
-   control_ff control_ff3(.control_in(ctlE2M), .clk(clk), .rst(rst),
+   control_ff2 control_ff3(.control_in(ctlE2M), .clk(clk), .rst(rst),
 			  .Inst_in(instem), .Stall(1'b0), .Halt_in(haltem),
 			  .control_out({err,
 					isJump,

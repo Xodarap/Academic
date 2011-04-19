@@ -24,6 +24,14 @@ module proc (/*AUTOARG*/
    
    /* your code here */
    
+   wire [15:0] pcfromfetch;
+   wire [15:0] pcF2D;
+   wire [15:0] immF2D;
+   wire [15:0] newPCfromdecode;
+   wire [15:0] instrOrNop;
+   wire [15:0] pcplustwof2d;
+   wire [15:0] pcplustwod2e;
+
    /* Control */
    /* Control -> Fetch */
    wire [2:0]  ctlBranchCode;
@@ -81,17 +89,19 @@ module proc (/*AUTOARG*/
    wire 	RegWritem2wb, MemToRegm2wb, haltfd, haltde, haltem, haltmw;
    
    wire [15:0] instfd, instde, instem, instmw;
+   wire        rtypefd, rtypede, rtypeem, rtypemw;  
 
    
    assign Stall = 0;
-   assign stallFD = 1'b0;
+   //assign stallFD = 1'b0;
    
          
-   fetch fetch0(.Clk(clk), .Rst(rst), .pcPlusTwo(pcPlusTwo),
-		.Instruction(instruction), .Immediate(immExtend),
-		.PcSrc(pcSrc|isJump|isJumpRegister), .regRS(readData1), .isJumpRegister(isJumpRegister));
+   fetch fetch0(.Clk(clk), .Rst(rst), .pcPlusTwo(pcPlusTwo), .pc(pcfromfetch),
+		.Instruction(instruction), .Immediate(immExtend), .newPC(newPCfromdecode),
+		.PcSrc(pcSrcWire|ctlF2D[34]), .regRS(readData1), .Stall(stallFD),
+		.isJumpRegister(isJumpRegister));
    
-   control control0(.instruction(instruction), 
+   control control0(.instruction(instrOrNop), 
 	   .RegDst(controlSignals[1:0]), 
 	   .RegWrite(controlSignals[2]), 
 	   .ALUSrc(controlSignals[3]), 
@@ -104,48 +114,64 @@ module proc (/*AUTOARG*/
            .BranchCode(controlSignals[32:30]),
 	   .isJumpRegister(controlSignals[33]),
 	   .isJump(controlSignals[34]),
-	   .err(controlSignals[35]));
+	   .err(controlSignals[35]),
+	   .RType(rtypefd));
 
-   fetch2decode f2d(.Clk(clk), .Rst(rst),
-		    .RegDestIn(controlSignals[1:0]), 
+
+
+	//choose between instruction or NOP (if there is a branch/jump)   
+	mux16b2_1 instrNopMux(.InA(instruction), .InB(16'b0000100000000000), 
+			.S(pcSrcWire|ctlF2D[34]), .Out(instrOrNop)); 
+
+
+
+   fetch2decode f2d(.Clk(clk), .Rst(rst), .pcIn(pcfromfetch), .pcOut(pcF2D), .pcplustwoin(pcPlusTwo),
+		    .RegDestIn(controlSignals[1:0]), .immIn(controlSignals[26:11]), .immOut(immF2D),
 		    .Reg1In(instruction[10:8]), .Reg2In(instruction[7:5]), .Reg3In(instruction[4:2]),
-		    .Stall(stallFD), .Instruction(instruction),
+		    .Stall(stallFD), .Instruction(instrOrNop),
 		    /* Out */
-		    .RegDestOut(ctlRegDestNext), 
+		    .RegDestOut(ctlRegDestNext), .pcplustwoout(pcplustwof2d),
 		    .Reg1Out(ctlReg1Next), .Reg2Out(ctlReg2Next), .Reg3Out(ctlReg3Next)
 		    );
 
-   control_ff control_ff0(.control_in(controlSignals), .Inst_in(instruction),
-			  .clk(clk), .rst(rst), .Stall(1'b0), .Halt_in(instruction[15:11] == 5'b0),
-			  .control_out(ctlF2D), .Inst_out(instfd), .Halt_out(haltfd));
+   control_ff2 control_ff0(.control_in(controlSignals), .Inst_in(instrOrNop),
+			  .clk(clk), .rst(rst), .Stall(stallFD), .Halt_in(instruction[15:11] == 5'b0),
+			  .RType_in(rtypefd),
+			  .control_out(ctlF2D), .Inst_out(instfd), .Halt_out(haltfd),
+			  .RType_out(rtypede));
    
-   decode decode0(.Clk(clk), .Rst(rst),
+   decode decode0(.Clk(clk), .Rst(rst), .isJumpRegister(ctlF2D[33]),
 		 .Reg1(ctlReg1Next), .Reg2(ctlReg2Next), .Reg3(ctlReg3Next),
 		 .regToWriteTo(reg2write2wd),
 		 .RegWrite(ctlRegWrite), .RegDest(ctlRegDestNext),
 		 .WriteData(regWriteData),
 		 .RegVal1(d2ewire[15:0]),
 		 .RegVal2(d2ewire[31:16]),
-		 .nxtRegToWriteTo(reg2write2de));
+		 .nxtRegToWriteTo(reg2write2de),
+		 .BranchCode(ctlF2D[32:30]),
+		 .PcSrc(pcSrcWire), .pc(pcF2D),
+		 .imm(immF2D), .newPC(newPCfromdecode));
 
    decode2execute d2e(.RegVal1(d2ewire[15:0]), .RegVal2(d2ewire[31:16]), .Reg2Write2(reg2write2de),
-		      .Reg1Sel(ctlReg1Next), .Reg2Sel(ctlReg2Next),
+		      .Reg1Sel(ctlReg1Next), .Reg2Sel(ctlReg2Next), .pcplustwoin(pcplustwof2d),
 		      .Clk(clk), .Rst(rst), .Stall(stallFD),
 		      .nextRV1(d2mwire[15:0]), .nextRV2(d2mwire[31:16]), .nxtReg2Write2(reg2write2em),
-		      .nextReg1Sel(xReg1Sel), .nextReg2Sel(xReg2Sel));
+		      .nextReg1Sel(xReg1Sel), .nextReg2Sel(xReg2Sel), .pcplustwoout(pcplustwod2e));
 
-   control_ff control_ff1(.control_in(ctlF2D), .clk(clk), .rst(rst), .Stall(1'b0),
-			  .Inst_in(instfd), .Halt_in(haltfd),
+   control_ff control_ff1(.control_in({36{~stallFD}} & ctlF2D), .clk(clk), .rst(rst), .Stall(1'b0),
+			  .Inst_in(instfd), .Halt_in(haltfd), 
 			  .control_out(ctlD2E), .Inst_out(instde), .Halt_out(haltde));
    
    forwarder forwarder0(.MRd(reg2write2mw), .WRd(reg2write2wd), .XRs(xReg1Sel), .XRt(xReg2Sel), 
 			.MRegWrite(ctlE2M[2]), .WRegWrite(ctlRegWrite),
 			.XRegVal1(d2mwire[15:0]), .XRegVal2(d2mwire[31:16]), .MRegVal(aluResult), 
 			.WRegVal(regWriteData), .RegVal1(fRegVal1), .RegVal2(fRegVal2));
-/*
-   hazarddetector hazarddetector0(.XMemRead(ctlE2M[4]), .XRt(xReg2Sel), .DRs(ctlReg1Next), .DRt(ctlReg2Next), 
+
+   hazarddetector hazarddetector0(.XMemRead(ctlD2E[4]), .XRt(xReg2Sel), .DRs(ctlReg1Next),			  
+				  .DRt(ctlReg2Next), .MRd(reg2write2mw), .XRd(reg2write2em), 
+				  .MRegWrite(ctlE2M[2]), .XRegWrite(ctlD2E[2]), .RType(rtypede),
 				  .Stall(stallFD));
-  */ 
+  
    execute execute0(.Clk(clk), .Rst(rst), 
 		    .Reg1(fRegVal1),
 		    .Reg2(fRegVal2), 
@@ -153,14 +179,12 @@ module proc (/*AUTOARG*/
 		    .AluSrc(ctlD2E[3]), 
 		    .AluOp(ctlD2E[10:7]),    
 		    .CondOp(ctlD2E[29:27]),  
-		    .BranchCode(ctlD2E[32:30]),
 		    .Output(aluwire),
-		    .pcPlusTwo(pcPlusTwo),
-		    .PcSrc(pcSrcWire));
+		    .pcPlusTwo(pcplustwod2e));
 
-   execute2memory e2m0(.AluOut(aluwire), .PcSrc(pcSrc), .RegVal1(d2mwire[15:0]), .RegVal2(d2mwire[31:16]),
+   execute2memory e2m0(.AluOut(aluwire), .RegVal1(fRegVal1), .RegVal2(fRegVal2),  //.RegVal1(d2mwire[15:0]), .RegVal2(d2mwire[31:16]),
 		       .Reg2Write2(reg2write2em), .Clk(clk), .Rst(rst), .Stall(1'b0),
-		       .nxtAluOut(aluResult), .nxtRV1(readData1), .nxtRV2(readData2), .nxtPcSrc(pcSrc),
+		       .nxtAluOut(aluResult), .nxtRV1(readData1), .nxtRV2(readData2),
 		       .nxtReg2Write2(reg2write2mw));
    
    control_ff control_ff2(.control_in(ctlD2E), .clk(clk), .rst(rst),
@@ -171,8 +195,8 @@ module proc (/*AUTOARG*/
    memory memory0(.Clk(clk), .Rst(rst), 
 		  .Addr(aluResult), 
 		  .Data(readData2), 
-		  .MemWrite(ctlMemWrite), 
-		  .MemRead(ctlMemRead), 
+		  .MemWrite((ctlE2M[5])&(~haltmw)), 
+		  .MemRead(ctlE2M[4]), 
 		  .ReadData(memReadData));
     
    control_ff control_ff3(.control_in(ctlE2M), .clk(clk), .rst(rst),
@@ -202,7 +226,7 @@ module proc (/*AUTOARG*/
    
    writeback writeback0(.AluData(ALUResultm2wb), 
 			.MemoryData(ReadDatam2wb), 
-			.MemToReg(MemToRegm2wb),
+			.MemToReg(ctlMemToReg),
 			.Halt(haltmw),
 			.WriteData(regWriteData));
 endmodule // proc

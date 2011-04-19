@@ -10,6 +10,7 @@ module forwarder(MRd, WRd, XRs, XRt, MRegWrite, WRegWrite,
    output reg [15:0] RegVal1, RegVal2;
       
    wire [1:0] ForwardA, ForwardB;
+   reg err;
 
    /* Forwarding[AB] definitions: 
       00 : No forwarding
@@ -36,7 +37,7 @@ module forwarder(MRd, WRd, XRs, XRt, MRegWrite, WRegWrite,
 	2'b00: RegVal1 = XRegVal1;
 	2'b01: RegVal1 = WRegVal;
 	2'b10: RegVal1 = MRegVal;
-	2'b11: $display("Error: Invalid forwarding selection");
+	2'b11: err = 1'b1;
       endcase // case (ForwardA)
    end
    
@@ -45,7 +46,7 @@ module forwarder(MRd, WRd, XRs, XRt, MRegWrite, WRegWrite,
 	2'b00: RegVal2 = XRegVal2;
 	2'b01: RegVal2 = WRegVal;
 	2'b10: RegVal2 = MRegVal;
-	2'b11: $display("Error: Invalid forwarding selection");
+	2'b11: err = 1'b1;
       endcase // case (ForwardA)
    end
    		     

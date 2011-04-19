@@ -109,7 +109,7 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite, RType,
       
 	//ST
       5'b10000:begin
-		RType = 1'b0;
+		RType = 1'b1;
 		//RegDst = 
         	RegWrite = 1'b0;
         	ALUSrc = 1'b1;
@@ -143,7 +143,7 @@ module control(instruction, RegDst, RegWrite, ALUSrc, MemRead, MemWrite, RType,
 
       //STU
       5'b10011:begin
-		RType = 1'b0;
+		RType = 1'b1;
 		RegDst = 2'b00;
         	RegWrite = 1'b1;
         	ALUSrc = 1'b1;
