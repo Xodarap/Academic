@@ -1,0 +1,120 @@
+C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/dff.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/dff.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module dff
+
+Top level modules:
+	dff
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/memc.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/memc.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module memc
+
+Top level modules:
+	memc
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/final_memory.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/final_memory.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module final_memory
+
+Top level modules:
+	final_memory
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_hier.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_hier.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module mem_system_hier
+
+Top level modules:
+	mem_system_hier
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/reg16.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/reg16.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module reg16
+
+Top level modules:
+	reg16
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/memv.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/memv.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module memv
+
+Top level modules:
+	memv
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/onebitreg.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/onebitreg.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module onebitreg
+
+Top level modules:
+	onebitreg
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_ref.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_ref.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module mem_system_ref
+
+Top level modules:
+	mem_system_ref
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_hier_tb.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_hier_tb.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module mem_system_hier_tb
+
+Top level modules:
+	mem_system_hier_tb
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_perfbench.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_perfbench.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module mem_system_perfbench
+
+Top level modules:
+	mem_system_perfbench
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module mem_system
+
+Top level modules:
+	mem_system
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/clkrst.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/clkrst.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module clkrst
+
+Top level modules:
+	clkrst
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/cache.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/cache.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module cache
+
+Top level modules:
+	cache
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_interface_tb.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_interface_tb.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module mem_interface_tb
+
+Top level modules:
+	mem_interface_tb
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/four_bank_mem.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/four_bank_mem.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module four_bank_mem
+
+Top level modules:
+	four_bank_mem
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_randbench.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_system_randbench.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module mem_system_randbench
+
+Top level modules:
+	mem_system_randbench
+
+} {} {}} C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_interface.v {1 {vlog -work work -nocovercells C:/Users/Ryan/Documents/!School/Spring11/552/hw5/hw5_1/mem_interface.v
+Model Technology ModelSim PE Student Edition vlog 10.0 Compiler 2010.12 Dec  4 2010
+-- Compiling module mem_interface
+
+Top level modules:
+	mem_interface
+
+} {} {}}
