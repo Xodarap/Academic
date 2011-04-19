@@ -37,7 +37,7 @@ module cache_two_way(             input enable,
 	parameter cache_id = 0;
 
    wire cachetowriteto;
-   wire write1, write2;
+   wire write1, write2, victim;
 
 	cache #(.cache_id(0 + cache_id)) c0 (/*AUTOINST*/
 					    // Outputs
@@ -82,15 +82,17 @@ module cache_two_way(             input enable,
 				      .valid_in		(valid_in));
    
 	assign hit_final = (hit | hit2);
-	assign valid_final = comp ? (hit ? valid : valid2) : cachetowriteto ? valid2 : valid;
-	assign dirty_final = comp ? (hit ? dirty : dirty2) : cachetowriteto ? dirty2 : dirty;
-	assign tag_out_final = comp ? (hit ? tag_out : tag_out2) : cachetowriteto ? tag_out2 : tag_out;
-	assign data_out_final = comp ? (hit ? data_out : data_out2) : cachetowriteto ? data_out2 : data_out;
+   assign valid_final =    hit ? valid : hit2 ? valid2 : cachetowriteto ? valid2 : valid;
+   assign dirty_final =  hit ? dirty : hit2 ? dirty2 : cachetowriteto ? dirty2 : dirty;
+   assign tag_out_final =  hit ? tag_out : hit2 ? tag_out2 : cachetowriteto ? tag_out2 : tag_out;
+   assign data_out_final = hit ? data_out : hit2 ? data_out2 : cachetowriteto ? data_out2 : data_out;
+
 	assign err = err | err2;
 
-	assign cachetowriteto = (valid & ~valid2) ? 1'b1 : (~valid & valid2) ? 1'b0 : (~valid & ~valid2) ? 1'b0 : 1'b0/*fix this*/;
+	assign cachetowriteto = (valid & ~valid2) ? 1'b1 : (~valid & valid2) ? 1'b0 : (~valid & ~valid2) ? 1'b0 : victim;
 	assign write1 = ((~cachetowriteto & write & ~comp) | (write & comp));
 	assign write2 = ((cachetowriteto & write & ~comp) | (write & comp));
-	
+
+   onebitreg victimizer(.readdata(victim), .clk(clk), .rst(rst), .writedata(~victim), .write(hit));	
 
 endmodule
