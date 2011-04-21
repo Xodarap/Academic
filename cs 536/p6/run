@@ -1,4 +1,5 @@
 #!/bin/bash
 make
 java -cp .:JLex.jar:java_cup.jar P6 $1.Little output
+cat gencode.asm
 #meld output $1.out

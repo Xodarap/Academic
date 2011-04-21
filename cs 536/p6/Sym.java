@@ -40,9 +40,17 @@ class Sym {
 	return "";
     }
 
+    public void setReg(int num){
+	if (num < 8)
+	    register = "$t" + Integer.toString(num);
+	else
+	    register = "too many args";
+    }
+
   // fields
     protected String myType;
     public int offset;
+    public String register = "$tz";
     private boolean myComplete;
 }
 
