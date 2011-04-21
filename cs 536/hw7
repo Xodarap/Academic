@@ -1,0 +1,56 @@
+Ben West
+
+
+1.a.
+Note: based on the example in the page, I am assuming that you can redeclare nouns in lower scopes. E.g.:
+
+int foo;
+void f() {
+  typedef int foo;  // this is OK
+}
+
+If this isn't acceptable, you can just change the local lookup to global lookup for everything on the right.
+
+Also, I am adding a new field to Sym, which is called "symtype". It's either "variable" or "typedef".
+
+i. 
+* Local lookup for right
+* If not null, throw "multiply declared" error
+* Otherwise, add to symtab with name of right as a key
+ii. 
+* Global lookup for left
+* If null, throw "use of undeclared" error
+* If it's a variable, throw "variable as type"
+* Local lookup for rightmmt
+* If not null, throw "multiply declared" error
+* If no errors ocurred, look at the symbol for the left to find the type. Add a new sym to the table with a key of the name of the right, and a type of the left's type. E.g.
+
+typedef int a; // add sym { type = "int", name = "a", symtype = "typedef" }
+typedef a b;   // add sym { type = "int", name = "b", symtype = "typedef" }
+
+iii. 
+* Global lookup for left
+* If null, throw "use of undeclared" error
+* If it's a variable, throw "variable as type"
+* Local lookup for right
+* If not null, throw "multiply declared" error
+* If no errors ocurred, add a new entry to the sym table with a type of the left's type, and the right's name. E.g.
+typedef int a;
+a b;  // add sym { type  = "int", name = "b", symtype = "variable" }
+
+b.
+
+typedef int money;
+int y;
+money x;
+typedef money dollars;
+dollars d;
+
+name      symtype      datatype
+-------|------------|---------
+money     typedef      int
+y         variable     int
+dollars   typedef      int
+d         variable     int
+
+2. I would just need to check the symtype of the node. It would always return the "datatype" value, but it would make the symtype available. The ExpNode and StmtNode classes would be responsible for checking this - the highest class would always throw a "use of type as identifier" error if symtype == typedef.

@@ -1,0 +1,25 @@
+1.a.
+label = id
+{label}:       { /* Label*/}
+"goto" {LABEL} { /* goto */ }
+
+b.
+
+stmt ::= label SEMICOLON
+     	 | goto SEMICOLON
+
+2.
+
+I am allowing labels and variables to have the same name
+
+a. First FnBodyNode would go through all Label statement children. If there was a duplicate, it would report it as such. Then it would go through everything else, and gotos would check to ensure that they are pointing to real labels
+
+b. It would do a Local Lookup to see if its name had been used before. If not, it would do a global lookup to see if its name had been used elsewhere. If it had, then it would have a new method which is a unique name appropriately generated using a static int. (i.e. "label" becomes "label1", "label2" etc.) Lastly, it adds itself to the symtab using its original name.
+
+c. It would do a local lookup to see if the label was declared earlier. This symbol would also get a new field specifying the unique name of the label to go to.
+
+3.
+
+a. A label would be generated, but using the unique name, not the one which it was declared with.
+
+b. A goto would be generated, again with the unique name.
