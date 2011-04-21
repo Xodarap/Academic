@@ -1,0 +1,5 @@
+void conditionalTests(){
+     int x;
+     double y;
+     if(2.0) {}
+}

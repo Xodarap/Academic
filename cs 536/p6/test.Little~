@@ -1,0 +1,19 @@
+void conditionalTests(){
+     int x;
+     int y;
+     if(x++)  {}
+     if(x--)  {}
+     if(++x)  {}
+     if(--x)  {}
+     if(x+y)  {}
+     if(x*y)  {}
+     if(x-y)  {}
+     if(x/y)  {}
+     if(x=y)  {}
+     if(x==y) {}
+     if(x&&y) {}
+     if(x||y) {}
+     if(x!=y) {}
+     if(!x)   {}
+     if(-x)   {}  
+}

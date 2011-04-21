@@ -1,0 +1,566 @@
+void voidFn() { }
+int intFn() { return 0; }
+double dblFn() { return 2.2; }
+
+void fn1(int x) {}
+void fn2(int x, double y) {}
+void fn3(int x, int y, double d) {}
+
+int kGlob;
+double dGlob;
+
+void main() {
+  int k;
+  double d;
+
+  printf("%d", d); /* Attempt to write a non-int value with an int format */
+  printf("%f", k); /* Attempt to write a non-double value with a dbl format */
+  scanf("%d", &d); /* Attempt to read a non-int id with an int format */
+  scanf("%f", &k); /* Attempt to read a non-double id with a dbl format */
+
+  k(); /* Attempt to call a non-function */
+  d(); /* Attempt to call a non-function */
+
+  fn1(); /* Function call with wrong number of args */
+  fn2(22); /* Function call with wrong number of args */
+  fn3(22, 33); /* Function call with wrong number of args */
+  voidFn(k); /* Function call with wrong number of args */
+
+  fn1(d); /* Type of actual does not match type of formal */
+  fn1(fn1); /* Type of actual does not match type of formal */
+  fn1(voidFn()); /* Type of actual does not match type of formal */
+  fn3(3, k, dblFn); /* Type of actual does not match type of formal */
+  fn1(dblFn()); /* Type of actual does not match type of formal */
+}
+
+int noRet() { return; } /* Missing return value */
+
+void yesRet1() { return 0; } /* Return with a value in a void function */
+void yesRet2() { return 2.2; } /* Return with a value in a void function */
+void yesRet3() { return voidFn; } /* Return with a value in a void function */
+void yesRet4() { return intFn(); } /* Return with a value in a void function */
+
+int badRet1() { return dGlob; } /* Bad return value */
+int badRet2() { return voidFn; } /* Bad return value */
+int badRet3() { return dblFn(); } /* Bad return value */
+double badRet4() { return voidFn();} /* Bad return value */
+double badRet5() { return dblFn; } /* Bad return value */
+
+double badOps() {
+  int k;
+  double d;
+  
+  k = !d; /* Logical operator applied to a non-int operand */
+  k = k && d; /* Logical operator applied to a non-int operand */
+  k = d && k; /* Logical operator applied to a non-int operand */
+  k = k || d; /* Logical operator applied to a non-int operand */
+  k = d || k; /* Logical operator applied to a non-int operand */
+  k = !voidFn(); /* Logical operator applied to a non-int operand */
+  k = k && intFn; /* Logical operator applied to a non-int operand */
+  k = intFn && k; /* Logical operator applied to a non-int operand */
+  k = k || dblFn(); /* Logical operator applied to a non-int operand */
+
+  if (d) {} /* Non-int expression used as an if condition */
+  if (voidFn()) {} /* Non-int expression used as an if condition */
+  if (intFn) {} /* Non-int expression used as an if condition */
+  if (d) {} else {} /* Non-int expression used as an if condition */
+  if (voidFn()) {} else {} /* Non-int expression used as an if condition */
+  if (intFn) {} else {} /* Non-int expression used as an if condition */
+  
+  while (d) {} /* Non-int expression used as a while condition */
+  while (voidFn()) {} /* Non-int expression used as a while condition */
+  while (intFn) {} /* Non-int expression used as a while condition */
+  
+  d++;  /* Non-int identifier used with ++ or -- */
+  voidFn++;  /* Non-int identifier used with ++ or -- */
+  dblFn++;  /* Non-int identifier used with ++ or -- */
+  d--;  /* Non-int identifier used with ++ or -- */
+  voidFn--;  /* Non-int identifier used with ++ or -- */
+  dblFn--;  /* Non-int identifier used with ++ or -- */
+
+  ++d;  /* Non-int identifier used with ++ or -- */
+  ++voidFn;  /* Non-int identifier used with ++ or -- */
+  ++dblFn;  /* Non-int identifier used with ++ or -- */
+  --d;  /* Non-int identifier used with ++ or -- */
+  --voidFn;  /* Non-int identifier used with ++ or -- */
+  --dblFn;  /* Non-int identifier used with ++ or -- */
+
+  k = d++;  /* Non-int identifier used with ++ or -- */
+  k = voidFn++;  /* Non-int identifier used with ++ or -- */
+  k = dblFn++;  /* Non-int identifier used with ++ or -- */
+  k = d--;  /* Non-int identifier used with ++ or -- */
+  k = voidFn--;  /* Non-int identifier used with ++ or -- */
+  k = dblFn--;  /* Non-int identifier used with ++ or -- */
+
+  d = d + voidFn; /* Illegal use of non-numeric operand */
+  d = dblFn + d; /* Illegal use of non-numeric operand */
+  d = d + voidFn(); /* Illegal use of non-numeric operand */
+  d = voidFn - d; /* Illegal use of non-numeric operand */
+  d = d - dblFn; /* Illegal use of non-numeric operand */
+  d = voidFn() - d; /* Illegal use of non-numeric operand */
+  d = voidFn * d; /* Illegal use of non-numeric operand */
+  d = d * dblFn; /* Illegal use of non-numeric operand */
+  d = voidFn() * d; /* Illegal use of non-numeric operand */
+  d = voidFn / d; /* Illegal use of non-numeric operand */
+  d = d / dblFn; /* Illegal use of non-numeric operand */
+  d = voidFn() / d; /* Illegal use of non-numeric operand */
+  d = - voidFn; /* Illegal use of non-numeric operand */
+  d = - dblFn; /* Illegal use of non-numeric operand */
+  d = - voidFn(); /* Illegal use of non-numeric operand */
+
+  d = d == voidFn; /* Illegal use of non-numeric operand */
+  d = d == dblFn; /* Illegal use of non-numeric operand */
+  d = d == voidFn(); /* Illegal use of non-numeric operand */
+  d = voidFn == d; /* Illegal use of non-numeric operand */
+  d = dblFn == d; /* Illegal use of non-numeric operand */
+  d = voidFn() == d; /* Illegal use of non-numeric operand */
+
+  d = d != voidFn; /* Illegal use of non-numeric operand */
+  d = d != dblFn; /* Illegal use of non-numeric operand */
+  d = d != voidFn(); /* Illegal use of non-numeric operand */
+  d = voidFn != d; /* Illegal use of non-numeric operand */
+  d = dblFn != d; /* Illegal use of non-numeric operand */
+  d = voidFn() != d; /* Illegal use of non-numeric operand */
+
+  d = d < voidFn; /* Illegal use of non-numeric operand */
+  d = d < dblFn; /* Illegal use of non-numeric operand */
+  d = d < voidFn(); /* Illegal use of non-numeric operand */
+  d = voidFn < d; /* Illegal use of non-numeric operand */
+  d = dblFn < d; /* Illegal use of non-numeric operand */
+  d = voidFn() < d; /* Illegal use of non-numeric operand */
+
+  d = d <= voidFn; /* Illegal use of non-numeric operand */
+  d = d <= dblFn; /* Illegal use of non-numeric operand */
+  d = d <= voidFn(); /* Illegal use of non-numeric operand */
+  d = voidFn <= d; /* Illegal use of non-numeric operand */
+  d = dblFn <= d; /* Illegal use of non-numeric operand */
+  d = voidFn() <= d; /* Illegal use of non-numeric operand */
+
+  d = d > voidFn; /* Illegal use of non-numeric operand */
+  d = d > dblFn; /* Illegal use of non-numeric operand */
+  d = d > voidFn(); /* Illegal use of non-numeric operand */
+  d = voidFn > d; /* Illegal use of non-numeric operand */
+  d = dblFn > d; /* Illegal use of non-numeric operand */
+  d = voidFn() > d; /* Illegal use of non-numeric operand */
+
+  d = d >= voidFn; /* Illegal use of non-numeric operand */
+  d = d >= dblFn; /* Illegal use of non-numeric operand */
+  d = d >= voidFn(); /* Illegal use of non-numeric operand */
+  d = voidFn >= d; /* Illegal use of non-numeric operand */
+  d = dblFn >= d; /* Illegal use of non-numeric operand */
+  d = voidFn() >= d; /* Illegal use of non-numeric operand */
+
+  d = d = voidFn; /* Illegal use of non-numeric operand */
+  d = d = dblFn; /* Illegal use of non-numeric operand */
+  d = d = voidFn(); /* Illegal use of non-numeric operand */
+  d = voidFn = d; /* Illegal use of non-numeric operand */
+
+  k = d; /* Possible loss of precision */
+  k = dblFn(); /* Possible loss of precision */
+
+  if (0) {
+    k = !d; /* Logical operator applied to a non-int operand */
+    k = k && d; /* Logical operator applied to a non-int operand */
+    k = d && k; /* Logical operator applied to a non-int operand */
+    k = k || d; /* Logical operator applied to a non-int operand */
+    k = d || k; /* Logical operator applied to a non-int operand */
+    k = !voidFn(); /* Logical operator applied to a non-int operand */
+    k = k && intFn; /* Logical operator applied to a non-int operand */
+    k = intFn && k; /* Logical operator applied to a non-int operand */
+    k = k || dblFn(); /* Logical operator applied to a non-int operand */
+  
+    if (d) {} /* Non-int expression used as an if condition */
+    if (voidFn()) {} /* Non-int expression used as an if condition */
+    if (intFn) {} /* Non-int expression used as an if condition */
+    if (d) {} else {} /* Non-int expression used as an if condition */
+    if (voidFn()) {} else {} /* Non-int expression used as an if condition */
+    if (intFn) {} else {} /* Non-int expression used as an if condition */
+    
+    while (d) {} /* Non-int expression used as a while condition */
+    while (voidFn()) {} /* Non-int expression used as a while condition */
+    while (intFn) {} /* Non-int expression used as a while condition */
+    
+    d++;  /* Non-int identifier used with ++ or -- */
+    voidFn++;  /* Non-int identifier used with ++ or -- */
+    dblFn++;  /* Non-int identifier used with ++ or -- */
+    d--;  /* Non-int identifier used with ++ or -- */
+    voidFn--;  /* Non-int identifier used with ++ or -- */
+    dblFn--;  /* Non-int identifier used with ++ or -- */
+  
+    ++d;  /* Non-int identifier used with ++ or -- */
+    ++voidFn;  /* Non-int identifier used with ++ or -- */
+    ++dblFn;  /* Non-int identifier used with ++ or -- */
+    --d;  /* Non-int identifier used with ++ or -- */
+    --voidFn;  /* Non-int identifier used with ++ or -- */
+    --dblFn;  /* Non-int identifier used with ++ or -- */
+  
+    k = d++;  /* Non-int identifier used with ++ or -- */
+    k = voidFn++;  /* Non-int identifier used with ++ or -- */
+    k = dblFn++;  /* Non-int identifier used with ++ or -- */
+    k = d--;  /* Non-int identifier used with ++ or -- */
+    k = voidFn--;  /* Non-int identifier used with ++ or -- */
+    k = dblFn--;  /* Non-int identifier used with ++ or -- */
+  
+    d = d + voidFn; /* Illegal use of non-numeric operand */
+    d = dblFn + d; /* Illegal use of non-numeric operand */
+    d = d + voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn - d; /* Illegal use of non-numeric operand */
+    d = d - dblFn; /* Illegal use of non-numeric operand */
+    d = voidFn() - d; /* Illegal use of non-numeric operand */
+    d = voidFn * d; /* Illegal use of non-numeric operand */
+    d = d * dblFn; /* Illegal use of non-numeric operand */
+    d = voidFn() * d; /* Illegal use of non-numeric operand */
+    d = voidFn / d; /* Illegal use of non-numeric operand */
+    d = d / dblFn; /* Illegal use of non-numeric operand */
+    d = voidFn() / d; /* Illegal use of non-numeric operand */
+    d = - voidFn; /* Illegal use of non-numeric operand */
+    d = - dblFn; /* Illegal use of non-numeric operand */
+    d = - voidFn(); /* Illegal use of non-numeric operand */
+  
+    d = d == voidFn; /* Illegal use of non-numeric operand */
+    d = d == dblFn; /* Illegal use of non-numeric operand */
+    d = d == voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn == d; /* Illegal use of non-numeric operand */
+    d = dblFn == d; /* Illegal use of non-numeric operand */
+    d = voidFn() == d; /* Illegal use of non-numeric operand */
+  
+    d = d != voidFn; /* Illegal use of non-numeric operand */
+    d = d != dblFn; /* Illegal use of non-numeric operand */
+    d = d != voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn != d; /* Illegal use of non-numeric operand */
+    d = dblFn != d; /* Illegal use of non-numeric operand */
+    d = voidFn() != d; /* Illegal use of non-numeric operand */
+  
+    d = d < voidFn; /* Illegal use of non-numeric operand */
+    d = d < dblFn; /* Illegal use of non-numeric operand */
+    d = d < voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn < d; /* Illegal use of non-numeric operand */
+    d = dblFn < d; /* Illegal use of non-numeric operand */
+    d = voidFn() < d; /* Illegal use of non-numeric operand */
+  
+    d = d <= voidFn; /* Illegal use of non-numeric operand */
+    d = d <= dblFn; /* Illegal use of non-numeric operand */
+    d = d <= voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn <= d; /* Illegal use of non-numeric operand */
+    d = dblFn <= d; /* Illegal use of non-numeric operand */
+    d = voidFn() <= d; /* Illegal use of non-numeric operand */
+  
+    d = d > voidFn; /* Illegal use of non-numeric operand */
+    d = d > dblFn; /* Illegal use of non-numeric operand */
+    d = d > voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn > d; /* Illegal use of non-numeric operand */
+    d = dblFn > d; /* Illegal use of non-numeric operand */
+    d = voidFn() > d; /* Illegal use of non-numeric operand */
+  
+    d = d >= voidFn; /* Illegal use of non-numeric operand */
+    d = d >= dblFn; /* Illegal use of non-numeric operand */
+    d = d >= voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn >= d; /* Illegal use of non-numeric operand */
+    d = dblFn >= d; /* Illegal use of non-numeric operand */
+    d = voidFn() >= d; /* Illegal use of non-numeric operand */
+  
+    d = d = voidFn; /* Illegal use of non-numeric operand */
+    d = d = dblFn; /* Illegal use of non-numeric operand */
+    d = d = voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn = d; /* Illegal use of non-numeric operand */
+    d = dblFn = d; /* Illegal use of non-numeric operand */
+  
+    k = d; /* Possible loss of precision */
+    k = dblFn(); /* Possible loss of precision */
+  }
+  
+  if (1) {} else {
+
+    k = !d; /* Logical operator applied to a non-int operand */
+    k = k && d; /* Logical operator applied to a non-int operand */
+    k = d && k; /* Logical operator applied to a non-int operand */
+    k = k || d; /* Logical operator applied to a non-int operand */
+    k = d || k; /* Logical operator applied to a non-int operand */
+    k = !voidFn(); /* Logical operator applied to a non-int operand */
+    k = k && intFn; /* Logical operator applied to a non-int operand */
+    k = intFn && k; /* Logical operator applied to a non-int operand */
+    k = k || dblFn(); /* Logical operator applied to a non-int operand */
+  
+    if (d) {} /* Non-int expression used as an if condition */
+    if (voidFn()) {} /* Non-int expression used as an if condition */
+    if (intFn) {} /* Non-int expression used as an if condition */
+    if (d) {} else {} /* Non-int expression used as an if condition */
+    if (voidFn()) {} else {} /* Non-int expression used as an if condition */
+    if (intFn) {} else {} /* Non-int expression used as an if condition */
+    
+    while (d) {} /* Non-int expression used as a while condition */
+    while (voidFn()) {} /* Non-int expression used as a while condition */
+    while (intFn) {} /* Non-int expression used as a while condition */
+    
+    d++;  /* Non-int identifier used with ++ or -- */
+    voidFn++;  /* Non-int identifier used with ++ or -- */
+    dblFn++;  /* Non-int identifier used with ++ or -- */
+    d--;  /* Non-int identifier used with ++ or -- */
+    voidFn--;  /* Non-int identifier used with ++ or -- */
+    dblFn--;  /* Non-int identifier used with ++ or -- */
+  
+    ++d;  /* Non-int identifier used with ++ or -- */
+    ++voidFn;  /* Non-int identifier used with ++ or -- */
+    ++dblFn;  /* Non-int identifier used with ++ or -- */
+    --d;  /* Non-int identifier used with ++ or -- */
+    --voidFn;  /* Non-int identifier used with ++ or -- */
+    --dblFn;  /* Non-int identifier used with ++ or -- */
+  
+    k = d++;  /* Non-int identifier used with ++ or -- */
+    k = voidFn++;  /* Non-int identifier used with ++ or -- */
+    k = dblFn++;  /* Non-int identifier used with ++ or -- */
+    k = d--;  /* Non-int identifier used with ++ or -- */
+    k = voidFn--;  /* Non-int identifier used with ++ or -- */
+    k = dblFn--;  /* Non-int identifier used with ++ or -- */
+  
+    d = d + voidFn; /* Illegal use of non-numeric operand */
+    d = dblFn + d; /* Illegal use of non-numeric operand */
+    d = d + voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn - d; /* Illegal use of non-numeric operand */
+    d = d - dblFn; /* Illegal use of non-numeric operand */
+    d = voidFn() - d; /* Illegal use of non-numeric operand */
+    d = voidFn * d; /* Illegal use of non-numeric operand */
+    d = d * dblFn; /* Illegal use of non-numeric operand */
+    d = voidFn() * d; /* Illegal use of non-numeric operand */
+    d = voidFn / d; /* Illegal use of non-numeric operand */
+    d = d / dblFn; /* Illegal use of non-numeric operand */
+    d = voidFn() / d; /* Illegal use of non-numeric operand */
+    d = - voidFn; /* Illegal use of non-numeric operand */
+    d = - dblFn; /* Illegal use of non-numeric operand */
+    d = - voidFn(); /* Illegal use of non-numeric operand */
+  
+    d = d == voidFn; /* Illegal use of non-numeric operand */
+    d = d == dblFn; /* Illegal use of non-numeric operand */
+    d = d == voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn == d; /* Illegal use of non-numeric operand */
+    d = dblFn == d; /* Illegal use of non-numeric operand */
+    d = voidFn() == d; /* Illegal use of non-numeric operand */
+  
+    d = d != voidFn; /* Illegal use of non-numeric operand */
+    d = d != dblFn; /* Illegal use of non-numeric operand */
+    d = d != voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn != d; /* Illegal use of non-numeric operand */
+    d = dblFn != d; /* Illegal use of non-numeric operand */
+    d = voidFn() != d; /* Illegal use of non-numeric operand */
+  
+    d = d < voidFn; /* Illegal use of non-numeric operand */
+    d = d < dblFn; /* Illegal use of non-numeric operand */
+    d = d < voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn < d; /* Illegal use of non-numeric operand */
+    d = dblFn < d; /* Illegal use of non-numeric operand */
+    d = voidFn() < d; /* Illegal use of non-numeric operand */
+  
+    d = d <= voidFn; /* Illegal use of non-numeric operand */
+    d = d <= dblFn; /* Illegal use of non-numeric operand */
+    d = d <= voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn <= d; /* Illegal use of non-numeric operand */
+    d = dblFn <= d; /* Illegal use of non-numeric operand */
+    d = voidFn() <= d; /* Illegal use of non-numeric operand */
+  
+    d = d > voidFn; /* Illegal use of non-numeric operand */
+    d = d > dblFn; /* Illegal use of non-numeric operand */
+    d = d > voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn > d; /* Illegal use of non-numeric operand */
+    d = dblFn > d; /* Illegal use of non-numeric operand */
+    d = voidFn() > d; /* Illegal use of non-numeric operand */
+  
+    d = d >= voidFn; /* Illegal use of non-numeric operand */
+    d = d >= dblFn; /* Illegal use of non-numeric operand */
+    d = d >= voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn >= d; /* Illegal use of non-numeric operand */
+    d = dblFn >= d; /* Illegal use of non-numeric operand */
+    d = voidFn() >= d; /* Illegal use of non-numeric operand */
+  
+    d = d = voidFn; /* Illegal use of non-numeric operand */
+    d = d = dblFn; /* Illegal use of non-numeric operand */
+    d = d = voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn = d; /* Illegal use of non-numeric operand */
+    d = dblFn = d; /* Illegal use of non-numeric operand */
+  
+    k = d; /* Possible loss of precision */
+    k = dblFn(); /* Possible loss of precision */
+  }
+
+  while (0) {
+    k = !d; /* Logical operator applied to a non-int operand */
+    k = k && d; /* Logical operator applied to a non-int operand */
+    k = d && k; /* Logical operator applied to a non-int operand */
+    k = k || d; /* Logical operator applied to a non-int operand */
+    k = d || k; /* Logical operator applied to a non-int operand */
+    k = !voidFn(); /* Logical operator applied to a non-int operand */
+    k = k && intFn; /* Logical operator applied to a non-int operand */
+    k = intFn && k; /* Logical operator applied to a non-int operand */
+    k = k || dblFn(); /* Logical operator applied to a non-int operand */
+  
+    if (d) {} /* Non-int expression used as an if condition */
+    if (voidFn()) {} /* Non-int expression used as an if condition */
+    if (intFn) {} /* Non-int expression used as an if condition */
+    if (d) {} else {} /* Non-int expression used as an if condition */
+    if (voidFn()) {} else {} /* Non-int expression used as an if condition */
+    if (intFn) {} else {} /* Non-int expression used as an if condition */
+    
+    while (d) {} /* Non-int expression used as a while condition */
+    while (voidFn()) {} /* Non-int expression used as a while condition */
+    while (intFn) {} /* Non-int expression used as a while condition */
+    
+    d++;  /* Non-int identifier used with ++ or -- */
+    voidFn++;  /* Non-int identifier used with ++ or -- */
+    dblFn++;  /* Non-int identifier used with ++ or -- */
+    d--;  /* Non-int identifier used with ++ or -- */
+    voidFn--;  /* Non-int identifier used with ++ or -- */
+    dblFn--;  /* Non-int identifier used with ++ or -- */
+  
+    ++d;  /* Non-int identifier used with ++ or -- */
+    ++voidFn;  /* Non-int identifier used with ++ or -- */
+    ++dblFn;  /* Non-int identifier used with ++ or -- */
+    --d;  /* Non-int identifier used with ++ or -- */
+    --voidFn;  /* Non-int identifier used with ++ or -- */
+    --dblFn;  /* Non-int identifier used with ++ or -- */
+  
+    k = d++;  /* Non-int identifier used with ++ or -- */
+    k = voidFn++;  /* Non-int identifier used with ++ or -- */
+    k = dblFn++;  /* Non-int identifier used with ++ or -- */
+    k = d--;  /* Non-int identifier used with ++ or -- */
+    k = voidFn--;  /* Non-int identifier used with ++ or -- */
+    k = dblFn--;  /* Non-int identifier used with ++ or -- */
+  
+    d = d + voidFn; /* Illegal use of non-numeric operand */
+    d = dblFn + d; /* Illegal use of non-numeric operand */
+    d = d + voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn - d; /* Illegal use of non-numeric operand */
+    d = d - dblFn; /* Illegal use of non-numeric operand */
+    d = voidFn() - d; /* Illegal use of non-numeric operand */
+    d = voidFn * d; /* Illegal use of non-numeric operand */
+    d = d * dblFn; /* Illegal use of non-numeric operand */
+    d = voidFn() * d; /* Illegal use of non-numeric operand */
+    d = voidFn / d; /* Illegal use of non-numeric operand */
+    d = d / dblFn; /* Illegal use of non-numeric operand */
+    d = voidFn() / d; /* Illegal use of non-numeric operand */
+    d = - voidFn; /* Illegal use of non-numeric operand */
+    d = - dblFn; /* Illegal use of non-numeric operand */
+    d = - voidFn(); /* Illegal use of non-numeric operand */
+  
+    d = d == voidFn; /* Illegal use of non-numeric operand */
+    d = d == dblFn; /* Illegal use of non-numeric operand */
+    d = d == voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn == d; /* Illegal use of non-numeric operand */
+    d = dblFn == d; /* Illegal use of non-numeric operand */
+    d = voidFn() == d; /* Illegal use of non-numeric operand */
+  
+    d = d != voidFn; /* Illegal use of non-numeric operand */
+    d = d != dblFn; /* Illegal use of non-numeric operand */
+    d = d != voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn != d; /* Illegal use of non-numeric operand */
+    d = dblFn != d; /* Illegal use of non-numeric operand */
+    d = voidFn() != d; /* Illegal use of non-numeric operand */
+  
+    d = d < voidFn; /* Illegal use of non-numeric operand */
+    d = d < dblFn; /* Illegal use of non-numeric operand */
+    d = d < voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn < d; /* Illegal use of non-numeric operand */
+    d = dblFn < d; /* Illegal use of non-numeric operand */
+    d = voidFn() < d; /* Illegal use of non-numeric operand */
+  
+    d = d <= voidFn; /* Illegal use of non-numeric operand */
+    d = d <= dblFn; /* Illegal use of non-numeric operand */
+    d = d <= voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn <= d; /* Illegal use of non-numeric operand */
+    d = dblFn <= d; /* Illegal use of non-numeric operand */
+    d = voidFn() <= d; /* Illegal use of non-numeric operand */
+  
+    d = d > voidFn; /* Illegal use of non-numeric operand */
+    d = d > dblFn; /* Illegal use of non-numeric operand */
+    d = d > voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn > d; /* Illegal use of non-numeric operand */
+    d = dblFn > d; /* Illegal use of non-numeric operand */
+    d = voidFn() > d; /* Illegal use of non-numeric operand */
+  
+    d = d >= voidFn; /* Illegal use of non-numeric operand */
+    d = d >= dblFn; /* Illegal use of non-numeric operand */
+    d = d >= voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn >= d; /* Illegal use of non-numeric operand */
+    d = dblFn >= d; /* Illegal use of non-numeric operand */
+    d = voidFn() >= d; /* Illegal use of non-numeric operand */
+  
+    d = d = voidFn; /* Illegal use of non-numeric operand */
+    d = d = dblFn; /* Illegal use of non-numeric operand */
+    d = d = voidFn(); /* Illegal use of non-numeric operand */
+    d = voidFn = d; /* Illegal use of non-numeric operand */
+    d = dblFn = d; /* Illegal use of non-numeric operand */
+  
+    k = d; /* Possible loss of precision */
+    k = dblFn(); /* Possible loss of precision */
+  }
+
+  return  !d;  /* Logical operator applied to non-int operand */
+  return  k && d;
+  return  d && k;
+  return  k || d;
+  return  d || k;
+  return  !voidFn();
+  return  k && intFn;
+  return  intFn && k;
+  return  k || dblFn();
+  return  d++; /*  Non-int identifier used with ++ or -- */
+  return  voidFn++;
+  return  dblFn++;
+  return  d--;
+  return  voidFn--;
+  return  dblFn--;
+  return  d + voidFn; /* Illegal use of non-numeric operand */
+  return  dblFn + d;
+  return  d + voidFn();
+  return  voidFn - d;
+  return  d - dblFn;
+  return  voidFn() - d;
+  return  voidFn * d;
+  return  d * dblFn;
+  return  voidFn() * d;
+  return  voidFn / d;
+  return  d / dblFn;
+  return  voidFn() / d;
+  return  - voidFn;
+  return  - dblFn;
+  return  - voidFn();
+  return  d == voidFn;
+  return  d == dblFn;
+  return  d == voidFn();
+  return  voidFn == d;
+  return  dblFn == d;
+  return  voidFn() == d;
+  return  d != voidFn;
+  return  d != dblFn;
+  return  d != voidFn();
+  return  voidFn != d;
+  return  dblFn != d;
+  return  voidFn() != d;
+  return  d < voidFn;
+  return  d < dblFn;
+  return  d < voidFn();
+  return  voidFn < d;
+  return  dblFn < d;
+  return  voidFn() < d;
+  return  d <= voidFn;
+  return  d <= dblFn;
+  return  d <= voidFn();
+  return  voidFn <= d;
+  return  dblFn <= d;
+  return  voidFn() <= d;
+  return  d > voidFn;
+  return  d > dblFn;
+  return  d > voidFn();
+  return  voidFn > d;
+  return  dblFn > d;
+  return  voidFn() > d;
+  return  d >= voidFn;
+  return  d >= dblFn;
+  return  d >= voidFn();
+  return  voidFn >= d;
+  return  dblFn >= d;
+  return  voidFn() >= d;
+  return  d = voidFn;
+  return  d = dblFn;
+  return  d = voidFn();
+  return  voidFn = d;
+  return  dblFn = d;
+}

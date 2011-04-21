@@ -1,0 +1,20 @@
+int x;
+void f(int a, int b) {}
+
+void main() {
+  /* only 1 error for each of the following */
+  x = (f + 3) * 4;
+  printf("%d", f + 1);
+  if (1 && (f || 3)) {}
+  while (f(f*4)) {}
+  printf("%d", 1 + x());
+  x = f = 3;
+  if ((f + 3) == x) {}
+
+  /* two errors for each of the following */
+  f = f;
+  x = -f();
+  x = 1 + f(4.5, 0);
+  x = 1 + f(10);
+  return 3+f;
+}

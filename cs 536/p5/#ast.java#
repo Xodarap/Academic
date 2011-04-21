@@ -450,6 +450,9 @@ class VarDeclNode extends DeclNode {
 	p.println(";");
     }
 
+    public int size() {
+	
+
     // 2 kids
     private TypeNode myType;
     private IdNode myId;
