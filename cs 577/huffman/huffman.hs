@@ -9,7 +9,9 @@ import Data.Monoid
 import Data.Functor
 import Control.Applicative
 import Control.Monad
+import Data.List.Split
 
+-- | A simple tree. No balancing etc. Odd that Haskell doesn't have this built in.
 data SimpleTree a = Empty
                   | Node (SimpleTree a) (SimpleTree a)
                   | Leaf a
@@ -23,6 +25,21 @@ prettyCompress :: (Show a, Ord freq, Num freq) => [(freq, a)] -> IO ()
 prettyCompress x = do 
   putStr $ prettyCompress' x
   
+-- | Prints out the compression from a file
+prettyCompressF :: String -> IO ()
+prettyCompressF filename = do
+  dat <- liftM parseFile $ readFile filename
+  prettyCompress dat
+
+-- | Maps a set of lines to the appropriate array
+parseFile :: String -> [(Int, String)]
+parseFile str = 
+  let lns  = lines str
+      arrs = map (splitOn "\t") lns
+  in map (\x -> (read $ last x, head x)) arrs    
+  
+-- | Internal method to prettify huffman output. Just separated from
+--   prettyCompress to keep away IO.
 prettyCompress' :: (Show a, Ord freq, Num freq) => [(freq, a)] -> String
 prettyCompress' x = 
   let codes = huffCompress x
@@ -46,47 +63,6 @@ removeAndAdd queue =
         Nothing -> node                 -- One node left => We're done
         Just ((weight2, node2), queue') -> removeAndAdd $ insert (weight + weight2) (Node node node2) queue'
 
-type PopResult k v = Either (SimpleTree v) (TreeQueue k v)
-
--- maybe q -> t
--- maybe q -> t
-{-- 
-class (Eq m) => Poppable m where
-  pop :: (Num a, Ord a) => m -> Maybe (a, m)
-  push :: a -> m -> m
-  
-removeAndAdd' :: (Poppable m, Monoid m) => m -> SimpleTree v
-removeAndAdd' q
-  | mempty == q = Empty
-  | otherwise   = 
-    let doAdd (Just (a,q')) Nothing = a
-        doAdd (Just (a,q')) (Just (a', q'')) = removeAndAdd' $ doInsert a a' q''
-        doInsert a1 a2 q' =  push (((fst a1) + (fst a2)), (Node a1 a2)) q'
-        x = pop q
-    in doAdd x Nothing    
--}
-{-
-newtype MaybeQ a = Maybe a
-instance Functor MaybeQ where
-  fmap _ Nothing = Nothing
-  fmap f (Just x) = Just (f x)
--}
----type TwoWithQueue k v q  = ((k, v), q) -> ((k, v), q) -> q
-{-        
-type TwoToQ a b = a -> a -> b
-type PopA  a b  = b -> Maybe (a, b)
-type QToA  a b  = (a, b) -> a
-myScan :: (Monad m) => TwoToQ a b -> PopA a b -> QToA a b ->  b -> m a
-myScan mapfn popfn joinfn q = 
-  let mx = popfn q
-      lf = liftM joinfn mx
-  in lf
--}  
-  {-
-  case popfn q of
-    Nothing -> return Nothing
-    Just (x, q') -> return x
--}
 -- | Just a little shorthand for {0,1}
 data Bit = Zero | One 
 instance Show Bit where
@@ -104,13 +80,6 @@ code num (Node l r) = (code (Zero:num) l) ++ (code (One:num) r)
 
 sample1 = [(10, "a"), (5, "b"), (5, "c"), (12, "d"), (18, "e"), (2, "f")]
 
-{-
-doAdd :: (Ord k, Num k) => Maybe (k, SimpleTree v) -> Maybe (k, SimpleTree v) -> SimpleTree v
-doAdd Nothing Nothing = Empty
-doAdd (Just (k1, v1)) Nothing = v1
-doAdd (Just (k1, v1)) (Just (k2, v2)) =  
--}
-
 pQueueToList :: (Ord k) => (PQueue k v) -> [(k, v)]
 pQueueToList q 
   | PQ.null q = []
@@ -118,24 +87,7 @@ pQueueToList q
     let extract Nothing = []
         extract (Just ((k, v), q)) = (k, v):(pQueueToList q)
     in extract $ minViewWithKey q    
-{-
-fold2 :: ((a,a) -> b -> b) -> [a] -> b -> b
-fold2 _ [] x = x
-fold2 f (x:y:xs) ac = fold2 f (f (x,y) ac) xs
--}
+
 myFold :: ((a, a) -> [a] -> [a]) -> [a] -> [a]
 myFold f (x:y:xs) = myFold f (f (x, y) xs)
 myFold _ ac = ac
-                                 
-
-{-
-oneRun :: (Num k, Ord k) => Maybe (k, SimpleTree v) -> Maybe (k, SimpleTree v) -> TreeQueue k v -> TreeQueue k v
-oneRun Nothing (Just (w1, v1)) q = fromList [(w1, v1)]
-oneRun (Just (w1, v1)) (Just (w2, v2)) q = insert (w1+w2) (Node v1 v2) q
-
-liftKeyFn :: KeyFn k -> Maybe ((k, v), q) -> Maybe ((k, v), q) -> Maybe k
-liftKeyFn fn p1 p2 = 
-  let purefst = liftM $ fst . fst
-      purefn  = liftM2 fn
-  in purefn (purefst p1) (purefst p2)       
--}
