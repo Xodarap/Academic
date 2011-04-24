@@ -1,0 +1,2 @@
+data Mark = Black | Grey
+data FibNode e = FibNode { 

@@ -1,0 +1,160 @@
+module Horn 
+       (Literal   (..),
+        AndClause (..),
+        NorClause (..),
+        Implication (..),
+        Solution,
+        Formula (..),
+        Satisfiable,
+        solve
+        ) where
+
+import Data.Foldable as F
+import Data.Monoid
+import Debug.Trace
+import Data.List
+import Data.List.Utils
+
+class Satisfiable c where
+  satisfied :: c -> Bool
+  satisfy   :: c -> ([Literal], c)
+  set       :: Literal -> c -> c  
+
+data Literal     = Literal {name :: String, val :: Bool}
+data AndClause   = AndClause { clausesA :: [Literal] } deriving (Show)
+data NorClause   = NorClause { clausesN :: [Literal] } deriving (Show)
+
+data Implication = Implication AndClause Literal
+                 | Tautology Literal deriving (Show)
+type Solution    = [Literal]
+data Formula     = Formula {nors :: [NorClause], impls :: [Implication]} deriving (Show)
+
+flipLit :: Literal -> Literal
+flipLit (Literal name val) = Literal name (not val)
+
+instance Eq Literal where
+  x == y = name x == name y
+instance Show Literal where
+  show (Literal name val) = show name ++ " " ++ show val
+instance Monoid AndClause where
+  mempty      = AndClause []
+  mappend a b = AndClause { clausesA = (clausesA a) ++ (clausesA b) } 
+instance Monoid NorClause where
+  mempty      = NorClause []
+  mappend a b = NorClause { clausesN = (clausesN a) ++ (clausesN b) }
+
+instance Satisfiable Implication where
+  -- Sheffer's stroke: P -> Q == Q v ~P
+  satisfied (Implication antecedent consequent) = F.or [(val consequent), not $ satisfied antecedent]
+  satisfied (Tautology (Literal name val)) = val
+  satisfy (Implication antecedent consequent)
+    -- If it's already satisfied, do nothing
+    | val consequent = ([], Implication antecedent consequent)
+    -- If the antecedent is true but the consequent is false, we've gotta change
+    | satisfied antecedent =
+         let c' = flipLit consequent
+         in ([c'], Implication antecedent c')            
+    -- If antecedent is false, the consequent doesn't matter
+    | otherwise = ([], Implication antecedent consequent)
+
+  satisfy (Tautology (Literal name val))
+    | val       = ([], Tautology (Literal name val))
+    | otherwise = ([Literal name True], Tautology (Literal name True))
+
+  set lit (Implication (AndClause a) c) = 
+     let ac = AndClause (map (setLit lit) a) 
+         cc = (setLit lit c)
+     in Implication ac cc
+  set lit (Tautology l) = if lit == l then Tautology lit
+                          else Tautology l
+  
+instance Satisfiable AndClause where
+  satisfied (AndClause xs) = F.and $ map val xs
+  set lit (AndClause xs)   = AndClause (map (setLit lit) xs)
+
+instance Satisfiable NorClause where
+  satisfied  = F.or . map (not . val) . clausesN
+  set lit ns = NorClause { clausesN = map (setLit lit) $ clausesN ns }
+
+-- | Checks if a Horn formula has a satisfying assignment, and if so, prints it
+--   out.
+solve :: Formula -> Either [Literal] String
+solve (Formula nors impls) =
+  let setfalse l = (Literal (name l) False)
+      allfalse   = map (\nors -> NorClause (map setfalse nors)) $ map clausesN nors
+      form'      = Formula allfalse impls
+  in solve' form'
+
+-- | Internal method which implements the Horn solver, but doesn't set all the vars to
+--   false first.
+solve' :: Formula -> Either [Literal] String
+solve' (Formula nors impls)
+  -- If all the implications are satisfied, then we're done
+  | Prelude.all satisfied impls = 
+    -- Since Haskell is lazy, we won't actually apply all the "satisfy" changes
+    -- to the nors until all the implications are satisfied
+    let satAssign = nub $ mconcat $ map clausesN nors
+    in if F.all satisfied nors then Left satAssign
+       else Right "Not  solvable"
+  | otherwise =  
+      let x       = map satisfy impls
+          impls'  = map snd x
+          changes = mconcat $ map fst x
+          form'   = applyChanges changes (Formula nors impls')
+      in solve' form'
+
+-- | Given a list of changes, applies those changes to a formula
+applyChanges :: [Literal] -> Formula -> Formula
+applyChanges [] x = x
+applyChanges (c:cs) (Formula nors impls) = 
+  let nors' = map (set c) nors
+      imps' = map (set c) impls
+  in applyChanges cs (Formula nors' imps')    
+
+-- | if x is the literal we're trying to set, set it to lit
+--   otherwise, just keep it how it is
+setLit :: Literal -> Literal -> Literal
+setLit lit x = if x == lit then lit
+               else x
+
+{- ==== Unit Tests ==== -}
+
+form1 :: Formula
+form1 = Formula [NorClause { clausesN = [(Literal "x" True)]}] [(Tautology (Literal "y" True))]
+
+form2 = Formula nor1 impl1
+form3 = Formula nor1 impl2
+
+
+tonor :: [String] -> NorClause
+tonor names = NorClause { clausesN = map (\x -> Literal x False) names }
+
+toimpl :: [String] -> String -> Implication
+toimpl [] conse   = Tautology (Literal conse False)
+toimpl ante conse = Implication (toand ante) (Literal conse False)
+
+toand :: [String] -> AndClause
+toand names = AndClause { clausesA = map (\x -> Literal x False) names }
+
+nor1 :: [NorClause]
+nor1 = 
+  let n1 = tonor ["w", "x", "y"]
+      n2 = tonor ["z"]
+  in [n1, n2]
+     
+impl1 :: [Implication]
+impl1 =
+  let i1 = toimpl ["w", "y", "z"] "x"
+      i2 = toimpl ["x", "z"]  "w"
+      i3 = toimpl ["x"] "y"
+      i4 = toimpl [] "x"
+      i5 = toimpl ["x", "y"] "w"
+  in [i1, i2, i3, i4, i5]
+     
+     
+impl2 :: [Implication]
+impl2 =
+  let i1 = toimpl ["w", "y", "z"] "x"
+      i3 = toimpl ["x"] "y"
+      i4 = toimpl [] "x"
+  in [i1, i3, i4]     
