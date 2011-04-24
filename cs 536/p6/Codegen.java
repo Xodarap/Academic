@@ -363,4 +363,8 @@ public class Codegen {
 	p.println("\t.text");
 	p.println("\t.globl\tmain");
     }
+    
+    public static void num2bool(String reg){
+    	generate("sltu", reg, "$zero", reg);  // if 0 < reg unsigned, then reg must be not equal to zero 	
+    }
 }

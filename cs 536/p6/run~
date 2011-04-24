@@ -1,4 +1,11 @@
 #!/bin/bash
 make
-java -cp .:JLex.jar:java_cup.jar P5 $1.Little output
-#meld output $1.out
+java -cp .:JLex.jar:java_cup.jar P6 $1.Little output
+spim -file gencode.asm > mine
+perl -pi -e '$_ = "" if ($. < 6)' mine
+rm $1.c
+echo "#include <stdio.h>" > $1.c
+cat $1.Little >> $1.c
+gcc $1.c
+./a.out > theirs
+diff -bB mine theirs

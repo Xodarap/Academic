@@ -1,19 +1,10 @@
-void conditionalTests(){
-     int x;
-     int y;
-     if(x++)  {}
-     if(x--)  {}
-     if(++x)  {}
-     if(--x)  {}
-     if(x+y)  {}
-     if(x*y)  {}
-     if(x-y)  {}
-     if(x/y)  {}
-     if(x=y)  {}
-     if(x==y) {}
-     if(x&&y) {}
-     if(x||y) {}
-     if(x!=y) {}
-     if(!x)   {}
-     if(-x)   {}  
+int two(int lk, int lm)  {
+	return 1;
 }
+
+void main()  {
+	int li1;
+	two(1, 2) ;
+	printf("%d", li1);
+}
+

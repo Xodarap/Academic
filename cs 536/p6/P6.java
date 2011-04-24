@@ -28,7 +28,7 @@ public class P6 {
 	}
 
 	try {
-	    Codegen.p = new PrintWriter("gencode.asm");    
+	    Codegen.p = new PrintWriter("/home/ben/Scripts/github/Academic/cs 536/p6/gencode.asm");    
 	}catch (FileNotFoundException e){
 	    System.err.println("File " + args[0] + " not found.");
 	    System.exit(-1);
