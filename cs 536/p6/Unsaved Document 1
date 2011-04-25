@@ -1,0 +1,9 @@
+void main() {
+	foo();
+	printf("%d", 2);
+}
+
+void foo() {
+	printf("%d", 1);
+	return;
+}

@@ -1,0 +1,14 @@
+int gi1; int gi2;
+void main() {
+int li1; int li2; 
+gi1 = 1; gi2 = 2; li1 = 3; li2 = 4; 
+li2  =  li2 None
+gi1  =  ( ! ( )  <=  ( ) )  >=  ( ( - )  ==  ( li1 ) ) None
+gi2  =  ! ( gi2 )  ||  ( ( )  !=  ( ) ) None
+li1  =  gi1 None
+li2  =  ( - - )  >  ( ( ( )  <=  ( ) )  ==  ( ( )  <=  ( ) ) ) None
+li1  =  li2 None
+li1  =  ! ! ( )  !=  ( ) None
+li1  =  ( - li1 )  *  ( ( ( )  <  ( ) )  >  ( - ) ) None
+li2  =  ! ( ( )  <  ( ) )  <  ( - ) None
+}

@@ -1,0 +1,9 @@
+#include <stdio.h>
+void main() {
+	int x;
+	x = 4;
+	x = !x;
+	printf("%d", x);
+	x = -x;
+	printf("%d", x);
+}
