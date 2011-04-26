@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.util.Collections;
 
 // **********************************************************************
 // The ASTnode class defines the nodes of the abstract-syntax tree that
@@ -354,10 +355,10 @@ class FormalsListNode extends ASTnode {
 	}
 
 	public int setReg(int start) {
-		int offset = 0;
+		int offset = start;
 		for(int i=0; i< myFormals.size(); i++){
 			myFormals.get(i).setReg(start + i, offset);
-			offset += myFormals.get(i).size();
+			offset -= myFormals.get(i).size();
 		}
 
 		return offset;
@@ -579,6 +580,10 @@ class ExpListNode extends ASTnode {
 
 	public void generate() {}
 	
+	public List<ExpNode> children() {
+		return myExps;
+	}
+	
 	// list of kids (ExpNodes)
 	private List<ExpNode> myExps;
 }
@@ -743,17 +748,37 @@ class FnDeclNode extends DeclNode {
 	/** typeCheck **/
 	public void typeCheck() {
 		myBody.typeCheck(myType.type());
-		int offset = myFormalsList.setReg(0);
-		myBody.setOffset(offset);
+		int offset = myFormalsList.setReg(-12);
+		myBody.setOffset(0);
 	}
 
+	/* Stack Format
+	 * 
+	 * ^^ Higher addresses ^^
+	 * 
+	 * fn input 1
+	 * fn input 2
+	 * ...
+	 * fn input n
+	 * $ra for this function
+	 * $fp for last function
+	 * body decl 1 				<-- $fp
+	 * body decl 2
+	 * ...
+	 * body decl n              <-- $sp
+	 * 
+	 * vv Lower addresses  vv
+	 */
 	public void generate() {
-		int size = myFormalsList.size() + myBody.size();
+		int size =  myBody.size();
 		Codegen.generateLabeled(myId.name(), "nop", "function " + myId.name());
+		//Codegen.generate("subu", "$fp", "$fp", size + myFormalsList.size());
 		Codegen.genPush("$ra", 4);
 		Codegen.genPush("$fp", 4);
 		Codegen.generateWithComment("move", "init fp", "$fp", "$sp");
 		Codegen.generateWithComment("subu", "allocate AR", "$sp", "$sp", Integer.toString(size));
+		//Codegen.generate("addi", "$fp", "$fp", 8 + myBody.size() + myFormalsList.size());
+		
 		myFormalsList.generate();
 		myBody.generate();
 		
@@ -1949,9 +1974,19 @@ class CallExpNode extends ExpNode {
 	}
 	
 	public void generate(){
+		pushChildren();
 		Codegen.generateWithComment("jal", this, myId.label(), "", "");
 		if(ASTnode.hasReturn(myId.type())) {
 			Codegen.genPush("$v0", 4);
+		}
+	}
+	
+	/**
+	 * Pushes the inputs to the called function onto the stack
+	 */
+	protected void pushChildren(){
+		for(int i = myExpList.children().size() - 1; i >= 0; i--){
+			myExpList.children().get(i).generate();
 		}
 	}
 

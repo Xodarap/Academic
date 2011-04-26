@@ -94,7 +94,7 @@ def genProg(rettype, name, callables, doDecl):
 
 	print '\tprintf("\\nEnd ', name, ' while\\n");'
 
-	for i in range(1,5):
+	for i in range(1,10):
 		if(len(callables) > 0):
 			fn = callables[random.randint(0, len(callables)-1)]
 			print '\tli1 = ', fn, ';'

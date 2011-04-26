@@ -67,7 +67,7 @@ def genProg(rettype, name, callables, doDecl):
 		print '\tprintf("%d", ', chosenVar, ');'
 		print '\t', chosenVar, ' = 1;'
 	
-	print '\tprintf("End ', name, ' simple\\n");'
+	print '\tprintf("\\nEnd ', name, ' simple\\n");'
 
 	# Nested tests
 	for i in range(1,2):
