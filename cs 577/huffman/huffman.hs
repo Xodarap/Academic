@@ -20,6 +20,13 @@ data SimpleTree a = Empty
 -- | For Huffman encoding, we have a priority queue of trees
 type TreeQueue k v = PQueue k (SimpleTree v)
 
+-- | Parses a plain-text file and extracts frequencies etc.
+fromFile :: String -> IO ()
+fromFile filename = do
+  freqs <- liftM str2freqs $ readFile filename 
+  let finalFreqs = map freq2pair $ concatFreqs freqs
+  prettyCompress finalFreqs    
+
 -- | Easily printable version of the encoding
 prettyCompress :: (Show a, Ord freq, Num freq) => [(freq, a)] -> IO ()
 prettyCompress x = do 
@@ -30,12 +37,12 @@ prettyCompressF :: String -> IO ()
 prettyCompressF filename = do
   dat <- liftM parseFile $ readFile filename
   prettyCompress dat
-
+ 
 -- | Maps a set of lines to the appropriate array
 parseFile :: String -> [(Int, String)]
 parseFile str = 
-  let lns  = lines str
-      arrs = map (splitOn "\t") lns
+  let lns  = lines str               -- lns  :: [String]
+      arrs = map (splitOn "\t") lns  -- arrs :: [[String]]
   in map (\x -> (read $ last x, head x)) arrs    
   
 -- | Internal method to prettify huffman output. Just separated from
@@ -91,3 +98,44 @@ pQueueToList q
 myFold :: ((a, a) -> [a] -> [a]) -> [a] -> [a]
 myFold f (x:y:xs) = myFold f (f (x, y) xs)
 myFold _ ac = ac
+
+
+data FreqPair = FreqPair { char :: Char,
+                           frequency :: Int }
+
+instance Show FreqPair where
+  show x = "(" ++ (show $ char x) ++ ", " ++ (show $ frequency x) ++ ")"
+instance Eq FreqPair where
+  x == y = char x == char y
+instance Monoid FreqPair where
+  mempty      = FreqPair { char = ' ', frequency = 0 }
+  mappend x y = FreqPair { char      = char x, 
+                           frequency = foldr (+) 0 $ map frequency [x, y] }
+
+str2freqs :: String -> [FreqPair]
+str2freqs = map mapFn 
+  where mapFn x = pair2freq (x, 1)
+
+concatFreqs :: (Eq a, Monoid a) => [a] -> [a]
+concatFreqs = foldr (\x ac -> merge ac x) []
+
+merge :: (Eq a, Monoid a) => [a] -> a -> [a]
+merge [] one = [one]
+merge left r = 
+  let (match, nomatch) = splitL (== r) left
+      left'            = if match == [] then nomatch ++ [r]
+                         else nomatch ++ [mappend r $ head match]
+  in left'
+     
+splitL :: (a -> Bool) -> [a] -> ([a], [a])
+splitL _ [] = ([], [])
+splitL fn (x:xs) 
+  | fn x      = (x:match, nomatch)
+  | otherwise = (match, x:nomatch)    
+    where (match, nomatch) = splitL fn xs  
+
+l1 = map pair2freq [('a', 1), ('b', 2), ('c', 3), ('d', 4)]
+l2 = map pair2freq [('a', 1), ('c', 5), ('e', 8)]
+pair2freq (x,y) = FreqPair { char = x, frequency = y}
+freq2pair :: FreqPair -> (Int, Char)
+freq2pair f = (frequency f, char f)
