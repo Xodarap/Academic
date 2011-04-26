@@ -1,0 +1,35 @@
+int y;
+
+void gloop() {
+	int x;
+	x = 3;
+	y = 10;
+	x++;
+	printf("%d", x);
+	return;
+}
+
+void blah() {
+	int x;
+	x = 2;
+	x++;
+	printf("%d", x);
+	return;
+}
+
+void foo() {
+	int x;
+	x = 0;
+	printf("%d", x);
+	blah();
+	gloop();
+	printf("%d", x);
+	/*printf("%d", y);*/
+	return;
+}
+
+void main() {
+	foo();
+	printf("%d", 2);
+}
+

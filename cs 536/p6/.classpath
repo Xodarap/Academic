@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/ben/Scripts/github/Academic/cs 536/p6/java_cup.jar"/>
+	<classpathentry kind="lib" path="/home/ben/Scripts/github/Academic/cs 536/p6/JLex.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
