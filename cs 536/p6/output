@@ -1,3 +1,439 @@
+int gi1(int; offset: -1);
+int gi2(int; offset: -1);
 
-void main(->void)() {
+int one(->int; offset: -1)() {
+  int li1(int; offset: -1);
+  int li2(int; offset: -1);
+  li1(int; offset: -1) = 3;
+  li2(int; offset: -1) = 4;
+  gi1(int; offset: -1) = 1;
+  gi2(int; offset: -1) = 2;
+  gi1(int; offset: -1) = (gi1(int; offset: -1)+li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li2(int; offset: -1)-li1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi1(int; offset: -1)*gi2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi2(int; offset: -1)*gi1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi1(int; offset: -1)&&gi2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi2(int; offset: -1)||gi2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li2(int; offset: -1)==gi2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li1(int; offset: -1)!=li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li2(int; offset: -1)<li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi2(int; offset: -1)>gi1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi2(int; offset: -1)<=gi1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  printf("\nEnd  one()  simple\n");
+  li2(int; offset: -1) = (-(-li1(int; offset: -1)));
+  printf("%d", li2(int; offset: -1));
+  printf("\n");
+  printf("\nEnd  one()  nested\n");
+  if ((li2(int; offset: -1)>=li1(int; offset: -1))) {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", li2(int; offset: -1));
+    k(int; offset: -1) = li2(int; offset: -1);
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = (-gi2(int; offset: -1));
+    printf("%d", l(int; offset: -1));
+  }
+  printf("\nEnd  one()  if\n");
+  if ((gi1(int; offset: -1)!=li2(int; offset: -1))) {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", gi2(int; offset: -1));
+    k(int; offset: -1) = li1(int; offset: -1);
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = (!((!li1(int; offset: -1))-(!gi1(int; offset: -1))));
+    printf("%d", l(int; offset: -1));
+  }
+  else {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", gi1(int; offset: -1));
+    k(int; offset: -1) = gi1(int; offset: -1);
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = (!(-(-gi1(int; offset: -1))));
+    printf("%d", l(int; offset: -1));
+  }
+  printf("\nEnd  one()  else\n");
+  li1(int; offset: -1) = 60;
+  while ((li1(int; offset: -1)>0)) {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", gi2(int; offset: -1));
+    k(int; offset: -1) = (!(gi2(int; offset: -1)==(-gi2(int; offset: -1))));
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = (-((gi2(int; offset: -1)&&li2(int; offset: -1))*(-gi2(int; offset: -1))));
+    printf("%d", l(int; offset: -1));
+    li1(int; offset: -1)--;
+  }
+  printf("\nEnd  one()  while\n");
+  printf("\nEnd  one()  call\n");
+  return (!(li1(int; offset: -1)==(li2(int; offset: -1)<=((li1(int; offset: -1)-li2(int; offset: -1))&&(li2(int; offset: -1)>=li2(int; offset: -1))))));
+}
+
+int two(int,int->int; offset: -1)(int li1(int; offset: -1), int li2(int; offset: -1)) {
+  gi1(int; offset: -1) = 1;
+  gi2(int; offset: -1) = 2;
+  gi1(int; offset: -1) = (li2(int; offset: -1)+gi1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li1(int; offset: -1)-li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li1(int; offset: -1)*li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li1(int; offset: -1)*li1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li2(int; offset: -1)&&gi2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi1(int; offset: -1)||li1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi1(int; offset: -1)==gi2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi1(int; offset: -1)!=li1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi2(int; offset: -1)<li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi2(int; offset: -1)>gi1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li1(int; offset: -1)<=gi1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  printf("\nEnd  two(int li1, int li2)  simple\n");
+  gi1(int; offset: -1) = (-(-li2(int; offset: -1)));
+  printf("%d", gi1(int; offset: -1));
+  printf("\n");
+  printf("\nEnd  two(int li1, int li2)  nested\n");
+  if (gi2(int; offset: -1)) {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", li2(int; offset: -1));
+    k(int; offset: -1) = li1(int; offset: -1);
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = (((gi2(int; offset: -1)<gi2(int; offset: -1))*(gi2(int; offset: -1)==gi1(int; offset: -1)))||gi2(int; offset: -1));
+    printf("%d", l(int; offset: -1));
+  }
+  printf("\nEnd  two(int li1, int li2)  if\n");
+  if ((!(-(-li1(int; offset: -1))))) {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", li2(int; offset: -1));
+    k(int; offset: -1) = (li2(int; offset: -1)*(gi2(int; offset: -1)<(li1(int; offset: -1)-li1(int; offset: -1))));
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = (!(-(!gi1(int; offset: -1))));
+    printf("%d", l(int; offset: -1));
+  }
+  else {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", gi1(int; offset: -1));
+    k(int; offset: -1) = (-((li2(int; offset: -1)&&gi2(int; offset: -1))!=gi2(int; offset: -1)));
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = (((!gi2(int; offset: -1))<=li2(int; offset: -1))!=((!gi2(int; offset: -1))>=(-li2(int; offset: -1))));
+    printf("%d", l(int; offset: -1));
+  }
+  printf("\nEnd  two(int li1, int li2)  else\n");
+  li1(int; offset: -1) = 92;
+  while ((li1(int; offset: -1)>0)) {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", li2(int; offset: -1));
+    k(int; offset: -1) = li1(int; offset: -1);
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = (-gi2(int; offset: -1));
+    printf("%d", l(int; offset: -1));
+    li1(int; offset: -1)--;
+  }
+  printf("\nEnd  two(int li1, int li2)  while\n");
+  li1(int; offset: -1) = one(->int; offset: -1)();
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = one(->int; offset: -1)();
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = one(->int; offset: -1)();
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = one(->int; offset: -1)();
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = one(->int; offset: -1)();
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = one(->int; offset: -1)();
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = one(->int; offset: -1)();
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = one(->int; offset: -1)();
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = one(->int; offset: -1)();
+  printf("%d", li1(int; offset: -1));
+  printf("\nEnd  two(int li1, int li2)  call\n");
+  return (li2(int; offset: -1)>=(gi1(int; offset: -1)*gi1(int; offset: -1)));
+}
+
+int three(int,int->int; offset: -1)(int li1(int; offset: -1), int li2(int; offset: -1)) {
+  gi1(int; offset: -1) = 1;
+  gi2(int; offset: -1) = 2;
+  gi1(int; offset: -1) = (gi2(int; offset: -1)+gi1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi1(int; offset: -1)-gi1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi1(int; offset: -1)*gi1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li1(int; offset: -1)*gi1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li2(int; offset: -1)&&li1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li2(int; offset: -1)||gi1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li1(int; offset: -1)==gi1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi1(int; offset: -1)!=li1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li1(int; offset: -1)<li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi1(int; offset: -1)>gi2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li2(int; offset: -1)<=li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  printf("\nEnd  three(int li1, int li2)  simple\n");
+  gi1(int; offset: -1) = ((gi2(int; offset: -1)||li1(int; offset: -1))-(!gi1(int; offset: -1)));
+  printf("%d", gi1(int; offset: -1));
+  printf("\n");
+  printf("\nEnd  three(int li1, int li2)  nested\n");
+  if (gi2(int; offset: -1)) {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", li2(int; offset: -1));
+    k(int; offset: -1) = li1(int; offset: -1);
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = (!li1(int; offset: -1));
+    printf("%d", l(int; offset: -1));
+  }
+  printf("\nEnd  three(int li1, int li2)  if\n");
+  if ((gi1(int; offset: -1)<(!(li2(int; offset: -1)||li2(int; offset: -1))))) {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", gi1(int; offset: -1));
+    k(int; offset: -1) = (gi2(int; offset: -1)&&(-li1(int; offset: -1)));
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = li2(int; offset: -1);
+    printf("%d", l(int; offset: -1));
+  }
+  else {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", li2(int; offset: -1));
+    k(int; offset: -1) = ((-(gi2(int; offset: -1)&&li2(int; offset: -1)))&&((-gi1(int; offset: -1))>=(li1(int; offset: -1)>=gi1(int; offset: -1))));
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = (!li1(int; offset: -1));
+    printf("%d", l(int; offset: -1));
+  }
+  printf("\nEnd  three(int li1, int li2)  else\n");
+  li1(int; offset: -1) = 47;
+  while ((li1(int; offset: -1)>0)) {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", li1(int; offset: -1));
+    k(int; offset: -1) = (-((-gi1(int; offset: -1))+gi1(int; offset: -1)));
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = li1(int; offset: -1);
+    printf("%d", l(int; offset: -1));
+    li1(int; offset: -1)--;
+  }
+  printf("\nEnd  three(int li1, int li2)  while\n");
+  li1(int; offset: -1) = two(int,int->int; offset: -1)(li1(int; offset: -1), li2(int; offset: -1));
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = two(int,int->int; offset: -1)(li1(int; offset: -1), li2(int; offset: -1));
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = two(int,int->int; offset: -1)(li1(int; offset: -1), li2(int; offset: -1));
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = one(->int; offset: -1)();
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = two(int,int->int; offset: -1)(li1(int; offset: -1), li2(int; offset: -1));
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = two(int,int->int; offset: -1)(li1(int; offset: -1), li2(int; offset: -1));
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = one(->int; offset: -1)();
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = two(int,int->int; offset: -1)(li1(int; offset: -1), li2(int; offset: -1));
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = one(->int; offset: -1)();
+  printf("%d", li1(int; offset: -1));
+  printf("\nEnd  three(int li1, int li2)  call\n");
+  return (-li1(int; offset: -1));
+}
+
+void main(->void; offset: -1)() {
+  int li1(int; offset: -1);
+  int li2(int; offset: -1);
+  li1(int; offset: -1) = 3;
+  li2(int; offset: -1) = 4;
+  gi1(int; offset: -1) = 1;
+  gi2(int; offset: -1) = 2;
+  gi1(int; offset: -1) = (gi2(int; offset: -1)+gi2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li1(int; offset: -1)-li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li1(int; offset: -1)*li1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li2(int; offset: -1)*li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi1(int; offset: -1)&&li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li1(int; offset: -1)||li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li1(int; offset: -1)==li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi1(int; offset: -1)!=li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li1(int; offset: -1)<li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (li1(int; offset: -1)>li1(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  gi1(int; offset: -1) = (gi1(int; offset: -1)<=li2(int; offset: -1));
+  printf("%d", gi1(int; offset: -1));
+  gi1(int; offset: -1) = 1;
+  printf("\nEnd  main()  simple\n");
+  li1(int; offset: -1) = gi2(int; offset: -1);
+  printf("%d", li1(int; offset: -1));
+  printf("\n");
+  printf("\nEnd  main()  nested\n");
+  if (gi1(int; offset: -1)) {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", gi1(int; offset: -1));
+    k(int; offset: -1) = ((gi2(int; offset: -1)<(li1(int; offset: -1)*gi1(int; offset: -1)))||(li2(int; offset: -1)>=gi1(int; offset: -1)));
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = (-(gi2(int; offset: -1)-(!li1(int; offset: -1))));
+    printf("%d", l(int; offset: -1));
+  }
+  printf("\nEnd  main()  if\n");
+  if ((!(!(!gi1(int; offset: -1))))) {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", gi1(int; offset: -1));
+    k(int; offset: -1) = gi1(int; offset: -1);
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = ((gi2(int; offset: -1)>(!li2(int; offset: -1)))>(gi2(int; offset: -1)&&(gi1(int; offset: -1)!=gi2(int; offset: -1))));
+    printf("%d", l(int; offset: -1));
+  }
+  else {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", li2(int; offset: -1));
+    k(int; offset: -1) = li2(int; offset: -1);
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = li2(int; offset: -1);
+    printf("%d", l(int; offset: -1));
+  }
+  printf("\nEnd  main()  else\n");
+  li1(int; offset: -1) = 84;
+  while ((li1(int; offset: -1)>0)) {
+    int k(int; offset: -1);
+    int l(int; offset: -1);
+    k(int; offset: -1) = 1;
+    l(int; offset: -1) = 2;
+    printf("%d", gi1(int; offset: -1));
+    k(int; offset: -1) = (!gi1(int; offset: -1));
+    printf("%d", k(int; offset: -1));
+    l(int; offset: -1) = (li1(int; offset: -1)>(!(li2(int; offset: -1)<=li1(int; offset: -1))));
+    printf("%d", l(int; offset: -1));
+    li1(int; offset: -1)--;
+  }
+  printf("\nEnd  main()  while\n");
+  li1(int; offset: -1) = two(int,int->int; offset: -1)(li1(int; offset: -1), li2(int; offset: -1));
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = three(int,int->int; offset: -1)(li1(int; offset: -1), li2(int; offset: -1));
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = three(int,int->int; offset: -1)(li1(int; offset: -1), li2(int; offset: -1));
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = two(int,int->int; offset: -1)(li1(int; offset: -1), li2(int; offset: -1));
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = three(int,int->int; offset: -1)(li1(int; offset: -1), li2(int; offset: -1));
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = one(->int; offset: -1)();
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = two(int,int->int; offset: -1)(li1(int; offset: -1), li2(int; offset: -1));
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = two(int,int->int; offset: -1)(li1(int; offset: -1), li2(int; offset: -1));
+  printf("%d", li1(int; offset: -1));
+  li1(int; offset: -1) = three(int,int->int; offset: -1)(li1(int; offset: -1), li2(int; offset: -1));
+  printf("%d", li1(int; offset: -1));
+  printf("\nEnd  main()  call\n");
 }

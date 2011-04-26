@@ -1,2 +1,67 @@
-void main() {
+int intVar;
+double dblVar;
+
+void main(     int x,
+     int y,
+     double d
+
+) {
+     int z;
+
+     intVar = 1;
+     if(intVar == 1) {
+     	       int k;
+	            k = 4;
+		         k++;
+     printf("%d", k);
+     } else {
+       x = 3; 
+       x++;
+       printf("%d", x);
+     }
+     x = 4;
+     x--;
+     if(x != 3) {
+     printf("%d", x);
+     ++x;
+     printf("%d", x);
+     --x;
+} else {
+     printf("%d", x);
+     printf("%d", x++);
+     printf("%d", x);
+     printf("%d", x--);
+
+     y = (x == 3);
+     printf("%d", y);
+     printf("%d", x == 3);
+     y = (x != 3);
+     printf("%d", y);
+     printf("%d", x != 3);
+     y = (x < 3);
+     printf("%d", y);
+     printf("%d", x < 3);
+     y = (x <= 3);
+     printf("%d", y);
+     printf("%d", x <= 3);
+     y = (x > 3);
+     printf("%d", y);
+     printf("%d", x > 3);
+     y = (x >= 3);
+     printf("%d", y);
+     printf("%d", x >= 3);
+     z = -x;
+     printf("%d", z);
+     printf("%d", -x);
+     printf("%d", x);
+     }
+     /*d = 5.0;
+     printf("%f", d);*/
+	printf("Test\n");
+
+     while(x > 0) {
+     	     printf("%d", x);
+	     x--;
+	     }
+     printf("%d", x);
 }

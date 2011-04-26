@@ -100,6 +100,15 @@ public class Codegen {
 	generateWithComment(opcode, comment, "", "", "");
     }
 
+    public static void generateWithComment(String opcode, ASTnode node, String arg1,
+					   String arg2, String arg3) {
+	StringWriter realWriter = new StringWriter();
+	PrintWriter pWriter = new PrintWriter(realWriter);
+	node.unparse(pWriter, 0);
+	String comment = realWriter.toString();
+	generateWithComment(opcode, comment, arg1, arg2, arg3);
+    }
+
     // **********************************************************************
     // generate
     //    given:  op code, and 0 to 3 string args
@@ -272,6 +281,50 @@ public class Codegen {
     }
 
     // **********************************************************************
+    // genPush
+    //    generate code to push the given value onto the stack
+    //    different code for 4 or 8 bytes
+    // **********************************************************************
+    public static void genPushFp(String s, int bytes) {
+	switch (bytes) {
+	case 4:
+	    generateIndexed("sw", s, SP, 0, "PUSH");
+	    generate("subu", SP, SP, 4);
+	    break;
+	case 8:
+	    generateIndexed("s.d", s, SP, -4, "PUSH");
+	    generate("subu", SP, SP, 8);
+	    break;
+	default:
+	    System.err.println("Internal error: call to genPush with bad # bytes: " +
+			       bytes);
+	    System.exit(1);
+	}
+    }
+
+    // **********************************************************************
+    // genPop
+    //    generate code to pop a value with the given # of bytes
+    //    into the given register
+    //    different code for 4 or 8 bytes
+    // **********************************************************************
+    public static void genPopFp(String s, int bytes) {
+	switch (bytes) {
+	case 4:
+	    generateIndexed("lw", s, SP, 4, "POP");
+	    generate("addu", SP, SP, 4);
+	    break;
+	case 8:
+	    generateIndexed("l.d", s, SP, 4, "POP");
+	    generate("addu", SP, SP, 8);
+	    break;
+	default:
+	    System.err.println("Internal error: call to genPop with bad # bytes");
+	    System.exit(1);
+	}
+    }
+
+    // **********************************************************************
     // genLabel
     //   given:    label L and optional comment
     //   generate: L:    # comment
@@ -294,5 +347,24 @@ public class Codegen {
 	Integer k = new Integer(currLabel++);
 	String tmp = ".L" + k;
 	return(tmp);
+    }
+
+    public static void genData() {
+	p.println("\t.data");
+    }
+
+    public static void genStaticVar(String label, int size){
+	p.println(label + ":");
+	p.println("\t.space " + size);
+	//p.println("\t.align 2");
+    }
+
+    public static void genText() {
+	p.println("\t.text");
+	p.println("\t.globl\tmain");
+    }
+    
+    public static void num2bool(String reg){
+    	generate("sltu", reg, "$zero", reg);  // if 0 < reg unsigned, then reg must be not equal to zero 	
     }
 }

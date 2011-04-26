@@ -1,0 +1,2 @@
+#!/usr/bin/fish
+ghci -XFlexibleInstances -XFlexibleContexts -XUndecidableInstances -XTypeSynonymInstances

@@ -1,1 +1,55 @@
+	.data
+intVar:
+	.space 4
+dblVar:
+	.space 8
+	.text
+	.globl	main
 main:	nop	# function main
+	li      $t8, 2	#literal
+	sw      $t8, 0($sp)	#PUSH
+	subu    $sp, $sp, 4
+	li      $t8, 3	#literal
+	sw      $t8, 0($sp)	#PUSH
+	subu    $sp, $sp, 4
+	lw      $t9, 4($sp)	#POP
+	addu    $sp, $sp, 4
+	lw      $t8, 4($sp)	#POP
+	addu    $sp, $sp, 4
+	sub     $t8, $t8, $t9	#(2-3)
+	sw      $t8, 0($sp)	#PUSH
+	subu    $sp, $sp, 4
+	li      $t8, 4	#literal
+	sw      $t8, 0($sp)	#PUSH
+	subu    $sp, $sp, 4
+	li      $t8, 5	#literal
+	sw      $t8, 0($sp)	#PUSH
+	subu    $sp, $sp, 4
+	lw      $t9, 4($sp)	#POP
+	addu    $sp, $sp, 4
+	lw      $t8, 4($sp)	#POP
+	addu    $sp, $sp, 4
+	mult    $t8, $t8, $t9	#(4*5)
+	sw      $t8, 0($sp)	#PUSH
+	subu    $sp, $sp, 4
+	li      $t8, 6	#literal
+	sw      $t8, 0($sp)	#PUSH
+	subu    $sp, $sp, 4
+	lw      $t9, 4($sp)	#POP
+	addu    $sp, $sp, 4
+	lw      $t8, 4($sp)	#POP
+	addu    $sp, $sp, 4
+	div     $t8, $t8, $t9	#((4*5)/6)
+	sw      $t8, 0($sp)	#PUSH
+	subu    $sp, $sp, 4
+	lw      $t9, 4($sp)	#POP
+	addu    $sp, $sp, 4
+	lw      $t8, 4($sp)	#POP
+	addu    $sp, $sp, 4
+	add     $t8, $t8, $t9	#((2-3)+((4*5)/6))
+	sw      $t8, 0($sp)	#PUSH
+	subu    $sp, $sp, 4
+	lw      $a0, 4($sp)	#POPz
+	addu    $sp, $sp, 4
+	li      $v0, 1	#system call code for print_int
+	syscall			#printf("%d");

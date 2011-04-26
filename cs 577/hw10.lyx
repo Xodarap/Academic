@@ -1,0 +1,255 @@
+#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Subsection*
+5.32
+\end_layout
+
+\begin_layout Standard
+The simple greedy algorithm (choose the one with the shortest amount of
+ serving time) works.
+ Proof: Consider 
+\begin_inset Formula $s_{1},\dots,s_{n}$
+\end_inset
+
+ a list of customers ordered by increasing serving time.
+ If we instead had 
+\begin_inset Formula $s_{i},s_{2},\dots,s_{i-1},s_{1},\dots,s_{n}$
+\end_inset
+
+ (i.e.
+ swapped 
+\begin_inset Formula $s_{1}$
+\end_inset
+
+and 
+\begin_inset Formula $s_{i}$
+\end_inset
+
+ for some 
+\begin_inset Formula $i$
+\end_inset
+
+) we would increase the wait time of 
+\begin_inset Formula $s_{2},\dots,s_{i-1}$
+\end_inset
+
+by 
+\begin_inset Formula $t_{i}-t_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $s_{1}$
+\end_inset
+
+by 
+\begin_inset Formula $t_{i}+k$
+\end_inset
+
+ and decrease 
+\begin_inset Formula $s_{i}$
+\end_inset
+
+ by 
+\begin_inset Formula $k+t_{1}$
+\end_inset
+
+ where 
+\begin_inset Formula $k=\sum_{j=2}^{i-1}s_{j}$
+\end_inset
+
+.
+ We can see that this would increase the time if
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left(i-1\right)\left(t_{i}-t_{1}\right)+t_{i}+k>k+t_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left(i-1\right)\left(t_{i}-t_{1}\right)+t_{i}>t_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Which is always true, since 
+\begin_inset Formula $t_{i}>t_{1}$
+\end_inset
+
+ by definition.
+\end_layout
+
+\begin_layout Standard
+The algorithm runs in 
+\begin_inset Formula $O\left(n^{2}\right)$
+\end_inset
+
+ since we have to look through the entire list each time.
+ If we sorted it first, it would run in 
+\begin_inset Formula $O\left(n\log n\right)$
+\end_inset
+
+ since we could just pop the shortest one off in constant time.
+ I think an optimal solution would require us to compare each customer to
+ every other, which means that no solution can run faster than this.
+\end_layout
+
+\begin_layout Subsection*
+6.2
+\end_layout
+
+\begin_layout Standard
+As with Dijkstra's, if the optimal path from A to C goes through B, then
+ it is made up of the optimal path from A to B followed by the optimal path
+ from B to C.
+ We can add an edge from 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+ to 
+\begin_inset Formula $a_{j}$
+\end_inset
+
+ with the weight being the cost of traveling exactly from 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+ to 
+\begin_inset Formula $a_{j}$
+\end_inset
+
+ on one day.
+ Do not add an edge if they are more than 200 miles apart.
+ Then we can run Dijkstra's algorithm on the modified graph.
+ The solution will be optimal, for the same reason it's optimal on a normal
+ graph.
+\end_layout
+
+\begin_layout Standard
+There will be at most 
+\begin_inset Formula $V^{2}$
+\end_inset
+
+ edges, so the algorithm will run in 
+\begin_inset Formula $O\left(V^{2}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section*
+6.17
+\end_layout
+
+\begin_layout Standard
+If the denominations are 
+\begin_inset Formula $x_{1},\dots,x_{n}$
+\end_inset
+
+ and the value is 
+\begin_inset Formula $v$
+\end_inset
+
+, then one of two cases holds:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ is part of a set which adds up to 
+\begin_inset Formula $v$
+\end_inset
+
+, in which case there is a solution for value 
+\begin_inset Formula $v-x_{i}$
+\end_inset
+
+ with coins 
+\begin_inset Formula $x_{1},\dots,x_{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ is not part of a set which adds up to 
+\begin_inset Formula $v$
+\end_inset
+
+, in which case there is a solution iff there is a solution for 
+\begin_inset Formula $v$
+\end_inset
+
+ with coins 
+\begin_inset Formula $\left\{ x_{1},\dots,x_{n}\right\} -\left\{ x_{i}\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We can write this as 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S\left(v,\left\{ x_{1},\dots x_{n}\right\} \right)=\begin{cases}
+True & v=0\\
+False & v\not>0\ and\ X=\emptyset\\
+False & v<0\\
+S\left(v,\left\{ x_{1},\dots,x_{n}\right\} \right)\vee S\left(v-x_{1},\left\{ x_{2},\dots,x_{n}\right\} \right) & else\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

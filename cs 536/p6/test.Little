@@ -1,303 +1,374 @@
-int x;
-int y;
-double d;
-
-double intToDbl(double d) {
-  int k;
-  d = k;
-  intToDbl(k);
-  d = k = 2;
-  k = d==k;
-  k = d!=k;
-  k = d<k;
-  k = d<=k;
-  k = d>k;
-  k = d>=k;
-  return k;
+int gi1; int gi2;
+int   one()  {
+	int li1; int li2; 
+	li1 = 3; li2 = 4;
+	gi1 = 1; gi2 = 2;
+	gi1  =  gi1 + li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li2 - li1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi1 * gi2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi2 * gi1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi1 && gi2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi2 || gi2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li2 == gi2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li1 != li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li2 < li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi2 > gi1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi2 <= gi1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	printf("\nEnd  one()  simple\n");
+	li2  =  -(-(li1)) ;
+	printf("%d",  li2 );
+	printf("\n");
+	printf("\nEnd  one()  nested\n");
+	if( (li2) >= (li1) ){
+		int k; int l; k=1; l=2;
+		printf("%d", li2 );
+		k =  li2 ;
+		printf("%d",k);
+		l =  -(gi2) ;
+		printf("%d",l);
+	}
+	printf("\nEnd  one()  if\n");
+	if( (gi1) != (li2) ){
+		int k; int l; k=1; l=2;
+		printf("%d", gi2 );
+		k =  li1 ;
+		printf("%d",k);
+		l =  !((!(li1)) - (!(gi1))) ;
+		printf("%d",l);
+	} else {
+		int k; int l; k=1; l=2;
+		printf("%d", gi1 );
+		k =  gi1 ;
+		printf("%d",k);
+		l =  !(-(-(gi1))) ;
+		printf("%d",l);
+	}
+	printf("\nEnd  one()  else\n");
+	li1 =  60 ;
+	while(li1 > 0) {
+		int k; int l; k=1; l=2;
+		printf("%d", gi2 );
+		k =  !((gi2) == (-(gi2))) ;
+		printf("%d",k);
+		l =  -(((gi2) && (li2)) * (-(gi2))) ;
+		printf("%d",l);
+		li1--;
+	}
+	printf("\nEnd  one()  while\n");
+	printf("\nEnd  one()  call\n");
+	return  !((li1) == ((li2) <= (((li1) - (li2)) && ((li2) >= (li2))))) ;
 }
-
-void f(double a, int c, int d) {
-  printf("%f", a);
-  printf("  ");
-  printf("%d", c);
-  printf("  ");
-  printf("%d", d);
-  printf("\n");
-  return;
+int   two(int li1, int li2)  {
+	gi1 = 1; gi2 = 2;
+	gi1  =  li2 + gi1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li1 - li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li1 * li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li1 * li1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li2 && gi2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi1 || li1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi1 == gi2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi1 != li1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi2 < li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi2 > gi1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li1 <= gi1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	printf("\nEnd  two(int li1, int li2)  simple\n");
+	gi1  =  -(-(li2)) ;
+	printf("%d",  gi1 );
+	printf("\n");
+	printf("\nEnd  two(int li1, int li2)  nested\n");
+	if( gi2 ){
+		int k; int l; k=1; l=2;
+		printf("%d", li2 );
+		k =  li1 ;
+		printf("%d",k);
+		l =  (((gi2) < (gi2)) * ((gi2) == (gi1))) || (gi2) ;
+		printf("%d",l);
+	}
+	printf("\nEnd  two(int li1, int li2)  if\n");
+	if( !(-(-(li1))) ){
+		int k; int l; k=1; l=2;
+		printf("%d", li2 );
+		k =  (li2) * ((gi2) < ((li1) - (li1))) ;
+		printf("%d",k);
+		l =  !(-(!(gi1))) ;
+		printf("%d",l);
+	} else {
+		int k; int l; k=1; l=2;
+		printf("%d", gi1 );
+		k =  -(((li2) && (gi2)) != (gi2)) ;
+		printf("%d",k);
+		l =  ((!(gi2)) <= (li2)) != ((!(gi2)) >= (-(li2))) ;
+		printf("%d",l);
+	}
+	printf("\nEnd  two(int li1, int li2)  else\n");
+	li1 =  92 ;
+	while(li1 > 0) {
+		int k; int l; k=1; l=2;
+		printf("%d", li2 );
+		k =  li1 ;
+		printf("%d",k);
+		l =  -(gi2) ;
+		printf("%d",l);
+		li1--;
+	}
+	printf("\nEnd  two(int li1, int li2)  while\n");
+	li1 =  one() ;
+	printf("%d", li1);
+	li1 =  one() ;
+	printf("%d", li1);
+	li1 =  one() ;
+	printf("%d", li1);
+	li1 =  one() ;
+	printf("%d", li1);
+	li1 =  one() ;
+	printf("%d", li1);
+	li1 =  one() ;
+	printf("%d", li1);
+	li1 =  one() ;
+	printf("%d", li1);
+	li1 =  one() ;
+	printf("%d", li1);
+	li1 =  one() ;
+	printf("%d", li1);
+	printf("\nEnd  two(int li1, int li2)  call\n");
+	return  (li2) >= ((gi1) * (gi1)) ;
 }
-
-int g(int x) { 
-  return x;
+int   three(int li1, int li2)  {
+	gi1 = 1; gi2 = 2;
+	gi1  =  gi2 + gi1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi1 - gi1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi1 * gi1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li1 * gi1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li2 && li1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li2 || gi1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li1 == gi1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi1 != li1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li1 < li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi1 > gi2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li2 <= li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	printf("\nEnd  three(int li1, int li2)  simple\n");
+	gi1  =  ((gi2) || (li1)) - (!(gi1)) ;
+	printf("%d",  gi1 );
+	printf("\n");
+	printf("\nEnd  three(int li1, int li2)  nested\n");
+	if( gi2 ){
+		int k; int l; k=1; l=2;
+		printf("%d", li2 );
+		k =  li1 ;
+		printf("%d",k);
+		l =  !(li1) ;
+		printf("%d",l);
+	}
+	printf("\nEnd  three(int li1, int li2)  if\n");
+	if( (gi1) < (!((li2) || (li2))) ){
+		int k; int l; k=1; l=2;
+		printf("%d", gi1 );
+		k =  (gi2) && (-(li1)) ;
+		printf("%d",k);
+		l =  li2 ;
+		printf("%d",l);
+	} else {
+		int k; int l; k=1; l=2;
+		printf("%d", li2 );
+		k =  (-((gi2) && (li2))) && ((-(gi1)) >= ((li1) >= (gi1))) ;
+		printf("%d",k);
+		l =  !(li1) ;
+		printf("%d",l);
+	}
+	printf("\nEnd  three(int li1, int li2)  else\n");
+	li1 =  47 ;
+	while(li1 > 0) {
+		int k; int l; k=1; l=2;
+		printf("%d", li1 );
+		k =  -((-(gi1)) + (gi1)) ;
+		printf("%d",k);
+		l =  li1 ;
+		printf("%d",l);
+		li1--;
+	}
+	printf("\nEnd  three(int li1, int li2)  while\n");
+	li1 =  two(li1, li2) ;
+	printf("%d", li1);
+	li1 =  two(li1, li2) ;
+	printf("%d", li1);
+	li1 =  two(li1, li2) ;
+	printf("%d", li1);
+	li1 =  one() ;
+	printf("%d", li1);
+	li1 =  two(li1, li2) ;
+	printf("%d", li1);
+	li1 =  two(li1, li2) ;
+	printf("%d", li1);
+	li1 =  one() ;
+	printf("%d", li1);
+	li1 =  two(li1, li2) ;
+	printf("%d", li1);
+	li1 =  one() ;
+	printf("%d", li1);
+	printf("\nEnd  three(int li1, int li2)  call\n");
+	return  -(li1) ;
 }
-
-double gg(double dd) {
-  return d+dd;
-}
-
-void foo() {
-  int a;
-  int b;
-  int c;
-  int B;
-  
-  a = 6;
-  while (a < 10) {
-    printf("%d", a);
-    printf(" ");
-    a++;
-  }
-  printf("\n");
-
-  a = 6;
-  while (a >= -1) {
-    printf("%d", a);
-    printf(" ");
-    a--;
-  }
-  printf("\n");
-  a = 10;
-
-  B = 1 < 3;
-  printf("%d", B);
-  printf(" ");
-  b = 22;
-  a = a + b;
-  printf("%d", a);
-  printf(" ");
-  a = a - b;
-  printf("%d", a);
-  printf(" ");
-  a = a * b;
-  printf("%d", a);
-  printf(" ");
-  a = a / b;
-  printf("%d", a);
-  printf("  ");
-  b = a--;
-  printf("%d", a);
-  printf("\n");
-  b = a++;
-  printf("%d", a);
-  printf("\n");
-  a = 10;
-  b = 22;
-
-  c = 1;
-  c = ! c;
-  printf("%d", c);
-  printf(" ");
-  c = c && 1;
-  printf("%d", c);
-  printf(" ");
-  c = 0 || (!c);
-  printf("%d", c);
-  printf(" ");
-  c = a == b;
-  printf("%d", c);
-  printf(" ");
-  c = a != b;
-  printf("%d", c);
-  printf(" ");
-  c = a < b;
-  printf("%d", c);
-  printf("\n");
-
-  c = a > b;
-  printf("%d", c);
-  printf(" ");
-  c = a <= b;
-  printf("%d", c);
-  printf(" ");
-  c = a >= b;
-  printf("%d", c);
-  printf(" ");
-  printf("%d", b <= b);
-  printf(" ");
-  printf("%d", b >= b);
-  printf("\n");
-
-  a = - 50;
-  printf("%d", a);
-  printf("  ");
-  if (a <= 10) {
-    int a;
-    a = 3;
-    while (a >= -2) {
-      printf("%d", a);
-      printf(" ");
-      a = a - 1;
-    }
-  }
-  printf("\n");
-
-  b = -(1*1);
-  if (b == -1) {
-    x = -5;
-    while (x<=b) {
-      printf("%d", x);
-      printf(" ");
-      x = x + 1;
-    }
-  }
-  else {
-    printf("ERROR\n");
-  }
-  printf("\n");
-} 
-
-void bar() {
-  double a;
-  double b;
-  int c;
-  double B;
-  
-  a = 6.5;
-  while (a < 10.0) {
-    printf("%f", a);
-    printf(" ");
-  }
-  printf("\n");
-
-  a = 6.5;
-  while (a >= -1.0) {
-    printf("%f", a);
-    printf(" ");
-    a = a - 1.0;
-  }
-  printf("\n");
-  a = 10.5;
-
-  b = 22.5;
-  a = a + b;
-  printf("%f", a);
-  printf(" ");
-  a = a - b;
-  printf("%f", a);
-  printf(" ");
-  a = a * b;
-  printf("%f", a);
-  printf(" ");
-  a = a / b;
-  printf("%f", a);
-  printf("\n");
-
-  c = a == b;
-  printf("%d", c);
-  printf(" ");
-  c = a != b;
-  printf("%d", c);
-  printf(" ");
-  c = a < b;
-  printf("%d", c);
-  printf(" ");
-  c = a > b;
-  printf("%d", c);
-  printf(" ");
-  c = a <= b;
-  printf("%d", c);
-  printf(" ");
-  c = a >= b;
-  printf("%d", c);
-  printf("\n");
-
-  a = b = 66.0;
-  printf("%f", a);
-  printf(" ");
-  printf("%f", b);
-  printf("\n");
-
-  a = - 50.0;
-  printf("%f", a);
-  printf("  ");
-  if (a <= 10.0) {
-    double a;
-    a = 3.0;
-    while (a >= -2.0) {
-      printf("%f", a);
-      printf(" ");
-      a = a - 1.0;
-    }
-  }
-  printf("\n");
-
-  b = -(1.0*1.0);
-  if (b == -1.0) {
-    a = -5.0;
-    while (a<b) {
-      printf("%f", a);
-      printf(" ");
-      a = a + 1.0;
-    }
-  }
-  else {
-    printf("ERROR\n");
-  }
-  printf("\n");
-} 
-
-int b;
-
-void main() {
-  double myd;
-
-  scanf("%d", &x);
-  scanf("%f", &myd);
-
-  d = 22.5;
-  x = 55;
-  y = 65;
-  ++x;
-  ++y;
-  printf("%d", x);
-  printf("  ");
-  printf("%d", x);
-  printf("  ");
-  --x;
-  --y;
-  printf("%d", x);
-  printf("  ");
-  printf("%d", x);
-  printf("\n");
-
-  f(d, x, y);
-  
-  x = g(x);
-  printf("%d", x);
-  printf("\n\n");
-  
-  myd = gg(d);
-  printf("%f", myd);
-  printf("  ");
-  printf("%f", d);
-  printf("\n\n");
-  
-  foo();
-  bar();
-
-  b = 1;
-  x = 2;
-  if (b || x=5) {
-     printf("%d", x);
-     printf("  ");
-  }
-  x = 2;
-  if (x=5 || b=2) {
-    printf("%d", x);
-    printf("  ");
-  }
-  b = 1;
-  x = 2;
-  if (!b && x=5) {
-  } else {
-     printf("%d", x);
-     printf("  ");
-  }
-  b = 0;
-  x = 2;
-  if ((x=5) && (b=2)) {
-    printf("%d", x);
-    printf("  ");
-    printf("%d", b);
-    printf("\n");
-  }
+void   main()  {
+	int li1; int li2; 
+	li1 = 3; li2 = 4;
+	gi1 = 1; gi2 = 2;
+	gi1  =  gi2 + gi2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li1 - li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li1 * li1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li2 * li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi1 && li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li1 || li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li1 == li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi1 != li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li1 < li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  li1 > li1 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	gi1  =  gi1 <= li2 ;
+	printf("%d",  gi1 );
+	gi1  = 1;
+	printf("\nEnd  main()  simple\n");
+	li1  =  gi2 ;
+	printf("%d",  li1 );
+	printf("\n");
+	printf("\nEnd  main()  nested\n");
+	if( gi1 ){
+		int k; int l; k=1; l=2;
+		printf("%d", gi1 );
+		k =  ((gi2) < ((li1) * (gi1))) || ((li2) >= (gi1)) ;
+		printf("%d",k);
+		l =  -((gi2) - (!(li1))) ;
+		printf("%d",l);
+	}
+	printf("\nEnd  main()  if\n");
+	if( !(!(!(gi1))) ){
+		int k; int l; k=1; l=2;
+		printf("%d", gi1 );
+		k =  gi1 ;
+		printf("%d",k);
+		l =  ((gi2) > (!(li2))) > ((gi2) && ((gi1) != (gi2))) ;
+		printf("%d",l);
+	} else {
+		int k; int l; k=1; l=2;
+		printf("%d", li2 );
+		k =  li2 ;
+		printf("%d",k);
+		l =  li2 ;
+		printf("%d",l);
+	}
+	printf("\nEnd  main()  else\n");
+	li1 =  84 ;
+	while(li1 > 0) {
+		int k; int l; k=1; l=2;
+		printf("%d", gi1 );
+		k =  !(gi1) ;
+		printf("%d",k);
+		l =  (li1) > (!((li2) <= (li1))) ;
+		printf("%d",l);
+		li1--;
+	}
+	printf("\nEnd  main()  while\n");
+	li1 =  two(li1, li2) ;
+	printf("%d", li1);
+	li1 =  three(li1, li2) ;
+	printf("%d", li1);
+	li1 =  three(li1, li2) ;
+	printf("%d", li1);
+	li1 =  two(li1, li2) ;
+	printf("%d", li1);
+	li1 =  three(li1, li2) ;
+	printf("%d", li1);
+	li1 =  one() ;
+	printf("%d", li1);
+	li1 =  two(li1, li2) ;
+	printf("%d", li1);
+	li1 =  two(li1, li2) ;
+	printf("%d", li1);
+	li1 =  three(li1, li2) ;
+	printf("%d", li1);
+	printf("\nEnd  main()  call\n");
 }
