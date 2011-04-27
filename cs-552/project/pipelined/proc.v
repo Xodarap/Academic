@@ -117,8 +117,6 @@ module proc (/*AUTOARG*/
 	   .err(controlSignals[35]),
 	   .RType(rtypefd));
 
-
-
 	//choose between instruction or NOP (if there is a branch/jump)   
 	mux16b2_1 instrNopMux(.InA(instruction), .InB(16'b0000100000000000), 
 			.S(pcSrcWire|ctlF2D[34]), .Out(instrOrNop)); 
@@ -129,7 +127,7 @@ module proc (/*AUTOARG*/
 		    .RegDestIn(controlSignals[1:0]), .immIn(controlSignals[26:11]), .immOut(immF2D),
 		    .Reg1In(instruction[10:8]), .Reg2In(instruction[7:5]), .Reg3In(instruction[4:2]),
 		    .Stall(stallFD | Stall), .Instruction(instrOrNop),
-		    /* Out */
+		    /* Out*/
 		    .RegDestOut(ctlRegDestNext), .pcplustwoout(pcplustwof2d),
 		    .Reg1Out(ctlReg1Next), .Reg2Out(ctlReg2Next), .Reg3Out(ctlReg3Next)
 		    );
@@ -197,7 +195,8 @@ module proc (/*AUTOARG*/
 		  .Data(readData2), 
 		  .MemWrite((ctlE2M[5])&(~haltmw)), 
 		  .MemRead(ctlE2M[4]), 
-		  .ReadData(memReadData));
+		  .ReadData(memReadData),
+		  .Stall(Stall));
     
    control_ff2 control_ff3(.control_in(ctlE2M), .clk(clk), .rst(rst),
 			  .Inst_in(instem), .Stall(Stall), .Halt_in(haltem),

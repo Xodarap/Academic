@@ -6,16 +6,7 @@ module memory(Clk, Rst, Addr, Data, MemWrite, MemRead, ReadData, Stall);
    output 	 Stall;
    wire [15:0] 	 readTemp;
    wire 	 done, cacheHit;
-   /*
    
-   memory2c memory0(.data_out(readTemp), 
-		    .data_in(Data), 
-		    .addr(Addr), 
-		    .enable(1'b1), 
-		    .wr(MemWrite), 
-		    .createdump(1'b0), 
-		    .clk(Clk), 
-		    .rst(Rst));*/
    stallmem memory0(/*AUTOINST*/
 		    // Outputs
 		    .DataOut		(readTemp),
@@ -24,7 +15,7 @@ module memory(Clk, Rst, Addr, Data, MemWrite, MemRead, ReadData, Stall);
 		    .CacheHit		(CacheHit),
 		    .err		(err),
 		    // Inputs
-		    .DataIn		(DataIn[15:0]),
+		    .DataIn		(Data),
 		    .Addr		(Addr[15:0]),
 		    .Wr			(MemWrite),
 		    .Rd			(MemRead),

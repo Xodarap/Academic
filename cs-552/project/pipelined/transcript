@@ -1,4 +1,4 @@
-# vsim -lib __work -c proc_hier_pbench 
+# vsim +seed=45 -lib __work -c proc_hier_pbench 
 # //  ModelSim SE 5.8b Jan 01 2004 Linux 2.6.18-238.1.1.el5
 # //
 # //  Copyright Model Technology, a Mentor Graphics Corporation company, 2004
@@ -131,12 +131,15 @@
 # Loading __work.memory
 # ** Warning: (vsim-3009) [TSCALE] - Module 'memory' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_pbench/DUT/p0/memory0
+# Loading __work.stallmem
 # Loading __work.memory2writeback
 # ** Warning: (vsim-3009) [TSCALE] - Module 'memory2writeback' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_pbench/DUT/p0/m2wb
 # Loading __work.writeback
 run -all
+# Using seed          45
+# rand_pat=802f6e00 10000000001011110110111000000000
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
-#    Time: 340005 ns  Iteration: 0  Instance: /proc_hier_pbench
+#    Time: 90005 ns  Iteration: 0  Instance: /proc_hier_pbench

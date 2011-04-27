@@ -1,26 +1,3 @@
-          //Pipelined processor test
-          //Ryan Peeters and Ben West
-          
-0000 c100 lbi r1, 0x0		//0: r1 <- 0
-0002 c106 lbi r1, 0x6		//1: r1 <- 6
-0004 812a st r1, r1, 10		//2: mem[10] <- 6
-0006 894a ld r2, r1, 10		//3: r2 <- 6 from mem[10]
-0008 814a st r2, r1, 10		//4: mem[10] <- 6
-000a 896a ld r3, r1, 10		//5: r3 <- 6 from mem[10]
-000c f330 sle r4, r3, r1		//6: r4 <- 1
-000e 7c04 bgez r4, 4		//7: branch taken
-0010 0000 halt
-0012 0800 nop
-0014 c400 lbi r4, 0x0		//8: r4 <- 0
-0016 6402 beqz r4, 2		//9: branch taken
-0018 0000 halt			//14: halt
-001a 740a bltz r4, 10		//10: branch not taken
-001c 300a jal 10			//11: r7 <- 0x1e
-001e 0000 halt
-0020 0000 halt
-0022 0000 halt
-0024 c307 lbi r3, 7
-0026 c407 lbi r4, 7
-0028 c501 lbi r5, 1		//12: r5 <- 1
-002a 2f00 jr r7, 0		//13: return
-002c 8947 ld r2, r1, 7
+0000 c1ff lbi r1, 0xff
+0002 4141 addi r2, r1, 0x1
+0004 0000 halt
