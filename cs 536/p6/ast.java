@@ -1268,7 +1268,6 @@ class WriteDblStmtNode extends StmtNode {
 
 	public void generate(){
 		myExp.generate();
-		myExp.generate();
 		Codegen.genPop("$f12", 8);
 		Codegen.generateWithComment("li", "system call code for print_double", "$v0", "3");
 		Codegen.generateWithComment("syscall", "printf(\"%f\");");
