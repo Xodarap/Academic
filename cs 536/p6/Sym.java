@@ -64,7 +64,7 @@ class FnSym extends Sym {
 		super("->"+T);
 		myReturnType = T;
 		myNumParams = numparams;
-		myParamTypes = new LinkedList<String>();
+		myParamTypes = null;
 	}
 
 	public void addFormals(LinkedList<Sym> L) {
@@ -80,7 +80,7 @@ class FnSym extends Sym {
 			} else {
 				myType = oneSym.type() + "," + myType;
 			}
-			myParamTypes.add(oneSym.type());
+			myParamTypes.add(0, oneSym.type());
 		}
 	}
 

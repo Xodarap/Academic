@@ -1,6 +1,14 @@
 
+void foo(double->void; offset: -1)(double d(double; offset: -1)) {
+  d(double; offset: -1) = 123.0;
+  return;
+}
+
 void main(->void; offset: -1)() {
-  double d(double; offset: -1);
-  d(double; offset: -1) = 3.14;
-  printf("%d", d(double; offset: -1));
+  double a(double; offset: -1);
+  double b(double; offset: -1);
+  double e(double; offset: -1);
+  e(double; offset: -1) = 4456.387;
+  foo(double->void; offset: -1)(2.1);
+  printf("%d", e(double; offset: -1));
 }

@@ -367,4 +367,19 @@ public class Codegen {
     public static void num2bool(String reg){
     	generate("sltu", reg, "$zero", reg);  // if 0 < reg unsigned, then reg must be not equal to zero 	
     }
+    
+    public static void setRegForFloatBool(String reg, Boolean oneIfTrue){
+    	String success = nextLabel();
+    	String done    = nextLabel();
+    	if (oneIfTrue) {
+    		generate("bc1t", success);
+    	} else {
+    		generate("bc1f", success);
+    	}
+    	generate("li", reg, "0");
+    	generate("j", done);
+    	generateLabeled(success, "nop", "");
+    	generate("li", reg, "1");
+    	generateLabeled(done, "nop", "");
+    }
 }

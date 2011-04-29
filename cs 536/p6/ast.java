@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
-import java.util.Collections;
+
+import com.sun.org.apache.bcel.internal.classfile.Code;
 
 // **********************************************************************
 // The ASTnode class defines the nodes of the abstract-syntax tree that
@@ -425,6 +426,7 @@ class FnBodyNode extends ASTnode {
 	public void generate(){
 		myDeclList.generate();
 		myStmtList.generate();
+		new ReturnStmtNode(null).generate();
 	}
 
 	public int size() {
@@ -677,6 +679,9 @@ class VarDeclNode extends DeclNode {
 	}
 
 	public int setOffset(int offset) {
+		if(ASTnode.isDblType(myType.type())) {
+			offset += 4;
+		}
 		myId.sym().offset = offset;
 		return offset + size(); 
 	}
@@ -776,7 +781,7 @@ class FnDeclNode extends DeclNode {
 		Codegen.genPush("$ra", 4);
 		Codegen.genPush("$fp", 4);
 		Codegen.generateWithComment("move", "init fp", "$fp", "$sp");
-		Codegen.generateWithComment("subu", "allocate AR", "$sp", "$sp", Integer.toString(size));
+		Codegen.generateWithComment("subu", "allocate AR", "$sp", "$sp", Integer.toString(size + 4));
 		//Codegen.generate("addi", "$fp", "$fp", 8 + myBody.size() + myFormalsList.size());
 		
 		myFormalsList.generate();
@@ -871,6 +876,9 @@ class FormalDeclNode extends DeclNode {
 	}
 
 	public void setReg(int start, int offset){
+		if(ASTnode.isDblType(myType.type())) {
+			offset -= 4;
+		}
 		myId.sym().setReg(start);
 		myId.sym().offset = offset;
 	}
@@ -1742,14 +1750,15 @@ class DblLitNode extends ExpNode {
 
 	public void generate() {
 		// TODO: handle non-ints
-		/*
+		
 		Codegen.generateWithComment("li", this, "$t8", Integer.toString((int)myDblVal), "");
-		Codegen.generate("mtc1", "$t8", "$f9");
+		Codegen.generate("mtc1", "$t8", "$f8");
+		/*
 		Codegen.generate("li", "$t8", "4295032832");
 		Codegen.generate("mtc1", "$t8", "$f8");
-		*/
+		*//*
 		Codegen.generateWithComment("li.d", this, "$f8", Double.toString(myDblVal), "");
-		Codegen.genPush("$f8", 8);
+		Codegen.genPush("$f8", 8);*/
 	}
 
 	private int myLineNum;
@@ -1810,6 +1819,7 @@ class IdNode extends ExpNode {
 
 	/** typeCheck **/
 	public String typeCheck() {
+		isDouble = mySym.type().equals(DBL_TYPE);
 		if (mySym != null) return mySym.type();
 		else {
 			System.err.println("ID with null sym field in IdNode.typeCheck");
@@ -2015,10 +2025,19 @@ abstract class UnaryExpNode extends ExpNode {
 	}
 
 	public void generate(){
+		isDouble = isDouble || myExp.isDouble;
+		myExp.isDouble = this.isDouble;
 		myExp.generate();
-		Codegen.genPop("$t8", 4);
-		generateUnary();
-		Codegen.genPush("$t8", 4);
+		
+		if(isDouble) {
+			Codegen.genPop("$f8", 8);
+			generateUnary();
+			Codegen.genPush("$f8", 8);
+		} else {
+			Codegen.genPop("$t8", 4);
+			generateUnary();
+			Codegen.genPush("$t8", 4);
+		}
 	}
 
 	public void generateUnary() {}
@@ -2054,11 +2073,25 @@ abstract class BinaryExpNode extends ExpNode {
 	// to calculate a new value for $t8, which is then pushed back onto the
 	// stack.
 	public void generate(){
+		isDouble = isDouble || myExp1.isDouble || myExp2.isDouble;
+		
 		myExp1.generate();
 		myExp2.generate();
 		if(isDouble) {
-			Codegen.genPop("$f8", 8);
-			Codegen.genPop("$f10", 8);
+			if(!myExp2.isDouble){
+				Codegen.genPop("$t8", 4);
+				Codegen.generate("mtc1", "$t8", "$f8");
+				Codegen.generate("cvt.d.w", "$f10", "$f8");
+			} else {
+				Codegen.genPop("$f10", 8);
+			}
+			if(!myExp1.isDouble){
+				Codegen.genPop("$t9", 4);
+				Codegen.generate("mtc1", "$t9", "$f8");
+				Codegen.generate("cvt.d.w", "$f8", "$f8");
+			} else {
+				Codegen.genPop("$f8", 8);
+			}
 			generateBinary();
 			Codegen.genPush("$f8", 8);
 		} else {
@@ -2291,7 +2324,7 @@ class AssignNode extends BinaryExpNode {
 			myExp2.isDouble = true;
 			myExp2.generate();
 			Codegen.genPop("$f8", 8);
-			Codegen.generateWithComment("s.s", this, "$f8", lhs.label(), "");
+			Codegen.generateWithComment("s.d", this, "$f8", lhs.label(), "");
 		} else {
 			myExp2.isDouble = false;
 			myExp2.generate();
@@ -2348,6 +2381,36 @@ abstract class EqualityBinExpNode extends BinaryExpNode {
 		}
 		if (isErrType(T1) || isErrType(T2)) return ERR_TYPE;
 		else return INT_TYPE;
+	}	
+	
+	public void generate(){
+		isDouble = isDouble || myExp1.isDouble || myExp2.isDouble;
+		
+		myExp1.generate();
+		myExp2.generate();
+		if(isDouble) {
+			if(!myExp2.isDouble){
+				Codegen.genPop("$t8", 4);
+				Codegen.generate("mtc1", "$t8", "$f8");
+				Codegen.generate("cvt.d.w", "$f10", "$f8");
+			} else {
+				Codegen.genPop("$f10", 8);
+			}
+			if(!myExp1.isDouble){
+				Codegen.genPop("$t9", 4);
+				Codegen.generate("mtc1", "$t9", "$f8");
+				Codegen.generate("cvt.d.w", "$f8", "$f8");
+			} else {
+				Codegen.genPop("$f8", 8);
+			}
+			generateBinary();
+			Codegen.genPush("$t8", 4);
+		} else {
+			Codegen.genPop("$t9", 4);
+			Codegen.genPop("$t8", 4);
+			generateBinary();
+			Codegen.genPush("$t8", 4);
+		}
 	}
 }
 
@@ -2395,7 +2458,11 @@ class PlusNode extends ArithmeticBinExpNode {
 	}
 
 	public void generateBinary(){
-		Codegen.generateWithComment("add", this, "$t8", "$t8", "$t9");
+		if(isDouble){
+			Codegen.generateWithComment("add.d", this, "$f8", "$f8", "$f10");
+		} else {
+			Codegen.generateWithComment("add", this, "$t8", "$t8", "$t9");
+		}
 	}
 }
 
@@ -2414,7 +2481,11 @@ class MinusNode extends ArithmeticBinExpNode {
 	}
 
 	public void generateBinary(){
-		Codegen.generateWithComment("sub", this, "$t8", "$t8", "$t9");
+		if(isDouble){
+			Codegen.generateWithComment("sub.d", this, "$f8", "$f8", "$f10");
+		} else {
+			Codegen.generateWithComment("sub", this, "$t8", "$t8", "$t9");
+		}
 	}
 }
 
@@ -2433,8 +2504,12 @@ class TimesNode extends ArithmeticBinExpNode {
 	}
 
 	public void generateBinary(){
-		Codegen.generateWithComment("mult", this, "$t8", "$t9", "");
-		Codegen.generateWithComment("mflo", this, "$t8", "", "");
+		if(isDouble){
+			Codegen.generateWithComment("mul.d", this, "$f8", "$f8", "$f10");
+		} else {
+			Codegen.generateWithComment("mult", this, "$t8", "$t9", "");
+			Codegen.generateWithComment("mflo", this, "$t8", "", "");
+		}
 	}
 }
 
@@ -2453,8 +2528,12 @@ class DivideNode extends ArithmeticBinExpNode {
 	}
 
 	public void generateBinary(){
-		Codegen.generateWithComment("div", this, "$t8", "$t9", "");
-		Codegen.generateWithComment("mflo", this, "$t8", "", "");
+		if(isDouble){
+			Codegen.generateWithComment("div.d", this, "$f8", "$f8", "$f10");
+		} else {
+			Codegen.generateWithComment("div", this, "$t8", "$t9", "");
+			Codegen.generateWithComment("mflo", this, "$t8", "", "");
+		}
 	}
 }
 
@@ -2473,11 +2552,16 @@ class EqualsNode extends EqualityBinExpNode {
 	}
 
 	public void generateBinary() {
-		Codegen.generateWithComment("sub", this, "$t8", "$t8", "$t9");
-		Codegen.num2bool("$t8");
-		// At this point, t8 is 0 if they're equal, or 1 if they're not
-		// So if it's less than 1, set it to 1
-		Codegen.generate("slti", "$t8", "$t8", "1");
+		if(isDouble) {
+			Codegen.generateWithComment("c.eq.d", this, "$f8", "$f10", "");
+			Codegen.setRegForFloatBool("$t8", true);
+		} else {
+			Codegen.generateWithComment("sub", this, "$t8", "$t8", "$t9");
+			Codegen.num2bool("$t8");
+			// At this point, t8 is 0 if they're equal, or 1 if they're not
+			// So if it's less than 1, set it to 1
+			Codegen.generate("slti", "$t8", "$t8", "1");
+		}
 	}
 }
 
@@ -2496,8 +2580,13 @@ class NotEqualsNode extends EqualityBinExpNode {
 	}
 
 	public void generateBinary() {
-		Codegen.generateWithComment("sub", this, "$t8", "$t8", "$t9");
-		Codegen.num2bool("$t8");
+		if(isDouble) {
+			Codegen.generateWithComment("c.eq.d", this, "$f8", "$f10", "");
+			Codegen.setRegForFloatBool("$t8", false);
+		} else {
+			Codegen.generateWithComment("sub", this, "$t8", "$t8", "$t9");
+			Codegen.num2bool("$t8");
+		}
 	}
 }
 
@@ -2516,9 +2605,14 @@ class LessNode extends EqualityBinExpNode {
 	}
 	
 	public void generateBinary() {
-		Codegen.generateWithComment("sub", this, "$t8", "$t8", "$t9");
-		Codegen.generate("slt", "$t8", "$t8", "$zero");
-		Codegen.num2bool("$t8");
+		if(isDouble) {
+			Codegen.generateWithComment("c.lt.d", this, "$f8", "$f10", "");
+			Codegen.setRegForFloatBool("$t8", true);
+		} else {
+			Codegen.generateWithComment("sub", this, "$t8", "$t8", "$t9");
+			Codegen.generate("slt", "$t8", "$t8", "$zero");
+			Codegen.num2bool("$t8");
+		}
 	}
 }
 
@@ -2537,9 +2631,14 @@ class GreaterNode extends EqualityBinExpNode {
 	}
 	
 	public void generateBinary() {
-		Codegen.generateWithComment("sub", this, "$t8", "$t8", "$t9");
-		Codegen.generate("slt", "$t8", "$zero", "$t8");
-		Codegen.num2bool("$t8");
+		if(isDouble) {
+			Codegen.generateWithComment("c.lt.d", this, "$f10", "$f8", "");
+			Codegen.setRegForFloatBool("$t8", true);
+		} else {
+			Codegen.generateWithComment("sub", this, "$t8", "$t8", "$t9");
+			Codegen.generate("slt", "$t8", "$zero", "$t8");
+			Codegen.num2bool("$t8");
+		}
 	}
 }
 
@@ -2558,9 +2657,14 @@ class LessEqNode extends EqualityBinExpNode {
 	}	
 
 	public void generateBinary() {
-		Codegen.generateWithComment("sub", this, "$t8", "$t8", "$t9");
-		Codegen.generate("slti", "$t8", "$t8", "1");
-		Codegen.num2bool("$t8");
+		if(isDouble) {
+			Codegen.generateWithComment("c.le.d", this, "$f8", "$f10", "");
+			Codegen.setRegForFloatBool("$t8", true);
+		} else {
+			Codegen.generateWithComment("sub", this, "$t8", "$t8", "$t9");
+			Codegen.generate("slti", "$t8", "$t8", "1");
+			Codegen.num2bool("$t8");
+		}
 	}
 }
 
@@ -2579,10 +2683,15 @@ class GreaterEqNode extends EqualityBinExpNode {
 	}
 	
 	public void generateBinary() {
-		Codegen.generateWithComment("sub", this, "$t8", "$t8", "$t9");
-		Codegen.generate("li", "$t9", "-1");
-		Codegen.generate("slt", "$t8", "$t9", "$t8");
-		Codegen.num2bool("$t8");
+		if(isDouble) {
+			Codegen.generateWithComment("c.le.d", this, "$f10", "$f8", "");
+			Codegen.setRegForFloatBool("$t8", true);
+		} else {
+			Codegen.generateWithComment("sub", this, "$t8", "$t8", "$t9");
+			Codegen.generate("li", "$t9", "-1");
+			Codegen.generate("slt", "$t8", "$t9", "$t8");
+			Codegen.num2bool("$t8");
+		}
 	}
 }
 
