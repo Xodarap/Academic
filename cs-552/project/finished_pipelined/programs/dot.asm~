@@ -1,0 +1,4 @@
+// Take the dot product of two vectors
+// 	
+// for i = 1 to max:
+// 	accum += a[i] * b[i]
