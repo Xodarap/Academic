@@ -10,6 +10,7 @@ import Data.Functor
 import Control.Applicative
 import Control.Monad
 import Data.List.Split
+import WordFrequency
 
 -- | A simple tree. No balancing etc. Odd that Haskell doesn't have this built in.
 data SimpleTree a = Empty
@@ -23,9 +24,9 @@ type TreeQueue k v = PQueue k (SimpleTree v)
 -- | Parses a plain-text file and extracts frequencies etc.
 fromFile :: String -> IO ()
 fromFile filename = do
-  freqs <- liftM str2freqs $ readFile filename 
-  let finalFreqs = map freq2pair $ concatFreqs freqs
-  prettyCompress finalFreqs    
+  freqs <- liftM charFreq $ readFile filename
+  let finalFreqs = map (\x -> (val x, key x)) freqs
+  prettyCompress finalFreqs
 
 -- | Easily printable version of the encoding
 prettyCompress :: (Show a, Ord freq, Num freq) => [(freq, a)] -> IO ()
@@ -111,28 +112,6 @@ instance Monoid FreqPair where
   mempty      = FreqPair { char = ' ', frequency = 0 }
   mappend x y = FreqPair { char      = char x, 
                            frequency = foldr (+) 0 $ map frequency [x, y] }
-
-str2freqs :: String -> [FreqPair]
-str2freqs = map mapFn 
-  where mapFn x = pair2freq (x, 1)
-
-concatFreqs :: (Eq a, Monoid a) => [a] -> [a]
-concatFreqs = foldr (\x ac -> merge ac x) []
-
-merge :: (Eq a, Monoid a) => [a] -> a -> [a]
-merge [] one = [one]
-merge left r = 
-  let (match, nomatch) = splitL (== r) left
-      left'            = if match == [] then nomatch ++ [r]
-                         else nomatch ++ [mappend r $ head match]
-  in left'
-     
-splitL :: (a -> Bool) -> [a] -> ([a], [a])
-splitL _ [] = ([], [])
-splitL fn (x:xs) 
-  | fn x      = (x:match, nomatch)
-  | otherwise = (match, x:nomatch)    
-    where (match, nomatch) = splitL fn xs  
 
 l1 = map pair2freq [('a', 1), ('b', 2), ('c', 3), ('d', 4)]
 l2 = map pair2freq [('a', 1), ('c', 5), ('e', 8)]

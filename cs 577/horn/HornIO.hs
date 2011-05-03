@@ -66,10 +66,3 @@ str2lit x =
   let clean = filter (/= ' ') x
   in Literal clean False
      
-data FreqPair = FreqPair { name :: String,
-                           frequency :: Int }
-
-instance Monoid FreqPair where
-  mempty      = FreqPair { name = "", frequency = 0 }
-  mappend x y = FreqPair { name      = name x, 
-                           frequency = fmap ((+) . snd) [x, y] }

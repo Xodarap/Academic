@@ -15,9 +15,14 @@ import Debug.Trace
 import Data.List
 import Data.List.Utils
 
+-- | A satisfiable clause is just one which can be satisfied
 class Satisfiable c where
+  -- | Is this clause currently satisfied?
   satisfied :: c -> Bool
+  -- | Change literals around until this formula is satisfied, then return
+  --   the list of lits that had to be changed
   satisfy   :: c -> ([Literal], c)
+  -- | Change the value of a literal in the clause
   set       :: Literal -> c -> c  
 
 data Literal     = Literal {name :: String, val :: Bool}
@@ -105,12 +110,11 @@ solve' (Formula nors impls)
 
 -- | Given a list of changes, applies those changes to a formula
 applyChanges :: [Literal] -> Formula -> Formula
-applyChanges [] x = x
-applyChanges (c:cs) (Formula nors impls) = 
-  let nors' = map (set c) nors
-      imps' = map (set c) impls
-  in applyChanges cs (Formula nors' imps')    
-
+applyChanges lits (Formula nors impls) =
+  let nors' = F.foldr (\l ac -> map (set l) ac) nors lits
+      imps' = F.foldr (\l ac -> map (set l) ac) impls lits
+  in (Formula nors' imps')
+     
 -- | if x is the literal we're trying to set, set it to lit
 --   otherwise, just keep it how it is
 setLit :: Literal -> Literal -> Literal
@@ -150,7 +154,6 @@ impl1 =
       i4 = toimpl [] "x"
       i5 = toimpl ["x", "y"] "w"
   in [i1, i2, i3, i4, i5]
-     
      
 impl2 :: [Implication]
 impl2 =
