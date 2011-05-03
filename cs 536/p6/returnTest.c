@@ -1,0 +1,111 @@
+#include <stdio.h>
+/*void foo(double d, double b, int i, double c) { 
+	double k;
+	c = 5.0;*/
+/*
+	printf("%f", d);
+	printf("\n");
+	printf("%f", b);
+	printf("\n");
+	printf("%d", i);
+	printf("\n");
+	printf("%f", c);
+	printf("\n");
+	k = 1.0;
+	b = 2.0;
+	c = 5.0;
+	i = 2;
+	printf("%f", d);
+	printf("\n");
+	printf("%f", b);
+	printf("\n");
+	printf("%d", i);
+	printf("\n");
+	printf("%f", c);
+	printf("\n");
+	printf("%f", k);
+	printf("\n");*//*
+	return;
+}*/
+/*
+void main() {
+	double a;
+	double b;
+	int c;
+	double d;
+	a = 2.3531523;
+	b = 641.32432;
+	c = 124;
+	d = 4456.387;
+	foo(a,b,c,d);*/ 
+/*
+	printf("%f", a);
+	printf("\n");
+	printf("%f", b);
+	printf("\n");
+	printf("%d", c);
+	printf("\n");*//*
+	printf("%f", d);
+	printf("\n");
+}*/
+
+void foo(double d) { 
+	d = 123.0;
+	return;
+}
+void main() {
+	double a;
+	double b;
+	double e;
+	e = 4456.387;
+	foo(2.1);
+	printf("%f", e);
+}
+/* 
+void foo(double dbl, int a, int b, int c, int d, int e, int f, int g, int h, int i, int j, int k, double dbl2){
+	a = 10;
+	b = 20;
+	c = 30;
+	d = 40;
+	e = 50;
+	f = 60;
+	g = 70;
+	h = 80;
+	i = 90;
+	j = 100;
+	k = 110;
+	printf("%d", a);
+	printf("%d", b);
+	printf("%d", c);
+	printf("%d", d);
+	printf("%d", e);
+}
+void main(){
+	int a; int b; int c; int d; int e;int f; int g; int h; int i; int j; int k;
+	double dbl;
+	dbl = 1.0;
+	a = 1;
+	b = 2;
+	c = 3;
+	d = 4;
+	e = 5;
+	f = 6;
+	g = 7;
+	h = 8;
+	i = 9;
+	j = 10;
+	k = 11;
+	foo(3.0, a,b,c,d,e, f, g,h,i,j,k, dbl);
+	printf("%d", a);
+	printf("%d", b);
+	printf("%d", c);
+	printf("%d", d);
+	printf("%d", e);
+	printf("%d", f);
+	printf("%d", g);
+	printf("%d", h);
+	printf("%d", i);
+	printf("%d", j);
+	printf("%d", k);
+	printf("%f", dbl);
+}*/

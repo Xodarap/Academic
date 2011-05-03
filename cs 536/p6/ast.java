@@ -322,6 +322,13 @@ class DeclListNode extends ASTnode {
 
 	// list of kids (DeclNodes)
 	private List<DeclNode> myDecls;
+
+	public void printOffsets() {
+		for(DeclNode node : myDecls){
+			node.printOffsets();
+		}
+		
+	}
 }
 
 class FormalsListNode extends ASTnode {
@@ -358,19 +365,25 @@ class FormalsListNode extends ASTnode {
 	public int setReg(int start) {
 		int offset = start;
 		for(int i=0; i< myFormals.size(); i++){
-			myFormals.get(i).setReg(start + i, offset);
-			offset -= myFormals.get(i).size();
+			offset = myFormals.get(i).setReg(start + i, offset);
+			
 		}
 
 		return offset;
 	}
 
-	public void generate() {
+	public void generate() {		
 		for(FormalDeclNode node : myFormals){
 			node.generate();
 		}
 	}
 
+	public void printOffsets(){
+		for(FormalDeclNode node : myFormals){
+			node.printOffsets();
+		}
+	}
+	
 	// ** unparse **
 	public void unparse(PrintWriter p, int indent) {
 		Iterator it = myFormals.iterator();
@@ -395,9 +408,9 @@ class FormalsListNode extends ASTnode {
 
 		return size;
 	}
-
+	
 	// list of kids (FormalDeclNodes)
-	private List<FormalDeclNode> myFormals;
+	public List<FormalDeclNode> myFormals;
 }
 
 class FnBodyNode extends ASTnode {
@@ -426,7 +439,6 @@ class FnBodyNode extends ASTnode {
 	public void generate(){
 		myDeclList.generate();
 		myStmtList.generate();
-		new ReturnStmtNode(null).generate();
 	}
 
 	public int size() {
@@ -437,6 +449,10 @@ class FnBodyNode extends ASTnode {
 		offset = myDeclList.setOffset(offset);
 		//return offset;
 		return myStmtList.setOffset(offset);
+	}
+	
+	public void printOffsets(){
+		myDeclList.printOffsets();
 	}
 
 	// 2 kids
@@ -601,6 +617,9 @@ abstract class DeclNode extends ASTnode {
 	//       is simply ignored)
 	abstract public Sym processNames(SymTab S);
 
+	public void printOffsets() {	
+	}
+
 	// default version of typeCheck for var and formal decls
 	public void typeCheck() {
 	}
@@ -670,11 +689,15 @@ class VarDeclNode extends DeclNode {
 			return 4;
 		}
 	}
+	
+	public void printOffsets() {	
+		Codegen.generate("# " + myId.name() + ", " + offset());
+	}
 
 	public void generate(){
 		// If it's a global var, then do the .data stuff
 		if(myId.sym().offset == -1) {
-			Codegen.genStaticVar(myId.name(), this.size());
+			Codegen.genStaticVar(myId.label(), this.size());
 		}
 	}
 
@@ -684,6 +707,10 @@ class VarDeclNode extends DeclNode {
 		}
 		myId.sym().offset = offset;
 		return offset + size(); 
+	}
+
+	public int offset() {
+		return myId.sym().offset;
 	}
 	
 	// 2 kids
@@ -776,20 +803,24 @@ class FnDeclNode extends DeclNode {
 	 */
 	public void generate() {
 		int size =  myBody.size();
-		Codegen.generateLabeled(myId.name(), "nop", "function " + myId.name());
+		Codegen.generateLabeled(myId.label(), "nop", "function " + myId.name());
+		myFormalsList.printOffsets();
+		myBody.printOffsets();
 		//Codegen.generate("subu", "$fp", "$fp", size + myFormalsList.size());
 		Codegen.genPush("$ra", 4);
 		Codegen.genPush("$fp", 4);
 		Codegen.generateWithComment("move", "init fp", "$fp", "$sp");
-		Codegen.generateWithComment("subu", "allocate AR", "$sp", "$sp", Integer.toString(size + 4));
-		//Codegen.generate("addi", "$fp", "$fp", 8 + myBody.size() + myFormalsList.size());
-		
+		Codegen.generateWithComment("subu", "allocate AR", "$sp", "$sp", Integer.toString(size + 8));
+		//Codegen.generate("addi", "$fp", "$fp", 8 + myBody.size() + myFormalsList.size());		
 		myFormalsList.generate();
 		myBody.generate();
 		
 		if(myId.name().equals("main")) {
 			Codegen.generateWithComment("addi", "done", "$2", "$0", "10");
 			Codegen.generate("syscall");
+		} else {
+			// Ensure that even if they don't explicitly say "return" we still return
+			new ReturnStmtNode(null).generate();
 		}
 	}
 
@@ -816,6 +847,10 @@ class FnDeclNode extends DeclNode {
 		return myFormalsList.size() + myBody.size();
 	}
 
+	public List<FormalDeclNode> myFormals() {
+		return myFormalsList.myFormals;
+	}
+	
 	// 4 kids
 	private TypeNode myType;
 	private IdNode myId;
@@ -827,6 +862,10 @@ class FormalDeclNode extends DeclNode {
 	public FormalDeclNode(TypeNode type, IdNode id) {
 		myType = type;
 		myId = id;
+	}
+
+	public void printOffsets() {
+		Codegen.generate("# " + myId.name() + ", " + offset());
 	}
 
 	/** processNames
@@ -875,12 +914,14 @@ class FormalDeclNode extends DeclNode {
 		myId.unparse(p, indent);
 	}
 
-	public void setReg(int start, int offset){
+	public int setReg(int start, int offset){
 		if(ASTnode.isDblType(myType.type())) {
-			offset -= 4;
+			//offset -= 4;
 		}
 		myId.sym().setReg(start);
 		myId.sym().offset = offset;
+		offset -= this.size();
+		return offset;
 	}
 
 	public void generate(){
@@ -893,6 +934,10 @@ class FormalDeclNode extends DeclNode {
 		} else {
 			return 4;
 		}
+	}
+	
+	public int offset() {
+		return myId.sym().offset;
 	}
 
 	// 2 kids
@@ -1553,8 +1598,8 @@ class WhileStmtNode extends StmtNode {
 	
 
 	public void generate() {
-		String conditionalLabel = Codegen.nextLabel();
-		String doneLabel = Codegen.nextLabel();
+		String conditionalLabel = Codegen.nextLabel() + "_while_start";
+		String doneLabel = Codegen.nextLabel() + "_Done";
 		Codegen.generateLabeled(conditionalLabel,"nop", "while");
 		myExp.generate();
 		Codegen.generateWithComment("beq", "while", "$t8", "$zero", doneLabel);
@@ -1592,6 +1637,7 @@ class CallStmtNode extends StmtNode {
 	}
 	
 	public void generate(){
+		Codegen.generateWithComment("subu", "pad", "$sp", "$sp", "8");
 		myCall.generate();
 	}
 
@@ -1631,6 +1677,7 @@ class ReturnStmtNode extends StmtNode {
 				Errors.fatal(0, 0, "Missing return value");
 			}
 		}
+		myRetType = retType;
 	}
 
 	/** processNames **/
@@ -1652,6 +1699,15 @@ class ReturnStmtNode extends StmtNode {
 		if(myExp != null){
 			myExp.generate();
 			Codegen.genPop("$v0", 4);
+			if(this.isDblType(myRetType)) {
+				if(myExp.isDouble) {
+					Codegen.genPop("$v1", 4);
+				} else {
+					Codegen.int2Dbl("$v0", "$f8");
+					Codegen.generate("mfc1", "$v0", "$f8");
+					Codegen.generate("mfc1", "$v1", "$f9");
+				}
+			}
 		}
 		Codegen.generate("move", "$sp", "$fp");
 		Codegen.genPop("$fp", 4);
@@ -1661,6 +1717,7 @@ class ReturnStmtNode extends StmtNode {
 	
 	// 1 kid
 	private ExpNode myExp;
+	private String myRetType;
 }
 
 // **********************************************************************
@@ -1726,6 +1783,7 @@ class DblLitNode extends ExpNode {
 		myLineNum = lineNum;
 		myCharNum = charNum;
 		myDblVal = dblVal;
+		isDouble = true;
 	}
 
 	/** typeCheck **/
@@ -1750,15 +1808,14 @@ class DblLitNode extends ExpNode {
 
 	public void generate() {
 		// TODO: handle non-ints
-		
+		/*
 		Codegen.generateWithComment("li", this, "$t8", Integer.toString((int)myDblVal), "");
 		Codegen.generate("mtc1", "$t8", "$f8");
-		/*
-		Codegen.generate("li", "$t8", "4295032832");
-		Codegen.generate("mtc1", "$t8", "$f8");
-		*//*
-		Codegen.generateWithComment("li.d", this, "$f8", Double.toString(myDblVal), "");
 		Codegen.genPush("$f8", 8);*/
+		/*Codegen.generate("li", "$t8", "4295032832");
+		Codegen.generate("mtc1", "$t8", "$f8");*/
+		Codegen.generateWithComment("li.d", this, "$f8", Double.toString(myDblVal), "");
+		Codegen.genPush("$f8", 8);
 	}
 
 	private int myLineNum;
@@ -1898,7 +1955,13 @@ class IdNode extends ExpNode {
 		if(mySym.offset != -1) {
 			return Integer.toString(-mySym.offset) + "($fp)";
 		} else {
-			return myStrVal;
+			// "Main" is a special word that we can't rewrite, but every other label should be
+			// prefixed with "var" to avoid using protected words
+			if(myStrVal.equals("main")) {
+				return "main";
+			} else {
+				return "var_" + myStrVal;
+			}
 		}
 	}
 
@@ -1908,7 +1971,12 @@ class IdNode extends ExpNode {
 			Codegen.genPush("$f8", 8);
 		} else {
 			Codegen.generateWithComment("lw", this, "$t8", this.label(), "");
-			Codegen.genPush("$t8", 4);
+			if(this.isDouble) {
+				Codegen.int2Dbl("$t8", "$f10");
+				Codegen.genPush("$f10", 8);
+			} else { 
+				Codegen.genPush("$t8", 4);
+			}
 		}
 	}
 
@@ -1962,6 +2030,8 @@ class CallExpNode extends ExpNode {
 	public void processNames(SymTab S) {
 		myId.processNames(S);
 		myExpList.processNames(S);
+		fnToCall = (FnSym) S.globalLookup(myId.name());
+		this.isDouble = ASTnode.isDblType(fnToCall.returnType());
 	}
 
 	// ** unparse **
@@ -1986,7 +2056,15 @@ class CallExpNode extends ExpNode {
 		pushChildren();
 		Codegen.generateWithComment("jal", this, myId.label(), "", "");
 		if(ASTnode.hasReturn(myId.type())) {
-			Codegen.genPush("$v0", 4);
+			if(myId.type().contains("->double")){
+				Codegen.genPush("$v1", 4);
+				Codegen.genPush("$v0", 4);
+			} else if (this.isDouble) {
+				Codegen.int2Dbl("$v0", "$f8");
+				Codegen.genPush("$f8", 8);
+			} else {
+				Codegen.genPush("$v0", 4);
+			}
 		}
 	}
 	
@@ -1994,14 +2072,23 @@ class CallExpNode extends ExpNode {
 	 * Pushes the inputs to the called function onto the stack
 	 */
 	protected void pushChildren(){
+		Iterator<String> paramTypes = fnToCall.paramTypes().iterator();
 		for(int i = myExpList.children().size() - 1; i >= 0; i--){
-			myExpList.children().get(i).generate();
+			ExpNode node = myExpList.children().get(i);
+			node.generate();
+			if(ASTnode.isDblType(fnToCall.paramTypes().get(i)) &&
+					!node.isDouble){
+				Codegen.genPop("$t8", 4);
+				Codegen.int2Dbl("$t8", "$f8");
+				Codegen.genPush("$f8", 8);
+			}
 		}
 	}
 
 	// 2 kids
 	private IdNode myId;
 	private ExpListNode myExpList;
+	private FnSym fnToCall;
 }
 
 abstract class UnaryExpNode extends ExpNode {
@@ -2025,11 +2112,11 @@ abstract class UnaryExpNode extends ExpNode {
 	}
 
 	public void generate(){
-		isDouble = isDouble || myExp.isDouble;
-		myExp.isDouble = this.isDouble;
+		//myExp.isDouble = this.isDouble;
 		myExp.generate();
+		isDouble = isDouble || myExp.isDouble;
 		
-		if(isDouble) {
+		if(this.isDouble) {
 			Codegen.genPop("$f8", 8);
 			generateUnary();
 			Codegen.genPush("$f8", 8);
@@ -2073,15 +2160,14 @@ abstract class BinaryExpNode extends ExpNode {
 	// to calculate a new value for $t8, which is then pushed back onto the
 	// stack.
 	public void generate(){
-		isDouble = isDouble || myExp1.isDouble || myExp2.isDouble;
+		this.isDouble = isDouble || myExp1.isDouble || myExp2.isDouble;
 		
 		myExp1.generate();
 		myExp2.generate();
 		if(isDouble) {
 			if(!myExp2.isDouble){
 				Codegen.genPop("$t8", 4);
-				Codegen.generate("mtc1", "$t8", "$f8");
-				Codegen.generate("cvt.d.w", "$f10", "$f8");
+				Codegen.int2Dbl("$t8", "$f10");
 			} else {
 				Codegen.genPop("$f10", 8);
 			}
@@ -2198,6 +2284,7 @@ class UnaryMinusNode extends UnaryExpNode {
 					"Illegal use of non-numeric operand");
 			return ERR_TYPE;
 		}
+		this.isDouble = myExp.isDouble;
 		return T;
 	}
 
@@ -2210,9 +2297,14 @@ class UnaryMinusNode extends UnaryExpNode {
 
 
 	public void generateUnary() {
-		Codegen.generate("li", "$t9", "-1");
-		Codegen.generateWithComment("mult", this, "$t8", "$t9", "");
-		Codegen.generate("mflo", "$t8");
+		if(this.isDouble) {
+			Codegen.generate("li.d", "$f10", "-1.0");
+			Codegen.generateWithComment("mul.d", this, "$f8", "$f8", "$f10");
+		} else {
+			Codegen.generate("li", "$t9", "-1");
+			Codegen.generateWithComment("mult", this, "$t8", "$t9", "");
+			Codegen.generate("mflo", "$t8");
+		}
 	}
 }
 
@@ -2286,6 +2378,8 @@ class AssignNode extends BinaryExpNode {
 					"Possible loss of precision");
 			return ERR_TYPE;
 		}
+		IdNode lhs = (IdNode) myExp1;
+		this.isDouble = ASTnode.isDblType(lhs.type());
 		return T1;
 	}
 
@@ -2321,15 +2415,20 @@ class AssignNode extends BinaryExpNode {
 		IdNode lhs = (IdNode) myExp1;
 
 		if(ASTnode.isDblType(lhs.type())){
-			myExp2.isDouble = true;
 			myExp2.generate();
-			Codegen.genPop("$f8", 8);
+			if (!myExp2.isDouble) {
+				Codegen.genPop("$t8", 4);
+				Codegen.int2Dbl("$t8", "$f8");
+			} else {
+				Codegen.genPop("$f8", 8);
+			}
 			Codegen.generateWithComment("s.d", this, "$f8", lhs.label(), "");
+			Codegen.genPush("$f8", 8);
 		} else {
-			myExp2.isDouble = false;
 			myExp2.generate();
 			Codegen.genPop("$t8", 4);
 			Codegen.generateWithComment("sw", this, "$t8", lhs.label(), "");
+			Codegen.genPush("$t8", 4);
 		}
 	}
 }

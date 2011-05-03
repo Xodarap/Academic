@@ -1,0 +1,35 @@
+#include <stdio.h>
+void main() {
+	double d;
+	double d2;
+	d = 5.0;
+	d2 = 2.0;
+	printf("%1f", d);
+	printf("\n");
+	printf("%1f", d2);
+	printf("\n");
+
+	d = d * d2;
+	printf("%f", d);
+	printf("\n");
+	printf("%f", d2);
+	printf("\n");
+
+	d = d + d2;
+	printf("%f", d);
+	printf("\n");
+	printf("%f", d2);
+	printf("\n");
+
+	d = d - d2;
+	printf("%f", d);
+	printf("\n");
+	printf("%f", d2);
+	printf("\n");
+	
+	d = d / d2;
+	printf("%f", d);
+	printf("\n");
+	printf("%f", d2);
+	printf("\n");
+}

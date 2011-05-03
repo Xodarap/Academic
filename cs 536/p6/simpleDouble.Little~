@@ -1,0 +1,16 @@
+int gint;
+double gdbl;
+
+double f(double d1, double d2) {
+}
+
+void main() {
+	double a;
+	double b;
+  printf("\nExpected output:\n66 66 \n");
+  a = 5.0;
+	b = -(1.0 * 1.0);
+	printf("%f", b);
+
+}
+

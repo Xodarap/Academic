@@ -1,14 +1,274 @@
+int x(int; offset: -1);
+int y(int; offset: -1);
+double d(double; offset: -1);
 
-void foo(double->void; offset: -1)(double d(double; offset: -1)) {
-  d(double; offset: -1) = 123.0;
+void f(double,int,int->void; offset: -1)(double a(double; offset: -1), int c(int; offset: -1), int d(int; offset: -1)) {
+  printf("Expected output:\n22.5 55 65\n");
+  printf("%d", a(double; offset: -1));
+  printf(" ");
+  printf("%d", c(int; offset: -1));
+  printf(" ");
+  printf("%d", d(int; offset: -1));
+  printf("\n");
   return;
 }
 
-void main(->void; offset: -1)() {
+int g(int->int; offset: -1)(int x(int; offset: -1)) {
+  return x(int; offset: -1);
+}
+
+double gg(double->double; offset: -1)(double dd(double; offset: -1)) {
+  return (d(double; offset: -1)+dd(double; offset: -1));
+}
+
+void foo(->void; offset: -1)() {
+  int a(int; offset: -1);
+  int b(int; offset: -1);
+  int c(int; offset: -1);
+  int B(int; offset: -1);
+  printf("Expected output:\n6 7 8 9\n");
+  a(int; offset: -1) = 6;
+  while ((a(int; offset: -1)<10)) {
+    printf("%d", a(int; offset: -1));
+    printf(" ");
+    a(int; offset: -1)++;
+  }
+  printf("\n");
+  printf("\nExpected output:\n6 5 4 3 2 1 0 -1\n");
+  a(int; offset: -1) = 6;
+  while ((a(int; offset: -1)>=(-1))) {
+    printf("%d", a(int; offset: -1));
+    printf(" ");
+    a(int; offset: -1)--;
+  }
+  printf("\n");
+  a(int; offset: -1) = 10;
+  printf("\nExpected output:\n1 32 10 220 10 9 10\n");
+  B(int; offset: -1) = (1<3);
+  printf("%d", B(int; offset: -1));
+  printf(" ");
+  b(int; offset: -1) = 22;
+  a(int; offset: -1) = (a(int; offset: -1)+b(int; offset: -1));
+  printf("%d", a(int; offset: -1));
+  printf(" ");
+  a(int; offset: -1) = (a(int; offset: -1)-b(int; offset: -1));
+  printf("%d", a(int; offset: -1));
+  printf(" ");
+  a(int; offset: -1) = (a(int; offset: -1)*b(int; offset: -1));
+  printf("%d", a(int; offset: -1));
+  printf(" ");
+  a(int; offset: -1) = (a(int; offset: -1)/b(int; offset: -1));
+  printf("%d", a(int; offset: -1));
+  printf(" ");
+  b(int; offset: -1) = (a(int; offset: -1)--);
+  printf("%d", a(int; offset: -1));
+  printf(" ");
+  b(int; offset: -1) = (a(int; offset: -1)++);
+  printf("%d", a(int; offset: -1));
+  printf("\n");
+  a(int; offset: -1) = 10;
+  b(int; offset: -1) = 22;
+  printf("\nExpected output:\n0 0 1 0 1 1\n");
+  c(int; offset: -1) = 1;
+  c(int; offset: -1) = (!c(int; offset: -1));
+  printf("%d", c(int; offset: -1));
+  printf(" ");
+  c(int; offset: -1) = (c(int; offset: -1)&&1);
+  printf("%d", c(int; offset: -1));
+  printf(" ");
+  c(int; offset: -1) = (0||(!c(int; offset: -1)));
+  printf("%d", c(int; offset: -1));
+  printf(" ");
+  c(int; offset: -1) = (a(int; offset: -1)==b(int; offset: -1));
+  printf("%d", c(int; offset: -1));
+  printf(" ");
+  c(int; offset: -1) = (a(int; offset: -1)!=b(int; offset: -1));
+  printf("%d", c(int; offset: -1));
+  printf(" ");
+  c(int; offset: -1) = (a(int; offset: -1)<b(int; offset: -1));
+  printf("%d", c(int; offset: -1));
+  printf("\n");
+  printf("\nExpected output:\n0 1 0 1 1\n");
+  c(int; offset: -1) = (a(int; offset: -1)>b(int; offset: -1));
+  printf("%d", c(int; offset: -1));
+  printf(" ");
+  c(int; offset: -1) = (a(int; offset: -1)<=b(int; offset: -1));
+  printf("%d", c(int; offset: -1));
+  printf(" ");
+  c(int; offset: -1) = (a(int; offset: -1)>=b(int; offset: -1));
+  printf("%d", c(int; offset: -1));
+  printf(" ");
+  printf("%d", (b(int; offset: -1)<=b(int; offset: -1)));
+  printf(" ");
+  printf("%d", (b(int; offset: -1)>=b(int; offset: -1)));
+  printf("\n");
+  printf("\nExpected output:\n-50 3 2 1 0 -1 -2\n");
+  a(int; offset: -1) = (-50);
+  printf("%d", a(int; offset: -1));
+  printf(" ");
+  if ((a(int; offset: -1)<=10)) {
+    int a(int; offset: -1);
+    a(int; offset: -1) = 3;
+    while ((a(int; offset: -1)>=(-2))) {
+      printf("%d", a(int; offset: -1));
+      printf(" ");
+      a(int; offset: -1) = (a(int; offset: -1)-1);
+    }
+  }
+  printf("\n");
+  printf("\nExpected output:\n-5 -4 -3 -2 -1\n");
+  b(int; offset: -1) = (-(1*1));
+  if ((b(int; offset: -1)==(-1))) {
+    x(int; offset: -1) = (-5);
+    while ((x(int; offset: -1)<=b(int; offset: -1))) {
+      printf("%d", x(int; offset: -1));
+      printf(" ");
+      x(int; offset: -1) = (x(int; offset: -1)+1);
+    }
+  }
+  else {
+    printf("ERROR\n");
+  }
+  printf("\n");
+}
+
+void bar(->void; offset: -1)() {
   double a(double; offset: -1);
   double b(double; offset: -1);
-  double e(double; offset: -1);
-  e(double; offset: -1) = 4456.387;
-  foo(double->void; offset: -1)(2.1);
-  printf("%d", e(double; offset: -1));
+  int c(int; offset: -1);
+  double B(double; offset: -1);
+  int aa(int; offset: -1);
+  int bb(int; offset: -1);
+  printf("\nExpected output:\n6.5 7.5 8.5 9.5\n");
+  a(double; offset: -1) = 6.5;
+  aa(int; offset: -1) = 6;
+  while ((aa(int; offset: -1)<10)) {
+    printf("%d", a(double; offset: -1));
+    printf(" ");
+    a(double; offset: -1) = (a(double; offset: -1)+1.0);
+    aa(int; offset: -1) = (aa(int; offset: -1)+1);
+  }
+  printf("\n");
+  a(double; offset: -1) = 10.5;
+  printf("\nExpected output:\n33 10.5 236.25 10.5\n");
+  b(double; offset: -1) = 22.5;
+  a(double; offset: -1) = (a(double; offset: -1)+b(double; offset: -1));
+  printf("%d", a(double; offset: -1));
+  printf(" ");
+  a(double; offset: -1) = (a(double; offset: -1)-b(double; offset: -1));
+  printf("%d", a(double; offset: -1));
+  printf(" ");
+  a(double; offset: -1) = (a(double; offset: -1)*b(double; offset: -1));
+  printf("%d", a(double; offset: -1));
+  printf(" ");
+  a(double; offset: -1) = (a(double; offset: -1)/b(double; offset: -1));
+  printf("%d", a(double; offset: -1));
+  printf("\n");
+  printf("\nExpected output:\n66 66\n");
+  a(double; offset: -1) = (b(double; offset: -1) = 66.0);
+  printf("%d", a(double; offset: -1));
+  printf(" ");
+  printf("%d", b(double; offset: -1));
+  printf("\n");
+  printf("\nExpected output:\n-50 3 2 1 0 -1 -2\n");
+  a(double; offset: -1) = (-50.0);
+  aa(int; offset: -1) = (-50);
+  printf("%d", a(double; offset: -1));
+  printf(" ");
+  if ((aa(int; offset: -1)<=10)) {
+    double a(double; offset: -1);
+    a(double; offset: -1) = 3.0;
+    aa(int; offset: -1) = 3;
+    while ((aa(int; offset: -1)>=(-2))) {
+      printf("%d", a(double; offset: -1));
+      printf(" ");
+      a(double; offset: -1) = (a(double; offset: -1)-1.0);
+      aa(int; offset: -1) = (aa(int; offset: -1)-1);
+    }
+  }
+  printf("\n");
+  printf("\nExpected output:\n-5 -4 -3 -2\n");
+  b(double; offset: -1) = (-(1.0*1.0));
+  bb(int; offset: -1) = (-(1*1));
+  if ((bb(int; offset: -1)==(-1))) {
+    a(double; offset: -1) = (-5.0);
+    aa(int; offset: -1) = (-5);
+    while ((aa(int; offset: -1)<bb(int; offset: -1))) {
+      printf("%d", a(double; offset: -1));
+      printf(" ");
+      a(double; offset: -1) = (a(double; offset: -1)+1.0);
+      aa(int; offset: -1) = (aa(int; offset: -1)+1);
+    }
+  }
+  else {
+    printf("ERROR\n");
+  }
+  printf("\n");
+}
+int b(int; offset: -1);
+
+void main(->void; offset: -1)() {
+  double myd(double; offset: -1);
+  d(double; offset: -1) = 22.5;
+  x(int; offset: -1) = 55;
+  y(int; offset: -1) = 65;
+  printf("Expected output:\n56 66 55 65\n");
+  ++x(int; offset: -1);
+  ++y(int; offset: -1);
+  printf("%d", x(int; offset: -1));
+  printf(" ");
+  printf("%d", y(int; offset: -1));
+  printf(" ");
+  --x(int; offset: -1);
+  --y(int; offset: -1);
+  printf("%d", x(int; offset: -1));
+  printf(" ");
+  printf("%d", y(int; offset: -1));
+  printf("\n");
+  printf("\ncalling f\n");
+  f(double,int,int->void; offset: -1)(d(double; offset: -1), x(int; offset: -1), y(int; offset: -1));
+  printf("\ncalling g\n");
+  x(int; offset: -1) = g(int->int; offset: -1)(x(int; offset: -1));
+  printf("Expected output:\n55\n");
+  printf("%d", x(int; offset: -1));
+  printf("\n\n");
+  printf("calling gg\n");
+  myd(double; offset: -1) = gg(double->double; offset: -1)(d(double; offset: -1));
+  printf("Expected output:\n45 22.5\n");
+  printf("%d", myd(double; offset: -1));
+  printf(" ");
+  printf("%d", d(double; offset: -1));
+  printf("\n\n");
+  printf("calling foo\n");
+  foo(->void; offset: -1)();
+  printf("\ncalling bar\n");
+  bar(->void; offset: -1)();
+  printf("\nExpected output:\n2 5 2 5 2\n");
+  b(int; offset: -1) = 1;
+  x(int; offset: -1) = 2;
+  if ((b(int; offset: -1)||(x(int; offset: -1) = 5))) {
+    printf("%d", x(int; offset: -1));
+    printf(" ");
+  }
+  x(int; offset: -1) = 2;
+  if (((x(int; offset: -1) = 5)||(b(int; offset: -1) = 2))) {
+    printf("%d", x(int; offset: -1));
+    printf(" ");
+  }
+  b(int; offset: -1) = 1;
+  x(int; offset: -1) = 2;
+  if (((!b(int; offset: -1))&&(x(int; offset: -1) = 5))) {
+  }
+  else {
+    printf("%d", x(int; offset: -1));
+    printf(" ");
+  }
+  b(int; offset: -1) = 0;
+  x(int; offset: -1) = 2;
+  if (((x(int; offset: -1) = 5)&&(b(int; offset: -1) = 2))) {
+    printf("%d", x(int; offset: -1));
+    printf(" ");
+    printf("%d", b(int; offset: -1));
+    printf("\n");
+  }
 }

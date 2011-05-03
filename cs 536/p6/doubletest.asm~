@@ -1,0 +1,4 @@
+li.d $f12, 1
+li   $v0, 3
+syscall
+
