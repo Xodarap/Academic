@@ -1222,6 +1222,12 @@ class ReadIntStmtNode extends StmtNode {
 		p.println(");");
 	}
 
+	public void generate(){
+		Codegen.generate("li", "$v0", "5");
+		Codegen.generateWithComment("syscall", this, "", "", "");
+		Codegen.generate("sw", "$v0", myId.label());
+	}
+	
 	// 1 kid
 	private IdNode myId;
 }
@@ -1252,6 +1258,12 @@ class ReadDblStmtNode extends StmtNode {
 		p.println(");");
 	}
 
+	public void generate(){
+		Codegen.generate("li", "$v0", "7");
+		Codegen.generateWithComment("syscall", this, "", "", "");
+		Codegen.generate("s.d", "$f0", myId.label());
+	}
+	
 	// 1 kid
 	private IdNode myId;
 }
