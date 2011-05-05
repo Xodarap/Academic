@@ -67,8 +67,8 @@ module stallmem (DataOut, Done, Stall, CacheHit, err, Addr, DataIn, Rd, Wr, crea
    integer        mcd;
    integer        i;
 
-   assign         ready = (Wr|Rd) & rand_pat[0];
-   assign         Stall = (Wr|Rd) & ~rand_pat[0];
+   assign         ready = (Wr|Rd) /*& rand_pat[0]*/;
+   assign         Stall = (Wr|Rd) /*& ~rand_pat[0]*/;
    assign         err = ready & Addr[0]; //word aligned; odd address is invalid
    assign         Done = ready;
    assign         DataOut = err ? 

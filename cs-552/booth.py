@@ -32,5 +32,5 @@ def arith_shift_right(x, amt):
 	x = BitArray(int = (x.int >> amt), length = l)
 	return x
 
-b = booth(86, 41, 8, 8)
+b = booth(86, 43, 8, 8)
 print b

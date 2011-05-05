@@ -86,6 +86,8 @@ module stallmem (DataOut, Done, Stall, CacheHit, err, Addr, DataIn, Rd, Wr, crea
       $value$plusargs("seed=%d", seed);
       $display("Using seed %d", seed);
       rand_pat = $random(seed);
+      //rand_pat = 32'd0;
+      
       $display("rand_pat=%08x %32b", rand_pat, rand_pat);
       // initialize memories to 0 first
       for (i=0; i<=65535; i=i+1) begin

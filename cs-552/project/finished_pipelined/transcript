@@ -140,5 +140,7 @@ run -all
 # rand_pat=80010e00 10000000000000010000111000000000
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.ptrace for output
-# ** Note: $finish    : proc_hier_pbench.v(115)
-#    Time: 247170005 ns  Iteration: 0  Instance: /proc_hier_pbench
+# hmm....more than 100000 cycles of simulation...error?
+# 
+# ** Note: $finish    : clkrst.v(41)
+#    Time: 1 sec  Iteration: 0  Instance: /proc_hier_pbench/DUT/c0
