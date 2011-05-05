@@ -1,0 +1,15 @@
+module mem_interface (
+    input         clk,
+    input         rst,
+    input         createdump,
+    input  [15:0] addr,
+    input  [15:0] data_in,
+    input         wr,
+    input         rd,               
+    output [15:0] data_out,
+    output        stall,
+    output [3:0]  busy,
+    output        err
+);
+
+endmodule // mem_interface
