@@ -350,7 +350,7 @@ public class Codegen {
     }
 
     public static void genData() {
-	p.println("\t.data");
+    	p.println("\t.data");
     }
 
     public static void genStaticVar(String label, int size){
@@ -381,5 +381,10 @@ public class Codegen {
     	generateLabeled(success, "nop", "");
     	generate("li", reg, "1");
     	generateLabeled(done, "nop", "");
+    }
+    
+    public static void int2Dbl(String intReg, String dblReg) {
+		Codegen.generate("mtc1", intReg, "$f8");
+		Codegen.generate("cvt.d.w", dblReg, "$f8");
     }
 }

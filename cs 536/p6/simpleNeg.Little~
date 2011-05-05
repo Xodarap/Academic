@@ -1,0 +1,16 @@
+void main() {
+	int x;
+	int b;
+  b = -(1*1);
+  if (b == -1) {
+    x = -5;
+    while (x<=b) {
+      printf("%d", x);
+      printf(" ");
+      x = x + 1;
+    }
+  }
+  else {
+    printf("ERROR\n");
+  }
+}
