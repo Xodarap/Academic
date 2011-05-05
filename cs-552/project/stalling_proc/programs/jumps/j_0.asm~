@@ -1,0 +1,14 @@
+// Original test: ./neel/hw4/problem6/j_0.asm
+// Author: neel
+// Test source code follows
+
+
+//Tests j  with negative offset
+
+0  lbi r1,255		//1
+2  j 4			//2
+4  lbi r2,20		//5
+6  halt			//6
+8  lbi r2,30		//3
+10 j -8			//4
+12 halt			//never

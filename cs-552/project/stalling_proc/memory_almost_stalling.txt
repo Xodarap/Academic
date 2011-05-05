@@ -1,0 +1,24 @@
+module memory(Clk, Rst, Addr, Data, MemWrite, MemRead, ReadData, dataStall);
+   input Clk, Rst;
+   input [15:0] Addr, Data;
+   input 	MemWrite, MemRead;
+   output [15:0] ReadData;
+   wire [15:0] 	 readTemp;
+   wire done;
+   wire hit;
+   wire err;
+   output dataStall;
+
+   wire stallLast;
+
+   wire RealMemRead, RealMemWrite;
+   assign RealMemRead = MemRead & (~stallLast);
+   assign RealMemWrite = MemWrite & (~stallLast);
+
+   onebitreg stallreg(.readdata(stallLast), .clk(Clk), .rst(Rst), .writedata(dataStall), .write(1'b1));
+   
+   stallmem memory0(.DataOut(readTemp), .Done(done), .Stall(dataStall), .CacheHit(hit), .err(err), .Addr(Addr), .DataIn(Data), 
+			.Rd(RealMemRead), .Wr(RealMemWrite), .createdump(1'b0), .clk(Clk), .rst(Rst));
+
+   assign ReadData = readTemp;
+endmodule // memory
