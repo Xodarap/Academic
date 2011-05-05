@@ -1,4 +1,4 @@
-# vsim +seed=1 -lib __work -c proc_hier_pbench 
+# vsim -lib __work -c proc_hier_pbench 
 # //  ModelSim SE 5.8b Jan 01 2004 Linux 2.6.18-238.1.1.el5
 # //
 # //  Copyright Model Technology, a Mentor Graphics Corporation company, 2004
@@ -9,8 +9,11 @@
 # //
 # Loading __work.proc_hier_pbench
 # Loading __work.proc_hier
-# ** Warning: (vsim-3010) [TSCALE] - Module 'proc_hier' has a `timescale directive in effect, but previous modules do not.
-#         Region: /proc_hier_pbench/DUT
+# ** Warning: (vsim-3010) [dataset open dump.wlf
+# dump.wlf opened as dataset "dump1"
+dataset open dump.wlf
+# dump.wlf opened as dataset "dump2"
+c_hier_pbench/DUT
 # Loading __work.clkrst
 # ** Warning: (vsim-3009) [TSCALE] - Module 'clkrst' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_pbench/DUT/c0
@@ -133,11 +136,14 @@
 # ** Warning: (vsim-3009) [TSCALE] - Module 'memory2writeback' does not have a `timescale directive in effect, but previous modules do.
 #         Region: /proc_hier_pbench/DUT/p0/m2wb
 # Loading __work.writeback
+# ** Warning: (vsim-3017) proc.v(174): [TFMPC] - Too few port connections. Expected 11, found 10.
+#         Region: /proc_hier_pbench/DUT/p0/hazarddetector0
+# ** Warning: (vsim-3722) proc.v(174): [TFMPC] - Missing connection for port 'IsNOP'.
 run -all
-# Using seed           1
-# rand_pat=80010e00 10000000000000010000111000000000
-# Using seed           1
-# rand_pat=80010e00 10000000000000010000111000000000
+# Using seed           0
+# rand_pat=12153524 00010010000101010011010100100100
+# Using seed           0
+# rand_pat=12153524 00010010000101010011010100100100
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.ptrace for output
 # hmm....more than 100000 cycles of simulation...error?

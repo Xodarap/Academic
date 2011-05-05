@@ -53,7 +53,7 @@ module cache_controller(clk, rst, rd, wr, stall, M2C, C2M, H, addr,
 	   mem_rd = 1'b0;
 	   done = 1'b0;
 	   cache_wr = 1'b0;
-	   stall_out = (nextstate == RESET) ? 1'b0 : 1'b1;
+	   stall_out = 1'b1;
 	   hit_out = 1'b1;
 	   
 	end
@@ -222,7 +222,7 @@ module cache_controller(clk, rst, rd, wr, stall, M2C, C2M, H, addr,
 	   mem_rd = 1'b0;
 	   done = 1'b1;
 	   cache_wr = 1'b0;
-	   stall_out = 1'b1;
+	   stall_out = 1'b0;
 
 
 	end

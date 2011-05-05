@@ -1,40 +1,20 @@
-          // This is the same as dot.asm, but with the instructions reordered for fewer conflicts
-          //
-          // This is indended to be like a dot product, but we don't have a multiplication instruction.
-          // So it is the sum of the difference of the vectors (i.e. instead of a[i] * b[i] we have
-          // a[i] - b[i]).
-          //
-          // Because we're reusing the registers, forwarding is very important.
-          // Additionally, since each entry is only one word, loading a long cache line
-          // will help.
-          //
-          // This program is optimized for predict not taken
-          //
-          // In pseudocode:
-          //
-          // for i = 1 to max:
-          // 	accum += a[i] - b[i]
+          // Original test: ./english/hw4/problem6/st_0.asm
+          // Author: english
+          // Test source code follows
           
-0000 c000 lbi  r0, 0  // r0 = i
-0002 9000 slbi r0, 0
-0004 c100 lbi  r1, 0  // r1 = max
-0006 9140 slbi r1, 64
-0008 c200 lbi  r2, 0  // r2 = accum
-000a 9200 slbi r2, 0
-000c c300 lbi  r3, 0  // r3 = addr of a[i]
-000e 9300 slbi r3, 0
-0010 c440 lbi  r4, 64 // r4 = addr of b[i]
-0012 9400 slbi r4, 0
-0014      .loop:
-0014 8ba0 	ld   r5, r3, 0 
-0016 8cc0 	ld   r6, r4, 0 
-0018 4001 	addi r0, r0, 1
-001a 4370 	addi r3, r3, 16
-001c 4490 	addi r4, r4, 16
-001e ddd5 	sub  r5, r5, r6
-0020 d839 	sub  r6, r0, r1
-0022 daa8 	add  r2, r2, r5  
-0024 6602 	beqz r6, .end    
-0026 27ec 	j    .loop
-0028      .end:
-0028 0000 	halt
+          
+0000 c000 lbi r0, U.Here
+0002 901a slbi r0, L.Here   // r0 contains address of ".Here"
+0004 c100 lbi r1, 0
+0006 8020 st r1, r0, 0      // .Here should have the value 0
+0008 8840 ld r2, r0, 0      // r2 = 0
+000a 0000 halt
+000c 0000 halt
+000e 0000 halt
+0010 0000 halt
+0012 0000 halt
+0014 0000 halt
+0016 0000 halt
+0018 0000 halt
+001a      .Here:
+001a 0000 halt

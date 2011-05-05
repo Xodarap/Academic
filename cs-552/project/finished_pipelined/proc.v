@@ -171,7 +171,6 @@ module proc (/*AUTOARG*/
    hazarddetector hazarddetector0(.XMemRead(ctlD2E[4]), .XRt(xReg2Sel), .DRs(ctlReg1Next),			  
 				  .DRt(ctlReg2Next), .MRd(reg2write2mw), .XRd(reg2write2em), 
 				  .MRegWrite(ctlE2M[2]), .XRegWrite(ctlD2E[2]), .RType(rtypede),
-				  .IsNOP(instde[15:11] == 5'b00001),
 				  .Stall(stallFD));
   
    execute execute0(.Clk(clk), .Rst(rst), 

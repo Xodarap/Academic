@@ -11,10 +11,13 @@ module mem_system_hier_tb;
    // Beginning of automatic reg inputs (for undeclared instantiated-module inputs)
    reg [15:0]		Addr;			// To mem0 of mem_system_hier.v
    reg [15:0]		DataIn;			// To mem0 of mem_system_hier.v
-   reg			Rd;			// To mem0 of mem_system_hier.v
-   reg			Wr;			// To mem0 of mem_system_hier.v
+   wire			Rd;			// To mem0 of mem_system_hier.v
+   wire			Wr;			// To mem0 of mem_system_hier.v
    reg			createdump;		// To mem0 of mem_system_hier.v
    // End of automatics
+   reg [7:0] 		writes,reads,data;
+   assign Rd = reads[0];
+   assign Wr = writes[0];
    
    mem_system_hier mem0(/*AUTOINST*/
 			// Outputs
@@ -31,34 +34,26 @@ module mem_system_hier_tb;
    initial begin
       Addr = 16'h1112;
       DataIn = 16'h2222;
-      Rd = 1'b0;
-      Wr = 1'b1;
+      writes = 7'b10100101;
+      reads =  7'b01011010;
+      $display("R W Data");
+      
    end
    
    always@(posedge mem0.clk) begin
-      if(mem0.clkgen.cycle_count == 10) begin
-	 Rd = 1'b1;
-	 Wr = 1'b0;
-      end
-
-      if(mem0.clkgen.cycle_count == 12) begin
-	 Addr = 16'h1114;
-	 Rd = 1'b0;
-	 Wr = 1'b1;
-	 DataIn = 16'h3333;
-      end
-
-      if(mem0.clkgen.cycle_count == 16) begin
-	 Rd = 1'b1;
-	 Wr = 1'b0;
+      if (~Stall) begin
+	 $display("%d %b %b %x", mem0.clkgen.cycle_count, Rd, Wr, DataOut);
+	 //$display("%b %b", reads, writes);
+	 
+	 writes = writes >> 1;
+	 reads = reads >> 1;
+	 DataIn = DataIn + 1;
+	 
       end
       
-      if(mem0.clkgen.cycle_count == 18) begin
-	 Addr = 16'hF114;
-      end
-      
-      if(mem0.clkgen.cycle_count > 30) begin
+      if((writes == 7'b0) && (reads == 7'b0)) begin
 	 $finish;
       end
+      
    end
 endmodule // mem_system_hier_tb
