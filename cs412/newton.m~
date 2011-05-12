@@ -1,0 +1,8 @@
+function x = newton(f, fprime, x0, tol)
+
+maxIter = 1000;
+
+for i=1:maxIter
+	x = x0 - f(x0) / fprime(x0);
+	
+end

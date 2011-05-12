@@ -1,0 +1,9 @@
+function x = hw3p4
+
+function x = equidistant(a,b,n)
+step = (b-a)/n;
+x = a:step:b
+
+function x = chebyshev(a,b,n)
+i = 1:n;
+x = (a+b)/2 + (b-a)*cos(pi / (n*i)) / 2;

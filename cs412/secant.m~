@@ -1,0 +1,27 @@
+function x = secant(f, x0, x1, tolerance)
+maxIter = 10000;
+xp = x0;
+fp = f(xp);
+x = x1;
+fx = f(x);
+
+for i = 1:maxIter
+	if (fx - fp) == 0 || isnan(fx - fp)
+		disp(sprintf('div by zero on iteration %d with x_1=%d and x_2=%d: %d - %d', i, x, xp, fx, fp));
+		break;
+	end
+	xn = x - f(x) * (x - xp) / (f(x) - f(xp));
+	if abs(f(xn)) <= tolerance
+		disp(sprintf('Convergence reached after %d iterations at value %d', i, f(xn)));
+		x = xn;
+		return;
+	end
+	xp = x;
+	fp = fx;
+	x = xn;
+	fx = f(x);
+end
+
+disp(sprintf('Convergence not reached after %d iterations', i));
+
+

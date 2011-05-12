@@ -1,0 +1,162 @@
+CS 412 HW 1 
+Ben West
+
+1. 
+
+Since D(f) = [f(x+h) - f(x)]/h, we can see here that the variable D is attempting to find the derivative. We know analytically that the derivative of log(x) is 1/x, so TRUEV = 1/3.7 which is about .27027
+
+function ck1()
+h(1)=1E-2;
+TRUEV=.27027;  % you will need to complete this line
+disp(sprintf('h\terror'));
+for i=2:15
+  h(i)=h(i-1)/4;
+  %D=(log(3.7+h(i))-log(3.7))/h(i);
+  D=(log(3.7+h(i))-log(3.7-h(i)))/(2*h(i));
+  error(i)=TRUEV-D;
+  disp(sprintf('%e\t%e', h(i), error(i)));
+end   
+
+First run:
+
+octave:31> ck1
+h	error
+2.500000e-03	9.099614e-05
+6.250000e-04	2.255404e-05
+1.562500e-04	5.436290e-06
+3.906250e-05	1.156401e-06
+9.765625e-06	8.639201e-08
+2.441406e-06	-1.810449e-07
+6.103516e-07	-2.480747e-07
+1.525879e-07	-2.637180e-07
+3.814697e-08	-2.651732e-07
+9.536743e-09	-2.535316e-07
+2.384186e-09	-1.836824e-07
+5.960464e-10	-1.836824e-07
+1.490116e-10	1.888466e-07
+3.725290e-11	4.659195e-06
+
+Second run (rewritten to midpoint formula):
+
+octave:36> ck1
+h	error
+2.500000e-03	-3.113998e-07
+6.250000e-04	-2.728408e-07
+1.562500e-04	-2.704305e-07
+3.906250e-05	-2.702805e-07
+9.765625e-06	-2.702777e-07
+2.441406e-06	-2.702663e-07
+6.103516e-07	-2.704482e-07
+1.525879e-07	-2.702663e-07
+3.814697e-08	-2.709939e-07
+9.536743e-09	-2.651732e-07
+2.384186e-09	-2.302486e-07
+5.960464e-10	-1.836824e-07
+1.490116e-10	-5.562115e-07
+3.725290e-11	1.678963e-06
+
+The midpoint formula reaches the limit of significance more quickly, and the midpoint one appears to be more stable.
+
+2.a. lim(x->y) x^4 - y^4 / (x^3 - y^3) = 0 / 0. This is obviously a problem. One simple solution is to just use L'Hopital's rule, which tells us that f(3,3) = 4. 
+
+One way to rewrite this might be as:
+
+[x^3 / (x^2 + xy + y^2)] + y
+
+Since one of the y's is not in the denominator, there may not be as much loss of precision.
+
+2.b. sin(pi / 4) = cos(pi / 4), which is why there is a loss of significance. We can rewrite sin(x) - cos(x) to be:
+	-2 * cos(x + pi/4) * cos(x - pi/4)
+
+2.c. e^(2y) - e^y = e^y(e^y - 1). As y -> 0, e^y -> 1, leaving us with 1-1 = 0. 
+
+In general, e^x can be approximated by the taylor series x^k / k!; Plugging this in we find e^2y - e^y = sum((2y)^k / k! - y^k / k!) = sum((2^k-1 / k!) * y^k)
+
+3.
+function x = fixedpoint(init, g)
+xold = init;
+tolerance = 10^-10;
+iter = 0;
+maxiter = 10000;
+
+while true
+	iter++;
+	xnew = g(xold);
+	if abs(xnew-xold) <= tolerance
+		disp(sprintf('Convergence was reached after %d iterations at the value %f', iter, xnew));
+		break;
+	endif
+	
+	if iter == 1	%need at least two iterations before we can test divergence
+		e1 = xnew - xold;
+	elseif (iter > maxiter)
+		disp(sprintf('Calculation was terminated after %d iterations at the value %f with error %f', iter, xnew, e1));
+		break;
+	else
+		e0 = e1;
+		e1 = xnew - xold;
+		if(e0 == 0)
+			disp(sprintf('Series went below precision after %d iterations', iter));
+			break;
+		end
+		epsilon = e1 / e0;
+		if(epsilon > 1)
+			disp(sprintf('Series diverged after %d iterations', iter));
+			break;
+		end
+	end
+
+	xold = xnew;
+endwhile
+
+x = xnew;
+
+== Runs ==
+
+octave:23> fn = @(x) atan(x) / x^2;
+octave:25> fixedpoint(1, fn)
+warning: division by zero
+warning: division by zero
+Calculation was terminated after 10001 iterations at the value NaN with error N
+aN
+ans = NaN
+octave:27>
+
+Comment: The problem appears to be that some x_i goes to 0 (x_29 to be precise), causing the div by 0 error.
+
+
+octave:27> fn = @(x) atan(x) - x^3 + x;
+octave:29> fixedpoint(1, fn)
+Convergence was reached after 182 iterations at the value 0.902025
+ans =  0.90203
+
+Comment: Linearly convergent
+
+octave:31> fn = @(x) atan(x)^(1/3);
+octave:33> fixedpoint(1, fn)
+Convergence was reached after 15 iterations at the value 0.902025
+ans =  0.90203
+octave:35>
+
+Comment: Quadratically convergent
+
+octave:35> fn = @(x) atan(x) / x^3 + x;
+octave:37> fixedpoint(1, fn)
+Calculation was terminated after 10001 iterations at the value 15.614105 with e
+rror 0.000396
+ans =  15.614
+octave:39>
+
+Comment: Divergent
+
+octave:39> fn = @(x) atan(x)^(1/3) / x + x;
+octave:41> fixedpoint(1, fn)
+Calculation was terminated after 10001 iterations at the value 152.292789 with 
+error 0.007623
+ans =  152.29
+octave:43>
+
+Comment: Divergent
+
+== Overall remarks on #3 ==
+Dividing by any power of x seemed to be a bad idea. I think that, since we're dealing with smaller values, raising these small values to an exponent and then dividing by them leads to a loss of precision.

@@ -1,0 +1,198 @@
+[I'm using recycled paper, so please ignore the back side of these pages]
+
+Ben West, cs412 HW 2
+Turned in one day late, oct/13 at 12pm
+
+1. Using the polynomial (x-2.5)(x+1)(x-1), it is obvious that this has a root at x=2.5.
+
+== Newton's Method ==
+function x = newton(f, fprime, x, tol)
+
+maxIter = 1000;
+
+for i=1:maxIter
+	x = x - f(x) / fprime(x);
+	if abs(f(x)) < tol
+		printf('Convergence reached after %d iterations at %f\n', i, x);
+		return;
+	end
+end
+
+printf('Convergence not reached after %d iterations. Best guess: %f\n', i, x);
+
+octave:12> f = @(x) (x-2.5)*(x-1)*(x+1);
+octave:19> fprime = @(x)  (x-2.5)*(x-1)+(x+1)*(x-1)+(x-2.5)*(x+1);
+octave:27> newton(f, fprime, 2, .001)
+Convergence reached after 5 iterations at 2.500042
+ans =  2.5000
+
+== Bisection ==
+function x = bisection(f, left, right)
+maxIter = 1000;
+
+for i=1:maxIter
+   	midpoint = (right + left) / 2;
+
+	if (f(left) * f(midpoint)) < 0 
+		right = midpoint;
+	elseif (f(right) * f(midpoint)) < 0
+		left = midpoint;
+	else 
+		disp(sprintf('Convergence reached after %d iterations', i));
+		x = midpoint;
+		return;
+	end
+end
+
+disp(sprintf('Convergence not reached after %d iterations', i));
+
+octave:45> bisection(f,2,5,.001)
+Convergence reached after 52 iterations
+ans =  2.5000
+
+== Secant ==
+function x = secant(f, x0, x1, tolerance)
+maxIter = 1000;
+xp = x0;
+fp = f(xp);
+x = x1;
+fx = f(x);
+
+for i = 1:maxIter
+    xn = x - fx * (x - xp) / (fx - fp);
+	if abs(x-xn) <= tolerance
+		disp(sprintf('Convergence reached after %d iterations', i));
+		x = xn;
+		return;
+	end
+    xp = x;
+    fp = fx;
+    x = xn;
+    fx = f(x);
+end
+
+disp(sprintf('Convergence not reached after %d iterations', i));
+
+octave:26> f = @(x) (x-2.5)*(x+1)*(x-1);
+octave:34> secant(f, 2, 2.1, .001)
+Convergence reached after 7 iterations
+ans =  2.5000
+
+Newton's and secant are quadratic, whereas bisection is linear. You can see this be varying the requried tolerances.
+
+2.a.
+Since this function has a zero at x = 1/a, obviously finding this zero equates to finding 1/a. The derivative of this function is 1/ax^2. When we divide the original function by its derivative, we get:
+
+[1 - 1/(xa)] / [1 / ax^2]
+= ax^2 - ax^2 / ax
+= ax^2 - x
+= x(ax - 1)
+
+Note that the final equation has no division in it. This is the "Trick". 
+
+Sample:
+
+x = .1, a = 13
+x_new = .1 - (.1) * (13 * .1 - 1)
+= .1 - .1 * (.3)
+= .1 - .03
+= .07
+
+No division is used here.
+
+b.
+
+Using the given formula for g'', we get:
+
+|e_n| = |f''(z) / 2f'(z)| * |e_n-1|^2
+
+f'' = - 2 / ax^3, so f'' / 2f' is (after some algebra) -1/x giving
+
+|e_n| = | 1 / x | * | e_n-1 | ^ 2
+
+Unfortunately, 1/x can tend to infinity for some x. I'll somewhat arbitrarily bound the interval at x = 1/1000, giving a maximum error of 1000. So
+
+e_n = 1000 * (e_n-1)^2
+
+Since division on the machine is accurate to four decimal places, I will assume that our initial guess uses this division for an error of e_0 = .0001. To bring this to 8 decimal places of precision requires 3 iterations of the method.
+
+3.
+a. 
+function x=wilkinson(t)
+first = (ones(1,20) .* t) - (1:20);
+x = prod(first) - (10^-8) * (t^19);
+
+octave:430> p(20)
+ans = -52428800000000000
+octave:432> p(21)
+ans =  2300417041773329664
+
+Since it is continuous and goes from negative to positive between 20 and 21, it must have a zero in that range by the intermediate value theorem.
+
+Even with double precision, I can only find a root near 20.2402751265295, and p(20.2402751265295) = 752. This is 15 decimal places, which I think is the best that can be hoped for. So if the question is "find a root r such that abs(p(r)) < epsilon," I can't do it for epsilon < 752. So I'll instead consider the question "find r_approx such that (r - r_approx) < epsilon". And I'll take as the actual value of r the fifteen digit precise one.
+
+b. It takes 9 iterations to get within 10^-3. 10^-13 is the limit of precision of my matlab as far as I can tell (since this is 15 digits of precision), and it gets there after 13 iterations. so to cut the error by a factor of 10^10, we only had to increase the number of iterations by about 45% (1.4). 
+
+Bisection also takes 9 iterations to get within 10^-3. Bisection took 41 iterations to get within 10^-13, giving a ratio of 4.5
+
+c. The secant method involves multiplying by f(x), and finding f(x_1) - f(x_2). This makes it very easy to get loss of precision errors, since these numbers are so big. With the bisection method, as long as f(left) * f(middle) keeps its same sign, we don't care about any more precision.
+
+d. This shows that a minor change in one coefficient can affect a drastic change in the roots. The major reason why this is bad is loss of precision: we might naively assume that if we have such huge polynomials, we need only store coefficients with a relatively small precision. This would give us very wrong answers. Also, we might attempt to extrapolate and say: "We can find a very close answer for all our sample polynomials of degree 20 after only 10 iterations. Therefore, we can find a close answer for *all* polynomials after only 10 iterations." This would be a mistake.
+
+4.
+function a = vandermonde(x,f, errRange)
+% variant of vandermonde interpolation demo
+
+n=length(x); 
+J=[n-1:-1:0]';
+V=zeros(n);
+V=x'(:,ones(1,n)).^(J(:,ones(1,n))');
+F = zeros(n,1);
+for i=1:n
+	F(i) = f(x(i));
+end
+
+a=V\F;
+p=polyval(a,errRange);
+Ferr = zeros(length(errRange),1);
+for i=1:length(errRange)
+	Ferr(i) = f(errRange(i));
+end
+
+% plot some results
+plot(errRange,p,'-b');
+hold on
+plot(errRange,Ferr,'*r');
+hold off
+
+step = (max(errRange) - min(errRange))/length(errRange);
+errTotal = sum(abs(Ferr-p')) * step;
+
+printf('Total error: %f\n',errTotal);
+
+
+
+
+octave:141> vandermonde(linspace(0,5,11), f, linspace(-1,6));
+Total error: 0.546085
+octave:143> vandermonde(linspace(0,5,3), f, linspace(-1,6));
+Total error: 0.633484
+octave:145> vandermonde(linspace(0,5,5), f, linspace(-1,6));
+Total error: 0.389339
+octave:151> vandermonde(linspace(0,5,15), f, linspace(-1,6));
+Total error: 0.373338
+octave:153> vandermonde(linspace(0,5,20), f, linspace(-1,6));
+warning: matrix singular to machine precision, rcond = 1.96758e-22
+warning: attempting to find minimum norm solution
+warning: dgelsd: rank deficient 20x20 matrix, rank = 15
+Total error: 300.166566
+octave:155> vandermonde(1:.1:2, f, linspace(-1,6));
+Total error: 25.312102
+octave:157>
+octave:159> vandermonde([0:.5:1 4:.5:5], f, linspace(-1,6));
+Total error: 0.327933
+octave:161> vandermonde(3:.25:4, f, linspace(-1,6));
+Total error: 0.651966
+
+Conclusions
+Having evenly distributed points is more important than having a lot of points. With a large number of points the matrix actually becomes singular and is therefore useless. Increasing past 5-8 points didn't seem to add much.
