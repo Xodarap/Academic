@@ -1,3 +1,9 @@
+% Sample code snippet comparing three methods of solving IVPs:
+% Runge-Kutta 4, Adams-Bashforth-Moulton and Milne-Simpson
+%
+% Usage: Just run IVPTest(). It will run each method with varying values of
+% 	h and print statistics about each method. The function we're trying to evaluate
+% 	is exp(-2t) * y - y^2
 function IVPTest()
 
 fn = @(t,y) exp(-2 * t) .* y - y .^2;
@@ -6,12 +12,14 @@ rk4iters = testFn(str2func('RK4'), fn,  t0, tn, y0, 1, .348849);
 abiters = testFn(str2func('AdamsBashforth'), fn,  t0, tn, y0, .5, 0.372838);
 msiters = testFn(str2func('MilneSimpson'), fn,  t0, tn, y0, .5, 0.348848);
 
+% Runs a method until it converges to a value less than 1e-6
+% Prints out stats at each iteration
 function iters = testFn(estFn, fn, t0, tn, y0, coeff, act)
 fprintf('Function: %s\n', func2str(estFn));
 fprintf('h\tValue\terror\terrRatio\n');
 last = 0; epsilon = 1e-6; iters = 0;
 lastErr = 1;
-for iters=1:100
+for iters=1:10
 	h = (2 ^-iters) * coeff;
 	y = estFn(fn, h, t0, tn, y0);
 	err = act - y(end);
@@ -22,7 +30,7 @@ for iters=1:100
 	last = y;
 	lastErr = err;
 end
-
+end
 
 % Runge-Kutta degree 4 method
 function y = RK4(fn, h, t0, tmax, y0)
