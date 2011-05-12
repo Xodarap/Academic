@@ -1,0 +1,3 @@
+file = open('data', 'r')
+for line in file:
+    print hex(int(line, 2))
